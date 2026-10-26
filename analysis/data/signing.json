@@ -1,0 +1,33 @@
+{
+ "signing_block_bytes": 4088,
+ "entries": [
+  {
+   "id": "0x7109871a",
+   "name": "APK Signature Scheme v2",
+   "bytes": 1500
+  },
+  {
+   "id": "0xf05368c0",
+   "name": "APK Signature Scheme v3",
+   "bytes": 1500
+  },
+  {
+   "id": "0x42726577",
+   "name": "Verity padding",
+   "bytes": 1028
+  }
+ ],
+ "schemes": [
+  "APK Signature Scheme v2",
+  "APK Signature Scheme v3"
+ ],
+ "certificates": [
+  {
+   "sha256": "03637f6c5d8f604e6fdb79a6ffbfa578de4e318f8da22fc6106665247f8807d7",
+   "subject": "C=Israel, ST=Israel, L=Raanana, O=Waze, OU=Waze, CN=<redacted>",
+   "self_signed": true,
+   "not_before": "Jan 28 14:38:25 2009 GMT",
+   "not_after": "Nov  1 14:38:25 2063 GMT"
+  }
+ ]
+}

@@ -1,0 +1,645 @@
+{
+ "types": {
+  "string": {
+   "entries": 4334,
+   "values": 28097,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "drawable": {
+   "entries": 2638,
+   "values": 4341,
+   "files": 4335,
+   "bytes": 17042789,
+   "compressed": 15647728
+  },
+  "id": {
+   "entries": 2122,
+   "values": 2122,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "style": {
+   "entries": 1851,
+   "values": 1952,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "attr": {
+   "entries": 1733,
+   "values": 1733,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "dimen": {
+   "entries": 1500,
+   "values": 1620,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "color": {
+   "entries": 1280,
+   "values": 1457,
+   "files": 274,
+   "bytes": 183268,
+   "compressed": 74099
+  },
+  "layout": {
+   "entries": 402,
+   "values": 429,
+   "files": 429,
+   "bytes": 880012,
+   "compressed": 312771
+  },
+  "integer": {
+   "entries": 88,
+   "values": 96,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "anim": {
+   "entries": 85,
+   "values": 85,
+   "files": 85,
+   "bytes": 60984,
+   "compressed": 25965
+  },
+  "raw": {
+   "entries": 61,
+   "values": 63,
+   "files": 63,
+   "bytes": 2259745,
+   "compressed": 843445
+  },
+  "animator": {
+   "entries": 43,
+   "values": 43,
+   "files": 43,
+   "bytes": 45836,
+   "compressed": 16199
+  },
+  "font": {
+   "entries": 25,
+   "values": 25,
+   "files": 25,
+   "bytes": 3211092,
+   "compressed": 1835063
+  },
+  "interpolator": {
+   "entries": 20,
+   "values": 20,
+   "files": 20,
+   "bytes": 7140,
+   "compressed": 3923
+  },
+  "array": {
+   "entries": 12,
+   "values": 12,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "xml": {
+   "entries": 12,
+   "values": 12,
+   "files": 12,
+   "bytes": 16100,
+   "compressed": 3978
+  },
+  "bool": {
+   "entries": 11,
+   "values": 15,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  },
+  "mipmap": {
+   "entries": 3,
+   "values": 17,
+   "files": 17,
+   "bytes": 55594,
+   "compressed": 54994
+  },
+  "plurals": {
+   "entries": 1,
+   "values": 82,
+   "files": 0,
+   "bytes": 0,
+   "compressed": 0
+  }
+ },
+ "distinct_resources": 16221,
+ "top_configs": [
+  [
+   "string:default",
+   4334
+  ],
+  [
+   "id:default",
+   2122
+  ],
+  [
+   "style:default",
+   1850
+  ],
+  [
+   "attr:default",
+   1733
+  ],
+  [
+   "dimen:default",
+   1500
+  ],
+  [
+   "drawable:xxhdpi",
+   1409
+  ],
+  [
+   "drawable:hdpi",
+   1276
+  ],
+  [
+   "drawable:default",
+   1105
+  ],
+  [
+   "color:default",
+   1027
+  ],
+  [
+   "layout:default",
+   402
+  ],
+  [
+   "string:ar",
+   286
+  ],
+  [
+   "string:ca",
+   285
+  ],
+  [
+   "string:da",
+   285
+  ],
+  [
+   "string:fa",
+   285
+  ],
+  [
+   "string:ja",
+   285
+  ],
+  [
+   "string:ka",
+   285
+  ],
+  [
+   "string:pa",
+   285
+  ],
+  [
+   "string:ta",
+   285
+  ],
+  [
+   "string:nb",
+   285
+  ],
+  [
+   "string:be",
+   285
+  ],
+  [
+   "string:de",
+   285
+  ],
+  [
+   "string:ne",
+   285
+  ],
+  [
+   "string:te",
+   285
+  ],
+  [
+   "string:af",
+   285
+  ],
+  [
+   "string:bg",
+   285
+  ],
+  [
+   "string:th",
+   285
+  ],
+  [
+   "string:fi",
+   285
+  ],
+  [
+   "string:hi",
+   285
+  ],
+  [
+   "string:si",
+   285
+  ],
+  [
+   "string:vi",
+   285
+  ],
+  [
+   "string:kk",
+   285
+  ],
+  [
+   "string:mk",
+   285
+  ],
+  [
+   "string:sk",
+   285
+  ],
+  [
+   "string:uk",
+   285
+  ],
+  [
+   "string:el",
+   285
+  ],
+  [
+   "string:gl",
+   285
+  ],
+  [
+   "string:ml",
+   285
+  ],
+  [
+   "string:nl",
+   285
+  ],
+  [
+   "string:pl",
+   285
+  ],
+  [
+   "string:sl",
+   285
+  ]
+ ],
+ "top_qualifiers": [
+  [
+   "xxhdpi",
+   1461
+  ],
+  [
+   "hdpi",
+   1326
+  ],
+  [
+   "en",
+   996
+  ],
+  [
+   "zh",
+   858
+  ],
+  [
+   "pt",
+   750
+  ],
+  [
+   "es",
+   647
+  ],
+  [
+   "fr",
+   572
+  ],
+  [
+   "rCA",
+   464
+  ],
+  [
+   "night",
+   289
+  ],
+  [
+   "ar",
+   287
+  ],
+  [
+   "ca",
+   286
+  ],
+  [
+   "da",
+   286
+  ],
+  [
+   "fa",
+   286
+  ],
+  [
+   "ja",
+   286
+  ],
+  [
+   "ka",
+   286
+  ],
+  [
+   "pa",
+   286
+  ],
+  [
+   "ta",
+   286
+  ],
+  [
+   "nb",
+   286
+  ],
+  [
+   "be",
+   286
+  ],
+  [
+   "de",
+   286
+  ],
+  [
+   "ne",
+   286
+  ],
+  [
+   "te",
+   286
+  ],
+  [
+   "af",
+   286
+  ],
+  [
+   "bg",
+   286
+  ],
+  [
+   "th",
+   286
+  ],
+  [
+   "fi",
+   286
+  ],
+  [
+   "hi",
+   286
+  ],
+  [
+   "si",
+   286
+  ],
+  [
+   "vi",
+   286
+  ],
+  [
+   "kk",
+   286
+  ],
+  [
+   "mk",
+   286
+  ],
+  [
+   "sk",
+   286
+  ],
+  [
+   "uk",
+   286
+  ],
+  [
+   "el",
+   286
+  ],
+  [
+   "gl",
+   286
+  ],
+  [
+   "ml",
+   286
+  ],
+  [
+   "nl",
+   286
+  ],
+  [
+   "pl",
+   286
+  ],
+  [
+   "sl",
+   286
+  ],
+  [
+   "tl",
+   286
+  ]
+ ],
+ "string_locales": {
+  "count": 86,
+  "per_locale_entries": [
+   [
+    "ar",
+    286
+   ],
+   [
+    "ca",
+    285
+   ],
+   [
+    "da",
+    285
+   ],
+   [
+    "fa",
+    285
+   ],
+   [
+    "ja",
+    285
+   ],
+   [
+    "ka",
+    285
+   ],
+   [
+    "pa",
+    285
+   ],
+   [
+    "ta",
+    285
+   ],
+   [
+    "nb",
+    285
+   ],
+   [
+    "be",
+    285
+   ],
+   [
+    "de",
+    285
+   ],
+   [
+    "ne",
+    285
+   ]
+  ]
+ },
+ "drawable_xml_roots": [
+  [
+   "vector",
+   684
+  ],
+  [
+   "shape",
+   171
+  ],
+  [
+   "selector",
+   48
+  ],
+  [
+   "layer-list",
+   37
+  ],
+  [
+   "objectAnimator",
+   36
+  ],
+  [
+   "ripple",
+   28
+  ],
+  [
+   "animated-vector",
+   22
+  ],
+  [
+   "animated-selector",
+   9
+  ],
+  [
+   "inset",
+   9
+  ],
+  [
+   "com.google.android.material.focus.FocusRingDrawable",
+   6
+  ],
+  [
+   "gradient",
+   4
+  ],
+  [
+   "transition",
+   2
+  ],
+  [
+   "bitmap",
+   2
+  ],
+  [
+   "adaptive-icon",
+   2
+  ],
+  [
+   "nine-patch",
+   1
+  ]
+ ],
+ "drawable_file_ext": [
+  [
+   ".png",
+   3276
+  ],
+  [
+   ".webp",
+   15
+  ]
+ ],
+ "layout_count": 402,
+ "layout_files": 429,
+ "layout_root_tags": [
+  [
+   "LinearLayout",
+   114
+  ],
+  [
+   "RelativeLayout",
+   71
+  ],
+  [
+   "FrameLayout",
+   54
+  ],
+  [
+   "androidx.constraintlayout.widget.ConstraintLayout",
+   49
+  ],
+  [
+   "merge",
+   39
+  ],
+  [
+   "TextView",
+   14
+  ],
+  [
+   "ScrollView",
+   9
+  ],
+  [
+   "view",
+   8
+  ],
+  [
+   "com.google.android.material.card.MaterialCardView",
+   7
+  ],
+  [
+   "android.support.v7.widget.AlertDialogLayout",
+   4
+  ],
+  [
+   "CheckedTextView",
+   4
+  ],
+  [
+   "android.support.v7.view.menu.ListMenuItemView",
+   3
+  ]
+ ],
+ "compose_view_layouts": 16,
+ "anim_count": 85,
+ "animator_count": 43,
+ "interpolator_count": 20,
+ "lottie_count": 53,
+ "font_files": 25
+}

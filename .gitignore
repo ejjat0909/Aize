@@ -1,0 +1,39 @@
+# inputs / large artefacts — never commit
+*.apk
+*.aab
+*.so
+*.pck
+*.dex
+*.mp3
+*.otf
+*.ttf
+/tmp/
+analysis/tmp/
+analysis/rea/
+rea-artifacts/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# android / gradle
+.gradle/
+build/
+local.properties
+*.keystore
+*.jks
+.idea/
+*.iml
+
+# rust
+target/
+
+# misc
+.DS_Store
+.env
+.env.*
+
+# 3D asset pipeline scratch (frames are re-renderable; the packed atlases in assets3d/dist ARE committed)
+assets3d/build/
+assets3d/_scratch/

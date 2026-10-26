@@ -1,0 +1,1244 @@
+{
+ "file": "libogg_opus_encoder-arm64.so",
+ "bytes": 676936,
+ "machine": "AArch64",
+ "type": "DYN(shared object)",
+ "sections": [
+  {
+   "name": ".note.android.ident",
+   "type": "NOTE",
+   "size": 152
+  },
+  {
+   "name": ".note.gnu.build-id",
+   "type": "NOTE",
+   "size": 32
+  },
+  {
+   "name": ".dynsym",
+   "type": "DYNSYM",
+   "size": 3192
+  },
+  {
+   "name": ".gnu.version",
+   "type": "VERSYM",
+   "size": 266
+  },
+  {
+   "name": ".gnu.version_d",
+   "type": "0x6ffffffd",
+   "size": 56
+  },
+  {
+   "name": ".gnu.version_r",
+   "type": "VERNEED",
+   "size": 96
+  },
+  {
+   "name": ".gnu.hash",
+   "type": "GNU_HASH",
+   "size": 148
+  },
+  {
+   "name": ".dynstr",
+   "type": "STRTAB",
+   "size": 2480
+  },
+  {
+   "name": ".rela.dyn",
+   "type": "0x60000002",
+   "size": 5155
+  },
+  {
+   "name": ".rela.plt",
+   "type": "RELA",
+   "size": 2640
+  },
+  {
+   "name": ".rodata",
+   "type": "PROGBITS",
+   "size": 90044
+  },
+  {
+   "name": ".gcc_except_table",
+   "type": "PROGBITS",
+   "size": 9376
+  },
+  {
+   "name": ".eh_frame_hdr",
+   "type": "PROGBITS",
+   "size": 26812
+  },
+  {
+   "name": ".eh_frame",
+   "type": "PROGBITS",
+   "size": 87064
+  },
+  {
+   "name": ".text",
+   "type": "PROGBITS",
+   "size": 412728
+  },
+  {
+   "name": "malloc_hook",
+   "type": "PROGBITS",
+   "size": 392
+  },
+  {
+   "name": "google_malloc",
+   "type": "PROGBITS",
+   "size": 2096
+  },
+  {
+   "name": "__lcxx_override",
+   "type": "PROGBITS",
+   "size": 200
+  },
+  {
+   "name": ".plt",
+   "type": "PROGBITS",
+   "size": 1792
+  },
+  {
+   "name": ".data.rel.ro",
+   "type": "PROGBITS",
+   "size": 13008
+  },
+  {
+   "name": ".fini_array",
+   "type": "FINI_ARRAY",
+   "size": 16
+  },
+  {
+   "name": ".init_array",
+   "type": "INIT_ARRAY",
+   "size": 72
+  },
+  {
+   "name": ".dynamic",
+   "type": "DYNAMIC",
+   "size": 464
+  },
+  {
+   "name": ".got",
+   "type": "PROGBITS",
+   "size": 2272
+  },
+  {
+   "name": ".got.plt",
+   "type": "PROGBITS",
+   "size": 904
+  },
+  {
+   "name": ".relro_padding",
+   "type": "NOBITS",
+   "size": 3744
+  },
+  {
+   "name": ".data",
+   "type": "PROGBITS",
+   "size": 1752
+  },
+  {
+   "name": "google_malloc_data",
+   "type": "PROGBITS",
+   "size": 64
+  },
+  {
+   "name": ".bss",
+   "type": "NOBITS",
+   "size": 93680
+  },
+  {
+   "name": "google_malloc_bss",
+   "type": "NOBITS",
+   "size": 200
+  },
+  {
+   "name": ".comment",
+   "type": "PROGBITS",
+   "size": 538
+  },
+  {
+   "name": ".shstrtab",
+   "type": "STRTAB",
+   "size": 369
+  }
+ ],
+ "program_headers": [
+  {
+   "type": "PHDR",
+   "flags": "R",
+   "filesz": 504,
+   "memsz": 504,
+   "align": 8
+  },
+  {
+   "type": "LOAD",
+   "flags": "RX",
+   "filesz": 645360,
+   "memsz": 645360,
+   "align": 16384
+  },
+  {
+   "type": "LOAD",
+   "flags": "RW",
+   "filesz": 16736,
+   "memsz": 20480,
+   "align": 16384
+  },
+  {
+   "type": "LOAD",
+   "flags": "RW",
+   "filesz": 1816,
+   "memsz": 95704,
+   "align": 16384
+  },
+  {
+   "type": "DYNAMIC",
+   "flags": "RW",
+   "filesz": 464,
+   "memsz": 464,
+   "align": 8
+  },
+  {
+   "type": "GNU_RELRO",
+   "flags": "R",
+   "filesz": 16736,
+   "memsz": 20480,
+   "align": 1
+  },
+  {
+   "type": "GNU_EH_FRAME",
+   "flags": "R",
+   "filesz": 26812,
+   "memsz": 26812,
+   "align": 4
+  },
+  {
+   "type": "GNU_STACK",
+   "flags": "RW",
+   "filesz": 0,
+   "memsz": 0,
+   "align": 0
+  },
+  {
+   "type": "NOTE",
+   "flags": "R",
+   "filesz": 184,
+   "memsz": 184,
+   "align": 4
+  }
+ ],
+ "needed": [
+  "libdl.so",
+  "liblog.so",
+  "libc.so",
+  "libm.so"
+ ],
+ "soname": "libogg_opus_encoder.so",
+ "imports": {
+  "count": 112,
+  "families": {
+   "android_log": {
+    "count": 1,
+    "examples": [
+     "__android_log_write"
+    ]
+   },
+   "JNI helpers": {
+    "count": 1,
+    "examples": [
+     "JNI_OnLoad_libogg_opus_encoder"
+    ]
+   },
+   "pthread": {
+    "count": 15,
+    "examples": [
+     "pthread_cond_broadcast",
+     "pthread_cond_wait",
+     "pthread_getschedparam",
+     "pthread_getspecific",
+     "pthread_key_create",
+     "pthread_key_delete"
+    ]
+   },
+   "libm math": {
+    "count": 4,
+    "examples": [
+     "acos",
+     "cos",
+     "exp",
+     "log"
+    ]
+   }
+  }
+ },
+ "exports": {
+  "count": 20,
+  "JNI_OnLoad": true,
+  "static_JNI_symbols(Java_*)": 15,
+  "sample": [
+   "JNI_OnLoad",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_flush",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_free",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_getFrameSize",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_getLookaheadSize",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_init",
+   "Java_com_google_audio_hearing_common_OggOpusEncoder_processAudioBytes",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeCreate",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeCreateWithSettings",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeEncode",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeGetConfig",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeGetCurrentSettings",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeGetLookaheadSize",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeGetSupportedFrameSizes",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeRelease",
+   "Java_com_google_audio_hearing_common_OpusEncoder_nativeReset",
+   "__start_google_malloc",
+   "__start_malloc_hook",
+   "__stop_google_malloc",
+   "__stop_malloc_hook"
+  ]
+ },
+ "android_ident": {
+  "api_level": 24,
+  "ndk_version": "r29",
+  "ndk_build": "14206865"
+ },
+ "build_id": "eb6314243abf0668d381df965e805463",
+ "comment": [
+  "Android (13989888, +pgo, +bolt, +lto, +mlgo, based on r563880c) clang version 21.0.0 (https://android.googlesource.com/toolchain/llvm-project 5e96669f06077099aa41290cdb4c5e6fa0f59349)",
+  "Android (dev, -pgo, -bolt, -lto, -mlgo, based on r563880b) clang version 21.0.0 (https://android.googlesource.com/toolchain/llvm-project 5e96669f06077099aa41290cdb4c5e6fa0f59349)",
+  "Linker: LLD google3-trunk",
+  "google3 clang version 9999.0.0 (084f6484d76625b995c07f512a323ab7cdc5351d)",
+  "google3 clang version 9999.0.0 (2377f82514e12895ea56dcb3c53e305e029a72e8)"
+ ],
+ "string_scan": {
+  "counts": {
+   "url": 2,
+   "srcpath": 67,
+   "rtti": 24
+  }
+ },
+ "embedded_library_banners": {
+  "abseil": {
+   "hits": 5,
+   "example": "absl::"
+  },
+  "Opus": {
+   "hits": 29,
+   "example": "opus_encoder"
+  }
+ },
+ "urls": {
+  "unique": 1,
+  "top_hosts": [
+   [
+    "android.googlesource.com",
+    1
+   ]
+  ]
+ },
+ "source_paths": {
+  "unique_files": 67,
+  "top_dirs_d4": [
+   [
+    "third_party/libopus/silk/float",
+    11
+   ],
+   [
+    "third_party/absl/strings/internal",
+    3
+   ],
+   [
+    "third_party/absl/base/internal",
+    2
+   ],
+   [
+    "third_party/libopus/src/opus_multistream_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/process_NLSFs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/opus_encoder.c",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/internal",
+    1
+   ],
+   [
+    "third_party/libopus/celt/bands.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ_weights_laroia.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/check_control_input.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/log_file_flags.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/rate.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/sort.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/kiss_fft.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ_del_dec.c",
+    1
+   ],
+   [
+    "src/private_typeinfo.cpp",
+    1
+   ],
+   [
+    "third_party/libopus/celt/vq.c",
+    1
+   ],
+   [
+    "third_party/absl/flags/internal",
+    1
+   ],
+   [
+    "third_party/absl/strings/str_split.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/control_codec.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/encode_indices.c",
+    1
+   ],
+   [
+    "third_party/absl/log/flags.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/laplace.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entdec.c",
+    1
+   ],
+   [
+    "third_party/tcmalloc/malloc_hook.cc",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/mutex.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/LPC_analysis_filter.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/VAD.c",
+    1
+   ],
+   [
+    "third_party/absl/status/statusor.cc",
+    1
+   ],
+   [
+    "third_party/libopus/src/repacketizer.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/numbers.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entenc.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler_private_down_FIR.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/extensions.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/enc_API.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_encode.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/stereo_encode_pred.c",
+    1
+   ],
+   [
+    "src/fallback_malloc.cpp",
+    1
+   ],
+   [
+    "third_party/absl/log/internal",
+    1
+   ],
+   [
+    "third_party/gloop/base/per_thread.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/cwrs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF2A.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/interpolate.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/scheduling",
+    1
+   ],
+   [
+    "third_party/libopus/celt/pitch.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/encode_pulses.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/arm",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt_lpc.c",
+    1
+   ],
+   [
+    "third_party/absl/base/throw_delegate.cc",
+    1
+   ]
+  ],
+  "top_dirs_d5": [
+   [
+    "third_party/libopus/src/opus_multistream_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/process_NLSFs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/opus_encoder.c",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/internal/futex_waiter.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/bands.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ_weights_laroia.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/check_control_input.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/log_file_flags.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/rate.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/sort.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/kiss_fft.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ_del_dec.c",
+    1
+   ],
+   [
+    "third_party/absl/base/internal/spinlock.h",
+    1
+   ],
+   [
+    "src/private_typeinfo.cpp",
+    1
+   ],
+   [
+    "third_party/libopus/celt/vq.c",
+    1
+   ],
+   [
+    "third_party/absl/flags/internal/flag.cc",
+    1
+   ],
+   [
+    "third_party/absl/strings/str_split.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/control_codec.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/encode_indices.c",
+    1
+   ],
+   [
+    "third_party/absl/log/flags.cc",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cord_rep_btree.cc",
+    1
+   ],
+   [
+    "third_party/absl/base/internal/low_level_alloc.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/laplace.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entdec.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cord_internal.cc",
+    1
+   ],
+   [
+    "third_party/tcmalloc/malloc_hook.cc",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/mutex.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/LPC_analysis_filter.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/VAD.c",
+    1
+   ],
+   [
+    "third_party/absl/status/statusor.cc",
+    1
+   ],
+   [
+    "third_party/libopus/src/repacketizer.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/sort_FLP.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/numbers.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entenc.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler_private_down_FIR.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/find_pred_coefs_FLP.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cordz_functions.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/schur_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/extensions.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/enc_API.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/LPC_analysis_filter_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/burg_modified_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_encode.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/stereo_encode_pred.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/encode_frame_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/warped_autocorrelation_FLP.c",
+    1
+   ],
+   [
+    "src/fallback_malloc.cpp",
+    1
+   ],
+   [
+    "third_party/absl/log/internal/log_sink_set.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/pitch_analysis_core_FLP.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/per_thread.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/cwrs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF2A.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/apply_sine_window_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/interpolate.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/find_pitch_lags_FLP.c",
+    1
+   ]
+  ],
+  "top_dirs_d6": [
+   [
+    "third_party/libopus/src/opus_multistream_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/process_NLSFs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/opus_encoder.c",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/internal/futex_waiter.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/bands.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ_weights_laroia.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/check_control_input.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/log_file_flags.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/rate.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/sort.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_VQ.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/kiss_fft.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NSQ_del_dec.c",
+    1
+   ],
+   [
+    "third_party/absl/base/internal/spinlock.h",
+    1
+   ],
+   [
+    "src/private_typeinfo.cpp",
+    1
+   ],
+   [
+    "third_party/libopus/celt/vq.c",
+    1
+   ],
+   [
+    "third_party/absl/flags/internal/flag.cc",
+    1
+   ],
+   [
+    "third_party/absl/strings/str_split.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/control_codec.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/encode_indices.c",
+    1
+   ],
+   [
+    "third_party/absl/log/flags.cc",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cord_rep_btree.cc",
+    1
+   ],
+   [
+    "third_party/absl/base/internal/low_level_alloc.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/laplace.c",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entdec.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cord_internal.cc",
+    1
+   ],
+   [
+    "third_party/tcmalloc/malloc_hook.cc",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/mutex.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/LPC_analysis_filter.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/VAD.c",
+    1
+   ],
+   [
+    "third_party/absl/status/statusor.cc",
+    1
+   ],
+   [
+    "third_party/libopus/src/repacketizer.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/sort_FLP.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/numbers.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/entenc.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler_private_down_FIR.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/find_pred_coefs_FLP.c",
+    1
+   ],
+   [
+    "third_party/absl/strings/internal/cordz_functions.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/celt_encoder.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/schur_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/src/extensions.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/enc_API.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/LPC_analysis_filter_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/burg_modified_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF_encode.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/stereo_encode_pred.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/encode_frame_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/warped_autocorrelation_FLP.c",
+    1
+   ],
+   [
+    "src/fallback_malloc.cpp",
+    1
+   ],
+   [
+    "third_party/absl/log/internal/log_sink_set.cc",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/pitch_analysis_core_FLP.c",
+    1
+   ],
+   [
+    "third_party/gloop/base/per_thread.cc",
+    1
+   ],
+   [
+    "third_party/libopus/celt/cwrs.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/NLSF2A.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/resampler.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/apply_sine_window_FLP.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/interpolate.c",
+    1
+   ],
+   [
+    "third_party/libopus/silk/float/find_pitch_lags_FLP.c",
+    1
+   ]
+  ],
+  "extensions": [
+   [
+    ".c",
+    47
+   ],
+   [
+    ".cc",
+    17
+   ],
+   [
+    ".cpp",
+    2
+   ],
+   [
+    ".h",
+    1
+   ]
+  ],
+  "sample": [
+   "src/fallback_malloc.cpp",
+   "src/private_typeinfo.cpp",
+   "third_party/absl/base/internal/low_level_alloc.cc",
+   "third_party/absl/base/internal/spinlock.h",
+   "third_party/absl/base/throw_delegate.cc",
+   "third_party/absl/flags/internal/flag.cc",
+   "third_party/absl/log/flags.cc",
+   "third_party/absl/log/internal/log_sink_set.cc",
+   "third_party/absl/status/statusor.cc",
+   "third_party/absl/strings/internal/cord_internal.cc",
+   "third_party/absl/strings/internal/cord_rep_btree.cc",
+   "third_party/absl/strings/internal/cordz_functions.cc",
+   "third_party/absl/strings/numbers.cc",
+   "third_party/absl/strings/str_split.cc",
+   "third_party/absl/synchronization/internal/futex_waiter.cc",
+   "third_party/absl/synchronization/mutex.cc",
+   "third_party/gloop/base/log_file_flags.cc",
+   "third_party/gloop/base/per_thread.cc",
+   "third_party/gloop/base/scheduling/downcalls.cc",
+   "third_party/libopus/celt/arm/celt_neon_intr.c",
+   "third_party/libopus/celt/bands.c",
+   "third_party/libopus/celt/celt.c",
+   "third_party/libopus/celt/celt_encoder.c",
+   "third_party/libopus/celt/celt_lpc.c",
+   "third_party/libopus/celt/cwrs.c",
+   "third_party/libopus/celt/entdec.c",
+   "third_party/libopus/celt/entenc.c",
+   "third_party/libopus/celt/kiss_fft.c",
+   "third_party/libopus/celt/laplace.c",
+   "third_party/libopus/celt/pitch.c",
+   "third_party/libopus/celt/rate.c",
+   "third_party/libopus/celt/vq.c",
+   "third_party/libopus/silk/LPC_analysis_filter.c",
+   "third_party/libopus/silk/NLSF2A.c",
+   "third_party/libopus/silk/NLSF_VQ.c",
+   "third_party/libopus/silk/NLSF_VQ_weights_laroia.c",
+   "third_party/libopus/silk/NLSF_encode.c",
+   "third_party/libopus/silk/NSQ.c",
+   "third_party/libopus/silk/NSQ_del_dec.c",
+   "third_party/libopus/silk/VAD.c"
+  ]
+ },
+ "proto_files": {
+  "unique": 0,
+  "top_dirs_d3": [],
+  "top_dirs_d2": [],
+  "sample": []
+ },
+ "cpp_rtti": {
+  "unique_types": 24,
+  "top_namespaces_d1": [
+   [
+    "absl",
+    12
+   ],
+   [
+    "__cxxabiv1",
+    9
+   ],
+   [
+    "util",
+    3
+   ]
+  ],
+  "top_namespaces_d2": [
+   [
+    "util::java",
+    3
+   ],
+   [
+    "absl::flags_internal",
+    3
+   ],
+   [
+    "absl::log_internal",
+    3
+   ],
+   [
+    "absl::cord_internal",
+    2
+   ],
+   [
+    "absl::time_internal",
+    2
+   ],
+   [
+    "absl::CommandLineFlag",
+    1
+   ],
+   [
+    "absl::LogSink",
+    1
+   ],
+   [
+    "__cxxabiv1::__shim_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__class_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__pbase_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__pointer_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__function_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__pointer_to_member_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__fundamental_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__si_class_type_info",
+    1
+   ],
+   [
+    "__cxxabiv1::__vmi_class_type_info",
+    1
+   ]
+  ],
+  "top_namespaces_d3": [
+   [
+    "absl::log_internal::_GLOBAL__N_1",
+    2
+   ],
+   [
+    "absl::time_internal::cctz",
+    2
+   ],
+   [
+    "util::java::ThrowingJniHelper",
+    1
+   ],
+   [
+    "util::java::JniHelper",
+    1
+   ],
+   [
+    "util::java::LoggingJniHelper",
+    1
+   ],
+   [
+    "absl::flags_internal::FlagImpl",
+    1
+   ],
+   [
+    "absl::flags_internal::FlagState",
+    1
+   ],
+   [
+    "absl::flags_internal::FlagStateInterface",
+    1
+   ],
+   [
+    "absl::cord_internal::CordzInfo",
+    1
+   ],
+   [
+    "absl::cord_internal::CordzHandle",
+    1
+   ],
+   [
+    "absl::log_internal::LogMessage",
+    1
+   ]
+  ]
+ },
+ "scan_seconds": 0
+}

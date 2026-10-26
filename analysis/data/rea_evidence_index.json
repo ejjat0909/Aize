@@ -1,0 +1,78 @@
+{
+ "rea_cli": "rea-agents 6.7.0",
+ "jadx_engine": "jadx-headless-mcp 0.7.1",
+ "apk_inventory": {
+  "evidence_id": "ev_f5c7cad2a392d8c804322a75e21e1bff57c513cb4c9d788dd038e985ded79608",
+  "inventory_evidence_id": "ev_6d0b1eff8c00369e552c326cb48cacf59aaa609765592077099d2685779feee5",
+  "sha256": "a45040acce4dbf79c1445a76415b8e3457dd8a720d373f81c8a98c5529f08c80",
+  "occurrences": 6774,
+  "unique_nodes": 6555,
+  "edges": 6773,
+  "limitations": [
+   "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+   "Logical archive names collide under English (en-US) Unicode case folding; a case-insensitive destination cannot store both spellings. This comparison is not a filesystem observation.",
+   "ZIP inventory lists central-directory entries only. Non-entry bytes, including an APK Signing Block before the central directory or a ZIP comment after it, are not occurrences."
+  ]
+ },
+ "methods": {
+  "WazeRenderer.l": "ev_d4e4c2fb896cd9547124c26b9c2b9ccc50323e2c63d72f46239c25b676de6c38",
+  "WazeRenderer.h": "ev_02cb5bb48c851376bfe4c0ac64b05794ef00f610f1bbdcb21342c57acdae7f7b",
+  "WazeRenderer.i": "ev_9aed82d29a7f810f48f30a0b5ebcb5181f550d3c13072d3f1b7989aa747638eb",
+  "Location.sendUpdateToNativeLayer": "ev_aad12e4b15a9ce9e06f091f6359549aa81bddca6f13111c6d4d3f5bf7024d6d5",
+  "Location.createNativeLocationJNI": "ev_825b18bb6f4e37f22e28036b3bfb448b77888a0fe7442100300f79563ceb201f"
+ },
+ "classes": {
+  "NativeCanvasRenderer": "ev_8a44c405ac7bda34d4366a551ee8e2445337ce37ee8e046bfff608b996e5e9a3",
+  "NetworkManager": "ev_3c745ba43453bc3e6c8af0b15b8965f23922042f5338af1423c6c994b67f4071",
+  "MainCanvasDelegatorImpl": "ev_36e618204f3275fd691a73d30793ace856ddee27e552d93efba3f3a86eb5b468",
+  "FreeMapAppActivity": "ev_a094b58b69d1fb9b054f0f29251edb9df7b3ba13ca599e0e0423f53ac09b7932",
+  "SoundNativeManager": "ev_01530ab6cbc0c38675289a726277e58b0288982fb10644bbfd1f2a30248ff780"
+ },
+ "timings": {
+  "m-WazeRenderer-h": {
+   "exit": 0,
+   "seconds": 22.91,
+   "peak_rss_kb": 412988
+  },
+  "m-WazeRenderer-i": {
+   "exit": 0,
+   "seconds": 22.96,
+   "peak_rss_kb": 399228
+  },
+  "m-Location-sendUpdate": {
+   "exit": 0,
+   "seconds": 24.51,
+   "peak_rss_kb": 400336
+  },
+  "m-Location-createJni": {
+   "exit": 0,
+   "seconds": 31.12,
+   "peak_rss_kb": 405620
+  },
+  "c-NativeCanvasRenderer": {
+   "exit": 0,
+   "seconds": 22.51,
+   "peak_rss_kb": 403360
+  },
+  "c-NetworkManager": {
+   "exit": 0,
+   "seconds": 21.79,
+   "peak_rss_kb": 397360
+  },
+  "c-MainCanvasDelegator": {
+   "exit": 0,
+   "seconds": 21.82,
+   "peak_rss_kb": 397252
+  },
+  "c-FreeMapAppActivity": {
+   "exit": 0,
+   "seconds": 22.19,
+   "peak_rss_kb": 422184
+  },
+  "c-SoundNativeManager": {
+   "exit": 0,
+   "seconds": 23.87,
+   "peak_rss_kb": 415480
+  }
+ }
+}

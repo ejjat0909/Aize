@@ -1,0 +1,3122 @@
+{
+ "anim": [
+  {
+   "name": "abc_fade_in",
+   "root": "alpha",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_fade_out",
+   "root": "alpha",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_grow_fade_in_from_bottom",
+   "root": "set",
+   "children": [
+    "scale",
+    "alpha"
+   ],
+   "durations_ms": [
+    150,
+    220
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_popup_enter",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_popup_exit",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_shrink_fade_out_from_bottom",
+   "root": "set",
+   "children": [
+    "scale",
+    "alpha"
+   ],
+   "durations_ms": [
+    150,
+    220
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_slide_in_bottom",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_slide_in_top",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_slide_out_bottom",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_slide_out_top",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "abc_tooltip_enter",
+   "root": "alpha",
+   "children": [],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_quad"
+   ]
+  },
+  {
+   "name": "abc_tooltip_exit",
+   "root": "alpha",
+   "children": [],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_quad"
+   ]
+  },
+  {
+   "name": "alpha_in",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "alpha_out",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_checked_box_inner_merged_animation",
+   "root": "set",
+   "children": [
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    33,
+    166
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear",
+    "interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_0",
+    "interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_checked_box_outer_merged_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    33,
+    166,
+    200,
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear",
+    "interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_0",
+    "interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_checked_icon_null_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    200,
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_unchecked_box_inner_merged_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    33,
+    133,
+    166,
+    333
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear",
+    "interpolator/btn_checkbox_checked_mtrl_animation_interpolator_0",
+    "interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_unchecked_check_path_merged_animation",
+   "root": "set",
+   "children": [
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    33,
+    133,
+    166
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear",
+    "interpolator/btn_checkbox_checked_mtrl_animation_interpolator_0",
+    "interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_checkbox_to_unchecked_icon_null_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    166,
+    333
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1"
+   ]
+  },
+  {
+   "name": "btn_radio_to_off_mtrl_dot_group_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    183,
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "btn_radio_to_off_mtrl_ring_outer_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    183,
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/btn_radio_to_off_mtrl_animation_interpolator_0",
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "btn_radio_to_off_mtrl_ring_outer_path_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    183,
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "btn_radio_to_on_mtrl_dot_group_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    166,
+    316
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "btn_radio_to_on_mtrl_ring_outer_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator",
+    "set",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    166,
+    316
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "btn_radio_to_on_mtrl_ring_outer_path_animation",
+   "root": "set",
+   "children": [
+    "set",
+    "objectAnimator",
+    "objectAnimator",
+    "objectAnimator"
+   ],
+   "durations_ms": [
+    16,
+    166,
+    316
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/btn_radio_to_on_mtrl_animation_interpolator_0",
+    "interpolator/fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "common_ui_slide_down_bottom",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_cubic"
+   ]
+  },
+  {
+   "name": "common_ui_slide_down_top",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_cubic"
+   ]
+  },
+  {
+   "name": "common_ui_slide_up_bottom",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_cubic"
+   ]
+  },
+  {
+   "name": "contact_tooltip_hide",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator",
+    "android:anticipate_interpolator"
+   ]
+  },
+  {
+   "name": "contact_tooltip_show",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator",
+    "android:overshoot_interpolator"
+   ]
+  },
+  {
+   "name": "design_bottom_sheet_slide_in",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:fast_out_linear_in"
+   ]
+  },
+  {
+   "name": "design_bottom_sheet_slide_out",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "design_snackbar_in",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "design_snackbar_out",
+   "root": "translate",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "fade_in",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "fade_out",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "flicker",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "fragment_fast_out_extra_slow_in",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "grow_dialog",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    100
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "linear_indeterminate_line1_head_interpolator",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "linear_indeterminate_line1_tail_interpolator",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "linear_indeterminate_line2_head_interpolator",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "linear_indeterminate_line2_tail_interpolator",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "m3_bottom_sheet_slide_in",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/m3_sys_motion_easing_emphasized"
+   ]
+  },
+  {
+   "name": "m3_bottom_sheet_slide_out",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    300,
+    350
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/m3_sys_motion_easing_emphasized"
+   ]
+  },
+  {
+   "name": "m3_motion_fade_enter",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/m3_sys_motion_easing_emphasized_decelerate"
+   ]
+  },
+  {
+   "name": "m3_motion_fade_exit",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/m3_sys_motion_easing_emphasized_accelerate"
+   ]
+  },
+  {
+   "name": "m3_side_sheet_enter_from_left",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    275
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_side_sheet_enter_from_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    275
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_side_sheet_exit_to_left",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    275
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_side_sheet_exit_to_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    275
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "main_slide_down_bottom",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_cubic"
+   ]
+  },
+  {
+   "name": "main_slide_down_top",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_slide_in_left",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_slide_in_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_slide_out_left",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_slide_out_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_slide_up_bottom",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_cubic"
+   ]
+  },
+  {
+   "name": "main_tooltip_hide",
+   "root": "set",
+   "children": [
+    "alpha"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "main_tooltip_show",
+   "root": "set",
+   "children": [
+    "alpha",
+    "translate",
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [
+    500
+   ],
+   "interpolators": [
+    "android:accelerate_interpolator",
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "move_right_left",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "mtrl_bottom_sheet_slide_in",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    250
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear_out_slow_in"
+   ]
+  },
+  {
+   "name": "mtrl_bottom_sheet_slide_out",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:fast_out_linear_in"
+   ]
+  },
+  {
+   "name": "mtrl_card_lowers_interpolator",
+   "root": "pathInterpolator",
+   "children": [],
+   "durations_ms": [],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "no_movement",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "pop_in_dialog",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    100,
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator",
+    "android:overshoot_interpolator"
+   ]
+  },
+  {
+   "name": "pop_in_event_on_route",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale",
+    "scale"
+   ],
+   "durations_ms": [
+    100,
+    200,
+    300
+   ],
+   "start_offsets_ms": [
+    300
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "pop_out_dialog",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    100,
+    200
+   ],
+   "start_offsets_ms": [
+    100
+   ],
+   "interpolators": [
+    "android:accelerate_interpolator",
+    "android:anticipate_interpolator"
+   ]
+  },
+  {
+   "name": "rewire_slide_in_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:decelerate_interpolator"
+   ]
+  },
+  {
+   "name": "rewire_slide_out_right",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "rotate_infinite",
+   "root": "set",
+   "children": [
+    "rotate"
+   ],
+   "durations_ms": [
+    600
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:linear_interpolator"
+   ]
+  },
+  {
+   "name": "shrink_dialog",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    100
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "slide_down_silky",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    500
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_cubic"
+   ]
+  },
+  {
+   "name": "slide_in_top",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "slide_in_top_with_fade",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "slide_out_bottom_with_fade",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "slide_up_silky",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    700
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "interpolator/silky_entrance"
+   ]
+  },
+  {
+   "name": "slide_up_top",
+   "root": "set",
+   "children": [
+    "translate"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": [
+    "android:accelerate_interpolator"
+   ]
+  },
+  {
+   "name": "stack_down",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "stack_up",
+   "root": "set",
+   "children": [
+    "alpha",
+    "scale"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "uid_slide_in_left",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "uid_slide_in_right",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "uid_slide_out_left",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "uid_slide_out_right",
+   "root": "set",
+   "children": [
+    "translate",
+    "alpha"
+   ],
+   "durations_ms": [
+    400
+   ],
+   "start_offsets_ms": [],
+   "interpolators": []
+  }
+ ],
+ "animator": [
+  {
+   "name": "chevron_checked_unchecked",
+   "root": "animated-vector",
+   "tags": [
+    "animated-vector",
+    "target"
+   ],
+   "properties": [],
+   "durations_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "chevron_unchecked_checked",
+   "root": "animated-vector",
+   "tags": [
+    "animated-vector",
+    "target"
+   ],
+   "properties": [],
+   "durations_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "common_ui_slide_in_left",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "x"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "common_ui_slide_out_left",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "x"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "design_appbar_state_list_animator",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "elevation"
+   ],
+   "durations_ms": [
+    0,
+    150
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "design_fab_hide_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "iconScale",
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [
+    0,
+    200
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_linear_in",
+    "interpolator/mtrl_fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "design_fab_show_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "iconScale",
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [
+    0,
+    200
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_slow_in",
+    "interpolator/mtrl_linear_out_slow_in"
+   ]
+  },
+  {
+   "name": "fade_in",
+   "root": "objectAnimator",
+   "tags": [
+    "objectAnimator"
+   ],
+   "properties": [
+    "alpha"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "interpolators": [
+    "android:accelerate_quad"
+   ]
+  },
+  {
+   "name": "fade_out",
+   "root": "objectAnimator",
+   "tags": [
+    "objectAnimator"
+   ],
+   "properties": [
+    "alpha"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "interpolators": [
+    "android:accelerate_quad"
+   ]
+  },
+  {
+   "name": "fragment_close_enter",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "alpha",
+    "scaleX",
+    "scaleY"
+   ],
+   "durations_ms": [
+    50,
+    66,
+    300
+   ],
+   "interpolators": [
+    "android:linear_interpolator",
+    "anim/fragment_fast_out_extra_slow_in"
+   ]
+  },
+  {
+   "name": "fragment_close_exit",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "alpha",
+    "scaleX",
+    "scaleY"
+   ],
+   "durations_ms": [
+    50,
+    66,
+    300
+   ],
+   "interpolators": [
+    "android:linear_interpolator",
+    "anim/fragment_fast_out_extra_slow_in"
+   ]
+  },
+  {
+   "name": "fragment_fade_enter",
+   "root": "objectAnimator",
+   "tags": [
+    "objectAnimator"
+   ],
+   "properties": [
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "interpolators": [
+    "android:linear_interpolator"
+   ]
+  },
+  {
+   "name": "fragment_fade_exit",
+   "root": "objectAnimator",
+   "tags": [
+    "objectAnimator"
+   ],
+   "properties": [
+    "alpha"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "interpolators": [
+    "android:linear_interpolator"
+   ]
+  },
+  {
+   "name": "fragment_open_enter",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "alpha",
+    "scaleX",
+    "scaleY"
+   ],
+   "durations_ms": [
+    50,
+    300
+   ],
+   "interpolators": [
+    "android:linear_interpolator",
+    "anim/fragment_fast_out_extra_slow_in"
+   ]
+  },
+  {
+   "name": "fragment_open_exit",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "alpha",
+    "scaleX",
+    "scaleY"
+   ],
+   "durations_ms": [
+    50,
+    300
+   ],
+   "interpolators": [
+    "android:linear_interpolator",
+    "anim/fragment_fast_out_extra_slow_in"
+   ]
+  },
+  {
+   "name": "just_wait",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "x"
+   ],
+   "durations_ms": [
+    300
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_appbar_state_list_animator",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "elevation"
+   ],
+   "durations_ms": [
+    0,
+    150
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_btn_elevated_btn_state_list_anim",
+   "root": "set",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_btn_state_list_anim",
+   "root": "set",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_card_elevated_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    0
+   ],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_card_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    0
+   ],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_chip_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_elevated_chip_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_extended_fab_change_size_collapse_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "height",
+    "labelOpacity",
+    "paddingEnd",
+    "paddingStart",
+    "width"
+   ],
+   "durations_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_extended_fab_change_size_expand_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "height",
+    "labelOpacity",
+    "paddingEnd",
+    "paddingStart",
+    "width"
+   ],
+   "durations_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_extended_fab_hide_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [],
+   "interpolators": [
+    "0x7f04043f(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_extended_fab_show_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [],
+   "interpolators": [
+    "0x7f040441(type 0x2)"
+   ]
+  },
+  {
+   "name": "m3_extended_fab_state_list_animator",
+   "root": "set",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_fab_state_list_animator",
+   "root": "set",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "m3_split_button_chevron_overshoot_interpolator",
+   "root": "overshootInterpolator",
+   "tags": [
+    "overshootInterpolator"
+   ],
+   "properties": [],
+   "durations_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "m3_split_button_chevron_reverse_rotation",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "rotation"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "interpolators": [
+    "animator/m3_split_button_chevron_overshoot_interpolator"
+   ]
+  },
+  {
+   "name": "m3_split_button_chevron_rotation",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "rotation"
+   ],
+   "durations_ms": [
+    200
+   ],
+   "interpolators": [
+    "animator/m3_split_button_chevron_overshoot_interpolator"
+   ]
+  },
+  {
+   "name": "mtrl_btn_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "mtrl_btn_unelevated_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "selector"
+   ],
+   "properties": [],
+   "durations_ms": [],
+   "interpolators": []
+  },
+  {
+   "name": "mtrl_card_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    120
+   ],
+   "interpolators": [
+    "anim/mtrl_card_lowers_interpolator",
+    "interpolator/mtrl_fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "mtrl_chip_state_list_anim",
+   "root": "selector",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector"
+   ],
+   "properties": [
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "mtrl_extended_fab_change_size_collapse_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "height",
+    "labelOpacity",
+    "paddingEnd",
+    "paddingStart",
+    "width"
+   ],
+   "durations_ms": [
+    33,
+    200
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "mtrl_extended_fab_change_size_expand_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "height",
+    "labelOpacity",
+    "paddingEnd",
+    "paddingStart",
+    "width"
+   ],
+   "durations_ms": [
+    83,
+    200
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_slow_in"
+   ]
+  },
+  {
+   "name": "mtrl_extended_fab_hide_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "opacity"
+   ],
+   "durations_ms": [
+    75
+   ],
+   "interpolators": [
+    "interpolator/mtrl_linear"
+   ]
+  },
+  {
+   "name": "mtrl_extended_fab_show_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [
+    150
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_slow_in",
+    "interpolator/mtrl_linear_out_slow_in"
+   ]
+  },
+  {
+   "name": "mtrl_extended_fab_state_list_animator",
+   "root": "set",
+   "tags": [
+    "item",
+    "objectAnimator",
+    "selector",
+    "set"
+   ],
+   "properties": [
+    "elevation",
+    "translationZ"
+   ],
+   "durations_ms": [
+    0,
+    100
+   ],
+   "interpolators": []
+  },
+  {
+   "name": "mtrl_fab_hide_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "iconScale",
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [
+    15,
+    135,
+    180
+   ],
+   "interpolators": [
+    "interpolator/mtrl_fast_out_linear_in",
+    "interpolator/mtrl_linear"
+   ]
+  },
+  {
+   "name": "mtrl_fab_show_motion_spec",
+   "root": "set",
+   "tags": [
+    "objectAnimator",
+    "set"
+   ],
+   "properties": [
+    "iconScale",
+    "opacity",
+    "scale"
+   ],
+   "durations_ms": [
+    15,
+    240,
+    330
+   ],
+   "interpolators": [
+    "interpolator/mtrl_linear",
+    "interpolator/mtrl_linear_out_slow_in"
+   ]
+  }
+ ],
+ "interpolator": [
+  {
+   "name": "btn_checkbox_checked_mtrl_animation_interpolator_0",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 l 1.0,0.0 l 0.0,1.0"
+   }
+  },
+  {
+   "name": "btn_checkbox_checked_mtrl_animation_interpolator_1",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 c 0.33333333,0.0 0.0,1.0 1.0,1.0"
+   }
+  },
+  {
+   "name": "btn_checkbox_unchecked_mtrl_animation_interpolator_0",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 l 1.0,0.0 l 0.0,1.0"
+   }
+  },
+  {
+   "name": "btn_checkbox_unchecked_mtrl_animation_interpolator_1",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 c 0.33333333,0.0 0.0,1.0 1.0,1.0"
+   }
+  },
+  {
+   "name": "btn_radio_to_off_mtrl_animation_interpolator_0",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 c 0.4,0.0 0.4,1.0 1.0,1.0"
+   }
+  },
+  {
+   "name": "btn_radio_to_on_mtrl_animation_interpolator_0",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "M 0.0,0.0 c 0.4,0.0 0.4,1.0 1.0,1.0"
+   }
+  },
+  {
+   "name": "fast_out_slow_in",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0.4",
+    "controlY1": "0",
+    "controlX2": "0.2",
+    "controlY2": "1"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_emphasized",
+   "root": "pathInterpolator",
+   "attrs": {
+    "pathData": "@0x7f121004"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_emphasized_accelerate",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703de",
+    "controlY1": "@0x7f0703e0",
+    "controlX2": "@0x7f0703df",
+    "controlY2": "@0x7f0703e1"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_emphasized_decelerate",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703e2",
+    "controlY1": "@0x7f0703e4",
+    "controlX2": "@0x7f0703e3",
+    "controlY2": "@0x7f0703e5"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_linear",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703f2",
+    "controlY1": "@0x7f0703f4",
+    "controlX2": "@0x7f0703f3",
+    "controlY2": "@0x7f0703f5"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_standard",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703fa",
+    "controlY1": "@0x7f0703fc",
+    "controlX2": "@0x7f0703fb",
+    "controlY2": "@0x7f0703fd"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_standard_accelerate",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703f6",
+    "controlY1": "@0x7f0703f8",
+    "controlX2": "@0x7f0703f7",
+    "controlY2": "@0x7f0703f9"
+   }
+  },
+  {
+   "name": "m3_sys_motion_easing_standard_decelerate",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "@0x7f0703fe",
+    "controlY1": "@0x7f070400",
+    "controlX2": "@0x7f0703ff",
+    "controlY2": "@0x7f070401"
+   }
+  },
+  {
+   "name": "mtrl_fast_out_linear_in",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0.4",
+    "controlY1": "0",
+    "controlX2": "1",
+    "controlY2": "1"
+   }
+  },
+  {
+   "name": "mtrl_fast_out_slow_in",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0.4",
+    "controlY1": "0",
+    "controlX2": "0.2",
+    "controlY2": "1"
+   }
+  },
+  {
+   "name": "mtrl_linear",
+   "root": "linearInterpolator",
+   "attrs": {}
+  },
+  {
+   "name": "mtrl_linear_out_slow_in",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0",
+    "controlY1": "0",
+    "controlX2": "0.2",
+    "controlY2": "1"
+   }
+  },
+  {
+   "name": "silky_entrance",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0.2",
+    "controlY1": "0.7",
+    "controlX2": "-0.01",
+    "controlY2": "1"
+   }
+  },
+  {
+   "name": "silky_exit",
+   "root": "pathInterpolator",
+   "attrs": {
+    "controlX1": "0.9",
+    "controlY1": "0.01",
+    "controlX2": "0.99",
+    "controlY2": "0.75"
+   }
+  }
+ ],
+ "lottie": [
+  {
+   "name": "Conversation ALL",
+   "bytes": 34142,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 150,
+   "seconds": 2.5,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL lotties",
+   "bytes": 15208,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 240,
+   "seconds": 4.0,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL 2",
+   "bytes": 29910,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 51,
+   "seconds": 0.85,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL 2",
+   "bytes": 29912,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 129,
+   "seconds": 2.15,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL 2",
+   "bytes": 29943,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 54,
+   "seconds": 0.9,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL",
+   "bytes": 29136,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 126,
+   "seconds": 2.1,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL",
+   "bytes": 29137,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 64,
+   "seconds": 1.07,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL",
+   "bytes": 29134,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 54,
+   "seconds": 0.9,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL lotties",
+   "bytes": 27530,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 215,
+   "seconds": 3.58,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL lotties",
+   "bytes": 31846,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 150,
+   "seconds": 2.5,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Conversation ALL",
+   "bytes": 15252,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 101,
+   "seconds": 1.68,
+   "w": 200,
+   "h": 200,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "alt_light",
+   "bytes": 4584,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 56,
+   "h": 56,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "alt_dark",
+   "bytes": 4588,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 117,
+   "seconds": 1.95,
+   "w": 56,
+   "h": 56,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Lottie output 96x96",
+   "bytes": 14187,
+   "v": "5.12.1",
+   "fps": 30,
+   "frames": 120,
+   "seconds": 4.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "FTE reports blue dot",
+   "bytes": 2443,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 83,
+   "seconds": 1.38,
+   "w": 320,
+   "h": 320,
+   "layers": 2,
+   "assets": 0
+  },
+  {
+   "name": "Loading_1",
+   "bytes": 3067,
+   "v": "5.9.0",
+   "fps": 30,
+   "frames": 66,
+   "seconds": 2.2,
+   "w": 540,
+   "h": 540,
+   "layers": 2,
+   "assets": 0
+  },
+  {
+   "name": "Loading_1",
+   "bytes": 3111,
+   "v": "5.9.0",
+   "fps": 30,
+   "frames": 66,
+   "seconds": 2.2,
+   "w": 540,
+   "h": 540,
+   "layers": 2,
+   "assets": 0
+  },
+  {
+   "name": "Final",
+   "bytes": 4747,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 120,
+   "seconds": 2.0,
+   "w": 720,
+   "h": 720,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Comp 2",
+   "bytes": 4725,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 104,
+   "seconds": 1.73,
+   "w": 720,
+   "h": 720,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Comp 1",
+   "bytes": 3804,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 92,
+   "seconds": 1.53,
+   "w": 720,
+   "h": 720,
+   "layers": 2,
+   "assets": 0
+  },
+  {
+   "name": "Talking Loop",
+   "bytes": 5291,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 60,
+   "seconds": 1.0,
+   "w": 720,
+   "h": 720,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "report_menu_button",
+   "bytes": 23252,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 306,
+   "seconds": 5.1,
+   "w": 70,
+   "h": 70,
+   "layers": 5,
+   "assets": 5
+  },
+  {
+   "name": "report_menu_button",
+   "bytes": 23599,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 306,
+   "seconds": 5.1,
+   "w": 70,
+   "h": 70,
+   "layers": 1,
+   "assets": 6
+  },
+  {
+   "name": "Comp 3",
+   "bytes": 15066,
+   "v": "5.9.0",
+   "fps": 25,
+   "frames": 39,
+   "seconds": 1.56,
+   "w": 192,
+   "h": 192,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Ghost_loader",
+   "bytes": 5817,
+   "v": "5.5.2",
+   "fps": 60,
+   "frames": 61,
+   "seconds": 1.02,
+   "w": 145,
+   "h": 33,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Assistant badge loop",
+   "bytes": 7204,
+   "v": "5.5.2",
+   "fps": 60,
+   "frames": 72,
+   "seconds": 1.2,
+   "w": 44,
+   "h": 44,
+   "layers": 3,
+   "assets": 1
+  },
+  {
+   "name": "Assistant badge_expand_contract_new 2",
+   "bytes": 6498,
+   "v": "5.5.8",
+   "fps": 60,
+   "frames": 67,
+   "seconds": 1.12,
+   "w": 111,
+   "h": 44,
+   "layers": 2,
+   "assets": 0
+  },
+  {
+   "name": "01_OB animation sequence",
+   "bytes": 177783,
+   "v": "5.5.2",
+   "fps": 60,
+   "frames": 801,
+   "seconds": 13.35,
+   "w": 158,
+   "h": 159,
+   "layers": 4,
+   "assets": 17
+  },
+  {
+   "name": "Lottie output 96x96",
+   "bytes": 16824,
+   "v": "5.12.1",
+   "fps": 30,
+   "frames": 120,
+   "seconds": 4.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Lottie output 96x96",
+   "bytes": 36399,
+   "v": "5.12.1",
+   "fps": 30,
+   "frames": 120,
+   "seconds": 4.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "confetti",
+   "bytes": 9074,
+   "v": "5.7.3",
+   "fps": 60,
+   "frames": 76,
+   "seconds": 1.27,
+   "w": 500,
+   "h": 170,
+   "layers": 2,
+   "assets": 1
+  },
+  {
+   "name": "points_animation_with_text",
+   "bytes": 25118,
+   "v": "5.7.4",
+   "fps": 60,
+   "frames": 211,
+   "seconds": 3.52,
+   "w": 120,
+   "h": 189,
+   "layers": 6,
+   "assets": 5
+  },
+  {
+   "name": "lottie/thumbsup/96dp",
+   "bytes": 10220,
+   "v": "5.7.3",
+   "fps": 60,
+   "frames": 61,
+   "seconds": 1.02,
+   "w": 96,
+   "h": 96,
+   "layers": 3,
+   "assets": 2
+  },
+  {
+   "name": "Icon set 02 OUT",
+   "bytes": 129426,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 196,
+   "seconds": 3.27,
+   "w": 1080,
+   "h": 1080,
+   "layers": 5,
+   "assets": 5
+  },
+  {
+   "name": "new sound wave",
+   "bytes": 9337,
+   "v": "5.9.0",
+   "fps": 25,
+   "frames": 36,
+   "seconds": 1.44,
+   "w": 70,
+   "h": 70,
+   "layers": 6,
+   "assets": 0
+  },
+  {
+   "name": "Icon set 01 OUT",
+   "bytes": 85012,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 196,
+   "seconds": 3.27,
+   "w": 1080,
+   "h": 1080,
+   "layers": 5,
+   "assets": 5
+  },
+  {
+   "name": "_x96 Reports",
+   "bytes": 184617,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 300,
+   "seconds": 5.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 9
+  },
+  {
+   "name": "Lottie output 96x96",
+   "bytes": 13891,
+   "v": "5.12.1",
+   "fps": 30,
+   "frames": 120,
+   "seconds": 4.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "Speaking lines",
+   "bytes": 5116,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 77,
+   "seconds": 1.28,
+   "w": 70,
+   "h": 50,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Speaking lines",
+   "bytes": 5059,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 77,
+   "seconds": 1.28,
+   "w": 70,
+   "h": 50,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Comp 2",
+   "bytes": 4803,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 104,
+   "seconds": 1.73,
+   "w": 560,
+   "h": 340,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Comp 2",
+   "bytes": 4538,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 104,
+   "seconds": 1.73,
+   "w": 560,
+   "h": 340,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "Share_Lottie_ex",
+   "bytes": 4073,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 99,
+   "seconds": 1.65,
+   "w": 320,
+   "h": 320,
+   "layers": 3,
+   "assets": 0
+  },
+  {
+   "name": "_WAZE_Splash_Cancer_Oct26_v02 A",
+   "bytes": 82506,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 320,
+   "h": 640,
+   "layers": 7,
+   "assets": 1
+  },
+  {
+   "name": "Loader_02",
+   "bytes": 4624,
+   "v": "5.5.7",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 175,
+   "h": 64,
+   "layers": 3,
+   "assets": 1
+  },
+  {
+   "name": "Loader_02",
+   "bytes": 4623,
+   "v": "5.5.7",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 175,
+   "h": 64,
+   "layers": 3,
+   "assets": 1
+  },
+  {
+   "name": "Loader_02",
+   "bytes": 3706,
+   "v": "5.5.9",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 122,
+   "h": 33,
+   "layers": 3,
+   "assets": 1
+  },
+  {
+   "name": "Loader_03",
+   "bytes": 3705,
+   "v": "5.5.9",
+   "fps": 60,
+   "frames": 121,
+   "seconds": 2.02,
+   "w": 122,
+   "h": 33,
+   "layers": 3,
+   "assets": 1
+  },
+  {
+   "name": "Spark",
+   "bytes": 16527,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 124,
+   "seconds": 2.07,
+   "w": 70,
+   "h": 70,
+   "layers": 11,
+   "assets": 1
+  },
+  {
+   "name": "Spark",
+   "bytes": 16527,
+   "v": "5.9.0",
+   "fps": 60,
+   "frames": 124,
+   "seconds": 2.07,
+   "w": 70,
+   "h": 70,
+   "layers": 11,
+   "assets": 1
+  },
+  {
+   "name": "_x96 Walk to car",
+   "bytes": 36560,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 59,
+   "seconds": 0.98,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 1
+  },
+  {
+   "name": "_x96 Wazers",
+   "bytes": 135805,
+   "v": "5.12.1",
+   "fps": 60,
+   "frames": 300,
+   "seconds": 5.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 14
+  },
+  {
+   "name": "Lottie output 96x96",
+   "bytes": 34718,
+   "v": "5.12.1",
+   "fps": 30,
+   "frames": 120,
+   "seconds": 4.0,
+   "w": 96,
+   "h": 96,
+   "layers": 1,
+   "assets": 3
+  }
+ ],
+ "raw_other": [
+  {
+   "name": "build_data",
+   "file": "res/YA3.pb",
+   "bytes": 62
+  },
+  {
+   "name": "com_google_android_gms_auth_account_client_heterodyne_info",
+   "file": "res/LG2",
+   "bytes": 63
+  },
+  {
+   "name": "com_google_android_gms_auth_account_client_registration_info",
+   "file": "res/B_e.binarypb",
+   "bytes": 65
+  },
+  {
+   "name": "com_google_android_gms_fido_heterodyne_info",
+   "file": "res/19P",
+   "bytes": 67
+  },
+  {
+   "name": "com_google_android_gms_ulr_heterodyne_info",
+   "file": "res/xPj",
+   "bytes": 46
+  },
+  {
+   "name": "conversational_minimalist_mic_on",
+   "file": "res/J0W.mp3",
+   "bytes": 54936
+  },
+  {
+   "name": "conversational_popcorn_mic_on",
+   "file": "res/GXJ.mp3",
+   "bytes": 16176
+  },
+  {
+   "name": "flags_pb",
+   "file": "res/5T1",
+   "bytes": 0
+  },
+  {
+   "name": "riderequest",
+   "file": "res/tQA.mp3",
+   "bytes": 33062
+  },
+  {
+   "name": "timetoleave",
+   "file": "res/se0.wav",
+   "bytes": 661544
+  }
+ ],
+ "stray_json": [],
+ "xml": [
+  {
+   "name": "automotive_app_desc",
+   "root": "automotiveApp",
+   "attrs": {}
+  },
+  {
+   "name": "backup_rules",
+   "root": "data-extraction-rules",
+   "attrs": {}
+  },
+  {
+   "name": "camera_provider_paths",
+   "root": "paths",
+   "attrs": {}
+  },
+  {
+   "name": "com_google_android_gms_auth_account_client_phenotype",
+   "root": "phenotype-registrations",
+   "attrs": {}
+  },
+  {
+   "name": "image_share_filepaths",
+   "root": "paths",
+   "attrs": {}
+  },
+  {
+   "name": "m3_button_group_child_size_change",
+   "root": "selector",
+   "attrs": {}
+  },
+  {
+   "name": "m3_list_item_shape_state_list",
+   "root": "selector",
+   "attrs": {}
+  },
+  {
+   "name": "m3_split_button_inner_corner_size_state_list",
+   "root": "selector",
+   "attrs": {}
+  },
+  {
+   "name": "m3expressive_button_shape_state_list",
+   "root": "selector",
+   "attrs": {}
+  },
+  {
+   "name": "m3expressive_connected_buttons_inner_corner_size_state_list",
+   "root": "selector",
+   "attrs": {}
+  },
+  {
+   "name": "provider_paths",
+   "root": "paths",
+   "attrs": {}
+  },
+  {
+   "name": "splits0",
+   "root": "splits",
+   "attrs": {}
+  }
+ ],
+ "waze_specific_duration_histogram_ms": [
+  [
+   100,
+   5
+  ],
+  [
+   150,
+   1
+  ],
+  [
+   200,
+   17
+  ],
+  [
+   300,
+   9
+  ],
+  [
+   400,
+   8
+  ],
+  [
+   500,
+   8
+  ],
+  [
+   600,
+   1
+  ],
+  [
+   700,
+   1
+  ]
+ ],
+ "waze_specific_anim_count": 41,
+ "waze_specific_animator_count": 7,
+ "integer_duration_tokens": {
+  "abc_config_activityDefaultDur": {
+   "default": "220"
+  },
+  "abc_config_activityShortDur": {
+   "default": "150"
+  },
+  "app_bar_elevation_anim_duration": {
+   "default": "150"
+  },
+  "bottom_sheet_slide_duration": {
+   "default": "150"
+  },
+  "button_primary_timer_alpha": {
+   "default": "0.48",
+   "night": "0.6"
+  },
+  "button_secondary_timer_alpha": {
+   "default": "0.16",
+   "night": "0.24"
+  },
+  "buttons_fade_animation_duration_ms": {
+   "default": "200"
+  },
+  "config_tooltipAnimTime": {
+   "default": "150"
+  },
+  "design_tab_indicator_anim_duration_ms": {
+   "default": "300"
+  },
+  "hide_password_duration": {
+   "default": "320"
+  },
+  "m3_btn_anim_delay_ms": {
+   "default": "100"
+  },
+  "m3_btn_anim_duration_ms": {
+   "default": "100"
+  },
+  "m3_card_anim_delay_ms": {
+   "default": "75"
+  },
+  "m3_card_anim_duration_ms": {
+   "default": "120"
+  },
+  "m3_chip_anim_duration": {
+   "default": "100"
+  },
+  "m3_sys_motion_duration_extra_long1": {
+   "default": "700"
+  },
+  "m3_sys_motion_duration_extra_long2": {
+   "default": "800"
+  },
+  "m3_sys_motion_duration_extra_long3": {
+   "default": "900"
+  },
+  "m3_sys_motion_duration_extra_long4": {
+   "default": "1000"
+  },
+  "m3_sys_motion_duration_long1": {
+   "default": "450"
+  },
+  "m3_sys_motion_duration_long2": {
+   "default": "500"
+  },
+  "m3_sys_motion_duration_long3": {
+   "default": "550"
+  },
+  "m3_sys_motion_duration_long4": {
+   "default": "600"
+  },
+  "m3_sys_motion_duration_medium1": {
+   "default": "250"
+  },
+  "m3_sys_motion_duration_medium2": {
+   "default": "300"
+  },
+  "m3_sys_motion_duration_medium3": {
+   "default": "350"
+  },
+  "m3_sys_motion_duration_medium4": {
+   "default": "400"
+  },
+  "m3_sys_motion_duration_short1": {
+   "default": "50"
+  },
+  "m3_sys_motion_duration_short2": {
+   "default": "100"
+  },
+  "m3_sys_motion_duration_short3": {
+   "default": "150"
+  },
+  "m3_sys_motion_duration_short4": {
+   "default": "200"
+  },
+  "material_motion_duration_long_1": {
+   "default": "300"
+  },
+  "material_motion_duration_long_2": {
+   "default": "350"
+  },
+  "material_motion_duration_medium_1": {
+   "default": "200"
+  },
+  "material_motion_duration_medium_2": {
+   "default": "250"
+  },
+  "material_motion_duration_short_1": {
+   "default": "75"
+  },
+  "material_motion_duration_short_2": {
+   "default": "150"
+  },
+  "mtrl_btn_anim_delay_ms": {
+   "default": "100"
+  },
+  "mtrl_btn_anim_duration_ms": {
+   "default": "100"
+  },
+  "mtrl_card_anim_delay_ms": {
+   "default": "75"
+  },
+  "mtrl_card_anim_duration_ms": {
+   "default": "120"
+  },
+  "mtrl_chip_anim_duration": {
+   "default": "100"
+  },
+  "mtrl_switch_thumb_motion_duration": {
+   "default": "@integer/m3_sys_motion_duration_medium1"
+  },
+  "mtrl_switch_thumb_post_morphing_duration": {
+   "default": "@integer/m3_sys_motion_duration_short3"
+  },
+  "mtrl_switch_thumb_pre_morphing_duration": {
+   "default": "@integer/m3_sys_motion_duration_short2"
+  },
+  "mtrl_switch_thumb_pressed_duration": {
+   "default": "@integer/m3_sys_motion_duration_short2"
+  },
+  "mtrl_tab_indicator_anim_duration_ms": {
+   "default": "250"
+  },
+  "rider_now_slide_animation_duration_ms": {
+   "default": "500"
+  },
+  "route_header_animation_duration": {
+   "default": "200"
+  },
+  "show_password_duration": {
+   "default": "200"
+  },
+  "slide_animation_duration_ms": {
+   "default": "300"
+  }
+ }
+}

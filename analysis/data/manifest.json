@@ -1,0 +1,1767 @@
+{
+ "manifest": {
+  "package": "com.waze",
+  "versionCode": "1030811",
+  "versionName": "5.22.90.123",
+  "compileSdkVersion": "37",
+  "compileSdkVersionCodename": "DEV",
+  "installLocation": "0"
+ },
+ "usesPermissions": [
+  {
+   "name": "androidx.car.app.NAVIGATION_TEMPLATES"
+  },
+  {
+   "name": "androidx.car.app.ACCESS_SURFACE"
+  },
+  {
+   "name": "android.permission.ACCESS_COARSE_LOCATION"
+  },
+  {
+   "name": "android.permission.ACCESS_FINE_LOCATION"
+  },
+  {
+   "name": "android.permission.ACCESS_BACKGROUND_LOCATION"
+  },
+  {
+   "name": "android.permission.FOREGROUND_SERVICE"
+  },
+  {
+   "name": "android.permission.INTERNET"
+  },
+  {
+   "name": "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"
+  },
+  {
+   "name": "android.permission.MODIFY_AUDIO_SETTINGS"
+  },
+  {
+   "name": "android.permission.RECORD_AUDIO"
+  },
+  {
+   "name": "android.permission.WAKE_LOCK"
+  },
+  {
+   "name": "android.permission.CAMERA"
+  },
+  {
+   "name": "android.permission.READ_PHONE_STATE"
+  },
+  {
+   "name": "android.permission.READ_CONTACTS"
+  },
+  {
+   "name": "android.permission.READ_SYNC_STATS"
+  },
+  {
+   "name": "android.permission.READ_SYNC_SETTINGS"
+  },
+  {
+   "name": "android.permission.WRITE_SYNC_SETTINGS"
+  },
+  {
+   "name": "android.permission.READ_CALENDAR"
+  },
+  {
+   "name": "android.permission.READ_PROFILE"
+  },
+  {
+   "name": "android.permission.SYSTEM_ALERT_WINDOW"
+  },
+  {
+   "name": "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"
+  },
+  {
+   "name": "android.permission.POST_NOTIFICATIONS"
+  },
+  {
+   "name": "android.permission.BLUETOOTH",
+   "maxSdkVersion": "30"
+  },
+  {
+   "name": "android.permission.BLUETOOTH_ADMIN",
+   "maxSdkVersion": "30"
+  },
+  {
+   "name": "android.permission.BLUETOOTH_CONNECT"
+  },
+  {
+   "name": "android.permission.BLUETOOTH_SCAN"
+  },
+  {
+   "name": "android.permission.FOREGROUND_SERVICE_LOCATION"
+  },
+  {
+   "name": "android.permission.ACCESS_NETWORK_STATE"
+  },
+  {
+   "name": "android.permission.RECEIVE_BOOT_COMPLETED"
+  },
+  {
+   "name": "android.permission.VIBRATE"
+  },
+  {
+   "name": "android.permission.BROADCAST_STICKY"
+  },
+  {
+   "name": "com.google.android.c2dm.permission.RECEIVE"
+  },
+  {
+   "name": "com.google.android.gms.permission.AD_ID"
+  },
+  {
+   "name": "android.car.permission.CAR_INFO"
+  },
+  {
+   "name": "com.waze.mobile.DYNAMIC_RECEIVER_EXPORTED_PERMISSION"
+  }
+ ],
+ "usesFeatures": [
+  {
+   "name": "android.hardware.wifi",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.screen.portrait",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.screen.landscape",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.camera",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.bluetooth",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.microphone",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.telephony",
+   "required": "false"
+  },
+  {
+   "name": "android.hardware.location.gps",
+   "required": "true"
+  }
+ ],
+ "definedPermissions": [
+  {
+   "name": "com.waze.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+   "protectionLevel": "0x2"
+  },
+  {
+   "name": "com.waze.DYNAMIC_RECEIVER_EXPORTED_PERMISSION",
+   "protectionLevel": "0x2"
+  }
+ ],
+ "usesLibraries": [
+  {
+   "name": "androidx.window.extensions",
+   "required": "false"
+  },
+  {
+   "name": "androidx.window.sidecar",
+   "required": "false"
+  },
+  {
+   "name": "org.apache.http.legacy",
+   "required": "false"
+  }
+ ],
+ "queries": {
+  "packages": [
+   "com.google.android.googlequicksearchbox",
+   "com.spotify.music",
+   "com.waze"
+  ],
+  "intents": [
+   [
+    {
+     "tag": "action",
+     "name": "androidx.window.extensions.layout.EngagementModeService"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "com.waze.sdk.audio.ACTION_INIT"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "android.intent.action.SEND"
+    },
+    {
+     "tag": "data",
+     "mimeType": "text/plain"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "android.media.action.IMAGE_CAPTURE"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "android.intent.action.TTS_SERVICE"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "android.speech.RecognitionService"
+    }
+   ],
+   [
+    {
+     "tag": "action",
+     "name": "com.android.camera.action.CROP"
+    },
+    {
+     "tag": "data",
+     "mimeType": "image/*",
+     "scheme": "content"
+    }
+   ]
+  ],
+  "providers": [
+   "androidx.car.app.connection"
+  ]
+ },
+ "sdk": {
+  "min": "29",
+  "target": "36",
+  "max": null
+ },
+ "application": {
+  "theme": "@style/Theme.Main",
+  "label": "@string/app_name_regular",
+  "icon": "@mipmap/launch_icon",
+  "name": "com.waze.mobile.WazeMobileApplication",
+  "allowBackup": "false",
+  "hardwareAccelerated": "true",
+  "largeHeap": "true",
+  "supportsRtl": "false",
+  "fullBackupContent": "false",
+  "usesCleartextTraffic": "false",
+  "appComponentFactory": "androidx.core.app.CoreComponentFactory",
+  "requestLegacyExternalStorage": "true",
+  "dataExtractionRules": "@xml/backup_rules"
+ },
+ "applicationMetaData": [
+  {
+   "name": "com.google.android.gms.car.application",
+   "value": "@xml/automotive_app_desc"
+  },
+  {
+   "name": "androidx.car.app.minCarApiLevel",
+   "value": "5"
+  },
+  {
+   "name": "com.google.android.gms.phenotype.registration.xml:com.google.android.gms.auth_account_client",
+   "value": "@xml/com_google_android_gms_auth_account_client_phenotype"
+  },
+  {
+   "name": "com.google.android.gms.version",
+   "value": "@integer/google_play_services_version"
+  },
+  {
+   "name": "com.google.android.gms.ads.APPLICATION_ID",
+   "value": "@string/gms_ads_application_id"
+  },
+  {
+   "name": "firebase_crashlytics_collection_enabled",
+   "value": "false"
+  },
+  {
+   "name": "firebase_performance_logcat_enabled",
+   "value": "false"
+  },
+  {
+   "name": "com.google.android.gms.wallet.api.enabled",
+   "value": "true"
+  },
+  {
+   "name": "com.android.dynamic.apk.fused.modules",
+   "value": "base"
+  },
+  {
+   "name": "com.android.vending.splits",
+   "value": "@xml/splits0"
+  }
+ ],
+ "components": {
+  "activity": [
+   {
+    "name": "com.waze.FreeMapAppActivity",
+    "exported": "true",
+    "theme": "@style/Theme.Splash.Actual",
+    "configChanges": "0xfa0",
+    "windowSoftInputMode": "0x1",
+    "intentFilters": [
+     {
+      "actions": [
+       "android.intent.action.MAIN"
+      ],
+      "categories": [
+       "android.intent.category.LAUNCHER"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "android.intent.action.SEND"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "mimeType": "text/plain"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "http",
+        "host": "www.google.com",
+        "pathPrefix": "/maps/dir"
+       },
+       {
+        "scheme": "https",
+        "host": "www.google.com",
+        "pathPrefix": "/maps/dir"
+       },
+       {
+        "scheme": "http",
+        "host": "www.google.com",
+        "pathPattern": "/maps/.*q.*"
+       },
+       {
+        "scheme": "https",
+        "host": "www.google.com",
+        "pathPattern": "/maps/.*q.*"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "google.maps"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.MAIN"
+      ],
+      "categories": [
+       "com.google.android.gearhead.vanagon.category.CATEGORY_NAVIGATION"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "waze"
+       },
+       {
+        "scheme": "geo"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       },
+       {
+        "scheme": "geo.action"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.NAVIGATE"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.SEARCH"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "mimeType": "vnd.android.cursor.item/postal-address_v2"
+       },
+       {
+        "mimeType": "vnd.android.cursor.item/postal-address"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "http",
+        "host": "maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "https",
+        "host": "maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "http",
+        "host": "assistant-maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "https",
+        "host": "assistant-maps.google.com",
+        "pathPrefix": "/maps"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "http"
+       },
+       {
+        "scheme": "https"
+       },
+       {
+        "host": "*.waze.com"
+       },
+       {
+        "host": "waze.com"
+       },
+       {
+        "host": "www.waze.com"
+       },
+       {
+        "host": "beta.waze.com"
+       },
+       {
+        "host": "*.gcp.wazestg.com"
+       },
+       {
+        "host": "www.gcp.wazestg.com"
+       },
+       {
+        "pathPattern": "/ul.*"
+       }
+      ],
+      "autoVerify": "true"
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "mimeType": "vnd.android.cursor.item/com.waze.authenticator"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "google.navigation"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+    "exported": "false",
+    "theme": "@style/Theme.PlayCore.Transparent"
+   },
+   {
+    "name": "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+    "exported": "false",
+    "theme": "@0x01030010"
+   },
+   {
+    "name": "com.google.android.gms.common.api.GoogleApiActivity",
+    "exported": "false",
+    "theme": "@0x01030010"
+   },
+   {
+    "name": "androidx.car.app.CarAppPermissionActivity",
+    "exported": "false",
+    "theme": "@0x01030010"
+   },
+   {
+    "name": "androidx.compose.ui.tooling.PreviewActivity",
+    "exported": "true"
+   },
+   {
+    "name": "androidx.credentials.playservices.controllers.identityauth.HiddenActivity",
+    "exported": "false",
+    "enabled": "true",
+    "theme": "@style/Theme.Hidden",
+    "configChanges": "0x5a0"
+   },
+   {
+    "name": "androidx.credentials.playservices.controllers.identitycredentials.IdentityCredentialApiHiddenActivity",
+    "exported": "false",
+    "enabled": "true",
+    "theme": "@style/Theme.Hidden",
+    "configChanges": "0x5a0"
+   },
+   {
+    "name": "com.waze.app_nav.hub.service.WazeServiceHostActivity",
+    "exported": "false",
+    "theme": "@style/Theme.DimmedFromBottomNoAnim"
+   },
+   {
+    "name": "com.waze.uid.activities.UidFragmentActivity",
+    "theme": "@style/UidAppTheme.Translucent",
+    "windowSoftInputMode": "0x10"
+   },
+   {
+    "name": "com.waze.feedback.FeedbackActivity",
+    "theme": "@style/UidAppTheme.NoActionBar",
+    "configChanges": "0x480",
+    "windowSoftInputMode": "0x10"
+   },
+   {
+    "name": "com.waze.MainActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "launchMode": "2",
+    "configChanges": "0xfa0",
+    "windowSoftInputMode": "0x30"
+   },
+   {
+    "name": "com.waze.config.DebugConfigListActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main"
+   },
+   {
+    "name": "com.waze.share.ViewShareDriveActivity",
+    "exported": "false",
+    "configChanges": "0xb0",
+    "windowSoftInputMode": "0x20"
+   },
+   {
+    "name": "com.waze.navigate.HistoryActivity",
+    "exported": "false",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.google_assistant.SpeechRecognizerActivity",
+    "exported": "false",
+    "theme": "@style/Theme.MainTransparentFromBottomNoAnim",
+    "configChanges": "0x4a0"
+   },
+   {
+    "name": "com.waze.search.v2.SearchV2Activity",
+    "exported": "false",
+    "theme": "@style/Theme.SilkyActivity",
+    "windowSoftInputMode": "0x30"
+   },
+   {
+    "name": "com.waze.reports.NearbyGasStationsActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.reports.GasPriceReportActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0xa0",
+    "windowSoftInputMode": "0x10"
+   },
+   {
+    "name": "com.waze.reports.EditPlaceFlowActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.reports.AddPlaceFlowActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.ifs.ui.OmniSelectionActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.reports.ClosureMap",
+    "exported": "false",
+    "theme": "@style/Theme.Main"
+   },
+   {
+    "name": "com.waze.navigate.location_preview.LocationPreviewActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SilkyActivity",
+    "windowSoftInputMode": "0x30"
+   },
+   {
+    "name": "com.waze.favorites.AddFavoriteActivity",
+    "exported": "false",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.favorites.AddHomeWorkActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.navigate.AutocompleteSearchActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.favorites.FavoritesActivity",
+    "exported": "false",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.install.LocationFailedActivity",
+    "exported": "false",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.install.SelectCountryActivity",
+    "exported": "false",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.rtalerts.RtAlertsComments",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0xa0"
+   },
+   {
+    "name": "com.waze.inbox.InboxPreviewActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0x480"
+   },
+   {
+    "name": "com.waze.mywaze.moods.MoodsActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.InternalWebBrowser",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity",
+    "configChanges": "0x480"
+   },
+   {
+    "name": "com.waze.profile.TempUserProfileActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.profile.ForgotPasswordActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0x80"
+   },
+   {
+    "name": "com.waze.navigate.social.ShareHelpActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main"
+   },
+   {
+    "name": "com.waze.settings.SettingsNotificationActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.SettingsHOVActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.SettingsHOVSearchActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.CustomVoicesFallbackVoicePickerActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.CustomPromptsRecordingActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.SettingsCalendarSelectionActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.trip_overview.TripOverviewActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main"
+   },
+   {
+    "name": "com.waze.ifs.ui.EditTextDialogActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "windowSoftInputMode": "0x5"
+   },
+   {
+    "name": "com.waze.sharedui.utils.RequestPermissionActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Transparent"
+   },
+   {
+    "name": "com.waze.CalendarApprovedActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Transparent"
+   },
+   {
+    "name": "com.waze.ifs.ui.EditMapLocationActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.web.SimpleWebActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main",
+    "configChanges": "0x480"
+   },
+   {
+    "name": "com.waze.planned_drive.PlannedDriveActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Main"
+   },
+   {
+    "name": "com.waze.utils.DismissNotificationActivity",
+    "exported": "false",
+    "theme": "@0x01030010"
+   },
+   {
+    "name": "com.waze.parking.ParkingUpdateLocationActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.location.LocationPermissionActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity",
+    "launchMode": "2"
+   },
+   {
+    "name": "com.waze.reports.SosProvidersListActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.SimpleListMenuActivity",
+    "exported": "false",
+    "theme": "@style/Theme.SettingsActivity"
+   },
+   {
+    "name": "com.waze.settings.SettingsMainActivity",
+    "exported": "false",
+    "theme": "@style/SettingActivity",
+    "launchMode": "1"
+   },
+   {
+    "name": "com.waze.view.popups.RequestAlwaysLocationDialogActivity",
+    "exported": "false",
+    "theme": "@style/Theme.Transparent.Dialog"
+   },
+   {
+    "name": "com.spotify.sdk.android.authentication.LoginActivity",
+    "exported": "false",
+    "theme": "@0x01030010",
+    "launchMode": "3"
+   }
+  ],
+  "activity-alias": [],
+  "service": [
+   {
+    "name": "com.waze.car_lib.WazeCarAppService",
+    "exported": "true",
+    "foregroundServiceType": "0x8",
+    "intentFilters": [
+     {
+      "actions": [],
+      "categories": [
+       "android.intent.category.APP_MAPS"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "androidx.car.app.CarAppService"
+      ],
+      "categories": [
+       "androidx.car.app.category.NAVIGATION",
+       "androidx.car.app.category.FEATURE_CLUSTER"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "androidx.car.app.action.NAVIGATE"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.SEARCH"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "geo"
+       },
+       {
+        "scheme": "geo.action"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "http",
+        "host": "www.google.com",
+        "pathPrefix": "/maps/dir"
+       },
+       {
+        "scheme": "https",
+        "host": "www.google.com",
+        "pathPrefix": "/maps/dir"
+       },
+       {
+        "scheme": "http",
+        "host": "www.google.com",
+        "pathPattern": "/maps/.*q.*"
+       },
+       {
+        "scheme": "https",
+        "host": "www.google.com",
+        "pathPattern": "/maps/.*q.*"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": [
+       {
+        "scheme": "google.maps"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.MAIN"
+      ],
+      "categories": [
+       "com.google.android.gearhead.vanagon.category.CATEGORY_NAVIGATION"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT"
+      ],
+      "data": []
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "waze"
+       },
+       {
+        "scheme": "geo"
+       },
+       {
+        "scheme": "google.navigation"
+       }
+      ]
+     },
+     {
+      "actions": [
+       "android.intent.action.VIEW"
+      ],
+      "categories": [
+       "android.intent.category.DEFAULT",
+       "android.intent.category.BROWSABLE"
+      ],
+      "data": [
+       {
+        "scheme": "http",
+        "host": "maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "https",
+        "host": "maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "http",
+        "host": "assistant-maps.google.com",
+        "pathPrefix": "/maps"
+       },
+       {
+        "scheme": "https",
+        "host": "assistant-maps.google.com",
+        "pathPrefix": "/maps"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.libraries.phenotype.registration.PhenotypeMetadataHolderService",
+    "exported": "false",
+    "enabled": "false",
+    "process": "",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.android.libraries.phenotype.registration.PhenotypeMetadataHolderService"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ],
+    "metaData": [
+     {
+      "name": "com.google.android.gms.phenotype.heterodyne_info.binarypb:com.google.android.gms.auth_account_client",
+      "value": "@raw/com_google_android_gms_auth_account_client_heterodyne_info"
+     },
+     {
+      "name": "com.google.android.gms.phenotype.registration.binarypb:com.google.android.gms.auth_account_client",
+      "value": "@raw/com_google_android_gms_auth_account_client_registration_info"
+     },
+     {
+      "name": "com.google.android.gms.phenotype.heterodyne_info.binarypb:com.google.android.gms.fido",
+      "value": "@raw/com_google_android_gms_fido_heterodyne_info"
+     },
+     {
+      "name": "com.google.android.gms.phenotype.heterodyne_info.binarypb:com.google.android.gms.ulr",
+      "value": "@raw/com_google_android_gms_ulr_heterodyne_info"
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+    "exported": "true",
+    "permission": "com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+   },
+   {
+    "name": "com.google.firebase.components.ComponentDiscoveryService",
+    "exported": "false",
+    "directBootAware": "true",
+    "metaData": [
+     {
+      "name": "com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.appcheck.debug.FirebaseAppCheckDebugRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.appcheck.playintegrity.FirebaseAppCheckPlayIntegrityRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.crashlytics.ndk.CrashlyticsNdkRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.iid.Registrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.perf.FirebasePerfKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.perf.FirebasePerfRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.remoteconfig.FirebaseRemoteConfigKtxRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     },
+     {
+      "name": "com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar",
+      "value": "com.google.firebase.components.ComponentRegistrar"
+     }
+    ]
+   },
+   {
+    "name": "com.google.firebase.messaging.FirebaseMessagingService",
+    "exported": "false",
+    "directBootAware": "true",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.firebase.MESSAGING_EVENT"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.google.firebase.sessions.SessionLifecycleService",
+    "exported": "false",
+    "enabled": "true"
+   },
+   {
+    "name": "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+    "exported": "false",
+    "metaData": [
+     {
+      "name": "backend:com.google.android.datatransport.cct.CctBackendFactory",
+      "value": "cct"
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+    "exported": "false",
+    "permission": "android.permission.BIND_JOB_SERVICE"
+   },
+   {
+    "name": "androidx.camera.core.impl.MetadataHolderService",
+    "exported": "false",
+    "enabled": "false",
+    "metaData": [
+     {
+      "name": "androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER",
+      "value": "androidx.camera.camera2.Camera2Config$DefaultProvider"
+     }
+    ]
+   },
+   {
+    "name": "androidx.car.app.CarAppMetadataHolderService",
+    "exported": "false",
+    "enabled": "false",
+    "process": "",
+    "metaData": [
+     {
+      "name": "androidx.car.app.CarAppMetadataHolderService.CAR_HARDWARE_MANAGER",
+      "value": "androidx.car.app.hardware.ProjectedCarHardwareManager"
+     }
+    ]
+   },
+   {
+    "name": "androidx.credentials.playservices.CredentialProviderMetadataHolder",
+    "exported": "false",
+    "enabled": "true",
+    "metaData": [
+     {
+      "name": "androidx.credentials.CREDENTIAL_PROVIDER_KEY",
+      "value": "<redacted len=68>"
+     }
+    ]
+   },
+   {
+    "name": "androidx.room.MultiInstanceInvalidationService",
+    "exported": "false",
+    "directBootAware": "true"
+   },
+   {
+    "name": "androidx.work.impl.background.systemjob.SystemJobService",
+    "exported": "true",
+    "enabled": "@bool/enable_system_job_service_default",
+    "permission": "android.permission.BIND_JOB_SERVICE",
+    "directBootAware": "false"
+   },
+   {
+    "name": "androidx.work.impl.foreground.SystemForegroundService",
+    "exported": "false",
+    "enabled": "@bool/enable_system_foreground_service_default",
+    "directBootAware": "false"
+   },
+   {
+    "name": "com.waze.WazeAppService",
+    "exported": "false",
+    "foregroundServiceType": "0x8"
+   },
+   {
+    "name": "com.waze.BoundService",
+    "exported": "true"
+   },
+   {
+    "name": "com.waze.AIDLService",
+    "exported": "true"
+   },
+   {
+    "name": "com.waze.sdk.SdkService",
+    "exported": "true"
+   },
+   {
+    "name": "com.waze.push.WazeFirebaseMessagingService",
+    "exported": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.firebase.MESSAGING_EVENT"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.build.data.PropertiesServiceHolder",
+    "exported": "false",
+    "enabled": "false",
+    "process": "",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.android.build.data.Properties"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ],
+    "metaData": [
+     {
+      "name": "com.google.android.build.data.properties",
+      "value": "@raw/build_data"
+     }
+    ]
+   }
+  ],
+  "receiver": [
+   {
+    "name": "com.google.android.libraries.phenotype.client.stable.AccountRemovedBroadcastReceiver",
+    "exported": "true",
+    "process": "",
+    "directBootAware": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "android.accounts.action.ACCOUNT_REMOVED"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.libraries.phenotype.client.stable.PhenotypeUpdateBackgroundBroadcastReceiver",
+    "exported": "true",
+    "permission": "com.google.android.gms.permission.PHENOTYPE_UPDATE_BROADCAST",
+    "process": "",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.android.gms.phenotype.UPDATE"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+    "exported": "true",
+    "permission": "com.google.android.c2dm.permission.SEND",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.android.c2dm.intent.RECEIVE"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+    "exported": "false"
+   },
+   {
+    "name": "androidx.car.app.notification.CarAppNotificationBroadcastReceiver",
+    "exported": "false"
+   },
+   {
+    "name": "androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver",
+    "exported": "false",
+    "enabled": "true",
+    "directBootAware": "false"
+   },
+   {
+    "name": "androidx.work.impl.background.systemalarm.RescheduleReceiver",
+    "exported": "false",
+    "enabled": "false",
+    "directBootAware": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "android.intent.action.BOOT_COMPLETED"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "androidx.work.impl.diagnostics.DiagnosticsReceiver",
+    "exported": "true",
+    "enabled": "true",
+    "permission": "android.permission.DUMP",
+    "directBootAware": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "androidx.work.diagnostics.REQUEST_DIAGNOSTICS"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.waze.car_lib.assistant.WazeCarAssistantStateReceiver",
+    "exported": "true",
+    "intentFilters": [
+     {
+      "actions": [
+       "com.google.android.gearhead.ASSISTANT_STATE_CHANGED"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.waze.push.FeedbackBroadcastReceiver"
+   },
+   {
+    "name": "com.waze.AppServiceBroadcastReceiver",
+    "exported": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "custom_waze_service_action"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.waze.ActionIntent",
+    "exported": "false",
+    "intentFilters": [
+     {
+      "actions": [
+       "Action_Intent"
+      ],
+      "categories": [],
+      "data": []
+     }
+    ]
+   },
+   {
+    "name": "com.waze.CalendarChangeReceiver",
+    "exported": "true",
+    "intentFilters": [
+     {
+      "actions": [
+       "android.intent.action.PROVIDER_CHANGED"
+      ],
+      "categories": [],
+      "data": [
+       {
+        "scheme": "content"
+       },
+       {
+        "host": "com.android.calendar"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "com.waze.push.DeleteNotificationReceiver",
+    "exported": "false"
+   },
+   {
+    "name": "com.waze.tide.BluetoothConnectionReceiver",
+    "exported": "true",
+    "intentFilters": [
+     {
+      "actions": [
+       "android.bluetooth.device.action.ACL_CONNECTED"
+      ],
+      "categories": [
+       "android.intent.category.BLUETOOTH"
+      ],
+      "data": []
+     }
+    ]
+   }
+  ],
+  "provider": [
+   {
+    "name": "com.google.firebase.provider.FirebaseInitProvider",
+    "exported": "false",
+    "authorities": "com.waze.firebaseinitprovider",
+    "directBootAware": "true"
+   },
+   {
+    "name": "androidx.startup.InitializationProvider",
+    "exported": "false",
+    "authorities": "com.waze.androidx-startup",
+    "metaData": [
+     {
+      "name": "androidx.work.WorkManagerInitializer",
+      "value": "androidx.startup"
+     }
+    ]
+   },
+   {
+    "name": "com.waze.coroutines.CoroutineSetDebugProvider",
+    "exported": "false",
+    "enabled": "true",
+    "authorities": "com.waze.CoroutineSetDebugProvider"
+   },
+   {
+    "name": "com.waze.sharedui.utils.WazeFileProvider",
+    "exported": "false",
+    "authorities": "com.waze.provider",
+    "metaData": [
+     {
+      "name": "android.support.FILE_PROVIDER_PATHS",
+      "value": "@xml/provider_paths"
+     }
+    ]
+   },
+   {
+    "name": "com.waze.camera.WazeCameraIntentsFileProvider",
+    "exported": "false",
+    "authorities": "com.waze.camera.WazeCameraIntentsFileProvider",
+    "metaData": [
+     {
+      "name": "android.support.FILE_PROVIDER_PATHS",
+      "value": "@xml/camera_provider_paths"
+     }
+    ]
+   }
+  ]
+ },
+ "derived": {
+  "counts": {
+   "activity": 58,
+   "activity-alias": 0,
+   "service": 20,
+   "receiver": 15,
+   "provider": 5
+  },
+  "exported_true": {
+   "activity": 2,
+   "activity-alias": 0,
+   "service": 6,
+   "receiver": 7,
+   "provider": 0
+  },
+  "with_intent_filters": 16,
+  "launchers": [
+   "com.waze.FreeMapAppActivity"
+  ],
+  "deep_links": [
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "http",
+     "https"
+    ],
+    "hosts": [
+     "www.google.com"
+    ],
+    "paths": [
+     "/maps/.*q.*",
+     "/maps/dir"
+    ],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "google.maps"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "geo",
+     "waze"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "geo",
+     "geo.action"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "http",
+     "https"
+    ],
+    "hosts": [
+     "assistant-maps.google.com",
+     "maps.google.com"
+    ],
+    "paths": [
+     "/maps"
+    ],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "http",
+     "https"
+    ],
+    "hosts": [
+     "*.gcp.wazestg.com",
+     "*.waze.com",
+     "beta.waze.com",
+     "waze.com",
+     "www.gcp.wazestg.com",
+     "www.waze.com"
+    ],
+    "paths": [
+     "/ul.*"
+    ],
+    "autoVerify": "true"
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.FreeMapAppActivity",
+    "kind": "activity",
+    "schemes": [
+     "google.navigation"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.car_lib.WazeCarAppService",
+    "kind": "service",
+    "schemes": [
+     "geo",
+     "geo.action"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.car_lib.WazeCarAppService",
+    "kind": "service",
+    "schemes": [
+     "http",
+     "https"
+    ],
+    "hosts": [
+     "www.google.com"
+    ],
+    "paths": [
+     "/maps/.*q.*",
+     "/maps/dir"
+    ],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.car_lib.WazeCarAppService",
+    "kind": "service",
+    "schemes": [
+     "google.maps"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.car_lib.WazeCarAppService",
+    "kind": "service",
+    "schemes": [
+     "geo",
+     "google.navigation",
+     "waze"
+    ],
+    "hosts": [],
+    "paths": [],
+    "autoVerify": null
+   },
+   {
+    "component": "com.waze.car_lib.WazeCarAppService",
+    "kind": "service",
+    "schemes": [
+     "http",
+     "https"
+    ],
+    "hosts": [
+     "assistant-maps.google.com",
+     "maps.google.com"
+    ],
+    "paths": [
+     "/maps"
+    ],
+    "autoVerify": null
+   }
+  ],
+  "schemes": {
+   "http": 9,
+   "https": 9,
+   "google.maps": 2,
+   "waze": 2,
+   "geo": 8,
+   "geo.action": 2,
+   "google.navigation": 2,
+   "content": 1
+  },
+  "foreground_service_types": {
+   "0x8": 2
+  },
+  "orientation": {},
+  "launch_modes": {
+   "2": 2,
+   "1": 1,
+   "3": 1
+  },
+  "first_party_components": {
+   "activity": 50,
+   "activity-alias": 0,
+   "service": 6,
+   "receiver": 7,
+   "provider": 3
+  }
+ }
+}

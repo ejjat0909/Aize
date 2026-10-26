@@ -1,0 +1,3396 @@
+{
+ "layouts": [
+  {
+   "name": "abc_action_bar_title_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "abc_action_bar_up_container",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 1
+  },
+  {
+   "name": "abc_action_menu_item_layout",
+   "config": "",
+   "root": "android.support.v7.view.menu.ActionMenuItemView",
+   "elements": 1
+  },
+  {
+   "name": "abc_action_menu_layout",
+   "config": "",
+   "root": "android.support.v7.widget.ActionMenuView",
+   "elements": 1
+  },
+  {
+   "name": "abc_action_mode_bar",
+   "config": "",
+   "root": "android.support.v7.widget.ActionBarContextView",
+   "elements": 1
+  },
+  {
+   "name": "abc_action_mode_close_item_material",
+   "config": "",
+   "root": "ImageView",
+   "elements": 1
+  },
+  {
+   "name": "abc_activity_chooser_view",
+   "config": "",
+   "root": "view",
+   "elements": 5
+  },
+  {
+   "name": "abc_activity_chooser_view_list_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "abc_alert_dialog_button_bar_material",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 6
+  },
+  {
+   "name": "abc_alert_dialog_button_bar_material",
+   "config": "watch",
+   "root": "android.support.v7.widget.ButtonBarLayout",
+   "elements": 4
+  },
+  {
+   "name": "abc_alert_dialog_material",
+   "config": "",
+   "root": "android.support.v7.widget.AlertDialogLayout",
+   "elements": 13
+  },
+  {
+   "name": "abc_alert_dialog_title_material",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "abc_alert_dialog_title_material",
+   "config": "watch",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "abc_cascading_menu_item_layout",
+   "config": "",
+   "root": "android.support.v7.view.menu.ListMenuItemView",
+   "elements": 7
+  },
+  {
+   "name": "abc_dialog_title_material",
+   "config": "",
+   "root": "android.support.v7.widget.FitWindowsLinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "abc_expanded_menu_layout",
+   "config": "",
+   "root": "android.support.v7.view.menu.ExpandedMenuView",
+   "elements": 1
+  },
+  {
+   "name": "abc_list_menu_item_checkbox",
+   "config": "",
+   "root": "CheckBox",
+   "elements": 1
+  },
+  {
+   "name": "abc_list_menu_item_icon",
+   "config": "",
+   "root": "ImageView",
+   "elements": 1
+  },
+  {
+   "name": "abc_list_menu_item_layout",
+   "config": "",
+   "root": "android.support.v7.view.menu.ListMenuItemView",
+   "elements": 4
+  },
+  {
+   "name": "abc_list_menu_item_radio",
+   "config": "",
+   "root": "RadioButton",
+   "elements": 1
+  },
+  {
+   "name": "abc_popup_menu_header_item_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "abc_popup_menu_item_layout",
+   "config": "",
+   "root": "android.support.v7.view.menu.ListMenuItemView",
+   "elements": 7
+  },
+  {
+   "name": "abc_screen_content_include",
+   "config": "",
+   "root": "merge",
+   "elements": 2
+  },
+  {
+   "name": "abc_screen_simple",
+   "config": "",
+   "root": "android.support.v7.widget.FitWindowsLinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "abc_screen_simple_overlay_action_mode",
+   "config": "",
+   "root": "android.support.v7.widget.FitWindowsFrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "abc_screen_toolbar",
+   "config": "",
+   "root": "android.support.v7.widget.ActionBarOverlayLayout",
+   "elements": 5
+  },
+  {
+   "name": "abc_search_dropdown_item_icons_2line",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "abc_search_view",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 11
+  },
+  {
+   "name": "abc_select_dialog_material",
+   "config": "",
+   "root": "view",
+   "elements": 1
+  },
+  {
+   "name": "abc_tooltip",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 2
+  },
+  {
+   "name": "activity_simple_list_menu",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "add_fav",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 10
+  },
+  {
+   "name": "add_home_work",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 14
+  },
+  {
+   "name": "add_new_favorite_cell",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "add_place_new",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 30
+  },
+  {
+   "name": "address_item_view",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 18
+  },
+  {
+   "name": "alert_summary_view",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "alert_ticker",
+   "config": "",
+   "root": "merge",
+   "elements": 6
+  },
+  {
+   "name": "alerter_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 13
+  },
+  {
+   "name": "alerter_popup",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 17
+  },
+  {
+   "name": "audio_button",
+   "config": "",
+   "root": "merge",
+   "elements": 4
+  },
+  {
+   "name": "audio_control_panel",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 10
+  },
+  {
+   "name": "audio_panel_app_list",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 9
+  },
+  {
+   "name": "audio_panel_app_list_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "audio_panel_connecting_screen",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "audio_panel_connection_failed_screen",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "audio_panel_playback",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 30
+  },
+  {
+   "name": "audio_panel_playlist_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "audio_panel_playlists",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 13
+  },
+  {
+   "name": "auth_account_exists",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 15
+  },
+  {
+   "name": "auth_check_pin_code",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 8
+  },
+  {
+   "name": "auth_choose_account",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 5
+  },
+  {
+   "name": "auth_email_username_login",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 10
+  },
+  {
+   "name": "auth_enter_email",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 12
+  },
+  {
+   "name": "auth_layout_header",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "auth_login_account_not_found",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "auth_logout_warning",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 8
+  },
+  {
+   "name": "auth_username_login_password",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "auth_verify_email_error",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "auth_welcome",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 9
+  },
+  {
+   "name": "auth_welcome",
+   "config": "land",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 8
+  },
+  {
+   "name": "auth_welcome_automation",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "auth_welcome_card",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "autocomplete_search",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "autofill_inline_suggestion",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "autofill_inline_suggestion_balancing",
+   "config": "",
+   "root": "androidx.autofill.inline.v1.BalancingTitleSubtitleLayout",
+   "elements": 5
+  },
+  {
+   "name": "badge_indicator_view",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "base_bottom_dialog_layout",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 1
+  },
+  {
+   "name": "bottom_alerter_component_widget",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "bottom_bar_notification_points_container",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "bottom_choice_dialog",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 11
+  },
+  {
+   "name": "bottom_pill_view",
+   "config": "",
+   "root": "merge",
+   "elements": 3
+  },
+  {
+   "name": "bottom_recenter_bar",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 9
+  },
+  {
+   "name": "bottom_sheet_cui",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 15
+  },
+  {
+   "name": "bottom_sheet_grid_item",
+   "config": "",
+   "root": "com.waze.sharedui.views.SquareFrameLayout",
+   "elements": 4
+  },
+  {
+   "name": "bottom_sheet_row_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 6
+  },
+  {
+   "name": "bottom_sheet_simple_row_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "browser_actions_context_menu_page",
+   "config": "",
+   "root": "androidx.browser.browseractions.BrowserActionsFallbackMenuView",
+   "elements": 4
+  },
+  {
+   "name": "browser_actions_context_menu_row",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "button_timer_layout",
+   "config": "",
+   "root": "com.waze.design_components.button.timer.WazeButtonTimer",
+   "elements": 1
+  },
+  {
+   "name": "call_to_action_bar_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 1
+  },
+  {
+   "name": "camera_preview",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 18
+  },
+  {
+   "name": "camera_preview",
+   "config": "land",
+   "root": "RelativeLayout",
+   "elements": 20
+  },
+  {
+   "name": "cavnas_label",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 15
+  },
+  {
+   "name": "checkbox",
+   "config": "",
+   "root": "merge",
+   "elements": 4
+  },
+  {
+   "name": "choose_account_profile_table",
+   "config": "",
+   "root": "TableLayout",
+   "elements": 13
+  },
+  {
+   "name": "choose_account_separator",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "closure_arrow_view",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "closure_map",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "closure_map",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "compass_button",
+   "config": "",
+   "root": "merge",
+   "elements": 2
+  },
+  {
+   "name": "confirm_dialog",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 4
+  },
+  {
+   "name": "confirm_dialog_bottom_sheet",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 10
+  },
+  {
+   "name": "confirm_dialog_bottom_sheet_buttons",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "confirm_dialog_bottom_sheet_buttons",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "confirm_dialog_buttons",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "confirm_dialog_buttons_v",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "confirm_dialog_buttons_v",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "confirm_dialog_info",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 13
+  },
+  {
+   "name": "confirm_dialog_info_no_frame",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 11
+  },
+  {
+   "name": "confirm_dialog_info_no_frame",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 13
+  },
+  {
+   "name": "confirm_dialog_v",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 4
+  },
+  {
+   "name": "custom_dialog",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 2
+  },
+  {
+   "name": "custom_prompt_action_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 5
+  },
+  {
+   "name": "custom_prompt_item_view",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 9
+  },
+  {
+   "name": "debug_config_list_activity",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "debug_config_list_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "design_bottom_navigation_item",
+   "config": "",
+   "root": "merge",
+   "elements": 9
+  },
+  {
+   "name": "design_bottom_sheet_dialog",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 5
+  },
+  {
+   "name": "design_layout_snackbar",
+   "config": "",
+   "root": "view",
+   "elements": 1
+  },
+  {
+   "name": "design_layout_snackbar",
+   "config": "sw600dp",
+   "root": "view",
+   "elements": 1
+  },
+  {
+   "name": "design_layout_snackbar_include",
+   "config": "",
+   "root": "view",
+   "elements": 3
+  },
+  {
+   "name": "design_menu_item_action_area",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 1
+  },
+  {
+   "name": "design_navigation_item",
+   "config": "",
+   "root": "com.google.android.material.internal.NavigationMenuItemView",
+   "elements": 1
+  },
+  {
+   "name": "design_navigation_item_header",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 1
+  },
+  {
+   "name": "design_navigation_item_separator",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "design_navigation_item_subheader",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "design_navigation_menu",
+   "config": "",
+   "root": "com.google.android.material.internal.NavigationMenuView",
+   "elements": 1
+  },
+  {
+   "name": "design_navigation_menu_item",
+   "config": "",
+   "root": "merge",
+   "elements": 3
+  },
+  {
+   "name": "design_text_input_end_icon",
+   "config": "",
+   "root": "com.google.android.material.internal.CheckableImageButton",
+   "elements": 1
+  },
+  {
+   "name": "design_text_input_start_icon",
+   "config": "",
+   "root": "com.google.android.material.internal.CheckableImageButton",
+   "elements": 1
+  },
+  {
+   "name": "destination_cell",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 31
+  },
+  {
+   "name": "details_popup",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 20
+  },
+  {
+   "name": "edit_place",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 65
+  },
+  {
+   "name": "edit_place_location",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "edit_place_opening_hours",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 22
+  },
+  {
+   "name": "edit_place_services",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 5
+  },
+  {
+   "name": "edit_text_dialog",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 8
+  },
+  {
+   "name": "editbox_voice",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "empty_card",
+   "config": "",
+   "root": "com.waze.sharedui.views.CardLinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "end_of_drive_encouragement_popup",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 12
+  },
+  {
+   "name": "eta_badge",
+   "config": "",
+   "root": "com.waze.sharedui.views.WazeTextView",
+   "elements": 1
+  },
+  {
+   "name": "eta_compact_bar_component_widget",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "eta_control_panel_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 12
+  },
+  {
+   "name": "eta_control_panel_layout",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 13
+  },
+  {
+   "name": "eta_main_bar_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 19
+  },
+  {
+   "name": "eta_main_bar_layout",
+   "config": "land",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 19
+  },
+  {
+   "name": "eta_main_bar_nav_details_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 10
+  },
+  {
+   "name": "eta_main_bar_nav_details_layout",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 10
+  },
+  {
+   "name": "eta_main_bar_notification",
+   "config": "",
+   "root": "merge",
+   "elements": 6
+  },
+  {
+   "name": "eta_widget_add_a_stop",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "eta_widget_hov_suggestion",
+   "config": "",
+   "root": "androidx.cardview.widget.CardView",
+   "elements": 9
+  },
+  {
+   "name": "eta_widget_plan_drive",
+   "config": "",
+   "root": "androidx.cardview.widget.CardView",
+   "elements": 9
+  },
+  {
+   "name": "eta_widget_route_details_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 31
+  },
+  {
+   "name": "events_on_route_view",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "expand_button",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "fab_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "favorites_activity_layout",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "fingerprint_dialog_layout",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 6
+  },
+  {
+   "name": "fragment_activity_empty",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 1
+  },
+  {
+   "name": "fragment_navigation_list",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 11
+  },
+  {
+   "name": "fragment_request_user_age",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 10
+  },
+  {
+   "name": "fragment_request_user_age",
+   "config": "land",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 10
+  },
+  {
+   "name": "fragment_swipe_popups",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "gas_price_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "gdpr_consent_bump",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 9
+  },
+  {
+   "name": "generic_eta_card",
+   "config": "",
+   "root": "androidx.cardview.widget.CardView",
+   "elements": 6
+  },
+  {
+   "name": "generic_image_frame",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 8
+  },
+  {
+   "name": "generic_notification",
+   "config": "",
+   "root": "merge",
+   "elements": 7
+  },
+  {
+   "name": "generic_takeover",
+   "config": "",
+   "root": "com.waze.view.layout.BoundedLinearLayout",
+   "elements": 18
+  },
+  {
+   "name": "generic_takeover_revamp",
+   "config": "",
+   "root": "com.waze.view.layout.BoundedLinearLayout",
+   "elements": 30
+  },
+  {
+   "name": "google_assistant_animated_user_agreement_view",
+   "config": "",
+   "root": "merge",
+   "elements": 8
+  },
+  {
+   "name": "google_assistant_animated_user_agreement_view",
+   "config": "land",
+   "root": "merge",
+   "elements": 8
+  },
+  {
+   "name": "history",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "hov_add_button",
+   "config": "",
+   "root": "com.waze.design_components.button.WazeButton",
+   "elements": 1
+  },
+  {
+   "name": "icon_button_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "image_button_left",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "image_frame",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 2
+  },
+  {
+   "name": "ime_base_split_test_activity",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 1
+  },
+  {
+   "name": "ime_secondary_split_test_activity",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "inbox_empty_state_view",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 3
+  },
+  {
+   "name": "inbox_item_view",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 8
+  },
+  {
+   "name": "inbox_menu",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 13
+  },
+  {
+   "name": "instruction_view",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "large_image_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "large_text_image_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 3
+  },
+  {
+   "name": "large_text_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "live_drive_participant_pin",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "location_failed",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 5
+  },
+  {
+   "name": "m3_alert_dialog",
+   "config": "",
+   "root": "android.support.v7.widget.AlertDialogLayout",
+   "elements": 13
+  },
+  {
+   "name": "m3_alert_dialog_actions",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 6
+  },
+  {
+   "name": "m3_alert_dialog_title",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "m3_auto_complete_simple_item",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "m3_button_group_overflow_button",
+   "config": "",
+   "root": "com.google.android.material.button.MaterialButton",
+   "elements": 1
+  },
+  {
+   "name": "m3_navigation_menu_divider",
+   "config": "",
+   "root": "com.google.android.material.divider.MaterialDivider",
+   "elements": 1
+  },
+  {
+   "name": "m3_navigation_menu_subheader",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "m3_overflow_linear_layout_overflow_button",
+   "config": "",
+   "root": "com.google.android.material.button.MaterialButton",
+   "elements": 1
+  },
+  {
+   "name": "m3expressive_alert_dialog",
+   "config": "",
+   "root": "android.support.v7.widget.AlertDialogLayout",
+   "elements": 13
+  },
+  {
+   "name": "m3expressive_alert_dialog_title",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "map_animation",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "map_frame_control",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "map_report_button_view",
+   "config": "",
+   "root": "merge",
+   "elements": 21
+  },
+  {
+   "name": "minimized_eta_bar_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 9
+  },
+  {
+   "name": "moods",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "mtrl_alert_dialog",
+   "config": "",
+   "root": "android.support.v7.widget.AlertDialogLayout",
+   "elements": 13
+  },
+  {
+   "name": "mtrl_alert_dialog_actions",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 6
+  },
+  {
+   "name": "mtrl_alert_dialog_title",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "mtrl_alert_select_dialog_item",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_alert_select_dialog_multichoice",
+   "config": "",
+   "root": "CheckedTextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_alert_select_dialog_singlechoice",
+   "config": "",
+   "root": "CheckedTextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_auto_complete_simple_item",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_day",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_day_of_week",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_days_of_week",
+   "config": "",
+   "root": "GridView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_horizontal",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "mtrl_calendar_month",
+   "config": "",
+   "root": "com.google.android.material.datepicker.MaterialCalendarGridView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_month_labeled",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "mtrl_calendar_month_navigation",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "mtrl_calendar_months",
+   "config": "",
+   "root": "android.support.v7.widget.RecyclerView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_calendar_vertical",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "mtrl_calendar_year",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_layout_snackbar",
+   "config": "",
+   "root": "view",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_layout_snackbar",
+   "config": "sw600dp",
+   "root": "view",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_layout_snackbar_include",
+   "config": "",
+   "root": "view",
+   "elements": 4
+  },
+  {
+   "name": "mtrl_navigation_rail_item",
+   "config": "",
+   "root": "merge",
+   "elements": 9
+  },
+  {
+   "name": "mtrl_picker_actions",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "mtrl_picker_dialog",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "mtrl_picker_fullscreen",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "mtrl_picker_header_dialog",
+   "config": "",
+   "root": "merge",
+   "elements": 7
+  },
+  {
+   "name": "mtrl_picker_header_dialog",
+   "config": "land",
+   "root": "merge",
+   "elements": 8
+  },
+  {
+   "name": "mtrl_picker_header_fullscreen",
+   "config": "",
+   "root": "merge",
+   "elements": 10
+  },
+  {
+   "name": "mtrl_picker_header_selection_text",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_picker_header_title_text",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_picker_header_toggle",
+   "config": "",
+   "root": "com.google.android.material.internal.CheckableImageButton",
+   "elements": 1
+  },
+  {
+   "name": "mtrl_picker_text_input_date",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "mtrl_picker_text_input_date_range",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 7
+  },
+  {
+   "name": "mywaze",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 43
+  },
+  {
+   "name": "name_favorite_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 18
+  },
+  {
+   "name": "name_favorite_layout",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 19
+  },
+  {
+   "name": "nav_bar_via",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "nav_list_menu_tooltip",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "navbar",
+   "config": "",
+   "root": "merge",
+   "elements": 25
+  },
+  {
+   "name": "navbar_nearing_dest_photo",
+   "config": "",
+   "root": "merge",
+   "elements": 14
+  },
+  {
+   "name": "navigation_list_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 11
+  },
+  {
+   "name": "navigation_list_item_ls",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "navigation_list_no_reports",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 5
+  },
+  {
+   "name": "navigation_list_report_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "normal_image_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "normal_text_image_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 3
+  },
+  {
+   "name": "normal_text_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "notification_action",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "notification_action_tombstone",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "notification_media_action",
+   "config": "",
+   "root": "ImageButton",
+   "elements": 1
+  },
+  {
+   "name": "notification_media_cancel_action",
+   "config": "",
+   "root": "ImageButton",
+   "elements": 1
+  },
+  {
+   "name": "notification_template_big_media",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "notification_template_big_media_custom",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 11
+  },
+  {
+   "name": "notification_template_big_media_narrow",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "notification_template_big_media_narrow_custom",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 11
+  },
+  {
+   "name": "notification_template_custom_big",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 11
+  },
+  {
+   "name": "notification_template_icon_group",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "notification_template_lines_media",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 9
+  },
+  {
+   "name": "notification_template_media",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "notification_template_media_custom",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 11
+  },
+  {
+   "name": "notification_template_part_chronometer",
+   "config": "",
+   "root": "Chronometer",
+   "elements": 1
+  },
+  {
+   "name": "notification_template_part_time",
+   "config": "",
+   "root": "DateTimeView",
+   "elements": 1
+  },
+  {
+   "name": "ob_dialog_bottom",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "ob_dialog_button",
+   "config": "",
+   "root": "com.waze.sharedui.views.OvalButton",
+   "elements": 2
+  },
+  {
+   "name": "ob_dialog_flat_button",
+   "config": "",
+   "root": "com.waze.sharedui.views.OvalButton",
+   "elements": 2
+  },
+  {
+   "name": "ob_dialog_separator",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "ob_dialog_text_normal",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 2
+  },
+  {
+   "name": "omni_select",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 11
+  },
+  {
+   "name": "omni_select_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "onboarding_profile_image",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "opening_hours_line",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "phone_request_access",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 12
+  },
+  {
+   "name": "photo_dialog",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 5
+  },
+  {
+   "name": "pill_view_with_icon_and_text",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "place_photo_gallery",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "place_photo_pager",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "place_photo_pager_large_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 10
+  },
+  {
+   "name": "place_photo_pager_small_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "place_thank_you",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 14
+  },
+  {
+   "name": "planned_drive",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 30
+  },
+  {
+   "name": "planned_drive_activity",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "planned_drive_day_picker",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "planned_drive_event_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 10
+  },
+  {
+   "name": "planned_drive_first_time_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "planned_drive_header_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "planned_drive_landscape",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 33
+  },
+  {
+   "name": "planned_drive_list_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 11
+  },
+  {
+   "name": "planned_drive_option_view",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 7
+  },
+  {
+   "name": "planned_drive_separator_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "planned_drive_sync_events_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "planned_drive_top_header_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "points_marker",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "points_marker_triangle",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "popup_dialog",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 18
+  },
+  {
+   "name": "preference",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "preference_category",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "preference_category_material",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "preference_dialog_edittext",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 4
+  },
+  {
+   "name": "preference_dropdown",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "preference_dropdown_material",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "preference_information",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "preference_information_material",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 7
+  },
+  {
+   "name": "preference_list_fragment",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "preference_material",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "preference_recyclerview",
+   "config": "",
+   "root": "android.support.v7.widget.RecyclerView",
+   "elements": 1
+  },
+  {
+   "name": "preference_widget_checkbox",
+   "config": "",
+   "root": "CheckBox",
+   "elements": 1
+  },
+  {
+   "name": "preference_widget_seekbar",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "preference_widget_seekbar_material",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 9
+  },
+  {
+   "name": "preference_widget_switch",
+   "config": "",
+   "root": "Switch",
+   "elements": 1
+  },
+  {
+   "name": "preference_widget_switch_compat",
+   "config": "",
+   "root": "android.support.v7.widget.SwitchCompat",
+   "elements": 1
+  },
+  {
+   "name": "progress",
+   "config": "",
+   "root": "merge",
+   "elements": 3
+  },
+  {
+   "name": "progress_bar_dlg",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "quick_settings_page",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 20
+  },
+  {
+   "name": "receive_share_preview",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 18
+  },
+  {
+   "name": "receive_share_preview",
+   "config": "land",
+   "root": "FrameLayout",
+   "elements": 20
+  },
+  {
+   "name": "recorder_popup",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 17
+  },
+  {
+   "name": "report_closure_content",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "report_edit_text",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 9
+  },
+  {
+   "name": "report_gas_price_content",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 37
+  },
+  {
+   "name": "report_gas_price_content",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 37
+  },
+  {
+   "name": "report_gas_station_line",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "report_generic",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 10
+  },
+  {
+   "name": "report_generic",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 14
+  },
+  {
+   "name": "report_generic_add_details",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "report_generic_bottom_buttons",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "report_generic_bottom_buttons",
+   "config": "land",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "report_generic_button",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "report_generic_details_area",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "report_generic_selector_area",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "report_map_issue_disclaimer",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "report_map_note_content",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "report_menu",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 4
+  },
+  {
+   "name": "report_menu_landscape",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "report_menu_portrait",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 7
+  },
+  {
+   "name": "request_always_location_learn_more_label",
+   "config": "",
+   "root": "com.waze.sharedui.views.WazeTextView",
+   "elements": 1
+  },
+  {
+   "name": "root_fragment",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "route_header",
+   "config": "",
+   "root": "merge",
+   "elements": 11
+  },
+  {
+   "name": "rtalerts_comments",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 9
+  },
+  {
+   "name": "rtalerts_comments_list_empty",
+   "config": "",
+   "root": "com.waze.sharedui.views.WazeTextView",
+   "elements": 1
+  },
+  {
+   "name": "rtalerts_comments_list_header",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 20
+  },
+  {
+   "name": "rtalerts_comments_list_header",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 18
+  },
+  {
+   "name": "rtalerts_comments_list_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "search_result_number_icon_view",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "search_result_pin_rect",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 8
+  },
+  {
+   "name": "search_result_pin_round",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 6
+  },
+  {
+   "name": "search_result_pin_wide_round",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 7
+  },
+  {
+   "name": "search_v2_fragment",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 7
+  },
+  {
+   "name": "select_dialog_item_material",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "select_dialog_multichoice_material",
+   "config": "",
+   "root": "CheckedTextView",
+   "elements": 1
+  },
+  {
+   "name": "select_dialog_singlechoice_material",
+   "config": "",
+   "root": "CheckedTextView",
+   "elements": 1
+  },
+  {
+   "name": "select_endpoint_activity_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "settings_calendar_selection",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "settings_checkbox",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "settings_custom_prompts",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 13
+  },
+  {
+   "name": "settings_dialog",
+   "config": "",
+   "root": "com.waze.view.layout.BoundedLinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "settings_dialog_list_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "settings_free_text",
+   "config": "",
+   "root": "merge",
+   "elements": 2
+  },
+  {
+   "name": "settings_hov",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 10
+  },
+  {
+   "name": "settings_hov_search",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "settings_main",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "settings_page_mk2",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "settings_title_text",
+   "config": "",
+   "root": "merge",
+   "elements": 2
+  },
+  {
+   "name": "settings_user_image",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 4
+  },
+  {
+   "name": "settings_values",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 3
+  },
+  {
+   "name": "share_help",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 10
+  },
+  {
+   "name": "share_selector_app_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "share_selector_dialog",
+   "config": "",
+   "root": "ScrollView",
+   "elements": 12
+  },
+  {
+   "name": "share_selector_dialog",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 12
+  },
+  {
+   "name": "side_menu_search_bar",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 8
+  },
+  {
+   "name": "small_image_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "small_text_image_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 3
+  },
+  {
+   "name": "small_text_only_button_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "sos_provider_layout",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 11
+  },
+  {
+   "name": "sos_providers_list_layout",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 11
+  },
+  {
+   "name": "sos_report_extra",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "sos_report_extra",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "speech_recognizer_bottom_sheet",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 8
+  },
+  {
+   "name": "speech_recognizer_bottom_sheet",
+   "config": "land",
+   "root": "LinearLayout",
+   "elements": 10
+  },
+  {
+   "name": "speedometer",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 10
+  },
+  {
+   "name": "support_simple_spinner_dropdown_item",
+   "config": "",
+   "root": "TextView",
+   "elements": 1
+  },
+  {
+   "name": "temp_user_profile",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 14
+  },
+  {
+   "name": "test_gps",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 1
+  },
+  {
+   "name": "timer",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "tiny_tooltip",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "title_bar",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 11
+  },
+  {
+   "name": "tooltip_view",
+   "config": "",
+   "root": "merge",
+   "elements": 4
+  },
+  {
+   "name": "traffic_bar",
+   "config": "",
+   "root": "merge",
+   "elements": 13
+  },
+  {
+   "name": "transportation_button_view",
+   "config": "",
+   "root": "merge",
+   "elements": 8
+  },
+  {
+   "name": "trip_overview_activity",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "trip_overview_ad_pin_marker",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 3
+  },
+  {
+   "name": "trip_overview_details_bottom_sheet",
+   "config": "",
+   "root": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+   "elements": 5
+  },
+  {
+   "name": "trip_overview_details_list",
+   "config": "",
+   "root": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+   "elements": 4
+  },
+  {
+   "name": "trip_overview_footer_item",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 4
+  },
+  {
+   "name": "trip_overview_fragment_routes",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 15
+  },
+  {
+   "name": "trip_overview_fragment_routes",
+   "config": "land",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 17
+  },
+  {
+   "name": "trip_overview_route_card",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 16
+  },
+  {
+   "name": "two_line_clearable",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "typing_while_driving_warning_bar",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 3
+  },
+  {
+   "name": "uid_fragment_activity",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 3
+  },
+  {
+   "name": "uid_fragment_back",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "user_popup",
+   "config": "",
+   "root": "merge",
+   "elements": 12
+  },
+  {
+   "name": "view_photo",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 9
+  },
+  {
+   "name": "view_share_drive_layout",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 15
+  },
+  {
+   "name": "voice_selection_add_new_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "voice_selection_custom_prompt_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 13
+  },
+  {
+   "name": "voice_selection_details_item",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "voice_selection_normal_prompt_item",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 6
+  },
+  {
+   "name": "waze_big_card_option",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 8
+  },
+  {
+   "name": "waze_big_choice_option",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 9
+  },
+  {
+   "name": "waze_dialog_content",
+   "config": "",
+   "root": "merge",
+   "elements": 7
+  },
+  {
+   "name": "waze_dialog_frame",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 5
+  },
+  {
+   "name": "waze_dialog_frame",
+   "config": "land",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 7
+  },
+  {
+   "name": "waze_header_view_layout",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "waze_hero_view_layout",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "waze_horizontal_card_selector_view",
+   "config": "",
+   "root": "merge",
+   "elements": 2
+  },
+  {
+   "name": "waze_horizontal_scroll_card_selector_item",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  },
+  {
+   "name": "waze_horizontal_scroll_card_selector_view",
+   "config": "",
+   "root": "merge",
+   "elements": 5
+  },
+  {
+   "name": "waze_main_activity",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 6
+  },
+  {
+   "name": "waze_radio",
+   "config": "",
+   "root": "merge",
+   "elements": 3
+  },
+  {
+   "name": "waze_service_host_activity",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "waze_settings_edit_text",
+   "config": "",
+   "root": "merge",
+   "elements": 8
+  },
+  {
+   "name": "waze_settings_error",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "waze_settings_install_button",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 2
+  },
+  {
+   "name": "waze_settings_right_lines",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "waze_settings_seekbar",
+   "config": "",
+   "root": "SeekBar",
+   "elements": 1
+  },
+  {
+   "name": "waze_settings_selector",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 4
+  },
+  {
+   "name": "waze_settings_textfield",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 5
+  },
+  {
+   "name": "waze_settings_view_common",
+   "config": "",
+   "root": "merge",
+   "elements": 6
+  },
+  {
+   "name": "waze_slide_selector_view",
+   "config": "",
+   "root": "FrameLayout",
+   "elements": 4
+  },
+  {
+   "name": "waze_switch_view",
+   "config": "",
+   "root": "merge",
+   "elements": 4
+  },
+  {
+   "name": "waze_uid_consent_screen",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 5
+  },
+  {
+   "name": "waze_wheel_picker_item",
+   "config": "",
+   "root": "androidx.constraintlayout.widget.ConstraintLayout",
+   "elements": 2
+  },
+  {
+   "name": "web_page_with_title",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 5
+  },
+  {
+   "name": "web_simple",
+   "config": "",
+   "root": "RelativeLayout",
+   "elements": 4
+  },
+  {
+   "name": "you_are_here_bubble",
+   "config": "",
+   "root": "com.google.android.material.card.MaterialCardView",
+   "elements": 11
+  },
+  {
+   "name": "zoom_controls",
+   "config": "",
+   "root": "LinearLayout",
+   "elements": 6
+  }
+ ],
+ "root_tags": [
+  [
+   "LinearLayout",
+   114
+  ],
+  [
+   "RelativeLayout",
+   71
+  ],
+  [
+   "FrameLayout",
+   54
+  ],
+  [
+   "androidx.constraintlayout.widget.ConstraintLayout",
+   49
+  ],
+  [
+   "merge",
+   39
+  ],
+  [
+   "TextView",
+   14
+  ],
+  [
+   "ScrollView",
+   9
+  ],
+  [
+   "view",
+   8
+  ],
+  [
+   "com.google.android.material.card.MaterialCardView",
+   7
+  ],
+  [
+   "android.support.v7.widget.AlertDialogLayout",
+   4
+  ],
+  [
+   "CheckedTextView",
+   4
+  ],
+  [
+   "android.support.v7.view.menu.ListMenuItemView",
+   3
+  ],
+  [
+   "com.google.android.material.internal.CheckableImageButton",
+   3
+  ],
+  [
+   "com.waze.sharedui.views.WazeTextView",
+   3
+  ],
+  [
+   "androidx.cardview.widget.CardView",
+   3
+  ],
+  [
+   "com.waze.view.layout.BoundedLinearLayout",
+   3
+  ],
+  [
+   "ImageView",
+   2
+  ],
+  [
+   "android.support.v7.widget.FitWindowsLinearLayout",
+   2
+  ],
+  [
+   "CheckBox",
+   2
+  ],
+  [
+   "com.google.android.material.button.MaterialButton",
+   2
+  ],
+  [
+   "android.support.v7.widget.RecyclerView",
+   2
+  ],
+  [
+   "ImageButton",
+   2
+  ],
+  [
+   "com.waze.sharedui.views.OvalButton",
+   2
+  ],
+  [
+   "androidx.coordinatorlayout.widget.CoordinatorLayout",
+   2
+  ],
+  [
+   "android.support.v7.view.menu.ActionMenuItemView",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionMenuView",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionBarContextView",
+   1
+  ],
+  [
+   "android.support.v7.widget.ButtonBarLayout",
+   1
+  ],
+  [
+   "android.support.v7.view.menu.ExpandedMenuView",
+   1
+  ],
+  [
+   "RadioButton",
+   1
+  ],
+  [
+   "android.support.v7.widget.FitWindowsFrameLayout",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionBarOverlayLayout",
+   1
+  ],
+  [
+   "androidx.autofill.inline.v1.BalancingTitleSubtitleLayout",
+   1
+  ],
+  [
+   "com.waze.sharedui.views.SquareFrameLayout",
+   1
+  ],
+  [
+   "androidx.browser.browseractions.BrowserActionsFallbackMenuView",
+   1
+  ],
+  [
+   "com.waze.design_components.button.timer.WazeButtonTimer",
+   1
+  ],
+  [
+   "TableLayout",
+   1
+  ],
+  [
+   "com.google.android.material.internal.NavigationMenuItemView",
+   1
+  ],
+  [
+   "com.google.android.material.internal.NavigationMenuView",
+   1
+  ],
+  [
+   "com.waze.sharedui.views.CardLinearLayout",
+   1
+  ],
+  [
+   "com.waze.design_components.button.WazeButton",
+   1
+  ],
+  [
+   "com.google.android.material.divider.MaterialDivider",
+   1
+  ],
+  [
+   "GridView",
+   1
+  ],
+  [
+   "com.google.android.material.datepicker.MaterialCalendarGridView",
+   1
+  ],
+  [
+   "Chronometer",
+   1
+  ],
+  [
+   "DateTimeView",
+   1
+  ],
+  [
+   "Switch",
+   1
+  ],
+  [
+   "android.support.v7.widget.SwitchCompat",
+   1
+  ],
+  [
+   "SeekBar",
+   1
+  ]
+ ],
+ "tag_counts": [
+  [
+   "com.waze.sharedui.views.WazeTextView",
+   516
+  ],
+  [
+   "LinearLayout",
+   435
+  ],
+  [
+   "ImageView",
+   361
+  ],
+  [
+   "FrameLayout",
+   207
+  ],
+  [
+   "View",
+   171
+  ],
+  [
+   "RelativeLayout",
+   147
+  ],
+  [
+   "TextView",
+   90
+  ],
+  [
+   "com.waze.sharedui.views.OvalButton",
+   83
+  ],
+  [
+   "androidx.constraintlayout.widget.ConstraintLayout",
+   82
+  ],
+  [
+   "include",
+   79
+  ],
+  [
+   "com.waze.design_components.text_view.WazeTextView",
+   58
+  ],
+  [
+   "merge",
+   39
+  ],
+  [
+   "Space",
+   37
+  ],
+  [
+   "ScrollView",
+   29
+  ],
+  [
+   "androidx.compose.ui.platform.ComposeView",
+   28
+  ],
+  [
+   "com.waze.view.title.TitleBar",
+   27
+  ],
+  [
+   "ImageButton",
+   27
+  ],
+  [
+   "com.google.android.material.card.MaterialCardView",
+   23
+  ],
+  [
+   "com.waze.design_components.button.WazeButton",
+   23
+  ],
+  [
+   "Button",
+   21
+  ],
+  [
+   "com.waze.settings.tree.views.SettingsTitleText",
+   21
+  ],
+  [
+   "android.support.v7.widget.RecyclerView",
+   19
+  ],
+  [
+   "android.widget.Space",
+   17
+  ],
+  [
+   "com.waze.settings.tree.views.WazeSettingsView",
+   16
+  ],
+  [
+   "android.support.v7.widget.AppCompatImageView",
+   15
+  ],
+  [
+   "com.waze.view.text.WazeEditText",
+   13
+  ],
+  [
+   "com.waze.reports.PointsView",
+   13
+  ],
+  [
+   "androidx.cardview.widget.CardView",
+   13
+  ],
+  [
+   "com.waze.view.button.ReportMenuButton",
+   11
+  ],
+  [
+   "com.airbnb.lottie.LottieAnimationView",
+   10
+  ],
+  [
+   "android.support.v4.app.FragmentContainerView",
+   10
+  ],
+  [
+   "view",
+   9
+  ],
+  [
+   "ListView",
+   9
+  ],
+  [
+   "com.waze.sharedui.views.ProgressAnimation",
+   9
+  ],
+  [
+   "com.waze.design_components.cta_bar.CallToActionBar",
+   7
+  ],
+  [
+   "ProgressBar",
+   7
+  ],
+  [
+   "ToggleButton",
+   7
+  ],
+  [
+   "com.google.android.material.button.MaterialButton",
+   7
+  ],
+  [
+   "com.waze.uid.flow_views.AuthLayoutHeader",
+   6
+  ],
+  [
+   "com.waze.sharedui.views.CheckBoxView",
+   6
+  ],
+  [
+   "androidx.constraintlayout.widget.Guideline",
+   6
+  ],
+  [
+   "androidx.core.widget.NestedScrollView",
+   5
+  ],
+  [
+   "com.waze.ifs.ui.EditBoxFadeBg",
+   5
+  ],
+  [
+   "androidx.viewpager.widget.ViewPager",
+   5
+  ],
+  [
+   "CheckedTextView",
+   5
+  ],
+  [
+   "com.waze.view.title.WazeDefaultHeaderView",
+   5
+  ],
+  [
+   "DateTimeView",
+   5
+  ],
+  [
+   "Chronometer",
+   5
+  ],
+  [
+   "android.support.v7.widget.ButtonBarLayout",
+   4
+  ],
+  [
+   "android.support.v7.widget.AlertDialogLayout",
+   4
+  ],
+  [
+   "android.support.v7.widget.DialogTitle",
+   4
+  ],
+  [
+   "CheckBox",
+   4
+  ],
+  [
+   "com.waze.sharedui.views.AutoResizeTextView",
+   4
+  ],
+  [
+   "EditText",
+   4
+  ],
+  [
+   "androidx.constraintlayout.helper.widget.Flow",
+   4
+  ],
+  [
+   "com.waze.sharedui.web.WazeWebView",
+   4
+  ],
+  [
+   "android.support.v7.view.menu.ListMenuItemView",
+   3
+  ],
+  [
+   "com.waze.ifs.ui.ScrollViewTopShadowOnly",
+   3
+  ],
+  [
+   "com.waze.sharedui.views.WazeValidatedEditText",
+   3
+  ],
+  [
+   "TableRow",
+   3
+  ],
+  [
+   "com.waze.map.MapViewChooser",
+   3
+  ],
+  [
+   "androidx.coordinatorlayout.widget.CoordinatorLayout",
+   3
+  ],
+  [
+   "ViewStub",
+   3
+  ],
+  [
+   "com.google.android.material.internal.CheckableImageButton",
+   3
+  ],
+  [
+   "com.waze.sharedui.views.CardLinearLayout",
+   3
+  ],
+  [
+   "com.waze.view.layout.BoundedLinearLayout",
+   3
+  ],
+  [
+   "androidx.preference.internal.PreferenceImageView",
+   3
+  ],
+  [
+   "com.google.android.material.textfield.TextInputLayout",
+   3
+  ],
+  [
+   "com.google.android.material.textfield.TextInputEditText",
+   3
+  ],
+  [
+   "com.waze.sharedui.views.WazeSwitchView",
+   3
+  ],
+  [
+   "SeekBar",
+   3
+  ],
+  [
+   "HorizontalScrollView",
+   3
+  ],
+  [
+   "com.waze.design_components.button.WazeIconButton",
+   3
+  ],
+  [
+   "android.support.v7.widget.ActionBarContextView",
+   2
+  ],
+  [
+   "android.support.v7.widget.FitWindowsLinearLayout",
+   2
+  ],
+  [
+   "android.support.v7.widget.ViewStubCompat",
+   2
+  ],
+  [
+   "com.waze.design_components.button.timer.WazeButtonTimer",
+   2
+  ],
+  [
+   "com.waze.view.timer.TimerBar",
+   2
+  ],
+  [
+   "com.waze.view.text.InstantAutoComplete",
+   2
+  ],
+  [
+   "androidx.camera.view.PreviewView",
+   2
+  ],
+  [
+   "com.google.android.material.internal.BaselineLayout",
+   2
+  ],
+  [
+   "com.waze.sharedui.views.CirclePulseFrame",
+   2
+  ],
+  [
+   "com.waze.main_screen.bottom_bars.scrollable_eta.EtaMainBarNavView",
+   2
+  ],
+  [
+   "com.waze.design_components.header_view.WazeHeaderView",
+   2
+  ],
+  [
+   "com.waze.design_components.hero_view.WazeHeroView",
+   2
+  ],
+  [
+   "com.waze.view.pages.LinePageIndicator",
+   2
+  ],
+  [
+   "com.waze.settings.tree.views.SettingsFreeText",
+   2
+  ],
+  [
+   "androidx.constraintlayout.widget.Barrier",
+   2
+  ],
+  [
+   "com.waze.view.navbar.NavBarText",
+   2
+  ],
+  [
+   "com.waze.planned_drive.histogram.HistogramRecyclerView",
+   2
+  ],
+  [
+   "com.waze.planned_drive.PlannedDriveDayPicker",
+   2
+  ],
+  [
+   "Spinner",
+   2
+  ],
+  [
+   "androidx.preference.UnPressableLinearLayout",
+   2
+  ],
+  [
+   "com.waze.tripoverview.mobile.ui.views.RouteHeader",
+   2
+  ],
+  [
+   "com.waze.sharedui.views.WazeEditTextBase",
+   2
+  ],
+  [
+   "android.support.v7.view.menu.ActionMenuItemView",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionMenuView",
+   1
+  ],
+  [
+   "android.support.v7.view.menu.ExpandedMenuView",
+   1
+  ],
+  [
+   "RadioButton",
+   1
+  ],
+  [
+   "android.support.v7.widget.ContentFrameLayout",
+   1
+  ],
+  [
+   "android.support.v7.widget.FitWindowsFrameLayout",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionBarOverlayLayout",
+   1
+  ],
+  [
+   "android.support.v7.widget.ActionBarContainer",
+   1
+  ],
+  [
+   "android.support.v7.widget.Toolbar",
+   1
+  ],
+  [
+   "requestFocus",
+   1
+  ],
+  [
+   "com.waze.uid.widgets.CharacterPlaceholderEditText",
+   1
+  ],
+  [
+   "androidx.autofill.inline.v1.BalancingTitleSubtitleLayout",
+   1
+  ],
+  [
+   "com.waze.ui.alerter.Alerter",
+   1
+  ],
+  [
+   "com.waze.sharedui.views.SquareFrameLayout",
+   1
+  ],
+  [
+   "androidx.browser.browseractions.BrowserActionsFallbackMenuView",
+   1
+  ],
+  [
+   "com.waze.design_components.text_view.MinWidthMultilineTextView",
+   1
+  ],
+  [
+   "TableLayout",
+   1
+  ],
+  [
+   "com.waze.reports_agent.presentation.ClosureArrowView",
+   1
+  ],
+  [
+   "androidx.core.view.insets.ProtectionLayout",
+   1
+  ],
+  [
+   "com.google.android.material.internal.NavigationMenuItemView",
+   1
+  ],
+  [
+   "com.google.android.material.internal.NavigationMenuView",
+   1
+  ],
+  [
+   "com.waze.destination_cell.view.EVPlugOverviewTextView",
+   1
+  ],
+  [
+   "com.waze.EditBox",
+   1
+  ],
+  [
+   "com.waze.ui.minimized_eta_bar.MinimizedEtaBar",
+   1
+  ],
+  [
+   "com.waze.view.bottom.BottomNotificationIcon",
+   1
+  ],
+  [
+   "com.waze.view.navbar.EventsOnRouteView",
+   1
+  ],
+  [
+   "com.waze.main_screen.bottom_bars.scrollable_eta.scrollable_widgets.AddAStopWidget",
+   1
+  ],
+  [
+   "com.waze.WrapContentHeightViewPager",
+   1
+  ],
+  [
+   "com.waze.inbox.InboxRecycler",
+   1
+  ],
+  [
+   "com.google.android.material.divider.MaterialDivider",
+   1
+  ],
+  [
+   "com.waze.reports_v2.presentation.ConversationalReportingFteTooltipCompat",
+   1
+  ],
+  [
+   "GridView",
+   1
+  ],
+  [
+   "com.google.android.material.datepicker.MaterialCalendarGridView",
+   1
+  ],
+  [
+   "com.waze.ui.navbar.LaneGuidanceView",
+   1
+  ],
+  [
+   "com.waze.navbar.InstructionView",
+   1
+  ],
+  [
+   "ExpandableListView",
+   1
+  ],
+  [
+   "com.waze.planned_drive.histogram.PlannedDriveGraphView",
+   1
+  ],
+  [
+   "Switch",
+   1
+  ],
+  [
+   "android.support.v7.widget.SwitchCompat",
+   1
+  ],
+  [
+   "com.waze.ifs.ui.SpringyNestedScrollView",
+   1
+  ],
+  [
+   "com.waze.view.anim.SliderSeparator",
+   1
+  ],
+  [
+   "com.waze.view.anim.SelectorBg",
+   1
+  ],
+  [
+   "com.waze.menus.SideMenuSearchBar",
+   1
+  ],
+  [
+   "com.waze.menus.SideMenuAutoCompleteRecycler",
+   1
+  ],
+  [
+   "com.waze.ifs.ui.WazeRadioView",
+   1
+  ],
+  [
+   "com.waze.view.map.SpeedometerColoredView",
+   1
+  ],
+  [
+   "com.waze.view.timer.TimerCircle",
+   1
+  ],
+  [
+   "com.waze.view.navbar.TrafficBarColoredJamView",
+   1
+  ],
+  [
+   "com.waze.tripoverview.mobile.ui.views.trip_details.TripOverviewDetailsBottomSheet",
+   1
+  ],
+  [
+   "com.waze.tripoverview.mobile.ui.views.trip_details.TripOverviewDetailsList",
+   1
+  ],
+  [
+   "com.waze.tripoverview.mobile.ui.views.route_card_options.RouteCardOptionsView",
+   1
+  ],
+  [
+   "com.waze.tripoverview.mobile.ui.views.TripOverviewAlertsContainer",
+   1
+  ],
+  [
+   "com.waze.sharedui.views.TypingWhileDrivingWarningBarView",
+   1
+  ],
+  [
+   "com.waze.MapCoverView",
+   1
+  ],
+  [
+   "com.waze.sharedui.views.WazeImageButton",
+   1
+  ]
+ ],
+ "compose_view_layouts": [
+  "edit_place",
+  "eta_control_panel_layout",
+  "eta_control_panel_layout",
+  "eta_main_bar_layout",
+  "eta_main_bar_layout",
+  "eta_main_bar_nav_details_layout",
+  "eta_main_bar_nav_details_layout",
+  "route_header",
+  "search_v2_fragment",
+  "settings_page_mk2",
+  "trip_overview_details_bottom_sheet",
+  "trip_overview_details_list",
+  "trip_overview_fragment_routes",
+  "trip_overview_fragment_routes",
+  "trip_overview_route_card",
+  "waze_main_activity"
+ ]
+}

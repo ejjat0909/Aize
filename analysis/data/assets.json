@@ -1,0 +1,896 @@
+{
+ "assets_tree": [
+  [
+   "assets/res/godot",
+   1,
+   11863792,
+   10114350
+  ],
+  [
+   "assets/res/skins/default",
+   1203,
+   10546540,
+   8250978
+  ],
+  [
+   "assets/res/sound/heb",
+   58,
+   3114072,
+   2412944
+  ],
+  [
+   "assets/res/sound/eng",
+   59,
+   2392747,
+   1999273
+  ],
+  [
+   "assets/res",
+   5,
+   1826350,
+   428127
+  ],
+  [
+   "assets/res/sound/common",
+   25,
+   468254,
+   255656
+  ],
+  [
+   "assets/res/scripts",
+   5,
+   26120,
+   7095
+  ],
+  [
+   "assets/dexopt",
+   2,
+   10441,
+   10441
+  ],
+  [
+   "assets/android_common_resources_processed_manifest",
+   1,
+   218,
+   152
+  ],
+  [
+   "assets/res/tts",
+   1,
+   148,
+   81
+  ],
+  [
+   "assets/phenotype",
+   1,
+   68,
+   68
+  ],
+  [
+   "assets/android_common_resources_symbols",
+   3,
+   44,
+   16
+  ],
+  [
+   "assets",
+   1,
+   0,
+   0
+  ]
+ ],
+ "sound": {
+  "common": {
+   "files": 25,
+   "bytes": 468254,
+   "names": [
+    "TickerPoints.mp3",
+    "beepbeep.mp3",
+    "click.mp3",
+    "conversational_minimalist_confirmation.mp3",
+    "conversational_minimalist_error.mp3",
+    "conversational_minimalist_mic_off.mp3",
+    "conversational_minimalist_mic_on.mp3",
+    "conversational_popcorn_confirmation.mp3",
+    "conversational_popcorn_error.mp3",
+    "conversational_popcorn_mic_off.mp3",
+    "conversational_popcorn_mic_on.mp3",
+    "feedback_on_alerts.mp3",
+    "ping.mp3",
+    "ping2.mp3",
+    "points_animation.mp3",
+    "rec_end.mp3",
+    "rec_start.mp3",
+    "reminder.mp3",
+    "speed_limit.mp3",
+    "voice_guidance_alerts.mp3",
+    "voice_guidance_beep.mp3",
+    "voice_guidance_brief.mp3",
+    "voice_guidance_full.mp3",
+    "voice_guidance_off.mp3",
+    "voice_guidance_smart.mp3"
+   ]
+  },
+  "eng": {
+   "files": 59,
+   "bytes": 2392747,
+   "names": [
+    "1000.mp3",
+    "1000meters.mp3",
+    "1500.mp3",
+    "1500meters.mp3",
+    "200.mp3",
+    "200meters.mp3",
+    "400.mp3",
+    "400meters.mp3",
+    "800.mp3",
+    "800meters.mp3",
+    "AndThen.mp3",
+    "ApproachAccident.mp3",
+    "ApproachHazard.mp3",
+    "ApproachRedLightCam.mp3",
+    "ApproachSpeedCam.mp3",
+    "ApproachTraffic.mp3",
+    "Arrive.mp3",
+    "Exit.mp3",
+    "ExitLeft.mp3",
+    "ExitRight.mp3",
+    "Fifth.mp3",
+    "First.mp3",
+    "Fourth.mp3",
+    "KeepLeft.mp3",
+    "KeepRight.mp3",
+    "Police.mp3",
+    "Roundabout.mp3",
+    "Second.mp3",
+    "Seventh.mp3",
+    "Sixth.mp3",
+    "StartDrive.mp3",
+    "StartDrive1.mp3",
+    "StartDrive2.mp3",
+    "StartDrive3.mp3",
+    "StartDrive4.mp3",
+    "StartDrive5.mp3",
+    "StartDrive6.mp3",
+    "StartDrive7.mp3",
+    "StartDrive8.mp3",
+    "StartDrive9.mp3",
+    "Straight.mp3",
+    "Third.mp3",
+    "TickerPoints.mp3",
+    "TurnLeft.mp3",
+    "TurnRight.mp3",
+    "alert_1.mp3",
+    "bonus.mp3",
+    "click.mp3",
+    "click_long.mp3",
+    "ft.mp3",
+    "m.mp3",
+    "message_ticker.mp3",
+    "ping.mp3",
+    "ping2.mp3",
+    "rec_end.mp3",
+    "rec_start.mp3",
+    "reminder.mp3",
+    "uturn.mp3",
+    "within.mp3"
+   ]
+  },
+  "heb": {
+   "files": 58,
+   "bytes": 3114072,
+   "names": [
+    "1000.mp3",
+    "1000meters.mp3",
+    "1500.mp3",
+    "1500meters.mp3",
+    "200.mp3",
+    "200meters.mp3",
+    "400.mp3",
+    "400meters.mp3",
+    "800.mp3",
+    "800meters.mp3",
+    "AndThen.mp3",
+    "ApproachAccident.mp3",
+    "ApproachHazard.mp3",
+    "ApproachRedLightCam.mp3",
+    "ApproachSpeedCam.mp3",
+    "ApproachTraffic.mp3",
+    "Arrive.mp3",
+    "Exit.mp3",
+    "ExitLeft.mp3",
+    "ExitRight.mp3",
+    "Fifth.mp3",
+    "First.mp3",
+    "Fourth.mp3",
+    "KeepLeft.mp3",
+    "KeepRight.mp3",
+    "Police.mp3",
+    "Roundabout.mp3",
+    "Second.mp3",
+    "Seventh.mp3",
+    "Sixth.mp3",
+    "StartDrive.mp3",
+    "StartDrive1.mp3",
+    "StartDrive2.mp3",
+    "StartDrive3.mp3",
+    "StartDrive4.mp3",
+    "StartDrive5.mp3",
+    "StartDrive6.mp3",
+    "StartDrive7.mp3",
+    "StartDrive8.mp3",
+    "StartDrive9.mp3",
+    "Straight.mp3",
+    "Third.mp3",
+    "TickerPoints.mp3",
+    "TurnLeft.mp3",
+    "TurnRight.mp3",
+    "alert_1.mp3",
+    "bonus.mp3",
+    "click.mp3",
+    "click_long.mp3",
+    "ft.mp3",
+    "m.mp3",
+    "message_ticker.mp3",
+    "ping.mp3",
+    "ping2.mp3",
+    "rec_end.mp3",
+    "rec_start.mp3",
+    "reminder.mp3",
+    "within.mp3"
+   ]
+  }
+ },
+ "sound_vs_community_voicepack_schema": {
+  "community_valid_names": 43,
+  "apk_eng_files": 59,
+  "common_files": 25,
+  "in_both": [
+   "1000meters.mp3",
+   "1500.mp3",
+   "1500meters.mp3",
+   "200.mp3",
+   "200meters.mp3",
+   "400.mp3",
+   "400meters.mp3",
+   "800.mp3",
+   "800meters.mp3",
+   "AndThen.mp3",
+   "ApproachAccident.mp3",
+   "ApproachHazard.mp3",
+   "ApproachRedLightCam.mp3",
+   "ApproachSpeedCam.mp3",
+   "ApproachTraffic.mp3",
+   "Arrive.mp3",
+   "ExitLeft.mp3",
+   "ExitRight.mp3",
+   "Fifth.mp3",
+   "First.mp3",
+   "Fourth.mp3",
+   "KeepLeft.mp3",
+   "KeepRight.mp3",
+   "Police.mp3",
+   "Roundabout.mp3",
+   "Second.mp3",
+   "Seventh.mp3",
+   "Sixth.mp3",
+   "StartDrive1.mp3",
+   "StartDrive2.mp3",
+   "StartDrive3.mp3",
+   "StartDrive4.mp3",
+   "StartDrive5.mp3",
+   "StartDrive6.mp3",
+   "StartDrive7.mp3",
+   "StartDrive8.mp3",
+   "StartDrive9.mp3",
+   "Straight.mp3",
+   "Third.mp3",
+   "TickerPoints.mp3",
+   "TurnLeft.mp3",
+   "TurnRight.mp3",
+   "uturn.mp3"
+  ],
+  "only_community_schema": [],
+  "only_apk_eng": [
+   "1000.mp3",
+   "Exit.mp3",
+   "StartDrive.mp3",
+   "alert_1.mp3",
+   "bonus.mp3",
+   "click.mp3",
+   "click_long.mp3",
+   "ft.mp3",
+   "m.mp3",
+   "message_ticker.mp3",
+   "ping.mp3",
+   "ping2.mp3",
+   "rec_end.mp3",
+   "rec_start.mp3",
+   "reminder.mp3",
+   "within.mp3"
+  ]
+ },
+ "skins": {
+  "files": 1203,
+  "bytes": 10546540,
+  "by_subdir": [
+   [
+    "(root files)",
+    944,
+    4179810
+   ],
+   [
+    "moods",
+    131,
+    781648
+   ],
+   [
+    "alert_icons",
+    100,
+    576694
+   ],
+   [
+    "cars",
+    23,
+    4911942
+   ],
+   [
+    "experiment",
+    5,
+    96446
+   ]
+  ],
+  "car_models_obj": [
+   "arrow_model",
+   "cat_model",
+   "dog_model",
+   "george_gold_model",
+   "george_taxi_model",
+   "ghost_halo_model",
+   "mcfioti_model",
+   "motorbike_model",
+   "santa_model",
+   "wartho_halo_model"
+  ],
+  "png_total": 1173,
+  "retina_variants": {
+   "@2x": 392,
+   "@3x": 390
+  },
+  "lua_files": [
+   "scripts/enviroment.lua",
+   "scripts/parse.lua",
+   "scripts/schema.lua",
+   "scripts/structurelib.lua",
+   "scripts/validation.lua",
+   "skins/default/experiment/skin_structure.main.lua",
+   "skins/default/experiment/skin_values.day.lua",
+   "skins/default/experiment/skin_values.editor.day.lua",
+   "skins/default/experiment/skin_values.editor.night.lua",
+   "skins/default/experiment/skin_values.night.lua",
+   "skins/default/skin_structure.main.lua",
+   "skins/default/skin_values.day.lua",
+   "skins/default/skin_values.editor.day.lua",
+   "skins/default/skin_values.editor.night.lua",
+   "skins/default/skin_values.night.lua"
+  ],
+  "map_categories": [
+   "Freeways",
+   "Primary",
+   "Secondary",
+   "Highways",
+   "Streets",
+   "Private",
+   "4X4 Trails",
+   "Ramps",
+   "Parking",
+   "Alleys",
+   "Railroads",
+   "Ferry",
+   "Pedestrian",
+   "Trails",
+   "Walkway",
+   "ParkingLot",
+   "ParkingLotPins",
+   "Cities",
+   "Stations",
+   "Islands",
+   "Parks",
+   "Rivers",
+   "Lakes",
+   "Sea",
+   "GenericEvent",
+   "VenueParkingLot",
+   "AdPinBusinessName",
+   "Navigation",
+   "Navigation Arrow",
+   "Stop Point",
+   "Shared Navigation",
+   "Shared Stop",
+   "Route Snail",
+   "Via Snail",
+   "Shared Snail",
+   "Shared Via Snail",
+   "Recording",
+   "Recorded",
+   "Carpool Ride",
+   "Carpool Direct",
+   "Route Preview Selected",
+   "Route Preview Unselected",
+   "Route Detour",
+   "Alt Green Selected",
+   "Alt Green Unselected",
+   "Alt Blue Selected",
+   "Alt Blue Unselected",
+   "Alt Orange Selected",
+   "Alt Orange Unselected"
+  ],
+  "zoom_blocks": 94,
+  "last_zoom_blocks": 44,
+  "zoom_values_used": [
+   20,
+   30,
+   35,
+   40,
+   55,
+   60,
+   70,
+   80,
+   90,
+   100,
+   120,
+   150,
+   180,
+   200,
+   240,
+   250,
+   300,
+   320,
+   400,
+   600,
+   1000,
+   1600,
+   2000,
+   3000,
+   4000,
+   5000,
+   7000,
+   9000
+  ],
+  "structure_lines": 1290,
+  "font_sizes": {
+   "huge": "14",
+   "big": "12",
+   "medium": "10",
+   "small": "8",
+   "tiny": "6"
+  },
+  "shield_scale_factors": {
+   "big": "1.0",
+   "medium": "0.8",
+   "small": "0.6"
+  },
+  "palette_roles": {
+   "day": 80,
+   "night": 82
+  },
+  "palette_sample": {
+   "day": [
+    [
+     "base_default",
+     "0095FF"
+    ],
+    [
+     "black",
+     "000000"
+    ],
+    [
+     "white",
+     "FFFFFF"
+    ],
+    [
+     "red",
+     "FF0000"
+    ],
+    [
+     "map_background",
+     "FAFCFA"
+    ],
+    [
+     "map_missing",
+     "efefef"
+    ],
+    [
+     "labels",
+     "787878"
+    ],
+    [
+     "labels_strong",
+     "565C61"
+    ],
+    [
+     "labels_bgcolor",
+     "ffffff"
+    ],
+    [
+     "points",
+     "b1bedc"
+    ],
+    [
+     "selection",
+     "1dd1ff"
+    ],
+    [
+     "freeways",
+     "8D949B"
+    ],
+    [
+     "primary",
+     "A6ADB3"
+    ],
+    [
+     "secondary",
+     "C6CBCF"
+    ],
+    [
+     "highways",
+     "BABFC4"
+    ],
+    [
+     "street",
+     "D2D7DB"
+    ],
+    [
+     "private",
+     "DADFE2"
+    ],
+    [
+     "trails4x4",
+     "E5DBB4"
+    ],
+    [
+     "alleys",
+     "D2D9E1"
+    ],
+    [
+     "ramps",
+     "A6ADB3"
+    ],
+    [
+     "parking",
+     "DCE1E3"
+    ],
+    [
+     "parking_lots",
+     "EAECED"
+    ],
+    [
+     "parking_lots_pins",
+     "CFDBE7"
+    ],
+    [
+     "railroads",
+     "D2CECC"
+    ],
+    [
+     "ferry_stroke",
+     "45b0b4"
+    ],
+    [
+     "pedestrian",
+     "D2D9E1"
+    ],
+    [
+     "trails",
+     "D2D9E1"
+    ],
+    [
+     "walkway",
+     "D2D9E1"
+    ],
+    [
+     "cities",
+     "F9F8F4"
+    ],
+    [
+     "stations",
+     "E1E4E5"
+    ],
+    [
+     "parks",
+     "BEF2C9"
+    ],
+    [
+     "sea",
+     "9EE4FF"
+    ],
+    [
+     "lakes",
+     "9EE4FF"
+    ],
+    [
+     "rivers",
+     "9EE4FF"
+    ],
+    [
+     "generic_event",
+     "E3740034"
+    ],
+    [
+     "generic_event_light",
+     "E3740020"
+    ],
+    [
+     "generic_event_ultra_light",
+     "E374000F"
+    ],
+    [
+     "generic_event_ultra_strong",
+     "E3740060"
+    ],
+    [
+     "label_station",
+     "8E9496"
+    ],
+    [
+     "label_cities",
+     "3D4B52"
+    ]
+   ],
+   "night": [
+    [
+     "base_default",
+     "0095FF"
+    ],
+    [
+     "black",
+     "000000"
+    ],
+    [
+     "white",
+     "FFFFFF"
+    ],
+    [
+     "red",
+     "FF0000"
+    ],
+    [
+     "map_background",
+     "272E3A"
+    ],
+    [
+     "map_missing",
+     "60666c"
+    ],
+    [
+     "labels",
+     "CADADC"
+    ],
+    [
+     "labels_strong",
+     "D2E2E4"
+    ],
+    [
+     "labels_bgcolor",
+     "091421bf"
+    ],
+    [
+     "points",
+     "b1bedc"
+    ],
+    [
+     "selection",
+     "88c1e3"
+    ],
+    [
+     "freeways",
+     "799ABA"
+    ],
+    [
+     "primary",
+     "54718C"
+    ],
+    [
+     "secondary",
+     "3F5871"
+    ],
+    [
+     "highways",
+     "3F5871"
+    ],
+    [
+     "street",
+     "3F5871"
+    ],
+    [
+     "private",
+     "3F5871"
+    ],
+    [
+     "trails4x4",
+     "424246"
+    ],
+    [
+     "alleys",
+     "293E52"
+    ],
+    [
+     "ramps",
+     "54718C"
+    ],
+    [
+     "parking",
+     "3F5871"
+    ],
+    [
+     "parking_lots",
+     "2B3A4D"
+    ],
+    [
+     "parking_lots_pins",
+     "3B5987"
+    ],
+    [
+     "railroads",
+     "455B70"
+    ],
+    [
+     "ferry_stroke",
+     "6993b4"
+    ],
+    [
+     "pedestrian",
+     "293E52"
+    ],
+    [
+     "trails",
+     "293E52"
+    ],
+    [
+     "walkway",
+     "293E52"
+    ],
+    [
+     "cities",
+     "2B3A4D"
+    ],
+    [
+     "stations",
+     "2E3E53"
+    ],
+    [
+     "parks",
+     "256950"
+    ],
+    [
+     "sea",
+     "24467A"
+    ],
+    [
+     "lakes",
+     "24467A"
+    ],
+    [
+     "rivers",
+     "24467A"
+    ],
+    [
+     "generic_event",
+     "FFA6000B"
+    ],
+    [
+     "generic_event_light",
+     "FFA60006"
+    ],
+    [
+     "generic_event_ultra_light",
+     "FFA60003"
+    ],
+    [
+     "generic_event_ultra_strong",
+     "FFA60020"
+    ],
+    [
+     "label_station",
+     "97B8D8"
+    ],
+    [
+     "label_cities",
+     "B9C5D3"
+    ]
+   ]
+  }
+ },
+ "lang_files": [
+  {
+   "file": "lang.eng",
+   "bytes": 777850,
+   "lines": 11272,
+   "key_value": true
+  },
+  {
+   "file": "lang.heb",
+   "bytes": 919197,
+   "lines": 11193,
+   "key_value": true
+  },
+  {
+   "file": "lang.chinese",
+   "bytes": 102820,
+   "lines": 1957,
+   "key_value": true
+  },
+  {
+   "file": "key_value_tts_strings.txt",
+   "bytes": 19339,
+   "lines": 314,
+   "key_value": true
+  }
+ ],
+ "search_conf": {
+  "bytes": 7144,
+  "format": "binary text-buffer (length-prefixed), generated by a SearchServer config tool",
+  "provider_ids": [
+   "foursquareexplore",
+   "googlePlaces",
+   "waze"
+  ],
+  "labels": [
+   "Along Route",
+   "Around You",
+   "Coffee",
+   "Foursquare",
+   "Gas Station",
+   "Google Places",
+   "Parking",
+   "Waze"
+  ],
+  "category_ids_seen": [
+   "address_search",
+   "attractions",
+   "bank",
+   "carrepair",
+   "carwash",
+   "coffee",
+   "fastfood",
+   "foursquareexplore",
+   "gas",
+   "haddress_search",
+   "hospital",
+   "hotel",
+   "maddress_search",
+   "mall",
+   "manipedi",
+   "max_distance_meters",
+   "minimart",
+   "nightlife",
+   "parking",
+   "pharmacy",
+   "policestation",
+   "restaurant",
+   "route_policy",
+   "taddress_search",
+   "textbuf"
+  ]
+ },
+ "tts_voices_csv_rows": [
+  "local_nuance_8_mp3_Samantha_Female",
+  "local_nuance_8_mp3_Tom_Male"
+ ],
+ "baseline_profile": [
+  {
+   "file": "baseline.prof",
+   "bytes": 10192
+  },
+  {
+   "file": "baseline.profm",
+   "bytes": 249
+  }
+ ],
+ "phenotype": [
+  {
+   "file": "assets/phenotype/com_google_android_gms_auth_account_client_package_metadata.binarypb",
+   "bytes": 68
+  }
+ ]
+}

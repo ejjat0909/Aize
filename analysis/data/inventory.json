@@ -1,0 +1,315 @@
+{
+ "apk_bytes": 131004987,
+ "sha256": "a45040acce4dbf79c1445a76415b8e3457dd8a720d373f81c8a98c5529f08c80",
+ "entries": 6773,
+ "uncompressed_bytes": 281557027,
+ "compressed_bytes": 130197859,
+ "stored_uncompressed_entries": 3296,
+ "by_bucket": [
+  [
+   "native: lib/arm64-v8a",
+   9,
+   87624936,
+   31867886
+  ],
+  [
+   "native: lib/armeabi-v7a",
+   9,
+   74327996,
+   29399315
+  ],
+  [
+   "code: dex",
+   10,
+   60831512,
+   22092223
+  ],
+  [
+   "res: png",
+   3276,
+   14970221,
+   14764178
+  ],
+  [
+   "assets: godot pck",
+   1,
+   11863792,
+   10114350
+  ],
+  [
+   "assets: skins (png/obj/lua)",
+   1203,
+   10546540,
+   8250978
+  ],
+  [
+   "assets: sound prompts (mp3)",
+   142,
+   5975073,
+   4667873
+  ],
+  [
+   "resources.arsc (table)",
+   1,
+   4444188,
+   4444188
+  ],
+  [
+   "res: fonts",
+   23,
+   3207732,
+   1834375
+  ],
+  [
+   "res: compiled xml",
+   1926,
+   3270364,
+   1321669
+  ],
+  [
+   "res: other",
+   7,
+   661847,
+   661847
+  ],
+  [
+   "assets: language/tts/search config",
+   6,
+   1826498,
+   428208
+  ],
+  [
+   "res: lottie json",
+   53,
+   1493724,
+   140654
+  ],
+  [
+   "other (root files, schemas, okhttp list)",
+   71,
+   316643,
+   96549
+  ],
+  [
+   "res: webp",
+   15,
+   54498,
+   54498
+  ],
+  [
+   "res: audio",
+   3,
+   104174,
+   40944
+  ],
+  [
+   "assets: ART baseline profile",
+   2,
+   10441,
+   10441
+  ],
+  [
+   "assets: other",
+   11,
+   26450,
+   7331
+  ],
+  [
+   "META-INF",
+   5,
+   398,
+   352
+  ]
+ ],
+ "top_level": [
+  [
+   "res",
+   5303
+  ],
+  [
+   "assets",
+   1365
+  ],
+  [
+   "(root)",
+   80
+  ],
+  [
+   "lib",
+   18
+  ],
+  [
+   "META-INF",
+   5
+  ],
+  [
+   "okhttp3",
+   1
+  ],
+  [
+   "schemas",
+   1
+  ]
+ ],
+ "extensions": [
+  [
+   ".png",
+   4449
+  ],
+  [
+   ".xml",
+   1928
+  ],
+  [
+   ".mp3",
+   145
+  ],
+  [
+   ".h",
+   67
+  ],
+  [
+   ".json",
+   54
+  ],
+  [
+   ".so",
+   18
+  ],
+  [
+   ".lua",
+   15
+  ],
+  [
+   ".webp",
+   15
+  ],
+  [
+   "(none)",
+   14
+  ],
+  [
+   ".ttf",
+   14
+  ],
+  [
+   ".obj",
+   12
+  ],
+  [
+   ".dex",
+   10
+  ],
+  [
+   ".otf",
+   9
+  ],
+  [
+   ".txt",
+   2
+  ],
+  [
+   ".zip",
+   2
+  ],
+  [
+   ".binarypb",
+   2
+  ],
+  [
+   ".generatedextensionregistryloader",
+   1
+  ],
+  [
+   ".loadbalancerprovider",
+   1
+  ],
+  [
+   ".nameresolverprovider",
+   1
+  ],
+  [
+   ".coroutineexceptionhandler",
+   1
+  ],
+  [
+   ".maindispatcherfactory",
+   1
+  ],
+  [
+   ".prof",
+   1
+  ],
+  [
+   ".profm",
+   1
+  ],
+  [
+   ".pck",
+   1
+  ],
+  [
+   ".chinese",
+   1
+  ]
+ ],
+ "duplicate_content_groups": 118,
+ "duplicate_redundant_bytes": 1325299,
+ "duplicate_examples": [
+  [
+   "assets/res/sound/heb/StartDrive3.mp3",
+   "assets/res/sound/heb/StartDrive8.mp3"
+  ],
+  [
+   "assets/res/sound/heb/StartDrive5.mp3",
+   "assets/res/sound/heb/StartDrive9.mp3"
+  ],
+  [
+   "assets/res/sound/heb/400.mp3",
+   "assets/res/sound/heb/400meters.mp3"
+  ],
+  [
+   "assets/res/sound/heb/800.mp3",
+   "assets/res/sound/heb/800meters.mp3"
+  ],
+  [
+   "assets/res/sound/heb/1000.mp3",
+   "assets/res/sound/heb/1000meters.mp3"
+  ],
+  [
+   "assets/res/sound/heb/200.mp3",
+   "assets/res/sound/heb/200meters.mp3"
+  ],
+  [
+   "assets/res/sound/heb/StartDrive.mp3",
+   "assets/res/sound/heb/StartDrive7.mp3"
+  ],
+  [
+   "assets/res/sound/eng/bonus.mp3",
+   "assets/res/sound/heb/bonus.mp3"
+  ]
+ ],
+ "case_insensitive_collisions": 93,
+ "case_collision_examples": [
+  [
+   "res/-OU.png",
+   "res/-Ou.png"
+  ],
+  [
+   "res/0Fc.png",
+   "res/0fC.png"
+  ],
+  [
+   "res/5Eg.xml",
+   "res/5eG.xml"
+  ],
+  [
+   "res/7O-.png",
+   "res/7o-.png"
+  ],
+  [
+   "res/7iE.png",
+   "res/7ie.png"
+  ]
+ ]
+}

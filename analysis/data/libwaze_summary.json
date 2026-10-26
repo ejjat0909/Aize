@@ -1,0 +1,2828 @@
+{
+ "file": "libwaze-arm64.so",
+ "bytes": 73039736,
+ "machine": "AArch64",
+ "type": "DYN(shared object)",
+ "sections": [
+  {
+   "name": ".note.android.ident",
+   "type": "NOTE",
+   "size": 152
+  },
+  {
+   "name": ".note.gnu.build-id",
+   "type": "NOTE",
+   "size": 32
+  },
+  {
+   "name": ".dynsym",
+   "type": "DYNSYM",
+   "size": 29832
+  },
+  {
+   "name": ".gnu.version",
+   "type": "VERSYM",
+   "size": 2486
+  },
+  {
+   "name": ".gnu.version_d",
+   "type": "0x6ffffffd",
+   "size": 56
+  },
+  {
+   "name": ".gnu.version_r",
+   "type": "VERNEED",
+   "size": 112
+  },
+  {
+   "name": ".gnu.hash",
+   "type": "GNU_HASH",
+   "size": 5672
+  },
+  {
+   "name": ".dynstr",
+   "type": "STRTAB",
+   "size": 50711
+  },
+  {
+   "name": ".rela.dyn",
+   "type": "0x60000002",
+   "size": 1037070
+  },
+  {
+   "name": ".rela.plt",
+   "type": "RELA",
+   "size": 12000
+  },
+  {
+   "name": ".rodata",
+   "type": "PROGBITS",
+   "size": 35756156
+  },
+  {
+   "name": "protodesc_cold",
+   "type": "PROGBITS",
+   "size": 2398032
+  },
+  {
+   "name": ".gcc_except_table",
+   "type": "PROGBITS",
+   "size": 16928
+  },
+  {
+   "name": ".eh_frame_hdr",
+   "type": "PROGBITS",
+   "size": 1639756
+  },
+  {
+   "name": ".eh_frame",
+   "type": "PROGBITS",
+   "size": 5078076
+  },
+  {
+   "name": ".text",
+   "type": "PROGBITS",
+   "size": 23444036
+  },
+  {
+   "name": "google_init_cold",
+   "type": "PROGBITS",
+   "size": 24
+  },
+  {
+   "name": "malloc_hook",
+   "type": "PROGBITS",
+   "size": 392
+  },
+  {
+   "name": "google_malloc",
+   "type": "PROGBITS",
+   "size": 2096
+  },
+  {
+   "name": "__lcxx_override",
+   "type": "PROGBITS",
+   "size": 200
+  },
+  {
+   "name": ".plt",
+   "type": "PROGBITS",
+   "size": 8032
+  },
+  {
+   "name": ".data.rel.ro",
+   "type": "PROGBITS",
+   "size": 2892888
+  },
+  {
+   "name": ".fini_array",
+   "type": "FINI_ARRAY",
+   "size": 16
+  },
+  {
+   "name": ".init_array",
+   "type": "INIT_ARRAY",
+   "size": 17464
+  },
+  {
+   "name": ".dynamic",
+   "type": "DYNAMIC",
+   "size": 544
+  },
+  {
+   "name": ".got",
+   "type": "PROGBITS",
+   "size": 209176
+  },
+  {
+   "name": ".got.plt",
+   "type": "PROGBITS",
+   "size": 4024
+  },
+  {
+   "name": ".relro_padding",
+   "type": "NOBITS",
+   "size": 1136
+  },
+  {
+   "name": ".data",
+   "type": "PROGBITS",
+   "size": 427736
+  },
+  {
+   "name": "pb_defaults",
+   "type": "PROGBITS",
+   "size": 24
+  },
+  {
+   "name": "google_malloc_data",
+   "type": "PROGBITS",
+   "size": 64
+  },
+  {
+   "name": ".bss",
+   "type": "NOBITS",
+   "size": 4715920
+  },
+  {
+   "name": "google_malloc_bss",
+   "type": "NOBITS",
+   "size": 200
+  },
+  {
+   "name": ".comment",
+   "type": "PROGBITS",
+   "size": 538
+  },
+  {
+   "name": ".shstrtab",
+   "type": "STRTAB",
+   "size": 413
+  }
+ ],
+ "program_headers": [
+  {
+   "type": "PHDR",
+   "flags": "R",
+   "filesz": 504,
+   "memsz": 504,
+   "align": 8
+  },
+  {
+   "type": "LOAD",
+   "flags": "RX",
+   "filesz": 69482496,
+   "memsz": 69482496,
+   "align": 16384
+  },
+  {
+   "type": "LOAD",
+   "flags": "RW",
+   "filesz": 3124112,
+   "memsz": 3125248,
+   "align": 16384
+  },
+  {
+   "type": "LOAD",
+   "flags": "RW",
+   "filesz": 427824,
+   "memsz": 5143944,
+   "align": 16384
+  },
+  {
+   "type": "DYNAMIC",
+   "flags": "RW",
+   "filesz": 544,
+   "memsz": 544,
+   "align": 8
+  },
+  {
+   "type": "GNU_RELRO",
+   "flags": "R",
+   "filesz": 3124112,
+   "memsz": 3125248,
+   "align": 1
+  },
+  {
+   "type": "GNU_EH_FRAME",
+   "flags": "R",
+   "filesz": 1639756,
+   "memsz": 1639756,
+   "align": 4
+  },
+  {
+   "type": "GNU_STACK",
+   "flags": "RW",
+   "filesz": 0,
+   "memsz": 0,
+   "align": 0
+  },
+  {
+   "type": "NOTE",
+   "flags": "R",
+   "filesz": 184,
+   "memsz": 184,
+   "align": 4
+  }
+ ],
+ "needed": [
+  "libandroid.so",
+  "libOpenSLES.so",
+  "libdl.so",
+  "libm.so",
+  "libEGL.so",
+  "libGLESv2.so",
+  "libGLESv3.so",
+  "liblog.so",
+  "libc.so"
+ ],
+ "soname": "libwaze.so",
+ "imports": {
+  "count": 520,
+  "families": {
+   "OpenGL ES (gl*)": {
+    "count": 183,
+    "examples": [
+     "glActiveTexture",
+     "glAttachShader",
+     "glBeginTransformFeedback",
+     "glBindAttribLocation",
+     "glBindBuffer",
+     "glBindBufferBase"
+    ]
+   },
+   "EGL (egl*)": {
+    "count": 6,
+    "examples": [
+     "eglGetCurrentContext",
+     "eglGetCurrentDisplay",
+     "eglGetCurrentSurface",
+     "eglGetError",
+     "eglGetProcAddress",
+     "eglMakeCurrent"
+    ]
+   },
+   "OpenSL ES": {
+    "count": 9,
+    "examples": [
+     "SL_IID_ANDROIDCONFIGURATION",
+     "SL_IID_ANDROIDSIMPLEBUFFERQUEUE",
+     "SL_IID_BUFFERQUEUE",
+     "SL_IID_EFFECTSEND",
+     "SL_IID_ENGINE",
+     "SL_IID_ENVIRONMENTALREVERB"
+    ]
+   },
+   "ANativeWindow / AHardwareBuffer": {
+    "count": 1,
+    "examples": [
+     "ANativeWindow_fromSurface"
+    ]
+   },
+   "AAsset / AConfiguration": {
+    "count": 6,
+    "examples": [
+     "AAssetManager_fromJava",
+     "AAssetManager_open",
+     "AAsset_close",
+     "AAsset_getLength",
+     "AAsset_read",
+     "AAsset_seek"
+    ]
+   },
+   "android_log": {
+    "count": 2,
+    "examples": [
+     "__android_log_vprint",
+     "__android_log_write"
+    ]
+   },
+   "pthread": {
+    "count": 26,
+    "examples": [
+     "pthread_cond_broadcast",
+     "pthread_cond_destroy",
+     "pthread_cond_signal",
+     "pthread_cond_wait",
+     "pthread_create",
+     "pthread_detach"
+    ]
+   },
+   "sockets / DNS": {
+    "count": 13,
+    "examples": [
+     "accept",
+     "bind",
+     "connect",
+     "freeaddrinfo",
+     "getaddrinfo",
+     "listen"
+    ]
+   },
+   "libm math": {
+    "count": 23,
+    "examples": [
+     "acos",
+     "acosf",
+     "asin",
+     "asinf",
+     "atan",
+     "atan2"
+    ]
+   },
+   "dl (dlopen/dlsym)": {
+    "count": 4,
+    "examples": [
+     "dlclose",
+     "dlerror",
+     "dlopen",
+     "dlsym"
+    ]
+   }
+  }
+ },
+ "exports": {
+  "count": 722,
+  "JNI_OnLoad": false,
+  "static_JNI_symbols(Java_*)": 716,
+  "sample": [
+   "Java_com_waze_ConfigManager_InitNativeLayerNTV",
+   "Java_com_waze_ConfigManager_aboutClickNTV",
+   "Java_com_waze_ConfigManager_checkConfigDisplayCounterNTV",
+   "Java_com_waze_ConfigManager_getConfigValueBoolNTV",
+   "Java_com_waze_ConfigManager_getConfigValueIntNTV",
+   "Java_com_waze_ConfigManager_getConfigValueLongNTV",
+   "Java_com_waze_ConfigManager_getConfigValueModifiedValueNTV",
+   "Java_com_waze_ConfigManager_getConfigValueStringNTV",
+   "Java_com_waze_ConfigManager_isBetaNTV",
+   "Java_com_waze_ConfigManager_isConfigValueLockedNTV",
+   "Java_com_waze_ConfigManager_isConfigValueStickyNTV",
+   "Java_com_waze_ConfigManager_sendLogsAutoConfirmNTV",
+   "Java_com_waze_ConfigManager_sendLogsClickNTV",
+   "Java_com_waze_ConfigManager_setConfigValueBoolNTV",
+   "Java_com_waze_ConfigManager_setConfigValueIntNTV",
+   "Java_com_waze_ConfigManager_setConfigValueLockedNTV",
+   "Java_com_waze_ConfigManager_setConfigValueLongNTV",
+   "Java_com_waze_ConfigManager_setConfigValueStringNTV",
+   "Java_com_waze_ConfigManager_setMapSkinNTV",
+   "Java_com_waze_ConfigManager_testCounterConfigEnum",
+   "Java_com_waze_DeeplinkUpdatesNativeManager_initNativeLayerNTV",
+   "Java_com_waze_DeeplinkUpdatesNativeManager_postInitNTV",
+   "Java_com_waze_MessageBoxNativeManager_ConfirmDialogCallbackNTV",
+   "Java_com_waze_MessageBoxNativeManager_MsgBoxCallbackNTV",
+   "Java_com_waze_MessageBoxNativeManager_initNativeLayerNTV",
+   "Java_com_waze_MoodManager_InitMoodManagerNTV",
+   "Java_com_waze_MoodManager_getCustomMoodListNTV",
+   "Java_com_waze_MoodManager_getDefaultMoodListNTV",
+   "Java_com_waze_MoodManager_getExclusiveMoodLevelNTV",
+   "Java_com_waze_MoodManager_getMoodAddonNTV",
+   "Java_com_waze_MoodManager_getMoodNTV",
+   "Java_com_waze_MoodManager_getNewbieMilageNTV",
+   "Java_com_waze_MoodManager_getNewbieMilageUnitNTV",
+   "Java_com_waze_MoodManager_isBabyNTV",
+   "Java_com_waze_MoodManager_isMoodInConfigNTV",
+   "Java_com_waze_MoodManager_marketplaceMoodRestorePreviousNTV",
+   "Java_com_waze_MoodManager_setMarketplaceMoodProtoNTV",
+   "Java_com_waze_MoodManager_setMoodNTV",
+   "Java_com_waze_NativeManager_AccessToCalendarAllowedNTV",
+   "Java_com_waze_NativeManager_AddPopupNTV"
+  ]
+ },
+ "android_ident": {
+  "api_level": 24,
+  "ndk_version": "r29",
+  "ndk_build": "14206865"
+ },
+ "build_id": "5578e94159678c625792bcc99aa4a4b2",
+ "comment": [
+  "Android (13989888, +pgo, +bolt, +lto, +mlgo, based on r563880c) clang version 21.0.0 (https://android.googlesource.com/toolchain/llvm-project 5e96669f06077099aa41290cdb4c5e6fa0f59349)",
+  "Android (dev, -pgo, -bolt, -lto, -mlgo, based on r563880b) clang version 21.0.0 (https://android.googlesource.com/toolchain/llvm-project 5e96669f06077099aa41290cdb4c5e6fa0f59349)",
+  "Linker: LLD google3-trunk",
+  "google3 clang version 9999.0.0 (084f6484d76625b995c07f512a323ab7cdc5351d)",
+  "google3 clang version 9999.0.0 (2377f82514e12895ea56dcb3c53e305e029a72e8)"
+ ],
+ "string_scan": {
+  "counts": {
+   "url": 334,
+   "srcpath": 5153,
+   "protofile": 9690,
+   "rtti": 6831,
+   "glsl_v300": 1,
+   "glsl_v100": 7,
+   "glsl_v450": 1,
+   "glsl_attr": 19,
+   "glsl_layout": 83
+  }
+ },
+ "embedded_library_banners": {
+  "SQLite": {
+   "hits": 1,
+   "example": "SQLite format 3"
+  },
+  "libjpeg(-turbo)": {
+   "hits": 2,
+   "example": "libjpeg-turbo "
+  },
+  "HarfBuzz": {
+   "hits": 7,
+   "example": "HarfBuzz"
+  },
+  "ICU": {
+   "hits": 4184,
+   "example": "icudt78"
+  },
+  "Godot Engine": {
+   "hits": 1,
+   "example": "Godot Engine v4.4.2.rcwaze.custom"
+  },
+  "Lua": {
+   "hits": 1,
+   "example": "Lua 5.3"
+  },
+  "abseil": {
+   "hits": 12,
+   "example": "absl::"
+  },
+  "gRPC (C++)": {
+   "hits": 23,
+   "example": "grpc.publisher."
+  },
+  "WebP": {
+   "hits": 2,
+   "example": "libwebp"
+  },
+  "Brotli": {
+   "hits": 3,
+   "example": "brotli"
+  },
+  "zstd": {
+   "hits": 8,
+   "example": "zstd"
+  },
+  "spirv/glslang": {
+   "hits": 25,
+   "example": "glslang"
+  },
+  "meshoptimizer": {
+   "hits": 2,
+   "example": "meshopt"
+  },
+  "H3 / S2 geo": {
+   "hits": 4,
+   "example": "s2geometry"
+  }
+ },
+ "urls": {
+  "unique": 231,
+  "top_hosts": [
+   [
+    "www.waze.com",
+    26
+   ],
+   [
+    "support.google.com",
+    26
+   ],
+   [
+    "github.com",
+    6
+   ],
+   [
+    "pngimg.com",
+    6
+   ],
+   [
+    "go",
+    6
+   ],
+   [
+    "upload.wikimedia.org",
+    5
+   ],
+   [
+    "policies.google.com",
+    4
+   ],
+   [
+    "cres.waze.com",
+    4
+   ],
+   [
+    "www.",
+    4
+   ],
+   [
+    "waze.to",
+    3
+   ],
+   [
+    "waze.com",
+    3
+   ],
+   [
+    "google.github.io",
+    3
+   ],
+   [
+    "mobile-web.waze.com",
+    2
+   ],
+   [
+    "www.unicode.org",
+    2
+   ],
+   [
+    "photos.waze.com",
+    2
+   ],
+   [
+    "www.apache.org",
+    2
+   ],
+   [
+    "venue-image.waze.com",
+    2
+   ],
+   [
+    "www.iryoku.com",
+    2
+   ],
+   [
+    "null.com",
+    1
+   ],
+   [
+    "rankith.itch.io",
+    1
+   ],
+   [
+    "www.gnu.org",
+    1
+   ],
+   [
+    "dixie.co.il",
+    1
+   ],
+   [
+    "adriaan.games",
+    1
+   ],
+   [
+    "storagegateway-row.waze.com",
+    1
+   ],
+   [
+    "brokenrul.es",
+    1
+   ],
+   [
+    "rt.waze.com",
+    1
+   ],
+   [
+    "adsassets.waze.com",
+    1
+   ],
+   [
+    "itunes.apple.com",
+    1
+   ],
+   [
+    "gcp.wazestg.com",
+    1
+   ],
+   [
+    "robotgentleman.com",
+    1
+   ],
+   [
+    "portfolio.mrcdk.com",
+    1
+   ],
+   [
+    "goto",
+    1
+   ],
+   [
+    "bsky.app",
+    1
+   ],
+   [
+    "gapi.waze.com",
+    1
+   ],
+   [
+    "bilans-ges.ademe.fr",
+    1
+   ],
+   [
+    "maps.google.com",
+    1
+   ],
+   [
+    "cresg.waze.com",
+    1
+   ],
+   [
+    "thegigabrain.com",
+    1
+   ],
+   [
+    "sdk.waze.com",
+    1
+   ],
+   [
+    "www.google.com",
+    1
+   ],
+   [
+    "oss.capital",
+    1
+   ],
+   [
+    "www.khronos.org",
+    1
+   ],
+   [
+    "kenney.nl",
+    1
+   ],
+   [
+    "ssl.gstatic.com",
+    1
+   ],
+   [
+    "re-logic.com",
+    1
+   ],
+   [
+    "www.draknek.org",
+    1
+   ],
+   [
+    "copiawealthstudios.com",
+    1
+   ],
+   [
+    "seats.aero",
+    1
+   ],
+   [
+    "%s",
+    1
+   ],
+   [
+    "myaccount.google.com",
+    1
+   ],
+   [
+    "www.studiosunshower.com",
+    1
+   ],
+   [
+    "www.freetype.org",
+    1
+   ],
+   [
+    "www.googleadservices.com",
+    1
+   ],
+   [
+    "mozilla.org",
+    1
+   ],
+   [
+    "movies.waze.com",
+    1
+   ],
+   [
+    "bit.ly",
+    1
+   ],
+   [
+    "petrkharitonov.com",
+    1
+   ],
+   [
+    "client-assets.waze.com",
+    1
+   ],
+   [
+    "godotengine.org",
+    1
+   ],
+   [
+    "www.megacrit.com",
+    1
+   ],
+   [
+    "rt.gcp.wazestg.com",
+    1
+   ],
+   [
+    "w4games.com",
+    1
+   ],
+   [
+    "www.gob.mx",
+    1
+   ],
+   [
+    "gstatic.com",
+    1
+   ],
+   [
+    "scwr.gg",
+    1
+   ],
+   [
+    "unlicense.org",
+    1
+   ],
+   [
+    "www.orbitalknight.com",
+    1
+   ],
+   [
+    "www.asifa-hollywood.org",
+    1
+   ],
+   [
+    "expiredpopsicle.com",
+    1
+   ],
+   [
+    "polymars.dev",
+    1
+   ],
+   [
+    "stgweb.waze.co.il",
+    1
+   ],
+   [
+    "playfulstudios.com",
+    1
+   ],
+   [
+    "crossyroad.com",
+    1
+   ],
+   [
+    "ads-resources.waze.com",
+    1
+   ],
+   [
+    "prehensile-tales.com",
+    1
+   ],
+   [
+    "bippinbits.com",
+    1
+   ],
+   [
+    "voice-prompts.waze.com",
+    1
+   ],
+   [
+    "www.chasing-carrots.com",
+    1
+   ],
+   [
+    "wayfarer-games.com",
+    1
+   ],
+   [
+    "domi.zip",
+    1
+   ]
+  ]
+ },
+ "source_paths": {
+  "unique_files": 2375,
+  "top_dirs_d4": [
+   [
+    "third_party/waze/client_event_payloads/proto",
+    764
+   ],
+   [
+    "third_party/waze/client/waze",
+    520
+   ],
+   [
+    "third_party/waze/client/cpp_modules",
+    241
+   ],
+   [
+    "third_party/waze/client/android-project",
+    208
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene",
+    151
+   ],
+   [
+    "third_party/waze/client_protos/proto",
+    123
+   ],
+   [
+    "third_party/godot/v4_4_waze/core",
+    121
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers",
+    61
+   ],
+   [
+    "third_party/godot/v4_4_waze/drivers",
+    28
+   ],
+   [
+    "third_party/godot/v4_4_waze/modules",
+    20
+   ],
+   [
+    "third_party/godot/v4_4_waze/platform",
+    17
+   ],
+   [
+    "third_party/protobuf/json/internal",
+    9
+   ],
+   [
+    "third_party/openssl/boringssl/src",
+    6
+   ],
+   [
+    "third_party/absl/strings/internal",
+    4
+   ],
+   [
+    "third_party/gloop/util/gtl",
+    3
+   ],
+   [
+    "third_party/godot/v4_4_waze/main",
+    2
+   ],
+   [
+    "third_party/absl/base/internal",
+    2
+   ],
+   [
+    "third_party/absl/log/internal",
+    2
+   ],
+   [
+    "third_party/gloop/util/coding",
+    1
+   ],
+   [
+    "third_party/gloop/util/set",
+    1
+   ],
+   [
+    "third_party/protobuf/json_enumvalue_options.proto",
+    1
+   ],
+   [
+    "third_party/protobuf/reflection_ops.cc",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/internal",
+    1
+   ],
+   [
+    "third_party/absl/random/internal",
+    1
+   ],
+   [
+    "third_party/protobuf/symbol.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/wire_format.cc",
+    1
+   ],
+   [
+    "third_party/gloop/base/log_file_flags.cc",
+    1
+   ],
+   [
+    "third_party/boundary_proxy/proto_compare/annotation.proto",
+    1
+   ],
+   [
+    "third_party/protobuf/descriptor.h",
+    1
+   ],
+   [
+    "third_party/protobuf/text_format.cc",
+    1
+   ],
+   [
+    "client/experiments.proto",
+    1
+   ],
+   [
+    "src/private_typeinfo.cpp",
+    1
+   ],
+   [
+    "third_party/protobuf/parse_context.h",
+    1
+   ],
+   [
+    "third_party/absl/flags/internal",
+    1
+   ],
+   [
+    "third_party/absl/strings/str_split.cc",
+    1
+   ],
+   [
+    "third_party/absl/status/statusor.h",
+    1
+   ],
+   [
+    "third_party/protobuf/message.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/reflection_internal.h",
+    1
+   ],
+   [
+    "third_party/gloop/strings/bytestream.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/repeated_ptr_field.h",
+    1
+   ],
+   [
+    "third_party/re2/re2.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/wire_format_lite.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/io/coded_stream.cc",
+    1
+   ],
+   [
+    "third_party/absl/log/flags.cc",
+    1
+   ],
+   [
+    "waze/client/road_snapper/waze_location_tracker_integrator.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/port.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/io/zero_copy_stream.cc",
+    1
+   ],
+   [
+    "third_party/tcmalloc/malloc_hook.cc",
+    1
+   ],
+   [
+    "client/urls/environments/osid_domain.proto",
+    1
+   ],
+   [
+    "third_party/protobuf/map.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/io/coded_stream.h",
+    1
+   ],
+   [
+    "third_party/protobuf/io/zero_copy_stream_impl.cc",
+    1
+   ],
+   [
+    "third_party/absl/synchronization/mutex.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/internal_options.proto",
+    1
+   ],
+   [
+    "third_party/protobuf/naming_style.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/message_lite.cc",
+    1
+   ],
+   [
+    "third_party/absl/status/statusor.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/generated_message_tctable_gen.cc",
+    1
+   ],
+   [
+    "third_party/absl/strings/numbers.cc",
+    1
+   ],
+   [
+    "third_party/protobuf/lazy_field.h",
+    1
+   ]
+  ],
+  "top_dirs_d5": [
+   [
+    "third_party/waze/client_event_payloads/proto/stats",
+    691
+   ],
+   [
+    "third_party/waze/client/waze/src",
+    520
+   ],
+   [
+    "third_party/waze/client/android-project/jni-protos",
+    208
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/wrappers",
+    64
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/resources",
+    62
+   ],
+   [
+    "third_party/waze/client/cpp_modules/rendering_layer",
+    50
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers/rendering",
+    35
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/io",
+    31
+   ],
+   [
+    "third_party/waze/client/cpp_modules/insights",
+    31
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/gui",
+    27
+   ],
+   [
+    "third_party/waze/client_protos/proto/waze",
+    25
+   ],
+   [
+    "third_party/waze/client/cpp_modules/rendering",
+    24
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/3d",
+    22
+   ],
+   [
+    "third_party/godot/v4_4_waze/drivers/gles3",
+    19
+   ],
+   [
+    "third_party/godot/v4_4_waze/platform/android",
+    17
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/math",
+    17
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/templates",
+    17
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/variant",
+    16
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/2d",
+    16
+   ],
+   [
+    "third_party/waze/client/cpp_modules/tile_reader",
+    15
+   ],
+   [
+    "third_party/godot/v4_4_waze/modules/godot_physics_2d",
+    14
+   ],
+   [
+    "third_party/waze/client/cpp_modules/map_navigation",
+    13
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/main",
+    11
+   ],
+   [
+    "third_party/waze/client/cpp_modules/realtime_insights",
+    11
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/object",
+    10
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/animation",
+    10
+   ],
+   [
+    "third_party/waze/client/cpp_modules/userdb",
+    10
+   ],
+   [
+    "third_party/waze/client/cpp_modules/protobuf",
+    9
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/string",
+    8
+   ],
+   [
+    "third_party/waze/client/cpp_modules/map_ads",
+    7
+   ],
+   [
+    "third_party/waze/client/cpp_modules/tile",
+    6
+   ],
+   [
+    "third_party/waze/client/cpp_modules/config",
+    6
+   ],
+   [
+    "third_party/openssl/boringssl/src/crypto",
+    6
+   ],
+   [
+    "third_party/godot/v4_4_waze/drivers/unix",
+    6
+   ],
+   [
+    "third_party/waze/client/cpp_modules/map_labels",
+    6
+   ],
+   [
+    "third_party/waze/client/cpp_modules/waze_asks",
+    5
+   ],
+   [
+    "third_party/waze/client_protos/proto/v2",
+    5
+   ],
+   [
+    "third_party/waze/client/cpp_modules/nav_connect",
+    5
+   ],
+   [
+    "third_party/waze/client/cpp_modules/navigation",
+    5
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/debugger",
+    5
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/extension",
+    4
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers/movie_writer",
+    4
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/os",
+    4
+   ],
+   [
+    "third_party/waze/client/cpp_modules/dispatch_utils",
+    4
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/input",
+    4
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers/xr",
+    4
+   ],
+   [
+    "third_party/waze/client/cpp_modules/rendering_utils",
+    4
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/root",
+    4
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/metrics",
+    4
+   ],
+   [
+    "third_party/waze/client_protos/proto/proto",
+    4
+   ],
+   [
+    "third_party/waze/client/cpp_modules/schema",
+    3
+   ],
+   [
+    "third_party/waze/client/cpp_modules/waze_sqlite",
+    3
+   ],
+   [
+    "third_party/waze/client/cpp_modules/routing_protos",
+    3
+   ],
+   [
+    "third_party/waze/client/cpp_modules/websvc_trans",
+    3
+   ],
+   [
+    "third_party/godot/v4_4_waze/drivers/png",
+    3
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers/audio",
+    3
+   ],
+   [
+    "third_party/waze/client_protos/proto/conversation",
+    3
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/config",
+    2
+   ],
+   [
+    "third_party/waze/client/cpp_modules/route_instrumentation",
+    2
+   ],
+   [
+    "third_party/godot/v4_4_waze/core/crypto",
+    2
+   ]
+  ],
+  "top_dirs_d6": [
+   [
+    "third_party/waze/client/waze/src/common",
+    364
+   ],
+   [
+    "third_party/waze/client/android-project/jni-protos/src",
+    208
+   ],
+   [
+    "third_party/waze/client/waze/src/android",
+    156
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/reporting_stats_wrapper",
+    53
+   ],
+   [
+    "third_party/waze/client/cpp_modules/rendering_layer/godot",
+    50
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/search_stats_wrapper",
+    36
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/unauthenticated_stats",
+    33
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/map_stats_wrapper",
+    29
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/reusable_types",
+    25
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/trip_overview_stats_wrapper",
+    23
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/insight_component_stats_wrapper",
+    22
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/app_lifecycle_stats_wrapper",
+    21
+   ],
+   [
+    "third_party/waze/client_protos/proto/waze/insightsserving",
+    21
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/navigation_stats_wrapper",
+    20
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/share_drive_stats_wrapper",
+    20
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/settings_stats_wrapper",
+    19
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/parking_stats_wrapper",
+    17
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/conversation_stats_wrapper",
+    17
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/real_time_alerter_stats_wrapper",
+    16
+   ],
+   [
+    "third_party/waze/client/cpp_modules/tile_reader/tile",
+    15
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/alternate_routes_stats_wrapper",
+    14
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/main_menu_stats_wrapper",
+    13
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/network_stats_wrapper",
+    13
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/google_ads_stats_wrapper",
+    13
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/zero_speed_stats_wrapper",
+    12
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/routing_stats_wrapper",
+    11
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/guidance_stats_wrapper",
+    11
+   ],
+   [
+    "third_party/godot/v4_4_waze/drivers/gles3/storage",
+    11
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/eta_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/permissions_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/resources/3d",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/traffic_bar_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/drive_suggestion_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/gps_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/tts_stats_wrapper",
+    10
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/cluster_stats_wrapper",
+    9
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/location_preview_stats_wrapper",
+    9
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/start_state_stats_wrapper",
+    9
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/performance_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/user_profile_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/common_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/voice_assistant_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client/cpp_modules/userdb/places",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/uid_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/google_assistant_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/user_login_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/ads_stats_wrapper",
+    8
+   ],
+   [
+    "third_party/godot/v4_4_waze/scene/resources/2d",
+    7
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/nav_connect_stats_wrapper",
+    7
+   ],
+   [
+    "third_party/waze/client/cpp_modules/map_navigation/active_route",
+    7
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/beacon_stats_wrapper",
+    7
+   ],
+   [
+    "third_party/godot/v4_4_waze/servers/rendering/renderer_rd",
+    7
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/detour_stats_wrapper",
+    7
+   ],
+   [
+    "third_party/waze/client/cpp_modules/rendering/camera",
+    6
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/deeplink_stats_wrapper",
+    6
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/co_pilot_stats_wrapper",
+    6
+   ],
+   [
+    "third_party/waze/client/cpp_modules/insights/segments",
+    6
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/destination_card_stats_wrapper",
+    6
+   ],
+   [
+    "third_party/waze/client_event_payloads/proto/stats/reroute_stats_wrapper",
+    6
+   ],
+   [
+    "third_party/waze/client/cpp_modules/insights/zone",
+    6
+   ]
+  ],
+  "extensions": [
+   [
+    ".proto",
+    1124
+   ],
+   [
+    ".cc",
+    787
+   ],
+   [
+    ".cpp",
+    337
+   ],
+   [
+    ".h",
+    127
+   ]
+  ],
+  "sample": [
+   "client/attachments/attachment.proto",
+   "client/data/data_annotation.proto",
+   "client/experiments.proto",
+   "client/proto/feature_annotation.proto",
+   "client/urls/environments/osid_domain.proto",
+   "src/fallback_malloc.cpp",
+   "src/private_typeinfo.cpp",
+   "third_party/absl/base/internal/low_level_alloc.cc",
+   "third_party/absl/base/internal/spinlock.h",
+   "third_party/absl/base/throw_delegate.cc",
+   "third_party/absl/flags/internal/flag.cc",
+   "third_party/absl/log/flags.cc",
+   "third_party/absl/log/internal/log_message.cc",
+   "third_party/absl/log/internal/log_sink_set.cc",
+   "third_party/absl/random/internal/seed_material.cc",
+   "third_party/absl/random/seed_gen_exception.cc",
+   "third_party/absl/status/statusor.cc",
+   "third_party/absl/status/statusor.h",
+   "third_party/absl/strings/cord.cc",
+   "third_party/absl/strings/escaping.cc",
+   "third_party/absl/strings/internal/cord_internal.cc",
+   "third_party/absl/strings/internal/cord_rep_btree.cc",
+   "third_party/absl/strings/internal/cordz_functions.cc",
+   "third_party/absl/strings/internal/escaping.cc",
+   "third_party/absl/strings/numbers.cc",
+   "third_party/absl/strings/str_split.cc",
+   "third_party/absl/strings/substitute.cc",
+   "third_party/absl/synchronization/internal/futex_waiter.cc",
+   "third_party/absl/synchronization/mutex.cc",
+   "third_party/boundary_proxy/proto_compare/annotation.proto",
+   "third_party/gloop/base/googleinit.cc",
+   "third_party/gloop/base/log_file_flags.cc",
+   "third_party/gloop/base/per_thread.cc",
+   "third_party/gloop/base/scheduling/downcalls.cc",
+   "third_party/gloop/strings/bytestream.cc",
+   "third_party/gloop/util/coding/coder.cc",
+   "third_party/gloop/util/gtl/circularbuffer.h",
+   "third_party/gloop/util/gtl/hashtable_common.h",
+   "third_party/gloop/util/gtl/lockfree_hashtable_internal.h",
+   "third_party/gloop/util/math/constant_divisor.cc"
+  ]
+ },
+ "proto_files": {
+  "unique": 2701,
+  "top_dirs_d3": [
+   [
+    "third_party/waze/client_event_payloads",
+    598
+   ],
+   [
+    "third_party/waze/client",
+    155
+   ],
+   [
+    "geostore/base/proto",
+    155
+   ],
+   [
+    "third_party/waze/client_protos",
+    116
+   ],
+   [
+    "geo/serving/proto",
+    71
+   ],
+   [
+    "maps/tactile/api",
+    66
+   ],
+   [
+    "geo/photo/proto",
+    62
+   ],
+   [
+    "othird_party/waze/client_event_payloads",
+    31
+   ],
+   [
+    "nthird_party/waze/client_event_payloads",
+    31
+   ],
+   [
+    "pthird_party/waze/client_event_payloads",
+    27
+   ],
+   [
+    "sthird_party/waze/client_event_payloads",
+    25
+   ],
+   [
+    "qthird_party/waze/client_event_payloads",
+    25
+   ],
+   [
+    "rthird_party/waze/client_event_payloads",
+    25
+   ],
+   [
+    "hthird_party/waze/client_event_payloads",
+    24
+   ],
+   [
+    "gthird_party/waze/client_event_payloads",
+    24
+   ],
+   [
+    "hird_party/waze/client_event_payloads",
+    23
+   ],
+   [
+    "mthird_party/waze/client_event_payloads",
+    23
+   ],
+   [
+    "tthird_party/waze/client_event_payloads",
+    23
+   ],
+   [
+    "jthird_party/waze/client_event_payloads",
+    23
+   ],
+   [
+    "ethird_party/waze/client_event_payloads",
+    21
+   ],
+   [
+    "dthird_party/waze/client_event_payloads",
+    19
+   ],
+   [
+    "lthird_party/waze/client_event_payloads",
+    19
+   ],
+   [
+    "ird_party/waze/client_event_payloads",
+    18
+   ],
+   [
+    "ithird_party/waze/client_event_payloads",
+    18
+   ],
+   [
+    "maps/gmm/snapping",
+    17
+   ],
+   [
+    "fthird_party/waze/client_event_payloads",
+    17
+   ],
+   [
+    "waze/client_event_payloads/proto",
+    16
+   ],
+   [
+    "rd_party/waze/client_event_payloads",
+    16
+   ],
+   [
+    "_party/waze/client_event_payloads",
+    14
+   ],
+   [
+    "othird_party/waze/client",
+    14
+   ],
+   [
+    "kthird_party/waze/client_event_payloads",
+    14
+   ],
+   [
+    "maps/pathfinder/crp",
+    13
+   ],
+   [
+    "pthird_party/waze/client",
+    13
+   ],
+   [
+    "rthird_party/waze/client",
+    13
+   ],
+   [
+    "hthird_party/waze/client",
+    13
+   ],
+   [
+    "cthird_party/waze/client_event_payloads",
+    13
+   ],
+   [
+    "athird_party/waze/client_event_payloads",
+    13
+   ],
+   [
+    "sthird_party/waze/client",
+    12
+   ],
+   [
+    "Tthird_party/waze/client_event_payloads",
+    12
+   ],
+   [
+    "geo/vms/schema",
+    11
+   ],
+   [
+    "ty/waze/client_event_payloads",
+    11
+   ],
+   [
+    "d_party/waze/client",
+    11
+   ],
+   [
+    "bthird_party/waze/client_event_payloads",
+    11
+   ],
+   [
+    "ird_party/waze/client",
+    10
+   ],
+   [
+    "y/waze/client_event_payloads",
+    9
+   ],
+   [
+    "waze/client/android-project",
+    9
+   ],
+   [
+    "arty/waze/client_event_payloads",
+    9
+   ],
+   [
+    "party/waze/client_event_payloads",
+    9
+   ],
+   [
+    "lthird_party/waze/client",
+    9
+   ],
+   [
+    "qthird_party/waze/client",
+    9
+   ],
+   [
+    "7third_party/waze/client_protos",
+    9
+   ],
+   [
+    "9third_party/waze/client_protos",
+    9
+   ],
+   [
+    "Xthird_party/waze/client_event_payloads",
+    9
+   ],
+   [
+    "Qthird_party/waze/client_event_payloads",
+    9
+   ],
+   [
+    "Uthird_party/waze/client_event_payloads",
+    9
+   ],
+   [
+    "d_party/waze/client_event_payloads",
+    8
+   ],
+   [
+    "java/com/google",
+    8
+   ],
+   [
+    "rty/waze/client_event_payloads",
+    8
+   ],
+   [
+    "kthird_party/waze/client",
+    8
+   ],
+   [
+    "jthird_party/waze/client",
+    8
+   ]
+  ],
+  "top_dirs_d2": [
+   [
+    "third_party/waze",
+    869
+   ],
+   [
+    "geostore/base",
+    155
+   ],
+   [
+    "geo/serving",
+    71
+   ],
+   [
+    "maps/tactile",
+    66
+   ],
+   [
+    "geo/photo",
+    65
+   ],
+   [
+    "othird_party/waze",
+    45
+   ],
+   [
+    "pthird_party/waze",
+    40
+   ],
+   [
+    "rthird_party/waze",
+    39
+   ],
+   [
+    "sthird_party/waze",
+    38
+   ],
+   [
+    "hthird_party/waze",
+    38
+   ],
+   [
+    "nthird_party/waze",
+    36
+   ],
+   [
+    "qthird_party/waze",
+    34
+   ],
+   [
+    "jthird_party/waze",
+    32
+   ],
+   [
+    "maps/gmm",
+    31
+   ],
+   [
+    "ird_party/waze",
+    29
+   ],
+   [
+    "mthird_party/waze",
+    29
+   ],
+   [
+    "hird_party/waze",
+    28
+   ],
+   [
+    "lthird_party/waze",
+    28
+   ],
+   [
+    "tthird_party/waze",
+    28
+   ],
+   [
+    "gthird_party/waze",
+    27
+   ],
+   [
+    "kthird_party/waze",
+    23
+   ],
+   [
+    "ithird_party/waze",
+    23
+   ],
+   [
+    "rd_party/waze",
+    22
+   ],
+   [
+    "ethird_party/waze",
+    22
+   ],
+   [
+    "dthird_party/waze",
+    21
+   ],
+   [
+    "d_party/waze",
+    20
+   ],
+   [
+    "fthird_party/waze",
+    19
+   ],
+   [
+    "_party/waze",
+    18
+   ],
+   [
+    "maps/pathfinder",
+    17
+   ],
+   [
+    "waze/client_event_payloads",
+    16
+   ],
+   [
+    "ty/waze",
+    16
+   ],
+   [
+    "party/waze",
+    13
+   ],
+   [
+    "cthird_party/waze",
+    13
+   ],
+   [
+    "athird_party/waze",
+    13
+   ],
+   [
+    "y/waze",
+    12
+   ],
+   [
+    "google/protobuf",
+    12
+   ],
+   [
+    "Xthird_party/waze",
+    12
+   ],
+   [
+    "Tthird_party/waze",
+    12
+   ],
+   [
+    "geo/vms",
+    11
+   ],
+   [
+    "bthird_party/waze",
+    11
+   ],
+   [
+    "arty/waze",
+    10
+   ],
+   [
+    "rty/waze",
+    10
+   ],
+   [
+    "Qthird_party/waze",
+    10
+   ],
+   [
+    "Uthird_party/waze",
+    10
+   ],
+   [
+    "Zthird_party/waze",
+    10
+   ],
+   [
+    "waze/client",
+    9
+   ],
+   [
+    "Mthird_party/waze",
+    9
+   ],
+   [
+    "7third_party/waze",
+    9
+   ],
+   [
+    "9third_party/waze",
+    9
+   ],
+   [
+    "Ythird_party/waze",
+    9
+   ],
+   [
+    "geo/automotive",
+    8
+   ],
+   [
+    "java/com",
+    8
+   ],
+   [
+    "Sthird_party/waze",
+    8
+   ],
+   [
+    "_third_party/waze",
+    8
+   ],
+   [
+    "geo/moderation",
+    7
+   ],
+   [
+    "logs/proto",
+    7
+   ],
+   [
+    "net/proto2",
+    7
+   ],
+   [
+    "Othird_party/waze",
+    7
+   ],
+   [
+    "Rthird_party/waze",
+    7
+   ],
+   [
+    "Wthird_party/waze",
+    7
+   ]
+  ],
+  "sample": [
+   "0geo/moderation/service/proto/appealability.proto",
+   "0geo/photo/metadata/proto/pano_semantic_map.proto",
+   "0geo/photo/proto/full_size_fife_url_options.proto",
+   "0geo/serving/proto/attribution/user_caption.proto",
+   "0geo/serving/proto/directions/maneuver_type.proto",
+   "0geo/serving/proto/photos/image_content_tag.proto",
+   "0geo/serving/proto/photos/media_entity_info.proto",
+   "0geo/vms/schema/proto/core/rx/base/epoch_id.proto",
+   "0geostore/base/proto/existence_confirmation.proto",
+   "0geostore/base/proto/feature_field_metadata.proto",
+   "0location/unified/proto/location_annotation.proto",
+   "0location/unified/proto/location_descriptor.proto",
+   "0location/unified/proto/location_difference.proto",
+   "0logs/proto/location/unified/logged_context.proto",
+   "0maps/gmm/snapping/inertials-monitor-result.proto",
+   "0maps/pathfinder/crp/ranking/pruning_config.proto",
+   "0storage/graph/bfg/proto/livegraph_metadata.proto",
+   "0storage/graph/bfg/proto/spii_certification.proto",
+   "0third_party/waze/client_protos/proto/Inbox.proto",
+   "0third_party/waze/client_protos/proto/Lanes.proto",
+   "0third_party/waze/client_protos/proto/Model.proto",
+   "0third_party/waze/client_protos/proto/Types.proto",
+   "0third_party/waze/client_protos/proto/Users.proto",
+   "1com.waze.proto",
+   "1geo/automotive/vso/proto/signal/lane_stripe.proto",
+   "1geo/serving/proto/directions/camera_surface.proto",
+   "1geo/serving/proto/photos/media_item_preview.proto",
+   "1geo/vms/schema/proto/core/rx/base/object_id.proto",
+   "1geostore/base/proto/knowledgegraphreference.proto",
+   "1geostore/base/proto/traffic_flow_adjustment.proto",
+   "1geostore/base/proto/vehicle_occupancy_range.proto",
+   "1geostore/ontology/proto/rawgconceptinstance.proto",
+   "1maps/tactile/api/shared/experience-category.proto",
+   "1photos/protobuff/status/retryable_extension.proto",
+   "1privacy/pattributes/annotations/proto_field.proto",
+   "1third_party/protobuf/json_enumvalue_options.proto",
+   "1third_party/waze/client_protos/proto/Events.proto",
+   "1third_party/waze/client_protos/proto/Search.proto",
+   "1third_party/waze/client_protos/proto/Venues.proto",
+   "1util/task/contrib/proto_status/proto_status.proto",
+   "2-.com.waze.proto",
+   "2-.linqmap.geocoding.proto",
+   "2-.linqmap.proto",
+   "2-.linqmap.routing.proto",
+   "2..com.waze.proto",
+   "2..linqmap.proto",
+   "2..linqmap.routing.proto",
+   "2/.com.waze.proto",
+   "2/.linqmap.proto",
+   "2/.linqmap.routing.proto",
+   "20.com.waze.proto",
+   "20.linqmap.geocoding.proto",
+   "20.linqmap.proto",
+   "20.waze.wazegeoads.proto",
+   "21.com.waze.proto",
+   "21.linqmap.geocoding.proto",
+   "21.linqmap.proto",
+   "21.waze.wazegeoads.proto",
+   "22.com.waze.proto",
+   "22.linqmap.proto"
+  ]
+ },
+ "cpp_rtti": {
+  "unique_types": 5626,
+  "top_namespaces_d1": [
+   [
+    "waze",
+    1221
+   ],
+   [
+    "linqmap",
+    1157
+   ],
+   [
+    "stats",
+    735
+   ],
+   [
+    "com",
+    658
+   ],
+   [
+    "geostore",
+    302
+   ],
+   [
+    "maps_tactile",
+    244
+   ],
+   [
+    "geo_photo_service",
+    160
+   ],
+   [
+    "geo_serving_proto",
+    117
+   ],
+   [
+    "maps_gmm_snapping",
+    103
+   ],
+   [
+    "icu_78",
+    97
+   ],
+   [
+    "proto2",
+    90
+   ],
+   [
+    "pathfinder",
+    55
+   ],
+   [
+    "location",
+    51
+   ],
+   [
+    "GLES3",
+    39
+   ],
+   [
+    "geo",
+    39
+   ],
+   [
+    "RichTextLabel",
+    31
+   ],
+   [
+    "photos",
+    31
+   ],
+   [
+    "google",
+    30
+   ],
+   [
+    "gmm",
+    29
+   ],
+   [
+    "logs_gmm",
+    24
+   ],
+   [
+    "storage_graph_bfg",
+    16
+   ],
+   [
+    "RendererSceneCull",
+    15
+   ],
+   [
+    "RendererDummy",
+    14
+   ],
+   [
+    "RendererCanvasRender",
+    14
+   ],
+   [
+    "absl",
+    14
+   ],
+   [
+    "ShaderLanguage",
+    13
+   ],
+   [
+    "Expression",
+    12
+   ],
+   [
+    "core_bind",
+    12
+   ],
+   [
+    "spdlog",
+    12
+   ],
+   [
+    "maps_edge_api",
+    12
+   ],
+   [
+    "knowledge_graph",
+    12
+   ],
+   [
+    "Animation",
+    10
+   ],
+   [
+    "RenderingDevice",
+    10
+   ],
+   [
+    "logs",
+    9
+   ],
+   [
+    "privacy",
+    9
+   ],
+   [
+    "pb",
+    9
+   ],
+   [
+    "freebase",
+    9
+   ],
+   [
+    "__cxxabiv1",
+    9
+   ],
+   [
+    "geo_moderation",
+    8
+   ],
+   [
+    "maps_gmm_nav",
+    8
+   ],
+   [
+    "datapol",
+    8
+   ],
+   [
+    "AnimationMixer",
+    7
+   ],
+   [
+    "devtools",
+    7
+   ],
+   [
+    "re2",
+    6
+   ],
+   [
+    "geo_content_flows",
+    6
+   ]
+  ],
+  "top_namespaces_d2": [
+   [
+    "linqmap::proto",
+    1106
+   ],
+   [
+    "stats::events",
+    728
+   ],
+   [
+    "com::waze",
+    658
+   ],
+   [
+    "waze::rendering",
+    343
+   ],
+   [
+    "maps_tactile::directions",
+    149
+   ],
+   [
+    "waze::insights",
+    107
+   ],
+   [
+    "waze::insightsserving",
+    99
+   ],
+   [
+    "maps_tactile::shared",
+    73
+   ],
+   [
+    "location::unified",
+    51
+   ],
+   [
+    "linqmap::geocoding",
+    45
+   ],
+   [
+    "waze::map_ads",
+    44
+   ],
+   [
+    "waze::graphics",
+    41
+   ],
+   [
+    "waze::userdb",
+    39
+   ],
+   [
+    "waze::map",
+    36
+   ],
+   [
+    "waze::utils",
+    34
+   ],
+   [
+    "waze::realtime_insights",
+    33
+   ],
+   [
+    "maps_gmm_snapping::runtrack",
+    32
+   ],
+   [
+    "geo_serving_proto::electricvehicle",
+    31
+   ],
+   [
+    "waze::alerts",
+    29
+   ],
+   [
+    "geo_serving_proto::photos",
+    29
+   ],
+   [
+    "geo::vms",
+    28
+   ],
+   [
+    "pathfinder::crp",
+    28
+   ],
+   [
+    "waze::gfx_engine",
+    27
+   ],
+   [
+    "waze::location",
+    26
+   ],
+   [
+    "waze::tile",
+    26
+   ],
+   [
+    "waze::canvas",
+    24
+   ],
+   [
+    "geo_serving_proto::directions",
+    22
+   ],
+   [
+    "google::protobuf",
+    19
+   ],
+   [
+    "proto2::io",
+    19
+   ],
+   [
+    "waze::navigation",
+    18
+   ],
+   [
+    "proto2::internal",
+    17
+   ],
+   [
+    "waze::waze_asks",
+    15
+   ],
+   [
+    "waze::nav_connect",
+    15
+   ],
+   [
+    "waze::reroute_suggestion",
+    14
+   ],
+   [
+    "waze::layers",
+    13
+   ],
+   [
+    "waze::wazegeoads",
+    13
+   ],
+   [
+    "waze::map_objects",
+    12
+   ],
+   [
+    "waze::navigate",
+    12
+   ],
+   [
+    "waze::replay",
+    12
+   ],
+   [
+    "RendererCanvasRender::Item",
+    12
+   ],
+   [
+    "waze::routing",
+    11
+   ],
+   [
+    "geo::automotive",
+    11
+   ],
+   [
+    "icu_78::StringTrieBuilder",
+    10
+   ],
+   [
+    "waze::realtime",
+    9
+   ],
+   [
+    "waze::client",
+    9
+   ],
+   [
+    "waze::generic_canvas",
+    8
+   ],
+   [
+    "waze::beacons",
+    8
+   ],
+   [
+    "waze::location_tracker",
+    8
+   ],
+   [
+    "waze::geometry",
+    8
+   ],
+   [
+    "logs::geo_transportation_analytics",
+    8
+   ],
+   [
+    "privacy::data_governance",
+    8
+   ],
+   [
+    "maps_gmm_nav::lane_scoring",
+    8
+   ],
+   [
+    "waze::main_map",
+    7
+   ],
+   [
+    "devtools::protoshop",
+    7
+   ],
+   [
+    "stats::metrics",
+    7
+   ],
+   [
+    "proto2::TextFormat",
+    7
+   ],
+   [
+    "waze::places",
+    6
+   ],
+   [
+    "waze::network",
+    6
+   ],
+   [
+    "waze::google",
+    6
+   ],
+   [
+    "spdlog::details",
+    6
+   ]
+  ],
+  "top_namespaces_d3": [
+   [
+    "com::waze::jni",
+    284
+   ],
+   [
+    "linqmap::proto::rt",
+    246
+   ],
+   [
+    "com::waze::proto",
+    226
+   ],
+   [
+    "linqmap::proto::gaming",
+    149
+   ],
+   [
+    "linqmap::proto::venue",
+    111
+   ],
+   [
+    "waze::rendering::godot",
+    110
+   ],
+   [
+    "waze::insightsserving::client",
+    86
+   ],
+   [
+    "linqmap::proto::users",
+    76
+   ],
+   [
+    "linqmap::proto::socialmedia",
+    67
+   ],
+   [
+    "waze::rendering::navigation",
+    66
+   ],
+   [
+    "linqmap::proto::usersprofile",
+    58
+   ],
+   [
+    "linqmap::proto::search",
+    52
+   ],
+   [
+    "linqmap::proto::push",
+    48
+   ],
+   [
+    "com::waze::copilot",
+    46
+   ],
+   [
+    "linqmap::proto::preferences",
+    46
+   ],
+   [
+    "linqmap::geocoding::proto",
+    45
+   ],
+   [
+    "waze::userdb::places",
+    37
+   ],
+   [
+    "linqmap::proto::engagement",
+    35
+   ],
+   [
+    "geo::vms::v1",
+    28
+   ],
+   [
+    "linqmap::proto::favorites",
+    28
+   ],
+   [
+    "waze::graphics::opengl2",
+    25
+   ],
+   [
+    "linqmap::proto::map_data",
+    25
+   ],
+   [
+    "maps_tactile::shared::directions",
+    24
+   ],
+   [
+    "com::waze::locationserver",
+    23
+   ],
+   [
+    "waze::insights::deps",
+    20
+   ],
+   [
+    "linqmap::proto::startstate",
+    20
+   ],
+   [
+    "linqmap::proto::inbox",
+    19
+   ],
+   [
+    "com::waze::auth",
+    19
+   ],
+   [
+    "waze::insights::segments",
+    17
+   ],
+   [
+    "com::waze::guidance",
+    16
+   ],
+   [
+    "com::waze::usertracking",
+    14
+   ],
+   [
+    "linqmap::proto::voice",
+    14
+   ],
+   [
+    "linqmap::proto::replay",
+    13
+   ],
+   [
+    "waze::wazegeoads::proto",
+    13
+   ],
+   [
+    "maps_tactile::shared::photo",
+    12
+   ],
+   [
+    "waze::realtime_insights::cyclists",
+    11
+   ],
+   [
+    "maps_tactile::shared::transit",
+    11
+   ],
+   [
+    "com::waze::banners",
+    11
+   ],
+   [
+    "waze::insights::zone",
+    10
+   ],
+   [
+    "geo::automotive::perception",
+    10
+   ],
+   [
+    "geo_serving_proto::directions::request",
+    10
+   ],
+   [
+    "linqmap::proto::search_config",
+    10
+   ],
+   [
+    "com::waze::unified_guidance",
+    10
+   ],
+   [
+    "linqmap::proto::questions",
+    10
+   ],
+   [
+    "waze::gfx_engine::ogles20",
+    9
+   ],
+   [
+    "waze::realtime::routing",
+    9
+   ],
+   [
+    "linqmap::proto::poi",
+    9
+   ],
+   [
+    "com::waze::venueavailability",
+    9
+   ],
+   [
+    "waze::map::rendering",
+    8
+   ],
+   [
+    "logs::geo_transportation_analytics::triplogs",
+    8
+   ],
+   [
+    "privacy::data_governance::attributes",
+    8
+   ],
+   [
+    "linqmap::proto::drive",
+    8
+   ],
+   [
+    "devtools::protoshop::external",
+    7
+   ],
+   [
+    "waze::insights::notifications",
+    6
+   ],
+   [
+    "waze::insights::view",
+    6
+   ],
+   [
+    "waze::google::maps",
+    6
+   ],
+   [
+    "waze::insights::route",
+    6
+   ],
+   [
+    "linqmap::routing::proto",
+    6
+   ],
+   [
+    "linqmap::proto::marketplace_cache",
+    5
+   ],
+   [
+    "waze::client::road_snapper",
+    5
+   ]
+  ]
+ },
+ "scan_seconds": 15
+}
