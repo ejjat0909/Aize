@@ -1,0 +1,444 @@
+{
+ "schema": "aize-sprites/2",
+ "asset": "puck",
+ "variant": null,
+ "frame_dp": 104,
+ "unit_dp": 33.285614469530366,
+ "anchor": [
+  0.5,
+  0.5
+ ],
+ "pitches": [
+  0,
+  7.5,
+  15,
+  22.5,
+  30,
+  37.5,
+  45,
+  52.5,
+  60
+ ],
+ "yaws": 1,
+ "yaw_step_deg": 360.0,
+ "frame_index": "k = row * cols + col; yaw = k * yaw_step_deg, clockwise from screen-up",
+ "pitch_definition": "degrees from nadir (0 = looking straight down, 60 = towards the horizon) - the same as MapLibre `pitch`",
+ "kind": "solid",
+ "selection": {
+  "bucket": "the two pitch buckets that bracket the camera pitch (t = fractional position, 0 on a bucket) and the nearest yaw bucket; residual yaw = requested - bucket yaw",
+  "warp": "per bucket, ONE affine matrix: unsquash by 1/cos(bucket pitch) about the plane z = reprojection.plane_h_u, rotate by the yaw residual about the anchor, squash to cos(TRUE pitch)",
+  "blend": "draw the lower bucket at alpha (1 - t) and the upper at alpha t with BlendMode.Plus on premultiplied pixels (exact linear blend); on a bucket pitch (t ~ 0 or 1) draw ONE cell",
+  "switch": "pitch is continuous (blend) and needs no dissolve; on a heading-bucket change an optional ~100 ms dissolve old -> new softens the flip (measured: mean frame change at flip frames about 30 % lower)",
+  "single_bucket_fallback": "nearest bucket + the same warp, no blend: cheaper (always one draw), about 3 dB worse on off-grid pitches (reprojection.image_single_bucket)",
+  "scale": "constant on screen: draw the frame at frame_dp, independent of zoom and pitch",
+  "steady_state": "make the camera presets (overview, browse, drive, navigate) coincide with bucket pitches: then the only error left is the yaw residual"
+ },
+ "reprojection": {
+  "plane_h_u": 0.1,
+  "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+  "scenarios": {
+   "nav": {
+    "max_dp": 1.078,
+    "p95_dp": 1.064,
+    "base_max_dp": 0.239,
+    "base_p95_dp": 0.239,
+    "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+   },
+   "overview": {
+    "max_dp": 0.0,
+    "p95_dp": 0.0,
+    "base_max_dp": 0.0,
+    "base_p95_dp": 0.0,
+    "note": "top-down, north-up: any heading"
+   },
+   "transition": {
+    "max_dp": 1.509,
+    "p95_dp": 1.121,
+    "base_max_dp": 0.334,
+    "base_p95_dp": 0.251,
+    "note": "camera easing between presets (~0.5 s)"
+   },
+   "worst": {
+    "max_dp": 1.837,
+    "p95_dp": 1.282,
+    "base_max_dp": 0.406,
+    "base_p95_dp": 0.287,
+    "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+   }
+  },
+  "worst_err_dp": 1.837,
+  "p95_err_dp": 1.282,
+  "base_worst_err_dp": 0.406,
+  "base_p95_err_dp": 0.287,
+  "base_height_frac": 0.2,
+  "switch_pop_dp": 3.477,
+  "symmetric": true,
+  "unit_dp": 33.286,
+  "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+  "strategy_kind": "blend",
+  "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+  "image": {
+   "psnr_mean_db": 34.97,
+   "psnr_min_db": 30.21,
+   "switch_pop_rms_max": 0.0171,
+   "switch_pop_over_median": 2.08,
+   "pitch_pop_rms_max": 0.0171,
+   "yaw_pop_rms_max": 0.0027,
+   "views": 5,
+   "strategy": "blend"
+  }
+ },
+ "shadow": {
+  "baked": true,
+  "light": "upper-left, fixed to the screen (soft drop shadow of the object itself)",
+  "tint": "color.purple.950",
+  "opacity": 0.46
+ },
+ "webp": "lossy:92",
+ "tiers": {
+  "xxxhdpi": {
+   "scale": 4,
+   "frame_px": 416,
+   "sheets": {
+    "0": {
+     "file": "puck_p00@xxxhdpi.webp",
+     "bytes": 12110,
+     "sha256": "c516681d6c56ee62fb3f90958112ca82b379cdf6da5d81cdfddaf02611f04f5f",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "7.5": {
+     "file": "puck_p07d50@xxxhdpi.webp",
+     "bytes": 12096,
+     "sha256": "894637da1a872418cba2625c237bbf16a92ed4fc3caf6b8ecb27a1e7679518d6",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "15": {
+     "file": "puck_p15@xxxhdpi.webp",
+     "bytes": 11864,
+     "sha256": "4667e24e415ac29c703eb914d381cc8508d66460a56b3d8f3d1f816e5c729267",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "22.5": {
+     "file": "puck_p22d50@xxxhdpi.webp",
+     "bytes": 11602,
+     "sha256": "a9253a900c1527ec317e1a2a8896891dc0d073139f69cffb473c78768e8b627a",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "30": {
+     "file": "puck_p30@xxxhdpi.webp",
+     "bytes": 11196,
+     "sha256": "0d36728103b5ed9f375f4e86c4c3054dcec4ca58820ea1710c6d22aacb52323f",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "37.5": {
+     "file": "puck_p37d50@xxxhdpi.webp",
+     "bytes": 11136,
+     "sha256": "3f59d3778803b768577e46e7c4d52bee2bdfb6e6677bc8363e788871c5d82899",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "45": {
+     "file": "puck_p45@xxxhdpi.webp",
+     "bytes": 10506,
+     "sha256": "387707eaefc03f8493ec2ef037304388b91e8e9a6c14f3502b634383b3604688",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "52.5": {
+     "file": "puck_p52d50@xxxhdpi.webp",
+     "bytes": 9688,
+     "sha256": "f322f4d287513f04f51326830c4f4eee4efc727e9001a2f2c922d11067e00b3c",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    },
+    "60": {
+     "file": "puck_p60@xxxhdpi.webp",
+     "bytes": 8658,
+     "sha256": "4651b229fc9c8604e00358cc8b256b99d21322cbc6bb5235b0b79e5be9207fd1",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      416,
+      416
+     ]
+    }
+   },
+   "total_bytes": 98856
+  },
+  "xxhdpi": {
+   "scale": 3,
+   "frame_px": 312,
+   "sheets": {
+    "0": {
+     "file": "puck_p00@xxhdpi.webp",
+     "bytes": 10020,
+     "sha256": "98ae7dbb4e43b4b96fe007e27306b965c2950eb6961f1c8aa0544ecf753fb8f5",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "7.5": {
+     "file": "puck_p07d50@xxhdpi.webp",
+     "bytes": 9936,
+     "sha256": "5e4f0af568952f504665ece05ba500c2bebe75620fbe26418de826fae346c6be",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "15": {
+     "file": "puck_p15@xxhdpi.webp",
+     "bytes": 9828,
+     "sha256": "f6218d7418600063c71331f2ae3238351238a6a618eba9f52e07a81cdc2b4009",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "22.5": {
+     "file": "puck_p22d50@xxhdpi.webp",
+     "bytes": 9690,
+     "sha256": "88fbd8e4f4d30f208ab02240c0e6b2a7944b83d81b590805412132a611a55d28",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "30": {
+     "file": "puck_p30@xxhdpi.webp",
+     "bytes": 9470,
+     "sha256": "a006811dc51124cec7ff4b189fa08cd02dbec65529d9d275bd822f7a5aac2c1d",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "37.5": {
+     "file": "puck_p37d50@xxhdpi.webp",
+     "bytes": 9044,
+     "sha256": "e7923c67d8fe5456e259b4726a27bedc4169972a75ee3be0d97ef3eebdd09cdc",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "45": {
+     "file": "puck_p45@xxhdpi.webp",
+     "bytes": 8654,
+     "sha256": "84b7933e12707b148b10f06a95b5cbbc4d0abdc108ac59b5978b7e4de03a7816",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "52.5": {
+     "file": "puck_p52d50@xxhdpi.webp",
+     "bytes": 7980,
+     "sha256": "38eeae695bb1bbbb398830ccd7fc40dd059012d55e7c53b9663927a0b928b73c",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    },
+    "60": {
+     "file": "puck_p60@xxhdpi.webp",
+     "bytes": 7256,
+     "sha256": "efffdf96da1f646ea6f09a0621cdf1b701ba43d9c00d348f188492d51bc29bf0",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      312,
+      312
+     ]
+    }
+   },
+   "total_bytes": 81878
+  },
+  "xhdpi": {
+   "scale": 2,
+   "frame_px": 208,
+   "sheets": {
+    "0": {
+     "file": "puck_p00@xhdpi.webp",
+     "bytes": 6464,
+     "sha256": "258687593e6d028a96c667154f4796fc1a73d7650263f89c43453c80c0770cc1",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "7.5": {
+     "file": "puck_p07d50@xhdpi.webp",
+     "bytes": 6422,
+     "sha256": "dd795ecd13d28f71923119641dce6bd3688b39996804ff1dd747e27c8686b7c6",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "15": {
+     "file": "puck_p15@xhdpi.webp",
+     "bytes": 6424,
+     "sha256": "9d669cbc45480f2d707c500e9c01b8cd2cc997629e8f8f21e56ab2db9c70c995",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "22.5": {
+     "file": "puck_p22d50@xhdpi.webp",
+     "bytes": 6108,
+     "sha256": "93ee5482769fa98b54855c364813148330434191e96b2625ba13a7b75ca0e77c",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "30": {
+     "file": "puck_p30@xhdpi.webp",
+     "bytes": 5914,
+     "sha256": "f95bbf9b146f72b404b3b91685151946375ed067de4e15b220fc0e06cdc107b0",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "37.5": {
+     "file": "puck_p37d50@xhdpi.webp",
+     "bytes": 5902,
+     "sha256": "05bfbb32b1c6e190efe05923bfbb20ae0b6730f52bd677066c8aa8ff45ed105e",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "45": {
+     "file": "puck_p45@xhdpi.webp",
+     "bytes": 5436,
+     "sha256": "65452f6901b3bfde906362fe8e7cd970d2251ee6699b8e7cb623ed3dbda4510f",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "52.5": {
+     "file": "puck_p52d50@xhdpi.webp",
+     "bytes": 5126,
+     "sha256": "397b8d2e6e0e7478c6a0f17e721eb1b808604682c675326f200a72153e330483",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    },
+    "60": {
+     "file": "puck_p60@xhdpi.webp",
+     "bytes": 4740,
+     "sha256": "2e3c71ddd5affd61232865e91ed33535855f557d4279740489d3d54e620e2fde",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      208,
+      208
+     ]
+    }
+   },
+   "total_bytes": 52536
+  }
+ },
+ "source": {
+  "renderer": "4.5.9 LTS Cycles (CPU, OIDN)",
+  "samples": 64,
+  "render_px": 416,
+  "generator": "assets3d/blender/render_sprites.py",
+  "rig": {
+   "key": [
+    -0.95,
+    0.35,
+    1.0
+   ],
+   "shadow_key": [
+    -0.42,
+    0.4,
+    1.0
+   ],
+   "key_energy": 1250.0,
+   "ambient": 0.4,
+   "fill": 260.0,
+   "rim": 300.0
+  },
+  "frame_half_extent_u": 1.5622364444436132,
+  "object_radius_u": 1.000000022239038,
+  "object_height_u": 0.5520000457763672
+ },
+ "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
+}

@@ -1,0 +1,441 @@
+{
+ "schema": "aize-sprites/2",
+ "asset": "arrow",
+ "variant": null,
+ "frame_dp": 104,
+ "unit_dp": 21.993901159751918,
+ "anchor": [
+  0.5,
+  0.5
+ ],
+ "pitches": [
+  0,
+  7.5,
+  15,
+  22.5,
+  30,
+  37.5,
+  45,
+  52.5,
+  60
+ ],
+ "yaws": 24,
+ "yaw_step_deg": 15.0,
+ "frame_index": "k = row * cols + col; yaw = k * yaw_step_deg, clockwise from screen-up",
+ "pitch_definition": "degrees from nadir (0 = looking straight down, 60 = towards the horizon) - the same as MapLibre `pitch`",
+ "selection": {
+  "bucket": "nearest pitch bucket (ties -> the higher), nearest yaw bucket; residual yaw = requested - bucket yaw",
+  "warp": "ONE affine matrix per draw: unsquash by 1/cos(bucket pitch) about the plane z = reprojection.plane_h_u, rotate by the yaw residual about the anchor, squash to cos(true pitch)",
+  "switch": "on a bucket change dissolve old -> new over ~100 ms (two quads for 100 ms; one quad otherwise)",
+  "scale": "constant on screen: draw the frame at frame_dp, independent of zoom and pitch",
+  "steady_state": "make the camera presets (overview, browse, drive, navigate) coincide with bucket pitches: then the only error left is the yaw residual"
+ },
+ "reprojection": {
+  "plane_h_u": 0.1,
+  "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+  "scenarios": {
+   "nav": {
+    "max_dp": 3.967,
+    "p95_dp": 3.337,
+    "base_max_dp": 0.464,
+    "base_p95_dp": 0.366,
+    "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+   },
+   "overview": {
+    "max_dp": 0.0,
+    "p95_dp": 0.0,
+    "base_max_dp": 0.0,
+    "base_p95_dp": 0.0,
+    "note": "top-down, north-up: any heading"
+   },
+   "transition": {
+    "max_dp": 3.612,
+    "p95_dp": 2.657,
+    "base_max_dp": 0.423,
+    "base_p95_dp": 0.291,
+    "note": "camera easing between presets (~0.5 s)"
+   },
+   "worst": {
+    "max_dp": 4.756,
+    "p95_dp": 2.826,
+    "base_max_dp": 0.557,
+    "base_p95_dp": 0.31,
+    "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+   }
+  },
+  "worst_err_dp": 4.756,
+  "p95_err_dp": 2.826,
+  "base_worst_err_dp": 0.557,
+  "base_p95_err_dp": 0.31,
+  "base_height_frac": 0.2,
+  "switch_pop_dp": 4.43,
+  "symmetric": false,
+  "unit_dp": 21.994,
+  "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+  "strategy_kind": "blend",
+  "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+  "image": {
+   "psnr_mean_db": 30.44,
+   "psnr_min_db": 22.38,
+   "switch_pop_rms_max": 0.045,
+   "switch_pop_over_median": 3.3,
+   "pitch_pop_rms_max": 0.0076,
+   "yaw_pop_rms_max": 0.045,
+   "views": 20,
+   "strategy": "blend"
+  }
+ },
+ "shadow": {
+  "baked": true,
+  "light": "upper-left, fixed to the screen",
+  "tint": "color.purple.950",
+  "opacity": 0.46
+ },
+ "webp": "lossy:92",
+ "tiers": {
+  "xxhdpi": {
+   "scale": 3,
+   "frame_px": 312,
+   "sheets": {
+    "0": {
+     "file": "arrow_p00@xxhdpi.webp",
+     "bytes": 220730,
+     "sha256": "ed6001063fef648f70d0e7996d22ae8c88b5571f94d2298222235fa6cbbc1cb9",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "7.5": {
+     "file": "arrow_p07d50@xxhdpi.webp",
+     "bytes": 220638,
+     "sha256": "c556fc53268c8e15f1dadd5bef39e7388fd0abc7ec709f79795b692afc00f9c5",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "15": {
+     "file": "arrow_p15@xxhdpi.webp",
+     "bytes": 214966,
+     "sha256": "1cbcdbf967f38fd1d1917a25f94549a3362655eec6cd15b072dc675f38937937",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "22.5": {
+     "file": "arrow_p22d50@xxhdpi.webp",
+     "bytes": 209438,
+     "sha256": "8788493cadabcb19489c02f8579bed4d113d5933dfc7b5f60e616ed39a42e4f2",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "30": {
+     "file": "arrow_p30@xxhdpi.webp",
+     "bytes": 202952,
+     "sha256": "cb7518d03a4ef4fa762f29f29730d9f82e9aa202369059e187e069d8ec73274a",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "37.5": {
+     "file": "arrow_p37d50@xxhdpi.webp",
+     "bytes": 192576,
+     "sha256": "7fba378cc830c6fec2ae747b87b6f98daed2e34c45efe5a4ab901034db186b0b",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "45": {
+     "file": "arrow_p45@xxhdpi.webp",
+     "bytes": 182414,
+     "sha256": "39c19f9cb4e0903383fec8bb19dd3f51db76a4a37bbcfcff677c26951ac6fc5b",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "52.5": {
+     "file": "arrow_p52d50@xxhdpi.webp",
+     "bytes": 168738,
+     "sha256": "b0e81b823d16886bc41f6b32ffdd2404b3cd14ad4c21b350a66b9010743ed89d",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    },
+    "60": {
+     "file": "arrow_p60@xxhdpi.webp",
+     "bytes": 153978,
+     "sha256": "bf7101816c23061889d166d750ff85d6627129c728a95cde5687d59c1ceb59d2",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1872,
+      1248
+     ]
+    }
+   },
+   "total_bytes": 1766430
+  },
+  "xhdpi": {
+   "scale": 2,
+   "frame_px": 208,
+   "sheets": {
+    "0": {
+     "file": "arrow_p00@xhdpi.webp",
+     "bytes": 134340,
+     "sha256": "45ab6a40f0717797a83af192114ad211e8120764a31ba2e5f723c758f50ce193",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "7.5": {
+     "file": "arrow_p07d50@xhdpi.webp",
+     "bytes": 133360,
+     "sha256": "28662b66f1aa573b303fe8dae4de85a83592152ac7fb587567b7cba55f5b544c",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "15": {
+     "file": "arrow_p15@xhdpi.webp",
+     "bytes": 130586,
+     "sha256": "1f13d5020d8929d82f87e8192507a2fb298de3bc7549909eeef826be4b7dfa5f",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "22.5": {
+     "file": "arrow_p22d50@xhdpi.webp",
+     "bytes": 127082,
+     "sha256": "c5caa39748dab7c5dc3d34e98e126a67e6a4c692fcba98d39b0667d58680548c",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "30": {
+     "file": "arrow_p30@xhdpi.webp",
+     "bytes": 122554,
+     "sha256": "d862ca8d3e0f29343699f0b812f2f0608bf6b77b58d91eadd6595686d62930b8",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "37.5": {
+     "file": "arrow_p37d50@xhdpi.webp",
+     "bytes": 116912,
+     "sha256": "53493297efd1acc59434a38e597ace10041a5a25a3e75cba2553fa5a0d31f474",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "45": {
+     "file": "arrow_p45@xhdpi.webp",
+     "bytes": 110178,
+     "sha256": "f08b0010dc9ccb94deff015b5c3080e7b8335ce311b77db614f205d67f8c2651",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "52.5": {
+     "file": "arrow_p52d50@xhdpi.webp",
+     "bytes": 103620,
+     "sha256": "1da2cbb5256f163f3026c0e79de296350a815110959959d93fb76d9fac0ee42a",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    },
+    "60": {
+     "file": "arrow_p60@xhdpi.webp",
+     "bytes": 95296,
+     "sha256": "6586892471d73375ff379a1398d292ef218b1e145d7dfddaa7c7c0060a62fe54",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1248,
+      832
+     ]
+    }
+   },
+   "total_bytes": 1073928
+  },
+  "xxxhdpi": {
+   "scale": 4,
+   "frame_px": 416,
+   "sheets": {
+    "0": {
+     "file": "arrow_p00@xxxhdpi.webp",
+     "bytes": 248636,
+     "sha256": "9e2f252250272141c0d6e0cfe9551bb1babe4ff64891e80c66d27230591b3f0f",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "7.5": {
+     "file": "arrow_p07d50@xxxhdpi.webp",
+     "bytes": 249710,
+     "sha256": "2aea912e0e903797c87ab170aa1d34abd37bfec1edd9c278a04a33cb733ec850",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "15": {
+     "file": "arrow_p15@xxxhdpi.webp",
+     "bytes": 243026,
+     "sha256": "98350f90ac743de79ca429e75e53fc7206523b784c4f9ebf0a1b8c42ea34b79b",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "22.5": {
+     "file": "arrow_p22d50@xxxhdpi.webp",
+     "bytes": 235700,
+     "sha256": "4e1ea29ae9b4dea91808a515e64133d41b4cf85a2c99adb12b163c4a49160ed2",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "30": {
+     "file": "arrow_p30@xxxhdpi.webp",
+     "bytes": 227382,
+     "sha256": "11ce37401adb9228f8bc0f88b6b0d8ad90720181192d5799795431188f8336fb",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "37.5": {
+     "file": "arrow_p37d50@xxxhdpi.webp",
+     "bytes": 215636,
+     "sha256": "b5f7ce5a26d86d36a7a5888917c6c6d660978fd7c66c4ad1eef7357d8628e1ea",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "45": {
+     "file": "arrow_p45@xxxhdpi.webp",
+     "bytes": 203102,
+     "sha256": "1fda5e8f3639e0e0850896a2a38502df91c883e0ac84bb53f7f7ddc6b47742ea",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "52.5": {
+     "file": "arrow_p52d50@xxxhdpi.webp",
+     "bytes": 187032,
+     "sha256": "c837a9693d3a20bd4b3e32cec100513200c50036f91d6c602680c5b62a903299",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    },
+    "60": {
+     "file": "arrow_p60@xxxhdpi.webp",
+     "bytes": 170186,
+     "sha256": "09f1d14fb03fc28b4210695fb70d8950a6acd3b6f2547e91aaac44d466fe8941",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2496,
+      1664
+     ]
+    }
+   },
+   "total_bytes": 1980410
+  }
+ },
+ "source": {
+  "renderer": "4.5.9 LTS Cycles (CPU, OIDN)",
+  "samples": 64,
+  "render_px": 416,
+  "generator": "assets3d/blender/render_sprites.py",
+  "rig": {
+   "key": [
+    -0.95,
+    0.35,
+    1.0
+   ],
+   "shadow_key": [
+    -0.42,
+    0.4,
+    1.0
+   ],
+   "key_energy": 1250.0,
+   "ambient": 0.4,
+   "fill": 260.0,
+   "rim": 300.0
+  },
+  "frame_half_extent_u": 2.3642917926337783,
+  "object_radius_u": 1.6940502710650187,
+  "object_height_u": 0.954182505607605
+ },
+ "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
+}
