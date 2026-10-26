@@ -1,0 +1,308 @@
+{
+ "schema": "aize-sprites/2",
+ "asset": "car_taxi",
+ "variant": null,
+ "frame_dp": 84,
+ "unit_dp": 12.30740678667513,
+ "anchor": [
+  0.5,
+  0.5
+ ],
+ "pitches": [
+  0,
+  15,
+  30,
+  45,
+  60
+ ],
+ "yaws": 24,
+ "yaw_step_deg": 15.0,
+ "frame_index": "k = row * cols + col; yaw = k * yaw_step_deg, clockwise from screen-up",
+ "pitch_definition": "degrees from nadir (0 = looking straight down, 60 = towards the horizon) - the same as MapLibre `pitch`",
+ "kind": "solid",
+ "selection": {
+  "bucket": "the two pitch buckets that bracket the camera pitch (t = fractional position, 0 on a bucket) and the nearest yaw bucket; residual yaw = requested - bucket yaw",
+  "warp": "per bucket, ONE affine matrix: unsquash by 1/cos(bucket pitch) about the plane z = reprojection.plane_h_u, rotate by the yaw residual about the anchor, squash to cos(TRUE pitch)",
+  "blend": "draw the lower bucket at alpha (1 - t) and the upper at alpha t with BlendMode.Plus on premultiplied pixels (exact linear blend); on a bucket pitch (t ~ 0 or 1) draw ONE cell",
+  "switch": "on a yaw-bucket change dissolve old -> new over ~100 ms; pitch is continuous, it needs no dissolve",
+  "single_bucket_fallback": "nearest bucket + the same warp, no blend: cheaper (always one draw), about 3 dB worse on off-grid pitches (reprojection.image_single_bucket)",
+  "scale": "constant on screen: draw the frame at frame_dp, independent of zoom and pitch",
+  "steady_state": "make the camera presets (overview, browse, drive, navigate) coincide with bucket pitches: then the only error left is the yaw residual"
+ },
+ "reprojection": {
+  "plane_h_u": 0.8,
+  "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+  "scenarios": {
+   "nav": {
+    "max_dp": 2.65,
+    "p95_dp": 2.325,
+    "base_max_dp": 2.65,
+    "base_p95_dp": 2.387,
+    "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+   },
+   "overview": {
+    "max_dp": 0.0,
+    "p95_dp": 0.0,
+    "base_max_dp": 0.0,
+    "base_p95_dp": 0.0,
+    "note": "top-down, north-up: any heading"
+   },
+   "transition": {
+    "max_dp": 2.682,
+    "p95_dp": 1.92,
+    "base_max_dp": 2.682,
+    "base_p95_dp": 1.971,
+    "note": "camera easing between presets (~0.5 s)"
+   },
+   "worst": {
+    "max_dp": 3.334,
+    "p95_dp": 2.107,
+    "base_max_dp": 3.334,
+    "base_p95_dp": 2.181,
+    "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+   }
+  },
+  "worst_err_dp": 3.334,
+  "p95_err_dp": 2.107,
+  "base_worst_err_dp": 3.334,
+  "base_p95_err_dp": 2.181,
+  "base_height_frac": 0.2,
+  "switch_pop_dp": 4.392,
+  "symmetric": false,
+  "unit_dp": 12.307,
+  "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+  "strategy_kind": "blend",
+  "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+  "image": {
+   "psnr_mean_db": 26.44,
+   "psnr_min_db": 23.46,
+   "switch_pop_rms_max": 0.0523,
+   "switch_pop_over_median": 4.14,
+   "pitch_pop_rms_max": 0.0133,
+   "yaw_pop_rms_max": 0.0523,
+   "views": 16,
+   "strategy": "blend"
+  }
+ },
+ "shadow": {
+  "baked": true,
+  "light": "upper-left, fixed to the screen (soft drop shadow of the object itself)",
+  "tint": "color.purple.950",
+  "opacity": 0.46
+ },
+ "webp": "lossy:92",
+ "tiers": {
+  "xxhdpi": {
+   "scale": 3,
+   "frame_px": 252,
+   "sheets": {
+    "0": {
+     "file": "car_taxi_p00@xxhdpi.webp",
+     "bytes": 265046,
+     "sha256": "1a78723075932a080fdb45a2dd3415cd7f41105bad7f8a7892b7e3f75982fef1",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1512,
+      1008
+     ]
+    },
+    "15": {
+     "file": "car_taxi_p15@xxhdpi.webp",
+     "bytes": 262628,
+     "sha256": "337443badaa734b9354a159b55a01367849d373f6ebf2c5ae8d5af1c8eb7d676",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1512,
+      1008
+     ]
+    },
+    "30": {
+     "file": "car_taxi_p30@xxhdpi.webp",
+     "bytes": 259300,
+     "sha256": "4461930b1155b7f0b4d7406d90ed770e40e06f9489a9a164c571775823bc50b8",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1512,
+      1008
+     ]
+    },
+    "45": {
+     "file": "car_taxi_p45@xxhdpi.webp",
+     "bytes": 232090,
+     "sha256": "09cbba76cf77e37e88527467b2f942775cd5f719faab84aededa9cbbb4131676",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1512,
+      1008
+     ]
+    },
+    "60": {
+     "file": "car_taxi_p60@xxhdpi.webp",
+     "bytes": 191326,
+     "sha256": "3a8edfe4f83585391122fb428faf89301eb42a57997d15fb006cc4f855cb65e7",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1512,
+      1008
+     ]
+    }
+   },
+   "total_bytes": 1210390
+  },
+  "xhdpi": {
+   "scale": 2,
+   "frame_px": 168,
+   "sheets": {
+    "0": {
+     "file": "car_taxi_p00@xhdpi.webp",
+     "bytes": 156216,
+     "sha256": "ec1ade58397cace789ab3187212626d6e241c3de46cd4b739747631379b78fa1",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1008,
+      672
+     ]
+    },
+    "15": {
+     "file": "car_taxi_p15@xhdpi.webp",
+     "bytes": 156478,
+     "sha256": "cbaa0ad1a9c9b6e28ba843c34726dc19f629cc8964dc57492ff18966db9d5afc",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1008,
+      672
+     ]
+    },
+    "30": {
+     "file": "car_taxi_p30@xhdpi.webp",
+     "bytes": 153670,
+     "sha256": "eebac4c9fd23e5e881ceb57e60c4069ed999e77d49552379e86b3307c320dad0",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1008,
+      672
+     ]
+    },
+    "45": {
+     "file": "car_taxi_p45@xhdpi.webp",
+     "bytes": 140188,
+     "sha256": "d3e4c4fe8faead4be0a30c363add8d125cbeafc754a33a712b59dd5690322b6a",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1008,
+      672
+     ]
+    },
+    "60": {
+     "file": "car_taxi_p60@xhdpi.webp",
+     "bytes": 117642,
+     "sha256": "cbc16b62ced2e8cae1c48fe6d6804f597c3894f9e89fbd246227fd229714ced9",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      1008,
+      672
+     ]
+    }
+   },
+   "total_bytes": 724194
+  },
+  "xxxhdpi": {
+   "scale": 4,
+   "frame_px": 336,
+   "sheets": {
+    "0": {
+     "file": "car_taxi_p00@xxxhdpi.webp",
+     "bytes": 379758,
+     "sha256": "87e6dce21c5a8885eb1fe121017d84f7bf3dff7d4a47ea0b6acace119ab712cc",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2016,
+      1344
+     ]
+    },
+    "15": {
+     "file": "car_taxi_p15@xxxhdpi.webp",
+     "bytes": 374526,
+     "sha256": "3e7fdbf2c1a3f83f62b1888fb611bb29c899c6214b414490ec5b7f61f176bcda",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2016,
+      1344
+     ]
+    },
+    "30": {
+     "file": "car_taxi_p30@xxxhdpi.webp",
+     "bytes": 368318,
+     "sha256": "1a8583afc79d7cf73c99795b92b30c04a60901cf769c0553acbfa0739e52e514",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2016,
+      1344
+     ]
+    },
+    "45": {
+     "file": "car_taxi_p45@xxxhdpi.webp",
+     "bytes": 332636,
+     "sha256": "cc81350e686365048b4dfdbea1411bf7ac6b99bce8cb4c6813a97b00b41977e1",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2016,
+      1344
+     ]
+    },
+    "60": {
+     "file": "car_taxi_p60@xxxhdpi.webp",
+     "bytes": 273172,
+     "sha256": "3a764a0adfa90cb0e0498e435010e9eb6e447f64150473803900e615ca221e77",
+     "cols": 6,
+     "rows": 4,
+     "size": [
+      2016,
+      1344
+     ]
+    }
+   },
+   "total_bytes": 1728410
+  }
+ },
+ "source": {
+  "renderer": "4.5.9 LTS Cycles (CPU, OIDN)",
+  "samples": 40,
+  "render_px": 416,
+  "generator": "assets3d/blender/render_sprites.py",
+  "rig": {
+   "key": [
+    -0.95,
+    0.35,
+    1.0
+   ],
+   "shadow_key": [
+    -0.42,
+    0.4,
+    1.0
+   ],
+   "key_energy": 1250.0,
+   "ambient": 0.4,
+   "fill": 260.0,
+   "rim": 300.0
+  },
+  "frame_half_extent_u": 3.4125791669998407,
+  "object_radius_u": 2.383722795631991,
+  "object_height_u": 1.5850000381469727
+ },
+ "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
+}
