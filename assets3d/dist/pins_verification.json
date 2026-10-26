@@ -1,0 +1,317 @@
+[
+ {
+  "scope": "pin_police",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_police",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 39.5 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_police",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_police xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_police",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_police xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_police",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_police xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_hazard",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_hazard",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.7 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_hazard",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_hazard xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_hazard",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_hazard xxhdpi: 6 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_hazard",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_hazard xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_accident",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_accident",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 39.0 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_accident",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_accident xxxhdpi: 10 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_accident",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_accident xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_accident",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_accident xhdpi: 5 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_jam",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_jam",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.9 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_jam",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_jam xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_jam",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_jam xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_jam",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_jam xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_closure",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_closure",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.6 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_closure",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_closure xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_closure",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_closure xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_closure",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_closure xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_camera",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_camera",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 48.8 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_camera",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_camera xxxhdpi: 8 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_camera",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_camera xxhdpi: 6 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_camera",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_camera xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_gas",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_gas",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.9 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_gas",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_gas xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_gas",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_gas xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_gas",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_gas xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_parking",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_parking",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.3 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_parking",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_parking xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_parking",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_parking xxhdpi: 6 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_parking",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_parking xhdpi: 4 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_destination",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "pin_destination",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.7 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "pin_destination",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_destination xxxhdpi: 9 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_destination",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_destination xxhdpi: 7 KiB (<= 200 KiB)"
+ },
+ {
+  "scope": "pin_destination",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "pin_destination xhdpi: 4 KiB (<= 200 KiB)"
+ }
+]

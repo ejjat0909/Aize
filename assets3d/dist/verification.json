@@ -1,0 +1,205 @@
+[
+ {
+  "scope": "selftest",
+  "check": "fringe",
+  "pass": true,
+  "required": true,
+  "detail": "worst edge-colour error after a 4x shrink: float-premultiplied 0/255 (<=3); independent-channel resize 141/255 (>40, i.e. the halo it prevents is real)"
+ },
+ {
+  "scope": "calib",
+  "check": "anchor",
+  "pass": true,
+  "required": true,
+  "detail": "calibration dot is within 0.24 px of the declared anchor (0.5, 0.5) at every pitch (<=1.0)"
+ },
+ {
+  "scope": "calib",
+  "check": "pitch",
+  "pass": true,
+  "required": true,
+  "detail": "disc area vs cos(pitch): worst relative error 0.05 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+ },
+ {
+  "scope": "calib",
+  "check": "anchor",
+  "pass": true,
+  "required": true,
+  "detail": "calibration dot is within 0.23 px of the declared anchor (0.5, 0.8) at every pitch (<=1.0)"
+ },
+ {
+  "scope": "calib",
+  "check": "pitch",
+  "pass": true,
+  "required": true,
+  "detail": "disc area vs cos(pitch): worst relative error 0.07 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+ },
+ {
+  "scope": "arrow",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "216 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "arrow",
+  "check": "yaw",
+  "pass": true,
+  "required": true,
+  "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+ },
+ {
+  "scope": "arrow",
+  "check": "brand",
+  "pass": true,
+  "required": true,
+  "detail": "hue L/R 297.5/297.2 vs token 297.2 (<=3 deg); mean lightness 0.550 vs 0.556 (<=0.05); facet contrast dL=0.029"
+ },
+ {
+  "scope": "arrow",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.9 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "arrow",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "arrow xxhdpi: 1725 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "arrow",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "arrow xhdpi: 1049 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "arrow",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "arrow xxxhdpi: 1934 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "arrow",
+  "check": "silhouette",
+  "pass": true,
+  "required": true,
+  "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.56 dp, p95 0.31 dp (<= 1.0 dp); plane h=0.10 u"
+ },
+ {
+  "scope": "arrow",
+  "check": "raised",
+  "pass": true,
+  "required": true,
+  "detail": "all vertices incl. raised parts (ridge, roof): worst 4.76 dp, p95 2.83 dp (<= 6.0 dp)"
+ },
+ {
+  "scope": "arrow",
+  "check": "image",
+  "pass": true,
+  "required": true,
+  "detail": "vs true Blender renders of 20 off-grid views: PSNR mean 30.4 dB, min 22.4 dB (mean >= 25.0)"
+ },
+ {
+  "scope": "arrow",
+  "check": "pop-pitch",
+  "pass": true,
+  "required": true,
+  "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0076 (<= 0.02; continuous - needs no dissolve)"
+ },
+ {
+  "scope": "arrow",
+  "check": "pop-yaw",
+  "pass": true,
+  "required": true,
+  "detail": "image change at a heading-bucket flip: RMS 0.0450 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+ },
+ {
+  "scope": "arrow",
+  "check": "steady",
+  "pass": true,
+  "required": true,
+  "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+ },
+ {
+  "scope": "puck",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "9 frames; max alpha in the 2 px border = 1 (<=3)"
+ },
+ {
+  "scope": "puck",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 44.4 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "puck",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "puck xxxhdpi: 97 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "puck",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "puck xxhdpi: 80 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "puck",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "puck xhdpi: 51 KiB (<= 3500 KiB)"
+ },
+ {
+  "scope": "puck",
+  "check": "silhouette",
+  "pass": true,
+  "required": true,
+  "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.41 dp, p95 0.29 dp (<= 1.0 dp); plane h=0.10 u"
+ },
+ {
+  "scope": "puck",
+  "check": "raised",
+  "pass": true,
+  "required": true,
+  "detail": "all vertices incl. raised parts (ridge, roof): worst 1.84 dp, p95 1.28 dp (<= 6.0 dp)"
+ },
+ {
+  "scope": "puck",
+  "check": "image",
+  "pass": true,
+  "required": true,
+  "detail": "vs true Blender renders of 5 off-grid views: PSNR mean 35.0 dB, min 30.2 dB (mean >= 25.0)"
+ },
+ {
+  "scope": "puck",
+  "check": "pop-pitch",
+  "pass": true,
+  "required": true,
+  "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0171 (<= 0.02; continuous - needs no dissolve)"
+ },
+ {
+  "scope": "puck",
+  "check": "pop-yaw",
+  "pass": true,
+  "required": true,
+  "detail": "image change at a heading-bucket flip: RMS 0.0027 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+ },
+ {
+  "scope": "puck",
+  "check": "steady",
+  "pass": true,
+  "required": true,
+  "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+ }
+]

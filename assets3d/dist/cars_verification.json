@@ -1,0 +1,254 @@
+[
+ {
+  "scope": "car_sedan",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "120 frames; max alpha in the 2 px border = 2 (<=3)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "yaw",
+  "pass": true,
+  "required": true,
+  "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.5 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_sedan xxxhdpi: 1621 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_sedan xxhdpi: 1132 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_sedan xhdpi: 678 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "silhouette",
+  "pass": true,
+  "required": true,
+  "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.41 dp, p95 2.23 dp (<= 4.0 dp); plane h=0.80 u"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "raised",
+  "pass": true,
+  "required": true,
+  "detail": "all vertices incl. raised parts (ridge, roof): worst 3.39 dp, p95 2.16 dp (<= 6.0 dp)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "image",
+  "pass": true,
+  "required": true,
+  "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.1 dB, min 22.9 dB (mean >= 25.0)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "pop-pitch",
+  "pass": true,
+  "required": true,
+  "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0162 (<= 0.02; continuous - needs no dissolve)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "pop-yaw",
+  "pass": true,
+  "required": true,
+  "detail": "image change at a heading-bucket flip: RMS 0.0528 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+ },
+ {
+  "scope": "car_sedan",
+  "check": "steady",
+  "pass": true,
+  "required": true,
+  "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "120 frames; max alpha in the 2 px border = 2 (<=3)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "yaw",
+  "pass": true,
+  "required": true,
+  "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.0 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_taxi xxhdpi: 1182 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_taxi xhdpi: 707 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_taxi xxxhdpi: 1688 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "silhouette",
+  "pass": true,
+  "required": true,
+  "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.33 dp, p95 2.18 dp (<= 4.0 dp); plane h=0.80 u"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "raised",
+  "pass": true,
+  "required": true,
+  "detail": "all vertices incl. raised parts (ridge, roof): worst 3.33 dp, p95 2.11 dp (<= 6.0 dp)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "image",
+  "pass": true,
+  "required": true,
+  "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.4 dB, min 23.5 dB (mean >= 25.0)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "pop-pitch",
+  "pass": true,
+  "required": true,
+  "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0133 (<= 0.02; continuous - needs no dissolve)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "pop-yaw",
+  "pass": true,
+  "required": true,
+  "detail": "image change at a heading-bucket flip: RMS 0.0523 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+ },
+ {
+  "scope": "car_taxi",
+  "check": "steady",
+  "pass": true,
+  "required": true,
+  "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "clip",
+  "pass": true,
+  "required": true,
+  "detail": "120 frames; max alpha in the 2 px border = 3 (<=3)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "yaw",
+  "pass": true,
+  "required": true,
+  "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "roundtrip",
+  "pass": true,
+  "required": true,
+  "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.7 dB over every frame and tier (>=38)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_suv xxxhdpi: 1640 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_suv xxhdpi: 1119 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "budget",
+  "pass": true,
+  "required": true,
+  "detail": "car_suv xhdpi: 668 KiB (<= 2500 KiB)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "silhouette",
+  "pass": true,
+  "required": true,
+  "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.14 dp, p95 2.07 dp (<= 4.0 dp); plane h=0.80 u"
+ },
+ {
+  "scope": "car_suv",
+  "check": "raised",
+  "pass": true,
+  "required": true,
+  "detail": "all vertices incl. raised parts (ridge, roof): worst 3.84 dp, p95 1.98 dp (<= 6.0 dp)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "image",
+  "pass": true,
+  "required": true,
+  "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.9 dB, min 23.6 dB (mean >= 25.0)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "pop-pitch",
+  "pass": true,
+  "required": true,
+  "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0148 (<= 0.02; continuous - needs no dissolve)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "pop-yaw",
+  "pass": true,
+  "required": true,
+  "detail": "image change at a heading-bucket flip: RMS 0.0441 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+ },
+ {
+  "scope": "car_suv",
+  "check": "steady",
+  "pass": true,
+  "required": true,
+  "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+ }
+]

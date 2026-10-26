@@ -1,0 +1,2370 @@
+{
+ "assets": {
+  "arrow": {
+   "kind": "solid",
+   "frames": 216,
+   "pitches": [
+    0,
+    7.5,
+    15,
+    22.5,
+    30,
+    37.5,
+    45,
+    52.5,
+    60
+   ],
+   "yaws": 24,
+   "frame_dp": 104,
+   "unit_dp": 21.993901159751918,
+   "tiers_kib": {
+    "xxhdpi": 1725.0,
+    "xhdpi": 1048.8,
+    "xxxhdpi": 1934.0
+   },
+   "reprojection": {
+    "plane_h_u": 0.1,
+    "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+    "scenarios": {
+     "nav": {
+      "max_dp": 3.967,
+      "p95_dp": 3.337,
+      "base_max_dp": 0.464,
+      "base_p95_dp": 0.366,
+      "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+     },
+     "overview": {
+      "max_dp": 0.0,
+      "p95_dp": 0.0,
+      "base_max_dp": 0.0,
+      "base_p95_dp": 0.0,
+      "note": "top-down, north-up: any heading"
+     },
+     "transition": {
+      "max_dp": 3.612,
+      "p95_dp": 2.657,
+      "base_max_dp": 0.423,
+      "base_p95_dp": 0.291,
+      "note": "camera easing between presets (~0.5 s)"
+     },
+     "worst": {
+      "max_dp": 4.756,
+      "p95_dp": 2.826,
+      "base_max_dp": 0.557,
+      "base_p95_dp": 0.31,
+      "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+     }
+    },
+    "worst_err_dp": 4.756,
+    "p95_err_dp": 2.826,
+    "base_worst_err_dp": 0.557,
+    "base_p95_err_dp": 0.31,
+    "base_height_frac": 0.2,
+    "switch_pop_dp": 4.43,
+    "symmetric": false,
+    "unit_dp": 21.994,
+    "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+    "strategy_kind": "blend",
+    "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+    "image": {
+     "psnr_mean_db": 30.44,
+     "psnr_min_db": 22.38,
+     "switch_pop_rms_max": 0.045,
+     "switch_pop_over_median": 3.3,
+     "pitch_pop_rms_max": 0.0076,
+     "yaw_pop_rms_max": 0.045,
+     "views": 20,
+     "strategy": "blend"
+    }
+   },
+   "samples": 64,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "car_sedan": {
+   "kind": "solid",
+   "frames": 120,
+   "pitches": [
+    0,
+    15,
+    30,
+    45,
+    60
+   ],
+   "yaws": 24,
+   "frame_dp": 84,
+   "unit_dp": 12.594035679418203,
+   "tiers_kib": {
+    "xxxhdpi": 1621.0,
+    "xxhdpi": 1132.2,
+    "xhdpi": 677.8
+   },
+   "reprojection": {
+    "plane_h_u": 0.8,
+    "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+    "scenarios": {
+     "nav": {
+      "max_dp": 2.711,
+      "p95_dp": 2.368,
+      "base_max_dp": 2.711,
+      "base_p95_dp": 2.443,
+      "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+     },
+     "overview": {
+      "max_dp": 0.0,
+      "p95_dp": 0.0,
+      "base_max_dp": 0.0,
+      "base_p95_dp": 0.0,
+      "note": "top-down, north-up: any heading"
+     },
+     "transition": {
+      "max_dp": 2.744,
+      "p95_dp": 1.956,
+      "base_max_dp": 2.744,
+      "base_p95_dp": 2.017,
+      "note": "camera easing between presets (~0.5 s)"
+     },
+     "worst": {
+      "max_dp": 3.393,
+      "p95_dp": 2.164,
+      "base_max_dp": 3.411,
+      "base_p95_dp": 2.232,
+      "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+     }
+    },
+    "worst_err_dp": 3.393,
+    "p95_err_dp": 2.164,
+    "base_worst_err_dp": 3.411,
+    "base_p95_err_dp": 2.232,
+    "base_height_frac": 0.2,
+    "switch_pop_dp": 4.495,
+    "symmetric": false,
+    "unit_dp": 12.594,
+    "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+    "strategy_kind": "blend",
+    "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+    "image": {
+     "psnr_mean_db": 26.07,
+     "psnr_min_db": 22.95,
+     "switch_pop_rms_max": 0.0528,
+     "switch_pop_over_median": 3.59,
+     "pitch_pop_rms_max": 0.0162,
+     "yaw_pop_rms_max": 0.0528,
+     "views": 16,
+     "strategy": "blend"
+    }
+   },
+   "samples": 40,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "car_suv": {
+   "kind": "solid",
+   "frames": 120,
+   "pitches": [
+    0,
+    15,
+    30,
+    45,
+    60
+   ],
+   "yaws": 24,
+   "frame_dp": 84,
+   "unit_dp": 11.58676249364634,
+   "tiers_kib": {
+    "xxxhdpi": 1640.5,
+    "xxhdpi": 1119.5,
+    "xhdpi": 668.2
+   },
+   "reprojection": {
+    "plane_h_u": 0.8,
+    "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+    "scenarios": {
+     "nav": {
+      "max_dp": 3.056,
+      "p95_dp": 2.172,
+      "base_max_dp": 2.494,
+      "base_p95_dp": 2.239,
+      "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+     },
+     "overview": {
+      "max_dp": 0.0,
+      "p95_dp": 0.0,
+      "base_max_dp": 0.0,
+      "base_p95_dp": 0.0,
+      "note": "top-down, north-up: any heading"
+     },
+     "transition": {
+      "max_dp": 3.093,
+      "p95_dp": 1.794,
+      "base_max_dp": 2.525,
+      "base_p95_dp": 1.849,
+      "note": "camera easing between presets (~0.5 s)"
+     },
+     "worst": {
+      "max_dp": 3.844,
+      "p95_dp": 1.982,
+      "base_max_dp": 3.138,
+      "base_p95_dp": 2.066,
+      "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+     }
+    },
+    "worst_err_dp": 3.844,
+    "p95_err_dp": 1.982,
+    "base_worst_err_dp": 3.138,
+    "base_p95_err_dp": 2.066,
+    "base_height_frac": 0.2,
+    "switch_pop_dp": 5.065,
+    "symmetric": false,
+    "unit_dp": 11.587,
+    "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+    "strategy_kind": "blend",
+    "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+    "image": {
+     "psnr_mean_db": 26.94,
+     "psnr_min_db": 23.58,
+     "switch_pop_rms_max": 0.0441,
+     "switch_pop_over_median": 3.52,
+     "pitch_pop_rms_max": 0.0148,
+     "yaw_pop_rms_max": 0.0441,
+     "views": 16,
+     "strategy": "blend"
+    }
+   },
+   "samples": 40,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "car_taxi": {
+   "kind": "solid",
+   "frames": 120,
+   "pitches": [
+    0,
+    15,
+    30,
+    45,
+    60
+   ],
+   "yaws": 24,
+   "frame_dp": 84,
+   "unit_dp": 12.30740678667513,
+   "tiers_kib": {
+    "xxhdpi": 1182.0,
+    "xhdpi": 707.2,
+    "xxxhdpi": 1687.9
+   },
+   "reprojection": {
+    "plane_h_u": 0.8,
+    "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+    "scenarios": {
+     "nav": {
+      "max_dp": 2.65,
+      "p95_dp": 2.325,
+      "base_max_dp": 2.65,
+      "base_p95_dp": 2.387,
+      "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+     },
+     "overview": {
+      "max_dp": 0.0,
+      "p95_dp": 0.0,
+      "base_max_dp": 0.0,
+      "base_p95_dp": 0.0,
+      "note": "top-down, north-up: any heading"
+     },
+     "transition": {
+      "max_dp": 2.682,
+      "p95_dp": 1.92,
+      "base_max_dp": 2.682,
+      "base_p95_dp": 1.971,
+      "note": "camera easing between presets (~0.5 s)"
+     },
+     "worst": {
+      "max_dp": 3.334,
+      "p95_dp": 2.107,
+      "base_max_dp": 3.334,
+      "base_p95_dp": 2.181,
+      "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+     }
+    },
+    "worst_err_dp": 3.334,
+    "p95_err_dp": 2.107,
+    "base_worst_err_dp": 3.334,
+    "base_p95_err_dp": 2.181,
+    "base_height_frac": 0.2,
+    "switch_pop_dp": 4.392,
+    "symmetric": false,
+    "unit_dp": 12.307,
+    "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+    "strategy_kind": "blend",
+    "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+    "image": {
+     "psnr_mean_db": 26.44,
+     "psnr_min_db": 23.46,
+     "switch_pop_rms_max": 0.0523,
+     "switch_pop_over_median": 4.14,
+     "pitch_pop_rms_max": 0.0133,
+     "yaw_pop_rms_max": 0.0523,
+     "views": 16,
+     "strategy": "blend"
+    }
+   },
+   "samples": 40,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_accident": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 9.7,
+    "xxhdpi": 7.1,
+    "xhdpi": 4.7
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_camera": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 8.3,
+    "xxhdpi": 6.1,
+    "xhdpi": 4.0
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_closure": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 9.2,
+    "xxhdpi": 6.8,
+    "xhdpi": 4.5
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_destination": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 9.2,
+    "xxhdpi": 6.8,
+    "xhdpi": 4.5
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_gas": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 8.9,
+    "xxhdpi": 6.6,
+    "xhdpi": 4.3
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_hazard": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 8.8,
+    "xxhdpi": 6.4,
+    "xhdpi": 4.3
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_jam": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 9.1,
+    "xxhdpi": 6.7,
+    "xhdpi": 4.4
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_parking": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 8.7,
+    "xxhdpi": 6.4,
+    "xhdpi": 4.2
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "pin_police": {
+   "kind": "billboard",
+   "frames": 1,
+   "pitches": [
+    0
+   ],
+   "yaws": 1,
+   "frame_dp": 64,
+   "unit_dp": 16.0,
+   "tiers_kib": {
+    "xxxhdpi": 9.1,
+    "xxhdpi": 6.8,
+    "xhdpi": 4.4
+   },
+   "reprojection": null,
+   "samples": 96,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  },
+  "puck": {
+   "kind": "solid",
+   "frames": 9,
+   "pitches": [
+    0,
+    7.5,
+    15,
+    22.5,
+    30,
+    37.5,
+    45,
+    52.5,
+    60
+   ],
+   "yaws": 1,
+   "frame_dp": 104,
+   "unit_dp": 33.285614469530366,
+   "tiers_kib": {
+    "xxxhdpi": 96.5,
+    "xxhdpi": 80.0,
+    "xhdpi": 51.3
+   },
+   "reprojection": {
+    "plane_h_u": 0.1,
+    "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
+    "scenarios": {
+     "nav": {
+      "max_dp": 1.078,
+      "p95_dp": 1.064,
+      "base_max_dp": 0.239,
+      "base_p95_dp": 0.239,
+      "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
+     },
+     "overview": {
+      "max_dp": 0.0,
+      "p95_dp": 0.0,
+      "base_max_dp": 0.0,
+      "base_p95_dp": 0.0,
+      "note": "top-down, north-up: any heading"
+     },
+     "transition": {
+      "max_dp": 1.509,
+      "p95_dp": 1.121,
+      "base_max_dp": 0.334,
+      "base_p95_dp": 0.251,
+      "note": "camera easing between presets (~0.5 s)"
+     },
+     "worst": {
+      "max_dp": 1.837,
+      "p95_dp": 1.282,
+      "base_max_dp": 0.406,
+      "base_p95_dp": 0.287,
+      "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
+     }
+    },
+    "worst_err_dp": 1.837,
+    "p95_err_dp": 1.282,
+    "base_worst_err_dp": 0.406,
+    "base_p95_err_dp": 0.287,
+    "base_height_frac": 0.2,
+    "switch_pop_dp": 3.477,
+    "symmetric": true,
+    "unit_dp": 33.286,
+    "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
+    "strategy_kind": "blend",
+    "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
+    "image": {
+     "psnr_mean_db": 34.97,
+     "psnr_min_db": 30.21,
+     "switch_pop_rms_max": 0.0171,
+     "switch_pop_over_median": 2.08,
+     "pitch_pop_rms_max": 0.0171,
+     "yaw_pop_rms_max": 0.0027,
+     "views": 5,
+     "strategy": "blend"
+    }
+   },
+   "samples": 64,
+   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)"
+  }
+ },
+ "verification": [
+  {
+   "scope": "selftest",
+   "check": "fringe",
+   "pass": true,
+   "required": true,
+   "detail": "worst edge-colour error after a 4x shrink: float-premultiplied 0/255 (<=3); independent-channel resize 141/255 (>40, i.e. the halo it prevents is real)"
+  },
+  {
+   "scope": "calib",
+   "check": "anchor",
+   "pass": true,
+   "required": true,
+   "detail": "calibration dot is within 0.24 px of the declared anchor (0.5, 0.5) at every pitch (<=1.0)"
+  },
+  {
+   "scope": "calib",
+   "check": "pitch",
+   "pass": true,
+   "required": true,
+   "detail": "disc area vs cos(pitch): worst relative error 0.05 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+  },
+  {
+   "scope": "calib",
+   "check": "anchor",
+   "pass": true,
+   "required": true,
+   "detail": "calibration dot is within 0.23 px of the declared anchor (0.5, 0.8) at every pitch (<=1.0)"
+  },
+  {
+   "scope": "calib",
+   "check": "pitch",
+   "pass": true,
+   "required": true,
+   "detail": "disc area vs cos(pitch): worst relative error 0.07 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+  },
+  {
+   "scope": "arrow",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "216 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "arrow",
+   "check": "yaw",
+   "pass": true,
+   "required": true,
+   "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+  },
+  {
+   "scope": "arrow",
+   "check": "brand",
+   "pass": true,
+   "required": true,
+   "detail": "hue L/R 297.5/297.2 vs token 297.2 (<=3 deg); mean lightness 0.550 vs 0.556 (<=0.05); facet contrast dL=0.029"
+  },
+  {
+   "scope": "arrow",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xxhdpi: 1725 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xhdpi: 1049 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xxxhdpi: 1934 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.56 dp, p95 0.31 dp (<= 1.0 dp); plane h=0.10 u"
+  },
+  {
+   "scope": "arrow",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 4.76 dp, p95 2.83 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "arrow",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 20 off-grid views: PSNR mean 30.4 dB, min 22.4 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "arrow",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0076 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "arrow",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0450 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "arrow",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "puck",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "9 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "puck",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 44.4 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xxxhdpi: 97 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xxhdpi: 80 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xhdpi: 51 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.41 dp, p95 0.29 dp (<= 1.0 dp); plane h=0.10 u"
+  },
+  {
+   "scope": "puck",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 1.84 dp, p95 1.28 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "puck",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 5 off-grid views: PSNR mean 35.0 dB, min 30.2 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "puck",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0171 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "puck",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0027 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "puck",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 39.5 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxhdpi: 6 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 39.0 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.6 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 48.8 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxhdpi: 6 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.3 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxhdpi: 6 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "120 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "yaw",
+   "pass": true,
+   "required": true,
+   "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.5 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_sedan xxxhdpi: 1621 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_sedan xxhdpi: 1132 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_sedan xhdpi: 678 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.41 dp, p95 2.23 dp (<= 4.0 dp); plane h=0.80 u"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 3.39 dp, p95 2.16 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.1 dB, min 22.9 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0162 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0528 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "car_sedan",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "120 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "yaw",
+   "pass": true,
+   "required": true,
+   "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.0 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_taxi xxhdpi: 1182 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_taxi xhdpi: 707 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_taxi xxxhdpi: 1688 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.33 dp, p95 2.18 dp (<= 4.0 dp); plane h=0.80 u"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 3.33 dp, p95 2.11 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.4 dB, min 23.5 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0133 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0523 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "car_taxi",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "120 frames; max alpha in the 2 px border = 3 (<=3)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "yaw",
+   "pass": true,
+   "required": true,
+   "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_suv xxxhdpi: 1640 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_suv xxhdpi: 1119 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "car_suv xhdpi: 668 KiB (<= 2500 KiB)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 3.14 dp, p95 2.07 dp (<= 4.0 dp); plane h=0.80 u"
+  },
+  {
+   "scope": "car_suv",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 3.84 dp, p95 1.98 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 16 off-grid views: PSNR mean 26.9 dB, min 23.6 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0148 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0441 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "car_suv",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  }
+ ],
+ "validation": {
+  "arrow": {
+   "asset": "arrow",
+   "pitch_buckets": [
+    0.0,
+    7.5,
+    15.0,
+    22.5,
+    30.0,
+    37.5,
+    45.0,
+    52.5,
+    60.0
+   ],
+   "h_star_u": 0.1,
+   "views": [
+    [
+     3.75,
+     7.5
+    ],
+    [
+     3.75,
+     52.5
+    ],
+    [
+     3.75,
+     97.5
+    ],
+    [
+     3.75,
+     187.5
+    ],
+    [
+     18.75,
+     7.5
+    ],
+    [
+     18.75,
+     52.5
+    ],
+    [
+     18.75,
+     97.5
+    ],
+    [
+     18.75,
+     187.5
+    ],
+    [
+     33.75,
+     7.5
+    ],
+    [
+     33.75,
+     52.5
+    ],
+    [
+     33.75,
+     97.5
+    ],
+    [
+     33.75,
+     187.5
+    ],
+    [
+     48.75,
+     7.5
+    ],
+    [
+     48.75,
+     52.5
+    ],
+    [
+     48.75,
+     97.5
+    ],
+    [
+     48.75,
+     187.5
+    ],
+    [
+     56.25,
+     7.5
+    ],
+    [
+     56.25,
+     52.5
+    ],
+    [
+     56.25,
+     97.5
+    ],
+    [
+     56.25,
+     187.5
+    ]
+   ],
+   "psnr_db_vs_true_render": {
+    "A. nearest bucket, as is": {
+     "min": 15.358909463785542,
+     "mean": 16.888091059798555,
+     "n": 20
+    },
+    "B. + rotate in the screen plane": {
+     "min": 19.479274343481446,
+     "mean": 24.636041965491586,
+     "n": 20
+    },
+    "C. + ground-plane warp (h = 0)": {
+     "min": 20.394660473083874,
+     "mean": 26.192707217721004,
+     "n": 20
+    },
+    "D. + plane warp at h* (one bucket)": {
+     "min": 21.28437973848028,
+     "mean": 27.60494184209627,
+     "n": 20
+    },
+    "E. two buckets, each warped at h*, blended by pitch": {
+     "min": 22.376217589876926,
+     "mean": 30.441005367621823,
+     "n": 20
+    }
+   }
+  },
+  "car_sedan": {
+   "asset": "car_sedan",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "h_star_u": 0.8,
+   "views": [
+    [
+     7.5,
+     7.5
+    ],
+    [
+     7.5,
+     52.5
+    ],
+    [
+     7.5,
+     97.5
+    ],
+    [
+     7.5,
+     187.5
+    ],
+    [
+     22.5,
+     7.5
+    ],
+    [
+     22.5,
+     52.5
+    ],
+    [
+     22.5,
+     97.5
+    ],
+    [
+     22.5,
+     187.5
+    ],
+    [
+     37.5,
+     7.5
+    ],
+    [
+     37.5,
+     52.5
+    ],
+    [
+     37.5,
+     97.5
+    ],
+    [
+     37.5,
+     187.5
+    ],
+    [
+     52.5,
+     7.5
+    ],
+    [
+     52.5,
+     52.5
+    ],
+    [
+     52.5,
+     97.5
+    ],
+    [
+     52.5,
+     187.5
+    ]
+   ],
+   "psnr_db_vs_true_render": {
+    "A. nearest bucket, as is": {
+     "min": 17.08207204107562,
+     "mean": 17.929808427134585,
+     "n": 16
+    },
+    "B. + rotate in the screen plane": {
+     "min": 18.56965772714637,
+     "mean": 20.012084301618668,
+     "n": 16
+    },
+    "C. + ground-plane warp (h = 0)": {
+     "min": 16.373568495020443,
+     "mean": 19.071829550473502,
+     "n": 16
+    },
+    "D. + plane warp at h* (one bucket)": {
+     "min": 19.541610385694078,
+     "mean": 23.22072999385256,
+     "n": 16
+    },
+    "E. two buckets, each warped at h*, blended by pitch": {
+     "min": 22.946821026512417,
+     "mean": 26.071853661973243,
+     "n": 16
+    }
+   }
+  },
+  "car_suv": {
+   "asset": "car_suv",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "h_star_u": 0.8,
+   "views": [
+    [
+     7.5,
+     7.5
+    ],
+    [
+     7.5,
+     52.5
+    ],
+    [
+     7.5,
+     97.5
+    ],
+    [
+     7.5,
+     187.5
+    ],
+    [
+     22.5,
+     7.5
+    ],
+    [
+     22.5,
+     52.5
+    ],
+    [
+     22.5,
+     97.5
+    ],
+    [
+     22.5,
+     187.5
+    ],
+    [
+     37.5,
+     7.5
+    ],
+    [
+     37.5,
+     52.5
+    ],
+    [
+     37.5,
+     97.5
+    ],
+    [
+     37.5,
+     187.5
+    ],
+    [
+     52.5,
+     7.5
+    ],
+    [
+     52.5,
+     52.5
+    ],
+    [
+     52.5,
+     97.5
+    ],
+    [
+     52.5,
+     187.5
+    ]
+   ],
+   "psnr_db_vs_true_render": {
+    "A. nearest bucket, as is": {
+     "min": 18.299893459775443,
+     "mean": 19.58694348923346,
+     "n": 16
+    },
+    "B. + rotate in the screen plane": {
+     "min": 20.429813674606947,
+     "mean": 21.477193260387633,
+     "n": 16
+    },
+    "C. + ground-plane warp (h = 0)": {
+     "min": 17.10724867294932,
+     "mean": 20.349265733557964,
+     "n": 16
+    },
+    "D. + plane warp at h* (one bucket)": {
+     "min": 19.705527789891264,
+     "mean": 23.99364802319175,
+     "n": 16
+    },
+    "E. two buckets, each warped at h*, blended by pitch": {
+     "min": 23.579860743082257,
+     "mean": 26.9362365646543,
+     "n": 16
+    }
+   }
+  },
+  "car_taxi": {
+   "asset": "car_taxi",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "h_star_u": 0.8,
+   "views": [
+    [
+     7.5,
+     7.5
+    ],
+    [
+     7.5,
+     52.5
+    ],
+    [
+     7.5,
+     97.5
+    ],
+    [
+     7.5,
+     187.5
+    ],
+    [
+     22.5,
+     7.5
+    ],
+    [
+     22.5,
+     52.5
+    ],
+    [
+     22.5,
+     97.5
+    ],
+    [
+     22.5,
+     187.5
+    ],
+    [
+     37.5,
+     7.5
+    ],
+    [
+     37.5,
+     52.5
+    ],
+    [
+     37.5,
+     97.5
+    ],
+    [
+     37.5,
+     187.5
+    ],
+    [
+     52.5,
+     7.5
+    ],
+    [
+     52.5,
+     52.5
+    ],
+    [
+     52.5,
+     97.5
+    ],
+    [
+     52.5,
+     187.5
+    ]
+   ],
+   "psnr_db_vs_true_render": {
+    "A. nearest bucket, as is": {
+     "min": 17.698062780772567,
+     "mean": 18.687769156203522,
+     "n": 16
+    },
+    "B. + rotate in the screen plane": {
+     "min": 19.37145901508921,
+     "mean": 20.714242211557533,
+     "n": 16
+    },
+    "C. + ground-plane warp (h = 0)": {
+     "min": 16.80848569489423,
+     "mean": 19.71791886727238,
+     "n": 16
+    },
+    "D. + plane warp at h* (one bucket)": {
+     "min": 19.948414803701702,
+     "mean": 23.586069457230796,
+     "n": 16
+    },
+    "E. two buckets, each warped at h*, blended by pitch": {
+     "min": 23.461270612541508,
+     "mean": 26.441818007651424,
+     "n": 16
+    }
+   }
+  },
+  "puck": {
+   "asset": "puck",
+   "pitch_buckets": [
+    0.0,
+    7.5,
+    15.0,
+    22.5,
+    30.0,
+    37.5,
+    45.0,
+    52.5,
+    60.0
+   ],
+   "h_star_u": 0.1,
+   "views": [
+    [
+     3.75,
+     0.0
+    ],
+    [
+     18.75,
+     0.0
+    ],
+    [
+     33.75,
+     0.0
+    ],
+    [
+     48.75,
+     0.0
+    ],
+    [
+     56.25,
+     0.0
+    ]
+   ],
+   "psnr_db_vs_true_render": {
+    "A. nearest bucket, as is": {
+     "min": 19.877751628883818,
+     "mean": 23.22615813288005,
+     "n": 5
+    },
+    "B. + rotate in the screen plane": {
+     "min": 19.877751628883818,
+     "mean": 23.22615813288005,
+     "n": 5
+    },
+    "C. + ground-plane warp (h = 0)": {
+     "min": 23.660860906198792,
+     "mean": 27.737984174986746,
+     "n": 5
+    },
+    "D. + plane warp at h* (one bucket)": {
+     "min": 25.379131411922437,
+     "mean": 29.91132519973396,
+     "n": 5
+    },
+    "E. two buckets, each warped at h*, blended by pitch": {
+     "min": 30.21105780210158,
+     "mean": 34.969867280405786,
+     "n": 5
+    }
+   }
+  }
+ },
+ "tuning": {
+  "arrow_blend": {
+   "asset": "arrow",
+   "strategy": "blend",
+   "pitch_buckets": [
+    0.0,
+    7.5,
+    15.0,
+    22.5,
+    30.0,
+    37.5,
+    45.0,
+    52.5,
+    60.0
+   ],
+   "candidates": {
+    "0": {
+     "psnr_mean": 29.325283643823646,
+     "psnr_min": 21.39349589877645,
+     "pop_max_rms": 0.05218261480331421,
+     "pitch_pop_max_rms": 0.007244620937854052,
+     "yaw_pop_max_rms": 0.05218261480331421,
+     "pitch_pop_ratio": 1.651165514333005,
+     "yaw_pop_ratio": 3.8881243652293196,
+     "pop_ratio": 3.8881243652293196
+    },
+    "0.05": {
+     "psnr_mean": 30.262568789278127,
+     "psnr_min": 21.90659616764117,
+     "pop_max_rms": 0.04878345504403114,
+     "pitch_pop_max_rms": 0.007427630014717579,
+     "yaw_pop_max_rms": 0.04878345504403114,
+     "pitch_pop_ratio": 1.6406435560565837,
+     "yaw_pop_ratio": 3.6112288119891436,
+     "pop_ratio": 3.6112288119891436
+    },
+    "0.1": {
+     "psnr_mean": 30.44100536762183,
+     "psnr_min": 22.376217589876926,
+     "pop_max_rms": 0.04495318606495857,
+     "pitch_pop_max_rms": 0.007630637846887112,
+     "yaw_pop_max_rms": 0.04495318606495857,
+     "pitch_pop_ratio": 1.6632146342693768,
+     "yaw_pop_ratio": 3.3030061916846876,
+     "pop_ratio": 3.3030061916846876
+    },
+    "0.15": {
+     "psnr_mean": 30.02725360980105,
+     "psnr_min": 22.673580013032606,
+     "pop_max_rms": 0.04143628478050232,
+     "pitch_pop_max_rms": 0.007725106552243233,
+     "yaw_pop_max_rms": 0.04143628478050232,
+     "pitch_pop_ratio": 1.666099316835145,
+     "yaw_pop_ratio": 3.018913726685742,
+     "pop_ratio": 3.018913726685742
+    },
+    "0.2": {
+     "psnr_mean": 29.225599827195005,
+     "psnr_min": 22.807772659281348,
+     "pop_max_rms": 0.039802804589271545,
+     "pitch_pop_max_rms": 0.007815835066139698,
+     "yaw_pop_max_rms": 0.039802804589271545,
+     "pitch_pop_ratio": 1.6853358797558406,
+     "yaw_pop_ratio": 2.8760563742348624,
+     "pop_ratio": 2.8760563742348624
+    },
+    "0.3": {
+     "psnr_mean": 27.315177688067287,
+     "psnr_min": 22.923591509981488,
+     "pop_max_rms": 0.03966626897454262,
+     "pitch_pop_max_rms": 0.008644406683743,
+     "yaw_pop_max_rms": 0.03966626897454262,
+     "pitch_pop_ratio": 1.844060148015758,
+     "yaw_pop_ratio": 2.819139645213204,
+     "pop_ratio": 2.819139645213204
+    },
+    "0.5": {
+     "psnr_mean": 24.51541515547303,
+     "psnr_min": 21.008591732474212,
+     "pop_max_rms": 0.04599858820438385,
+     "pitch_pop_max_rms": 0.011208130978047848,
+     "yaw_pop_max_rms": 0.04599858820438385,
+     "pitch_pop_ratio": 1.947586504220511,
+     "yaw_pop_ratio": 3.1492943203121913,
+     "pop_ratio": 3.1492943203121913
+    }
+   },
+   "chosen_h_u": 0.1,
+   "chosen": {
+    "psnr_mean": 30.44100536762183,
+    "psnr_min": 22.376217589876926,
+    "pop_max_rms": 0.04495318606495857,
+    "pitch_pop_max_rms": 0.007630637846887112,
+    "yaw_pop_max_rms": 0.04495318606495857,
+    "pitch_pop_ratio": 1.6632146342693768,
+    "yaw_pop_ratio": 3.3030061916846876,
+    "pop_ratio": 3.3030061916846876
+   },
+   "views": 20
+  },
+  "car_sedan_blend": {
+   "asset": "car_sedan",
+   "strategy": "blend",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "candidates": {
+    "0.3": {
+     "psnr_mean": 23.332693599328834,
+     "psnr_min": 21.133222640149086,
+     "pop_max_rms": 0.06796065717935562,
+     "pitch_pop_max_rms": 0.014114022254943848,
+     "yaw_pop_max_rms": 0.06796065717935562,
+     "pitch_pop_ratio": 1.5770974571167113,
+     "yaw_pop_ratio": 4.585169932697993,
+     "pop_ratio": 4.585169932697993
+    },
+    "0.6": {
+     "psnr_mean": 25.386862461864524,
+     "psnr_min": 22.540154203779377,
+     "pop_max_rms": 0.057158228009939194,
+     "pitch_pop_max_rms": 0.01537239272147417,
+     "yaw_pop_max_rms": 0.057158228009939194,
+     "pitch_pop_ratio": 1.6815760091619816,
+     "yaw_pop_ratio": 3.89024376213796,
+     "pop_ratio": 3.89024376213796
+    },
+    "0.8": {
+     "psnr_mean": 26.071853661973243,
+     "psnr_min": 22.946821026512417,
+     "pop_max_rms": 0.05283442139625549,
+     "pitch_pop_max_rms": 0.016175908967852592,
+     "yaw_pop_max_rms": 0.05283442139625549,
+     "pitch_pop_ratio": 1.4884530110970573,
+     "yaw_pop_ratio": 3.5902621832115953,
+     "pop_ratio": 3.5902621832115953
+    },
+    "1": {
+     "psnr_mean": 25.099354136868943,
+     "psnr_min": 22.268677972676258,
+     "pop_max_rms": 0.05359736829996109,
+     "pitch_pop_max_rms": 0.01779242791235447,
+     "yaw_pop_max_rms": 0.05359736829996109,
+     "pitch_pop_ratio": 1.4935319802496554,
+     "yaw_pop_ratio": 3.480781507076437,
+     "pop_ratio": 3.480781507076437
+    },
+    "1.2": {
+     "psnr_mean": 23.38228465424153,
+     "psnr_min": 21.005061537536097,
+     "pop_max_rms": 0.06001490727066994,
+     "pitch_pop_max_rms": 0.019727734848856926,
+     "yaw_pop_max_rms": 0.06001490727066994,
+     "pitch_pop_ratio": 1.5422377783673542,
+     "yaw_pop_ratio": 3.700315649786648,
+     "pop_ratio": 3.700315649786648
+    },
+    "1.4": {
+     "psnr_mean": 21.999842692822213,
+     "psnr_min": 20.01320500826482,
+     "pop_max_rms": 0.06369990855455399,
+     "pitch_pop_max_rms": 0.021834440529346466,
+     "yaw_pop_max_rms": 0.06369990855455399,
+     "pitch_pop_ratio": 1.48435620430488,
+     "yaw_pop_ratio": 3.9275203317624534,
+     "pop_ratio": 3.9275203317624534
+    }
+   },
+   "chosen_h_u": 0.8,
+   "chosen": {
+    "psnr_mean": 26.071853661973243,
+    "psnr_min": 22.946821026512417,
+    "pop_max_rms": 0.05283442139625549,
+    "pitch_pop_max_rms": 0.016175908967852592,
+    "yaw_pop_max_rms": 0.05283442139625549,
+    "pitch_pop_ratio": 1.4884530110970573,
+    "yaw_pop_ratio": 3.5902621832115953,
+    "pop_ratio": 3.5902621832115953
+   },
+   "views": 16
+  },
+  "car_suv_blend": {
+   "asset": "car_suv",
+   "strategy": "blend",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "candidates": {
+    "0.3": {
+     "psnr_mean": 24.441044231088444,
+     "psnr_min": 21.737382597594927,
+     "pop_max_rms": 0.05186701565980911,
+     "pitch_pop_max_rms": 0.01083770114928484,
+     "yaw_pop_max_rms": 0.05186701565980911,
+     "pitch_pop_ratio": 1.4708808077898372,
+     "yaw_pop_ratio": 4.059101215209619,
+     "pop_ratio": 4.059101215209619
+    },
+    "0.6": {
+     "psnr_mean": 26.279957176723915,
+     "psnr_min": 22.922738780319797,
+     "pop_max_rms": 0.046492043882608414,
+     "pitch_pop_max_rms": 0.012932048179209232,
+     "yaw_pop_max_rms": 0.046492043882608414,
+     "pitch_pop_ratio": 1.5706410514103235,
+     "yaw_pop_ratio": 3.695971486785837,
+     "pop_ratio": 3.695971486785837
+    },
+    "0.8": {
+     "psnr_mean": 26.9362365646543,
+     "psnr_min": 23.579860743082257,
+     "pop_max_rms": 0.04406161233782768,
+     "pitch_pop_max_rms": 0.01476308424025774,
+     "yaw_pop_max_rms": 0.04406161233782768,
+     "pitch_pop_ratio": 1.446980515283913,
+     "yaw_pop_ratio": 3.5175037102868822,
+     "pop_ratio": 3.5175037102868822
+    },
+    "1": {
+     "psnr_mean": 26.387392655544385,
+     "psnr_min": 23.38872408000933,
+     "pop_max_rms": 0.04505370929837227,
+     "pitch_pop_max_rms": 0.015601696446537971,
+     "yaw_pop_max_rms": 0.04505370929837227,
+     "pitch_pop_ratio": 1.4422789465355659,
+     "yaw_pop_ratio": 3.3647824039931082,
+     "pop_ratio": 3.3647824039931082
+    },
+    "1.2": {
+     "psnr_mean": 24.985281534435405,
+     "psnr_min": 22.51172532894332,
+     "pop_max_rms": 0.04937314614653587,
+     "pitch_pop_max_rms": 0.016465529799461365,
+     "yaw_pop_max_rms": 0.04937314614653587,
+     "pitch_pop_ratio": 1.5661140153858897,
+     "yaw_pop_ratio": 3.5777996280814217,
+     "pop_ratio": 3.5777996280814217
+    },
+    "1.4": {
+     "psnr_mean": 23.75613155408974,
+     "psnr_min": 21.733529030750745,
+     "pop_max_rms": 0.05339573696255684,
+     "pitch_pop_max_rms": 0.017969315871596336,
+     "yaw_pop_max_rms": 0.05339573696255684,
+     "pitch_pop_ratio": 1.4859915854628196,
+     "yaw_pop_ratio": 3.8692946015386345,
+     "pop_ratio": 3.8692946015386345
+    }
+   },
+   "chosen_h_u": 0.8,
+   "chosen": {
+    "psnr_mean": 26.9362365646543,
+    "psnr_min": 23.579860743082257,
+    "pop_max_rms": 0.04406161233782768,
+    "pitch_pop_max_rms": 0.01476308424025774,
+    "yaw_pop_max_rms": 0.04406161233782768,
+    "pitch_pop_ratio": 1.446980515283913,
+    "yaw_pop_ratio": 3.5175037102868822,
+    "pop_ratio": 3.5175037102868822
+   },
+   "views": 16
+  },
+  "car_taxi_blend": {
+   "asset": "car_taxi",
+   "strategy": "blend",
+   "pitch_buckets": [
+    0.0,
+    15.0,
+    30.0,
+    45.0,
+    60.0
+   ],
+   "candidates": {
+    "0.3": {
+     "psnr_mean": 23.953999423640816,
+     "psnr_min": 21.726055421411882,
+     "pop_max_rms": 0.06265407800674438,
+     "pitch_pop_max_rms": 0.012775571085512638,
+     "yaw_pop_max_rms": 0.06265407800674438,
+     "pitch_pop_ratio": 1.624292588679181,
+     "yaw_pop_ratio": 4.898978165623731,
+     "pop_ratio": 4.898978165623731
+    },
+    "0.6": {
+     "psnr_mean": 25.913323095676503,
+     "psnr_min": 23.07906158456963,
+     "pop_max_rms": 0.054411157965660095,
+     "pitch_pop_max_rms": 0.012918924912810326,
+     "yaw_pop_max_rms": 0.054411157965660095,
+     "pitch_pop_ratio": 1.651864702185189,
+     "yaw_pop_ratio": 4.308520671719814,
+     "pop_ratio": 4.308520671719814
+    },
+    "0.8": {
+     "psnr_mean": 26.441818007651424,
+     "psnr_min": 23.461270612541508,
+     "pop_max_rms": 0.05232337489724159,
+     "pitch_pop_max_rms": 0.013344510458409786,
+     "yaw_pop_max_rms": 0.05232337489724159,
+     "pitch_pop_ratio": 1.4187961972041854,
+     "yaw_pop_ratio": 4.142102301864008,
+     "pop_ratio": 4.142102301864008
+    },
+    "1": {
+     "psnr_mean": 25.462058396755154,
+     "psnr_min": 22.78982575775368,
+     "pop_max_rms": 0.05243832617998123,
+     "pitch_pop_max_rms": 0.014504052698612213,
+     "yaw_pop_max_rms": 0.05243832617998123,
+     "pitch_pop_ratio": 1.407096919921575,
+     "yaw_pop_ratio": 3.8633020222200907,
+     "pop_ratio": 3.8633020222200907
+    },
+    "1.2": {
+     "psnr_mean": 23.908076222182835,
+     "psnr_min": 21.661999830040564,
+     "pop_max_rms": 0.05596024915575981,
+     "pitch_pop_max_rms": 0.016139430925250053,
+     "yaw_pop_max_rms": 0.05596024915575981,
+     "pitch_pop_ratio": 1.473276433282602,
+     "yaw_pop_ratio": 3.8143638904774084,
+     "pop_ratio": 3.8143638904774084
+    },
+    "1.4": {
+     "psnr_mean": 22.667002685657838,
+     "psnr_min": 20.75632622059898,
+     "pop_max_rms": 0.05794471502304077,
+     "pitch_pop_max_rms": 0.01803402416408062,
+     "yaw_pop_max_rms": 0.05794471502304077,
+     "pitch_pop_ratio": 1.434989494664926,
+     "yaw_pop_ratio": 3.9467921737031832,
+     "pop_ratio": 3.9467921737031832
+    }
+   },
+   "chosen_h_u": 0.8,
+   "chosen": {
+    "psnr_mean": 26.441818007651424,
+    "psnr_min": 23.461270612541508,
+    "pop_max_rms": 0.05232337489724159,
+    "pitch_pop_max_rms": 0.013344510458409786,
+    "yaw_pop_max_rms": 0.05232337489724159,
+    "pitch_pop_ratio": 1.4187961972041854,
+    "yaw_pop_ratio": 4.142102301864008,
+    "pop_ratio": 4.142102301864008
+   },
+   "views": 16
+  },
+  "puck_blend": {
+   "asset": "puck",
+   "strategy": "blend",
+   "pitch_buckets": [
+    0.0,
+    7.5,
+    15.0,
+    22.5,
+    30.0,
+    37.5,
+    45.0,
+    52.5,
+    60.0
+   ],
+   "candidates": {
+    "0": {
+     "psnr_mean": 32.5925046837224,
+     "psnr_min": 27.92888599609093,
+     "pop_max_rms": 0.016928261145949364,
+     "pitch_pop_max_rms": 0.016928261145949364,
+     "yaw_pop_max_rms": 0.002700496930629015,
+     "pitch_pop_ratio": 2.2257956075190566,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 2.2257956075190566
+    },
+    "0.05": {
+     "psnr_mean": 34.53144011988858,
+     "psnr_min": 29.482531549937974,
+     "pop_max_rms": 0.016412176191806793,
+     "pitch_pop_max_rms": 0.016412176191806793,
+     "yaw_pop_max_rms": 0.0023902838584035635,
+     "pitch_pop_ratio": 2.119159394639269,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 2.119159394639269
+    },
+    "0.1": {
+     "psnr_mean": 34.96986728040579,
+     "psnr_min": 30.21105780210158,
+     "pop_max_rms": 0.017073018476366997,
+     "pitch_pop_max_rms": 0.017073018476366997,
+     "yaw_pop_max_rms": 0.0026828451082110405,
+     "pitch_pop_ratio": 2.075230794535894,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 2.075230794535894
+    },
+    "0.15": {
+     "psnr_mean": 33.476770099701646,
+     "psnr_min": 29.72536583527983,
+     "pop_max_rms": 0.0163907278329134,
+     "pitch_pop_max_rms": 0.0163907278329134,
+     "yaw_pop_max_rms": 0.0028359044808894396,
+     "pitch_pop_ratio": 2.013440854679382,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 2.013440854679382
+    },
+    "0.2": {
+     "psnr_mean": 31.097460379865545,
+     "psnr_min": 28.492447552406965,
+     "pop_max_rms": 0.01652548462152481,
+     "pitch_pop_max_rms": 0.01652548462152481,
+     "yaw_pop_max_rms": 0.0032056504860520363,
+     "pitch_pop_ratio": 2.0477936116807567,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 2.0477936116807567
+    },
+    "0.3": {
+     "psnr_mean": 27.47941844816426,
+     "psnr_min": 25.874603834924844,
+     "pop_max_rms": 0.016950469464063644,
+     "pitch_pop_max_rms": 0.016950469464063644,
+     "yaw_pop_max_rms": 0.0040816655382514,
+     "pitch_pop_ratio": 1.91811051587265,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.91811051587265
+    }
+   },
+   "chosen_h_u": 0.1,
+   "chosen": {
+    "psnr_mean": 34.96986728040579,
+    "psnr_min": 30.21105780210158,
+    "pop_max_rms": 0.017073018476366997,
+    "pitch_pop_max_rms": 0.017073018476366997,
+    "yaw_pop_max_rms": 0.0026828451082110405,
+    "pitch_pop_ratio": 2.075230794535894,
+    "yaw_pop_ratio": 1.0,
+    "pop_ratio": 2.075230794535894
+   },
+   "views": 5
+  }
+ },
+ "pitch_sweep": {
+  "yaws": 24,
+  "plane_h_u": 0.1,
+  "unit_dp": 21.993901159751918,
+  "by_spacing": {
+   "15": {
+    "buckets": 5,
+    "frames": 120,
+    "outline": {
+     "worst_dp": 0.7446528465310293,
+     "pop_dp": 0.9811374830455076
+    },
+    "all_vertices": {
+     "worst_dp": 6.360694342577081,
+     "pop_dp": 8.380704736133483
+    }
+   },
+   "10": {
+    "buckets": 7,
+    "frames": 168,
+    "outline": {
+     "worst_dp": 0.6166337173537157,
+     "pop_dp": 0.6789234459919715
+    },
+    "all_vertices": {
+     "worst_dp": 5.267177337313275,
+     "pop_dp": 5.79924530213171
+    }
+   },
+   "7.5": {
+    "buckets": 9,
+    "frames": 216,
+    "outline": {
+     "worst_dp": 0.5656137420159176,
+     "pop_dp": 0.5186829305341599
+    },
+    "all_vertices": {
+     "worst_dp": 4.831373633612489,
+     "pop_dp": 4.430498852195626
+    }
+   },
+   "5": {
+    "buckets": 13,
+    "frames": 312,
+    "outline": {
+     "worst_dp": 0.5269186079016226,
+     "pop_dp": 0.35047346849663613
+    },
+    "all_vertices": {
+     "worst_dp": 4.500846567486782,
+     "pop_dp": 2.9936830546944293
+    }
+   }
+  }
+ },
+ "popping": {
+  "arrow": {
+   "frames": 420,
+   "fps": 30,
+   "heading_flips": 23,
+   "motion_floor_rms": {
+    "median": 0.009582940489053726,
+    "p95": 0.042077080346643925,
+    "max": 0.08352778851985931
+   },
+   "flip_frame_rms": {
+    "hard": {
+     "mean": 0.044620756059885025,
+     "max": 0.07929783314466476
+    },
+    "dissolve": {
+     "mean": 0.03147192892577985,
+     "max": 0.07884059101343155
+    }
+   }
+  },
+  "car_sedan": {
+   "frames": 420,
+   "fps": 30,
+   "heading_flips": 23,
+   "motion_floor_rms": {
+    "median": 0.011424983385950327,
+    "p95": 0.03615431301295757,
+    "max": 0.07052773982286453
+   },
+   "flip_frame_rms": {
+    "hard": {
+     "mean": 0.03291576578403297,
+     "max": 0.0695062056183815
+    },
+    "dissolve": {
+     "mean": 0.02672421073783999,
+     "max": 0.06786619126796722
+    }
+   }
+  }
+ }
+}

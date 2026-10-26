@@ -1,0 +1,89 @@
+{
+ "asset": "puck",
+ "strategy": "blend",
+ "pitch_buckets": [
+  0.0,
+  7.5,
+  15.0,
+  22.5,
+  30.0,
+  37.5,
+  45.0,
+  52.5,
+  60.0
+ ],
+ "candidates": {
+  "0": {
+   "psnr_mean": 32.5925046837224,
+   "psnr_min": 27.92888599609093,
+   "pop_max_rms": 0.016928261145949364,
+   "pitch_pop_max_rms": 0.016928261145949364,
+   "yaw_pop_max_rms": 0.002700496930629015,
+   "pitch_pop_ratio": 2.2257956075190566,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 2.2257956075190566
+  },
+  "0.05": {
+   "psnr_mean": 34.53144011988858,
+   "psnr_min": 29.482531549937974,
+   "pop_max_rms": 0.016412176191806793,
+   "pitch_pop_max_rms": 0.016412176191806793,
+   "yaw_pop_max_rms": 0.0023902838584035635,
+   "pitch_pop_ratio": 2.119159394639269,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 2.119159394639269
+  },
+  "0.1": {
+   "psnr_mean": 34.96986728040579,
+   "psnr_min": 30.21105780210158,
+   "pop_max_rms": 0.017073018476366997,
+   "pitch_pop_max_rms": 0.017073018476366997,
+   "yaw_pop_max_rms": 0.0026828451082110405,
+   "pitch_pop_ratio": 2.075230794535894,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 2.075230794535894
+  },
+  "0.15": {
+   "psnr_mean": 33.476770099701646,
+   "psnr_min": 29.72536583527983,
+   "pop_max_rms": 0.0163907278329134,
+   "pitch_pop_max_rms": 0.0163907278329134,
+   "yaw_pop_max_rms": 0.0028359044808894396,
+   "pitch_pop_ratio": 2.013440854679382,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 2.013440854679382
+  },
+  "0.2": {
+   "psnr_mean": 31.097460379865545,
+   "psnr_min": 28.492447552406965,
+   "pop_max_rms": 0.01652548462152481,
+   "pitch_pop_max_rms": 0.01652548462152481,
+   "yaw_pop_max_rms": 0.0032056504860520363,
+   "pitch_pop_ratio": 2.0477936116807567,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 2.0477936116807567
+  },
+  "0.3": {
+   "psnr_mean": 27.47941844816426,
+   "psnr_min": 25.874603834924844,
+   "pop_max_rms": 0.016950469464063644,
+   "pitch_pop_max_rms": 0.016950469464063644,
+   "yaw_pop_max_rms": 0.0040816655382514,
+   "pitch_pop_ratio": 1.91811051587265,
+   "yaw_pop_ratio": 1.0,
+   "pop_ratio": 1.91811051587265
+  }
+ },
+ "chosen_h_u": 0.1,
+ "chosen": {
+  "psnr_mean": 34.96986728040579,
+  "psnr_min": 30.21105780210158,
+  "pop_max_rms": 0.017073018476366997,
+  "pitch_pop_max_rms": 0.017073018476366997,
+  "yaw_pop_max_rms": 0.0026828451082110405,
+  "pitch_pop_ratio": 2.075230794535894,
+  "yaw_pop_ratio": 1.0,
+  "pop_ratio": 2.075230794535894
+ },
+ "views": 5
+}
