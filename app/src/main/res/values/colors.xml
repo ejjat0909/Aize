@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Values equal map.light/dark.background in design/tokens (shown before the first map frame, so there is no white flash). -->
+    <color name="aize_window_light">#F3F1F7</color>
+    <color name="aize_window_dark">#16131C</color>
+    <!-- theme.light.primary -->
+    <color name="ic_launcher_background">#8937F1</color>
+</resources>

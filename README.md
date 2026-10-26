@@ -68,3 +68,8 @@ Aize uses **original code and assets only**. The APK, decompiled source, images,
 1. Answer the nine decisions in plan §0 (pilot region, team, MVP scope, licence, brand…).
 2. Start phase **P0** (plan §10): monorepo scaffold, CI, data stack, walking skeleton — ten working days (plan §16).
 3. Optional: run the deeper full-APK reverse-engineering pass on a ≥ 3 GiB machine (plan §10, RE-01).
+
+## Android app (P0 walking skeleton)
+
+`app/` is a Kotlin + Jetpack Compose + MapLibre Native app: purple basemap, the Blender arrow as location puck, a recorded
+route and a demo drive. See [`docs/P0-STATUS.md`](docs/P0-STATUS.md) for what works, what does not, and how to build it.

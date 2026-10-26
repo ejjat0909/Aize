@@ -1,0 +1,346 @@
+{
+ "_comment": "One recorded Valhalla /route response (public demo, valhalla 3.x, auto costing). Used ONLY as a walking-skeleton fixture; the app does not call this server.",
+ "request": {
+  "locations": [
+   {
+    "lat": 3.1343,
+    "lon": 101.6862,
+    "type": "break"
+   },
+   {
+    "lat": 3.1579,
+    "lon": 101.7116,
+    "type": "break"
+   }
+  ],
+  "costing": "auto",
+  "directions_options": {
+   "units": "kilometers",
+   "language": "en-US"
+  },
+  "id": "aize-p0-fixture"
+ },
+ "summary": {
+  "has_time_restrictions": false,
+  "has_toll": false,
+  "has_highway": false,
+  "has_ferry": false,
+  "min_lat": 3.128911,
+  "min_lon": 101.685048,
+  "max_lat": 3.157889,
+  "max_lon": 101.722928,
+  "time": 1284.958,
+  "length": 9.075,
+  "cost": 2702.906
+ },
+ "units": "kilometers",
+ "legs": [
+  {
+   "shape": "mxi~Dagl}`EzBdFrArEKdCm@tHzHxQ~@xAzA~@jBd@lBGjBIdB_@xEaAx@WnC}@jEqBtGw@~KqFvLaGzFsCtCwAbA[lGSrCAbBFvAThA\\nAv@|C|BvQhTrDt@|AUlBc@xa@m\\zI_ItA{Ax@oCB}ABeB_@sEwHyIkCyCUW}KkM_CmCiQiSsB_CiFaG{DuD_EuEqPmQEGcBmB_WgXyJoKoEgFu@eAqGkE_BaA}EqCqY{OcIoF_UcNa^qUsYmRiRoMsAiAc@i@]i@qAqDmBoFmKq]{C{IiEiOcAyDqA_F_K}UuCeF{CmFwd@oh@iPgTsCwDcDmE}CqCp@yCb@gEJgVHgIE}@Y{HWwBCaADw`@oAqC}@gAmAm@sAO}BFeVjDoHLcIt@gD@sEq@kF^qFNwJDcKUkJa@}@rAiAdAwAx@}Af@{BV}BA{B]oBw@cBmAY]W]k@aAa@eAa@{BE_CT}Bp@uBpAqBjByAnA_BdAcBz@iBn@qBNm@rCoQbBcLt@mELi@L[Zw@Xs@Pu@|CqVRgBF{@?_AIy@Qq@Qs@mD}KFwFHoM?oLRuDDyAFgAN_Ad@yAj@{@nAgA~AqAnMyDlEwAtGkDhG_C`Zc]`V{ZfGsHfKeMhZu^nGeKtH{OvDmKtByHlF}T|Jce@zJme@`FgRjFsQlJa]zMe[fKyRrKcPjOeSfY_[z\\e]hRmQfb@m_@b\\oXx]iZhd@q`@~g@yf@jYyYnEkJ~HqKhOoObi@ok@zK{NbNwQbB}Bz@iA`KcP|GgKlGmJhAwBj@wATaAf@gDy@{DUuCcAaFgAoDuDiFoDoDmIqEqSaLaC{Au^mV_KcJcFyLoRoSy[ib@eM_OkN}M{QuNmjAgt@cnBupAkJqFmf@__@qn@ab@}SgNyJyGqE_CkDcBsJuDaJwCyQ}EgLkC_JqBuWuEuJoAiu@}G_T{CyVkE}_@_KwPuEwYsGuOkD{iAi[iAYaNeDkAY}NqDgNaDmEcAyLgFwKmCwbBw\\__A}Qeg@cK{TgDmQgDcW{@oQJigA`C__@jByFJce@ByG@{M?}b@RuL`@wXfC{BZwBb@aZbKoYnK}n@~T_LbEoVfIqVfIyAlDyArDQpEdAvNhB|VR|E\\hIj@jHfAnMFxB^vYCvg@h@foAa@rDkAfHqBpHgBbGk~@vsD}AhGor@~qCCD",
+   "summary": {
+    "has_time_restrictions": false,
+    "has_toll": false,
+    "has_highway": false,
+    "has_ferry": false,
+    "min_lat": 3.128911,
+    "min_lon": 101.685048,
+    "max_lat": 3.157889,
+    "max_lon": 101.722928,
+    "time": 1284.958,
+    "length": 9.075,
+    "cost": 2702.906
+   },
+   "maneuvers": [
+    {
+     "type": 3,
+     "instruction": "Drive southwest.",
+     "verbal_succinct_transition_instruction": "Drive southwest. Then Bear left onto Jalan Stesen Sentral.",
+     "verbal_pre_transition_instruction": "Drive southwest. Then Bear left onto Jalan Stesen Sentral.",
+     "verbal_post_transition_instruction": "Continue for 50 meters.",
+     "bearing_after": 242,
+     "time": 16.922,
+     "length": 0.051,
+     "cost": 20.729,
+     "begin_shape_index": 0,
+     "end_shape_index": 4,
+     "verbal_multi_cue": true,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 16,
+     "instruction": "Bear left onto Jalan Stesen Sentral.",
+     "verbal_transition_alert_instruction": "Bear left onto Jalan Stesen Sentral.",
+     "verbal_succinct_transition_instruction": "Bear left.",
+     "verbal_pre_transition_instruction": "Bear left onto Jalan Stesen Sentral.",
+     "verbal_post_transition_instruction": "Continue for 300 meters.",
+     "street_names": [
+      "Jalan Stesen Sentral"
+     ],
+     "bearing_before": 278,
+     "bearing_after": 242,
+     "time": 48.092,
+     "length": 0.318,
+     "cost": 98.72,
+     "begin_shape_index": 4,
+     "end_shape_index": 29,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 13,
+     "instruction": "Make a left U-turn onto Jalan Tun Sambanthan.",
+     "verbal_transition_alert_instruction": "Make a left U-turn onto Jalan Tun Sambanthan.",
+     "verbal_succinct_transition_instruction": "Make a left U-turn.",
+     "verbal_pre_transition_instruction": "Make a left U-turn onto Jalan Tun Sambanthan.",
+     "verbal_post_transition_instruction": "Continue for 1 kilometer.",
+     "street_names": [
+      "Jalan Tun Sambanthan"
+     ],
+     "bearing_before": 229,
+     "bearing_after": 48,
+     "time": 153.255,
+     "length": 1.116,
+     "cost": 232.517,
+     "begin_shape_index": 29,
+     "end_shape_index": 78,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 10,
+     "instruction": "Turn right onto Jalan Sultan Sulaiman.",
+     "verbal_transition_alert_instruction": "Turn right onto Jalan Sultan Sulaiman.",
+     "verbal_succinct_transition_instruction": "Turn right.",
+     "verbal_pre_transition_instruction": "Turn right onto Jalan Sultan Sulaiman.",
+     "verbal_post_transition_instruction": "Continue for 400 meters.",
+     "street_names": [
+      "Jalan Sultan Sulaiman"
+     ],
+     "bearing_before": 57,
+     "bearing_after": 108,
+     "time": 76.042,
+     "length": 0.435,
+     "cost": 177.334,
+     "begin_shape_index": 78,
+     "end_shape_index": 98,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 9,
+     "instruction": "Bear right toward 2.",
+     "verbal_transition_alert_instruction": "Bear right toward 2.",
+     "verbal_succinct_transition_instruction": "Bear right toward 2.",
+     "verbal_pre_transition_instruction": "Bear right toward 2.",
+     "verbal_post_transition_instruction": "Continue for 100 meters.",
+     "street_names": [
+      "Jalan Syed Putra",
+      "2"
+     ],
+     "bearing_before": 347,
+     "bearing_after": 354,
+     "time": 18.046,
+     "length": 0.146,
+     "cost": 37.517,
+     "begin_shape_index": 98,
+     "end_shape_index": 107,
+     "sign": {},
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 26,
+     "instruction": "Enter Bulatan Sultan Muhammad and take the 3rd exit.",
+     "verbal_transition_alert_instruction": "Enter Bulatan Sultan Muhammad and take the 3rd exit.",
+     "verbal_succinct_transition_instruction": "Enter the roundabout and take the 3rd exit.",
+     "verbal_pre_transition_instruction": "Enter Bulatan Sultan Muhammad and take the 3rd exit.",
+     "street_names": [
+      "Bulatan Sultan Muhammad"
+     ],
+     "bearing_before": 5,
+     "bearing_after": 320,
+     "time": 20.672,
+     "length": 0.115,
+     "cost": 26.775,
+     "begin_shape_index": 107,
+     "end_shape_index": 126,
+     "roundabout_exit_count": 3,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 27,
+     "instruction": "Exit the roundabout.",
+     "verbal_succinct_transition_instruction": "Exit the roundabout.",
+     "verbal_pre_transition_instruction": "Exit the roundabout.",
+     "verbal_post_transition_instruction": "Continue for 200 meters.",
+     "bearing_before": 133,
+     "bearing_after": 125,
+     "time": 34.418,
+     "length": 0.204,
+     "cost": 42.131,
+     "begin_shape_index": 126,
+     "end_shape_index": 147,
+     "sign": {
+      "exit_toward_elements": [
+       {
+        "text": "Bukit Bintang"
+       },
+       {
+        "text": "Cheras"
+       }
+      ]
+     },
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 9,
+     "instruction": "Bear right onto Bulatan Merdeka.",
+     "verbal_transition_alert_instruction": "Bear right onto Bulatan Merdeka.",
+     "verbal_succinct_transition_instruction": "Bear right.",
+     "verbal_pre_transition_instruction": "Bear right onto Bulatan Merdeka.",
+     "verbal_post_transition_instruction": "Continue for 100 meters.",
+     "street_names": [
+      "Bulatan Merdeka"
+     ],
+     "bearing_before": 67,
+     "bearing_after": 92,
+     "time": 15.855,
+     "length": 0.109,
+     "cost": 59.227,
+     "begin_shape_index": 147,
+     "end_shape_index": 158,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 9,
+     "instruction": "Bear right toward 1.",
+     "verbal_transition_alert_instruction": "Bear right toward 1.",
+     "verbal_succinct_transition_instruction": "Bear right toward 1.",
+     "verbal_pre_transition_instruction": "Bear right toward 1.",
+     "verbal_post_transition_instruction": "Continue on 1 for 1.5 kilometers.",
+     "street_names": [
+      "1"
+     ],
+     "begin_street_names": [
+      "1",
+      "Jalan Maharajalela"
+     ],
+     "bearing_before": 136,
+     "bearing_after": 132,
+     "time": 124.689,
+     "length": 1.617,
+     "cost": 177.592,
+     "begin_shape_index": 158,
+     "end_shape_index": 190,
+     "sign": {},
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 21,
+     "instruction": "Take the exit.",
+     "verbal_transition_alert_instruction": "Take the exit.",
+     "verbal_pre_transition_instruction": "Take the exit.",
+     "bearing_before": 135,
+     "bearing_after": 120,
+     "time": 108.629,
+     "length": 0.657,
+     "cost": 191.476,
+     "begin_shape_index": 190,
+     "end_shape_index": 216,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 18,
+     "instruction": "Take the E37/Jalan Yew ramp on the right.",
+     "verbal_transition_alert_instruction": "Take the E37 ramp on the right.",
+     "verbal_pre_transition_instruction": "Take the E37, Jalan Yew ramp on the right.",
+     "verbal_post_transition_instruction": "Continue for 3 kilometers.",
+     "street_names": [
+      "Jalan Yew",
+      "E37"
+     ],
+     "bearing_before": 43,
+     "bearing_after": 63,
+     "time": 336.658,
+     "length": 3.164,
+     "cost": 490.402,
+     "begin_shape_index": 216,
+     "end_shape_index": 278,
+     "sign": {
+      "exit_branch_elements": [
+       {
+        "text": "E37",
+        "consecutive_count": 1
+       },
+       {
+        "text": "Jalan Yew",
+        "consecutive_count": 1
+       }
+      ]
+     },
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 16,
+     "instruction": "Bear left onto Lorong Kuda.",
+     "verbal_transition_alert_instruction": "Bear left onto Lorong Kuda.",
+     "verbal_succinct_transition_instruction": "Bear left.",
+     "verbal_pre_transition_instruction": "Bear left onto Lorong Kuda.",
+     "verbal_post_transition_instruction": "Continue for 200 meters.",
+     "street_names": [
+      "Lorong Kuda"
+     ],
+     "bearing_before": 337,
+     "bearing_after": 297,
+     "time": 33.769,
+     "length": 0.233,
+     "cost": 84.601,
+     "begin_shape_index": 278,
+     "end_shape_index": 289,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 23,
+     "instruction": "Keep right to stay on Lorong Kuda.",
+     "verbal_transition_alert_instruction": "Keep right to stay on Lorong Kuda.",
+     "verbal_pre_transition_instruction": "Keep right to stay on Lorong Kuda.",
+     "verbal_post_transition_instruction": "Continue for 900 meters.",
+     "street_names": [
+      "Lorong Kuda"
+     ],
+     "bearing_before": 268,
+     "bearing_after": 270,
+     "time": 297.907,
+     "length": 0.91,
+     "cost": 1063.88,
+     "begin_shape_index": 289,
+     "end_shape_index": 299,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    },
+    {
+     "type": 4,
+     "instruction": "You have arrived at your destination.",
+     "verbal_transition_alert_instruction": "You will arrive at your destination.",
+     "verbal_pre_transition_instruction": "You have arrived at your destination.",
+     "bearing_before": 290,
+     "time": 0.0,
+     "length": 0.0,
+     "cost": 0.0,
+     "begin_shape_index": 299,
+     "end_shape_index": 299,
+     "travel_mode": "drive",
+     "travel_type": "car"
+    }
+   ]
+  }
+ ]
+}

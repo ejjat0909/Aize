@@ -37,3 +37,17 @@ target/
 # 3D asset pipeline scratch (frames are re-renderable; the packed atlases in assets3d/dist ARE committed)
 assets3d/build/
 assets3d/_scratch/
+
+# --- Android / Gradle / local data (P0) ---
+/.gradle/
+/build/
+/app/build/
+/local.properties
+*.iml
+.idea/
+/captures/
+/.kotlin/
+# dev map data is downloaded by scripts/fetch-dev-tiles.sh, never committed
+/data/dev/
+# app/src/main/assets/sprites is synced from assets3d/dist by Gradle at build time
+/app/src/main/assets/sprites/
