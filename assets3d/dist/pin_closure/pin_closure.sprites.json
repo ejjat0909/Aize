@@ -1,0 +1,115 @@
+{
+ "schema": "aize-sprites/2",
+ "asset": "pin_closure",
+ "variant": null,
+ "frame_dp": 64,
+ "unit_dp": 16.0,
+ "anchor": [
+  0.5,
+  0.88
+ ],
+ "pitches": [
+  0
+ ],
+ "yaws": 1,
+ "yaw_step_deg": 360.0,
+ "frame_index": "k = row * cols + col; yaw = k * yaw_step_deg, clockwise from screen-up",
+ "pitch_definition": "degrees from nadir (0 = looking straight down, 60 = towards the horizon) - the same as MapLibre `pitch`",
+ "kind": "billboard",
+ "selection": {
+  "bucket": "single frame (viewport-aligned billboard: identical at every pitch and map bearing)",
+  "warp": "none - draw unrotated and unscaled, anchor at `anchor`",
+  "ground": "the stalk's foot contact shadow is NOT baked as a ground ellipse: draw a separate map-aligned circle (circle-pitch-alignment: map) so it squashes with the pitch",
+  "scale": "constant on screen: draw the frame at frame_dp, independent of zoom and pitch"
+ },
+ "reprojection": null,
+ "shadow": {
+  "baked": true,
+  "light": "upper-left, fixed to the screen (soft drop shadow of the object itself)",
+  "tint": "color.purple.950",
+  "opacity": 0.46
+ },
+ "webp": "lossy:92",
+ "tiers": {
+  "xxxhdpi": {
+   "scale": 4,
+   "frame_px": 256,
+   "sheets": {
+    "0": {
+     "file": "pin_closure_p00@xxxhdpi.webp",
+     "bytes": 9430,
+     "sha256": "7265f9df006bdbd068f3038f6105bdddb4dd394f57c569eadc05c9d36552dc32",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      256,
+      256
+     ]
+    }
+   },
+   "total_bytes": 9430
+  },
+  "xxhdpi": {
+   "scale": 3,
+   "frame_px": 192,
+   "sheets": {
+    "0": {
+     "file": "pin_closure_p00@xxhdpi.webp",
+     "bytes": 6970,
+     "sha256": "03469e718165fa06834da91687ac7de2f8b47b247fc25cad62df0767a12f756d",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      192,
+      192
+     ]
+    }
+   },
+   "total_bytes": 6970
+  },
+  "xhdpi": {
+   "scale": 2,
+   "frame_px": 128,
+   "sheets": {
+    "0": {
+     "file": "pin_closure_p00@xhdpi.webp",
+     "bytes": 4580,
+     "sha256": "929d0d6be25b0eb4aa66c0b995ca96c46b13ef59fedfd5ebf7aa74dc601c51cf",
+     "cols": 1,
+     "rows": 1,
+     "size": [
+      128,
+      128
+     ]
+    }
+   },
+   "total_bytes": 4580
+  }
+ },
+ "source": {
+  "renderer": "4.5.9 LTS Cycles (CPU, OIDN)",
+  "samples": 96,
+  "render_px": 384,
+  "generator": "assets3d/blender/render_sprites.py",
+  "rig": {
+   "key": [
+    -0.95,
+    0.35,
+    1.0
+   ],
+   "shadow_key": [
+    -0.42,
+    0.4,
+    1.0
+   ],
+   "key_energy": 1250.0,
+   "ambient": 0.4,
+   "fill": 260.0,
+   "rim": 300.0
+  },
+  "frame_half_extent_u": 2.0,
+  "object_radius_u": 3.130000114440918,
+  "object_height_u": 0.44999998807907104
+ },
+ "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
+}
