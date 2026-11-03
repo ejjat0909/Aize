@@ -31,6 +31,7 @@ import app.aize.design.AizeSize
 import app.aize.map.MapController
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
+import app.aize.nav.OffRouteDetector
 import app.aize.nav.Route
 import app.aize.net.RouteClient
 import app.aize.net.ServerSettings
@@ -69,6 +70,10 @@ fun NavScreen() {
     var routing by remember { mutableStateOf(false) }
     var notice by remember { mutableStateOf<String?>(null) }
     var pendingDest by remember { mutableStateOf<LatLng?>(null) }
+    var destination by remember { mutableStateOf<LatLng?>(null) }      // where the live route is heading; kept for re-routing
+    var segmentHint by remember { mutableIntStateOf(0) }
+    val offRoute = remember { OffRouteDetector() }
+    var armed by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
     val scope = rememberCoroutineScope()
 
     var following by remember { mutableStateOf(false) }
@@ -111,12 +116,13 @@ fun NavScreen() {
     LaunchedEffect(pendingDest) {
         val dest = pendingDest ?: return@LaunchedEffect
         val origin = fix?.let { doubleArrayOf(it.latitude, it.longitude) } ?: doubleArrayOf(KL_SENTRAL[0], KL_SENTRAL[1])
-        demo = false; distance = 0.0; routing = true; notice = null
+        demo = false; distance = 0.0; routing = true; notice = null; destination = dest; segmentHint = 0; offRoute.reset(); armed = false
         val result = withContext(Dispatchers.IO) {
             runCatching { RouteClient.route(serverUrl, origin[0], origin[1], dest.latitude, dest.longitude) }
         }
         routing = false
         result.onSuccess {
+            android.util.Log.i("Aize", "route dest=${dest.latitude},${dest.longitude} len=${it.path.lengthMeters.roundToInt()}m")
             route = it
             routeLabel = (if (fix != null) "Your location" else "KL Sentral") + " → pin · live route"
             controller?.overview(it, (24 * density).roundToInt())
@@ -149,6 +155,27 @@ fun NavScreen() {
         val m = map ?: return@LaunchedEffect
         val bearing = if (f.hasBearing()) f.bearing.toDouble() else m.cameraPosition.bearing
         c.setPuck(f.latitude, f.longitude, bearing, m.cameraPosition.bearing, m.cameraPosition.tilt)
+
+        // follow a live route: snap the fix onto it (drives the banner and the greyed-out part), re-route when really off it
+        val r = route
+        val dest = destination
+        if (r != null && dest != null && !routing) {
+            val proj = r.path.project(f.latitude, f.longitude, fromSegment = maxOf(0, segmentHint - 2), window = 200)
+            val away = if (proj.offRoute > 40.0) r.path.project(f.latitude, f.longitude) else proj      // lost it? search the whole route
+            segmentHint = away.segment
+            distance = away.along
+            c.setPassed(r, away.along)
+            if (away.offRoute <= 40.0) armed = true
+            if (armed && offRoute.update(away.offRoute, System.currentTimeMillis())) {
+                routing = true; notice = "Off route — finding a new one…"
+                scope.launch {
+                    val res = withContext(Dispatchers.IO) { runCatching { RouteClient.route(serverUrl, f.latitude, f.longitude, dest.latitude, dest.longitude) } }
+                    routing = false
+                    res.onSuccess { android.util.Log.i("Aize", "rerouted len=${it.path.lengthMeters.roundToInt()}m"); route = it; armed = false; segmentHint = 0; distance = 0.0; notice = null; routeLabel = "Your location → pin · re-routed" }
+                        .onFailure { notice = it.message ?: "Re-routing failed" }
+                }
+            }
+        }
         if (following) c.follow(f.latitude, f.longitude, bearing, durationMs = 800, topPaddingPx = (mapView?.height ?: 0) * 0.4)
     }
 

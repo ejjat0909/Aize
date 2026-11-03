@@ -59,6 +59,34 @@ class RoutePath(val lat: DoubleArray, val lon: DoubleArray) {
         return if (a.lat == b.lat && a.lon == b.lon) a.heading else bearing(a.lat, a.lon, b.lat, b.lon)
     }
 
+    /** Result of snapping a position onto the route: metres travelled along it and metres away from it. */
+    class Projection(val along: Double, val offRoute: Double, val segment: Int)
+
+    /**
+     * Snap a position onto the route. Searches only segments within [fromSegment, fromSegment + window] when given, so a route that
+     * doubles back over itself does not make the position jump to the wrong pass. Local flat projection: exact to centimetres
+     * over the few hundred metres between a fix and a segment.
+     */
+    fun project(pLat: Double, pLon: Double, fromSegment: Int = 0, window: Int = Int.MAX_VALUE): Projection {
+        val mPerDegLat = 111_320.0
+        val mPerDegLon = 111_320.0 * cos(rad(pLat))
+        var best = Double.MAX_VALUE
+        var bestAlong = 0.0
+        var bestSeg = fromSegment.coerceIn(0, size - 2)
+        val last = if (window == Int.MAX_VALUE) size - 2 else minOf(size - 2, fromSegment + window)
+        for (i in fromSegment.coerceIn(0, size - 2)..last) {
+            val ax = (lon[i] - pLon) * mPerDegLon; val ay = (lat[i] - pLat) * mPerDegLat
+            val bx = (lon[i + 1] - pLon) * mPerDegLon; val by = (lat[i + 1] - pLat) * mPerDegLat
+            val dx = bx - ax; val dy = by - ay
+            val len2 = dx * dx + dy * dy
+            val t = if (len2 <= 0.0) 0.0 else ((-ax * dx - ay * dy) / len2).coerceIn(0.0, 1.0)
+            val cx = ax + dx * t; val cy = ay + dy * t
+            val dist = sqrt(cx * cx + cy * cy)
+            if (dist < best) { best = dist; bestSeg = i; bestAlong = cumulative[i] + (cumulative[i + 1] - cumulative[i]) * t }
+        }
+        return Projection(bestAlong, best, bestSeg)
+    }
+
     companion object {
         private const val R = 6_371_008.8
         private fun rad(d: Double) = d * PI / 180.0
