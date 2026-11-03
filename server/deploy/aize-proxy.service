@@ -1,0 +1,13 @@
+[Unit]
+Description=Aize public entry point (:8002)
+After=aize-valhalla.service aize-search.service
+
+[Service]
+Environment=PORT=8002 SEARCH_URL=http://127.0.0.1:8001 VALHALLA_URL=http://127.0.0.1:8010
+ExecStart=/usr/bin/python3 /opt/aize/proxy.py
+WorkingDirectory=/opt/aize
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

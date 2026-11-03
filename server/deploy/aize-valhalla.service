@@ -1,0 +1,14 @@
+[Unit]
+Description=Aize Valhalla routing server (:8010)
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=/opt/aize/pkg/pyvalhalla.libs
+WorkingDirectory=/opt/aize
+ExecStart=/opt/aize/pkg/valhalla/bin/valhalla_service /opt/aize/valhalla.json 1
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

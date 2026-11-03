@@ -1,0 +1,12 @@
+[Unit]
+Description=Aize place search (:8001)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/aize/search_server.py /opt/aize/data/places.db 8001
+WorkingDirectory=/opt/aize
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

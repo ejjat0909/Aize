@@ -42,3 +42,9 @@ a city outranks a shop) and distance from the caller. Duplicate road segments ar
 
 It is not Photon: no address parsing, no house numbers, no transliteration. For "Jalan Ampang" or "Suria KLCC"
 it is enough; for "12 Jalan Ampang" it is not.
+
+## Keep it running
+
+The three services are meant to be systemd units so they come back after a
+reboot; see `deploy/README.md`. Memory after the first route: Valhalla about
+500 MB, search about 60 MB — a 1 GiB host runs the full Malaysia graph.
