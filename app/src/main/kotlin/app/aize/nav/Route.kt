@@ -31,8 +31,12 @@ class Route(val path: RoutePath, val maneuvers: List<Maneuver>, val durationSeco
          * Parse the recorded Valhalla /route response (assets/route/kl-sentral-to-klcc.valhalla.json) used by the walking skeleton.
          * Valhalla reports lengths in the request's units (kilometres here), so they are converted to metres.
          */
-        fun fromValhallaFixture(json: String): Route {
-            val root = JSONObject(json)
+        fun fromValhallaFixture(json: String): Route = fromValhalla(json)
+
+        /** Parse a Valhalla /route response, either as returned by the server (wrapped in "trip") or the bare trip object. */
+        fun fromValhalla(json: String): Route {
+            val whole = JSONObject(json)
+            val root = whole.optJSONObject("trip") ?: whole
             val leg = root.getJSONArray("legs").getJSONObject(0)
             val dec = Polyline.decode(leg.getString("shape"), precision = 6)
             val toMeters = if (root.optString("units", "kilometers").startsWith("mi")) 1609.344 else 1000.0

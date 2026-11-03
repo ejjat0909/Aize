@@ -32,9 +32,13 @@ import app.aize.map.MapController
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
 import app.aize.nav.Route
+import app.aize.net.RouteClient
+import app.aize.net.ServerSettings
 import app.aize.nav.RoutePath
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.MapLibre
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
@@ -44,6 +48,7 @@ import kotlin.math.roundToInt
 
 private const val DEMO_SPEED_MPS = 22.0          // ~80 km/h: the 9 km demo route takes ~7 minutes
 private val KL_CENTER = doubleArrayOf(3.1466, 101.6990)
+private val KL_SENTRAL = doubleArrayOf(3.1343, 101.6862)
 
 @Composable
 fun NavScreen() {
@@ -57,6 +62,14 @@ fun NavScreen() {
     var route by remember { mutableStateOf<Route?>(null) }
     var tiles by remember { mutableStateOf<java.io.File?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
+
+    var routeLabel by remember { mutableStateOf("KL Sentral → KLCC (recorded)") }
+    var serverUrl by remember { mutableStateOf(ServerSettings.get(ctx)) }
+    var showServer by remember { mutableStateOf(false) }
+    var routing by remember { mutableStateOf(false) }
+    var notice by remember { mutableStateOf<String?>(null) }
+    var pendingDest by remember { mutableStateOf<LatLng?>(null) }
+    val scope = rememberCoroutineScope()
 
     var following by remember { mutableStateOf(false) }
     var demo by remember { mutableStateOf(false) }
@@ -90,12 +103,31 @@ fun NavScreen() {
         }
     }
 
+    // --- show whichever route is current ---------------------------------------------------------------------------------
+    LaunchedEffect(route, controller) { controller?.setRoute(route) }
+
+    // --- pick a destination (long-press) -> ask the Valhalla server for a route from here --------------------------------------
+    var fix by remember { mutableStateOf<Location?>(null) }
+    LaunchedEffect(pendingDest) {
+        val dest = pendingDest ?: return@LaunchedEffect
+        val origin = fix?.let { doubleArrayOf(it.latitude, it.longitude) } ?: doubleArrayOf(KL_SENTRAL[0], KL_SENTRAL[1])
+        demo = false; distance = 0.0; routing = true; notice = null
+        val result = withContext(Dispatchers.IO) {
+            runCatching { RouteClient.route(serverUrl, origin[0], origin[1], dest.latitude, dest.longitude) }
+        }
+        routing = false
+        result.onSuccess {
+            route = it
+            routeLabel = (if (fix != null) "Your location" else "KL Sentral") + " → pin · live route"
+            controller?.overview(it, (24 * density).roundToInt())
+        }.onFailure { notice = it.message ?: "Routing failed" }
+    }
+
     // --- real location (when permitted) ---------------------------------------------------------------------------------
     var hasPermission by remember {
         mutableStateOf(ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
     }
     val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { hasPermission = it }
-    var fix by remember { mutableStateOf<Location?>(null) }
     DisposableEffect(hasPermission) {
         if (!hasPermission) return@DisposableEffect onDispose { }
         val lm = ctx.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -169,6 +201,7 @@ fun NavScreen() {
                         m.addOnCameraMoveStartedListener { reason ->
                             if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE) following = false
                         }
+                        m.addOnMapLongClickListener { pendingDest = it; true }
                         map = m
                     }
                 }
@@ -220,16 +253,18 @@ fun NavScreen() {
             Column(Modifier.windowInsetsPadding(WindowInsets.navigationBars).padding(horizontal = 16.dp, vertical = 14.dp)) {
                 when {
                     error != null -> Text(error!!, color = MaterialTheme.colorScheme.error)
+                    routing -> Text("Finding a route…", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    notice != null -> Text(notice!!, color = MaterialTheme.colorScheme.error)
                     r == null || controller == null -> Text("Loading map…", color = MaterialTheme.colorScheme.onSurfaceVariant)
                     else -> {
                         val left = r.path.lengthMeters - distance
                         val secs = r.durationSeconds * (left / r.path.lengthMeters)
                         Text(
-                            if (demo) "${formatDistance(left)} · ${(secs / 60).roundToInt().coerceAtLeast(1)} min left" else "KL Sentral → KLCC · ${formatDistance(r.path.lengthMeters)}",
+                            if (demo) "${formatDistance(left)} · ${(secs / 60).roundToInt().coerceAtLeast(1)} min left" else "$routeLabel · ${formatDistance(r.path.lengthMeters)}",
                             fontSize = 18.sp, fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)" else "Aize 0.0.1 · P0 walking skeleton",
+                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)" else "Long-press the map to route there",
                             color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
                         )
                     }
@@ -260,11 +295,40 @@ fun NavScreen() {
                         shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
                     ) { Text(if (demo || fix != null) "Recenter" else "Overview") }
                 }
-                if (!hasPermission) {
-                    TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
+                Row {
+                    if (!hasPermission) {
+                        TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
+                    }
+                    TextButton(onClick = { showServer = true }) { Text("Server") }
                 }
             }
         }
+    }
+
+    if (showServer) {
+        var text by remember { mutableStateOf(serverUrl) }
+        var testResult by remember { mutableStateOf<String?>(null) }
+        var testing by remember { mutableStateOf(false) }
+        AlertDialog(
+            onDismissRequest = { showServer = false },
+            title = { Text("Routing server") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Address of a Valhalla server, e.g. https://example.com or 192.168.1.20:8002. The emulator reaches the host at 10.0.2.2.", fontSize = 13.sp)
+                    OutlinedTextField(value = text, onValueChange = { text = it; testResult = null }, singleLine = true, label = { Text("Server address") })
+                    TextButton(enabled = !testing, onClick = {
+                        testing = true; testResult = "Testing…"
+                        scope.launch {
+                            val r = withContext(Dispatchers.IO) { runCatching { RouteClient.status(text) } }
+                            testResult = r.fold({ "Connected: $it" }, { "Failed: ${it.message}" }); testing = false
+                        }
+                    }) { Text("Test connection") }
+                    testResult?.let { Text(it, fontSize = 13.sp, color = if (it.startsWith("Failed")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary) }
+                }
+            },
+            confirmButton = { TextButton(onClick = { ServerSettings.set(ctx, text); serverUrl = ServerSettings.get(ctx); showServer = false }) { Text("Save") } },
+            dismissButton = { TextButton(onClick = { showServer = false }) { Text("Cancel") } },
+        )
     }
 }
 

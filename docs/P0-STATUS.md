@@ -1,4 +1,7 @@
-# P0 — Foundations: what is built, what is not
+# P0/P1 — what is built, what is not
+
+> **Update (0.1.0-p1):** the app now routes live. Long-press the map to drop a destination; the app asks a Valhalla server for a route from your location (or KL Sentral without a fix). The server address is editable in the app (**Server** button, with a *Test connection* check). Server: `server/valhalla-setup.sh` runs Valhalla **without Docker** from the prebuilt `pyvalhalla` wheel (3.9.1) on a Malaysia/Singapore/Brunei OSM extract (735 tiles, 652 MB, built in 2.5 min). Measured on this server: KL Sentral→KLCC 10.2 km in 0.39 s; KL→Penang 353 km in 0.57 s. The app uses cleartext HTTP so a plain `ip:port` works; use HTTPS for anything public. Still missing: place search (Photon), re-routing while driving, turn-by-turn from real GPS, and a permanent public server (the dev link is a temporary preview URL).
+
 
 Plan reference: `docs/02-aize-build-plan.md`, phase P0 (exit criterion: a *walking skeleton* — purple MapLibre map, a location puck, a route drawn).
 
@@ -21,7 +24,7 @@ Plan reference: `docs/02-aize-build-plan.md`, phase P0 (exit criterion: a *walki
 
 ## What is **not** done (honest list)
 
-* **P0-07 data stack (Docker: Valhalla, Planetiler, Photon)** — Docker is not available on the build VM; nothing was stubbed. The route is a one-off recorded response; the app never calls a router.
+* **P0-07 data stack** — Valhalla now runs Dockerless (see update above). Planetiler (own tiles) and Photon (search) are still not done; the basemap is still the bundled KL extract.
 * **Rust core (`aize-core`, UniFFI, cargo-ndk)** — no Rust toolchain on the VM. Polyline decoding and route geometry are plain Kotlin for now (same unit tests will become the contract for the Rust port).
 * **JDK 21** — the VM has JDK 17; the project targets 17 (a deviation from the plan, harmless for P0).
 * **Two-bucket sprite blend (P2-05)** — only nearest-pitch/yaw is used; pitch animation can pop between sheets.

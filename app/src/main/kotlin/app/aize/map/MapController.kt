@@ -58,26 +58,22 @@ class MapController(
         val (pin, anchor) = sprites.loadPin("pin_destination")
         style.addImage("pin-destination", pin)
 
-        if (route != null) {
-            val line = LineString.fromLngLats(List(route.path.size) { Point.fromLngLat(route.path.lon[it], route.path.lat[it]) })
-            style.addSource(GeoJsonSource(ROUTE_SRC, Feature.fromGeometry(line)))
-            style.addSource(passedSource)
-            style.addSource(GeoJsonSource(DEST_SRC, Point.fromLngLat(route.path.lon.last(), route.path.lat.last())))
-            val join = arrayOf(lineCap(Property.LINE_CAP_ROUND), lineJoin(Property.LINE_JOIN_ROUND))
-            style.addLayer(LineLayer("route-casing", ROUTE_SRC).withProperties(*join, lineColor(palette.selectedCasing), lineWidth(widthExpr(15f, 7f, 22f, 36f))))
-            style.addLayer(LineLayer("route", ROUTE_SRC).withProperties(*join, lineColor(palette.selected), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
-            style.addLayer(LineLayer("route-passed", PASSED_SRC).withProperties(*join, lineColor(palette.passed), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
-            style.addLayer(
-                SymbolLayer("dest-pin", DEST_SRC).withProperties(
-                    iconImage("pin-destination"), iconAnchor(Property.ICON_ANCHOR_CENTER),
-                    iconOffset(arrayOf(0f, (0.5f - anchor[1].toFloat()) * 64f)),      // frame is 64 dp: shift so the pin's tip sits on the point
-                    iconAllowOverlap(true), iconIgnorePlacement(true),
-                    iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT), iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
-                ),
-            )
-        } else {
-            style.addSource(passedSource)
-        }
+        style.addSource(GeoJsonSource(ROUTE_SRC))
+        style.addSource(passedSource)
+        style.addSource(GeoJsonSource(DEST_SRC))
+        val join = arrayOf(lineCap(Property.LINE_CAP_ROUND), lineJoin(Property.LINE_JOIN_ROUND))
+        style.addLayer(LineLayer("route-casing", ROUTE_SRC).withProperties(*join, lineColor(palette.selectedCasing), lineWidth(widthExpr(15f, 7f, 22f, 36f))))
+        style.addLayer(LineLayer("route", ROUTE_SRC).withProperties(*join, lineColor(palette.selected), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
+        style.addLayer(LineLayer("route-passed", PASSED_SRC).withProperties(*join, lineColor(palette.passed), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
+        style.addLayer(
+            SymbolLayer("dest-pin", DEST_SRC).withProperties(
+                iconImage("pin-destination"), iconAnchor(Property.ICON_ANCHOR_CENTER),
+                iconOffset(arrayOf(0f, (0.5f - anchor[1].toFloat()) * 64f)),      // frame is 64 dp: shift so the pin's tip sits on the point
+                iconAllowOverlap(true), iconIgnorePlacement(true),
+                iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT), iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
+            ),
+        )
+        setRoute(route)
 
         style.addSource(puckSource)
         style.addLayer(
@@ -89,6 +85,21 @@ class MapController(
                 iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
             ),
         )
+    }
+
+    /** Show a route (or clear it with null): line, empty "passed" part, destination pin at its last vertex. */
+    fun setRoute(route: Route?) {
+        val src = style.getSourceAs<GeoJsonSource>(ROUTE_SRC)
+        val dst = style.getSourceAs<GeoJsonSource>(DEST_SRC)
+        passedSource.setGeoJson(FeatureCollection.fromFeatures(emptyList<Feature>()))
+        if (route == null) {
+            src?.setGeoJson(FeatureCollection.fromFeatures(emptyList<Feature>()))
+            dst?.setGeoJson(FeatureCollection.fromFeatures(emptyList<Feature>()))
+            return
+        }
+        val line = LineString.fromLngLats(List(route.path.size) { Point.fromLngLat(route.path.lon[it], route.path.lat[it]) })
+        src?.setGeoJson(Feature.fromGeometry(line))
+        dst?.setGeoJson(Point.fromLngLat(route.path.lon.last(), route.path.lat.last()))
     }
 
     private fun widthExpr(z10: Float, z14: Float, z17: Float, z20: Float): Expression =
