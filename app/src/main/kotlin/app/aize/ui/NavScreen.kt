@@ -23,6 +23,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.ui.text.input.ImeAction
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -33,7 +40,9 @@ import app.aize.map.PuckSprites
 import app.aize.map.TileStore
 import app.aize.nav.OffRouteDetector
 import app.aize.nav.Route
+import app.aize.net.PlaceResult
 import app.aize.net.RouteClient
+import app.aize.net.SearchClient
 import app.aize.net.ServerSettings
 import app.aize.nav.RoutePath
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +82,12 @@ fun NavScreen() {
     var destination by remember { mutableStateOf<LatLng?>(null) }      // where the live route is heading; kept for re-routing
     var segmentHint by remember { mutableIntStateOf(0) }
     val offRoute = remember { OffRouteDetector() }
-    var armed by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
+    var armed by remember { mutableStateOf(false) }
+    var showSearch by remember { mutableStateOf(false) }
+    var query by remember { mutableStateOf("") }
+    var results by remember { mutableStateOf<List<PlaceResult>>(emptyList()) }
+    var searching by remember { mutableStateOf(false) }
+    var arrived by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
     val scope = rememberCoroutineScope()
 
     var following by remember { mutableStateOf(false) }
@@ -129,6 +143,18 @@ fun NavScreen() {
         }.onFailure { notice = it.message ?: "Routing failed" }
     }
 
+    // --- place search: debounce typing, ask the server, keep the last good results -------------------------------
+    LaunchedEffect(query, serverUrl) {
+        if (query.trim().length < 2) { results = emptyList(); return@LaunchedEffect }
+        searching = true
+        kotlinx.coroutines.delay(280)
+        val r = withContext(Dispatchers.IO) {
+            runCatching { SearchClient.search(serverUrl, query.trim(), fix?.latitude, fix?.longitude) }
+        }
+        searching = false
+        r.onSuccess { results = it }.onFailure { results = emptyList() }
+    }
+
     // --- real location (when permitted) ---------------------------------------------------------------------------------
     var hasPermission by remember {
         mutableStateOf(ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
@@ -166,6 +192,7 @@ fun NavScreen() {
             distance = away.along
             c.setPassed(r, away.along)
             if (away.offRoute <= 40.0) armed = true
+            arrived = r.path.lengthMeters - away.along < 30.0
             if (armed && offRoute.update(away.offRoute, System.currentTimeMillis())) {
                 routing = true; notice = "Off route — finding a new one…"
                 scope.launch {
@@ -255,7 +282,7 @@ fun NavScreen() {
 
         val r = route
         // ------------------------------------------------------------------ instruction banner
-        if (r != null && demo) {
+        if (r != null && !showSearch) {
             val g = r.guidanceAt(distance)
             val up = g.next
             Surface(
@@ -265,9 +292,21 @@ fun NavScreen() {
                 shape = RoundedCornerShape(AizeRadius.LG), shadowElevation = 6.dp,
             ) {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.Center) {
-                    Text(formatDistance(g.metersToNext), fontSize = 30.sp, fontWeight = FontWeight.Bold)
-                    Text(up?.instruction ?: "Arrive at your destination", fontSize = 17.sp, maxLines = 2)
+                    Text(
+                        if (arrived) "Arrived" else formatDistance(g.metersToNext),
+                        fontSize = 30.sp, fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        if (arrived) g.current.instruction else (up?.instruction ?: "Arrive at your destination"),
+                        fontSize = 17.sp, maxLines = 2,
+                    )
+                    val after = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)
+                    if (!arrived && after != null) {
+                        Text("then ${after.instruction}", fontSize = 13.sp, maxLines = 1,
+                            color = LocalContentColor.current.copy(alpha = 0.8f))
+                    }
                 }
+
             }
         }
 
@@ -291,7 +330,7 @@ fun NavScreen() {
                             fontSize = 18.sp, fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)" else "Long-press the map to route there",
+                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)" else "Search or long-press the map for a destination",
                             color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
                         )
                     }
@@ -326,7 +365,43 @@ fun NavScreen() {
                     if (!hasPermission) {
                         TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
                     }
+                    TextButton(onClick = { showSearch = true }) { Text("Search") }
                     TextButton(onClick = { showServer = true }) { Text("Server") }
+                }
+            }
+        }
+        // ------------------------------------------------------------------ search
+        if (showSearch) {
+            Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), color = MaterialTheme.colorScheme.surface) {
+                Column(Modifier.padding(12.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        OutlinedTextField(
+                            value = query, onValueChange = { query = it }, modifier = Modifier.weight(1f),
+                            singleLine = true, placeholder = { Text("Search a place in Malaysia") },
+                            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                        )
+                        TextButton(onClick = { showSearch = false; query = ""; results = emptyList() }) { Text("Close") }
+                    }
+                    if (searching) LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 6.dp))
+                    if (results.isEmpty() && !searching && query.trim().length >= 2) {
+                        Text("No places found", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
+                    }
+                    LazyColumn(Modifier.fillMaxSize()) {
+                        items(results) { p ->
+                            ListItem(
+                                headlineContent = { Text(p.name) },
+                                supportingContent = {
+                                    val bits = mutableListOf(kindLabel(p.kind))
+                                    if (p.distanceMeters > 0) bits += formatDistance(p.distanceMeters.toDouble())
+                                    Text(bits.joinToString(" \u00b7 "))
+                                },
+                                modifier = Modifier.clickable {
+                                    pendingDest = LatLng(p.lat, p.lon); showSearch = false; query = ""; results = emptyList()
+                                },
+                            )
+                            HorizontalDivider()
+                        }
+                    }
                 }
             }
         }
@@ -356,6 +431,17 @@ fun NavScreen() {
             confirmButton = { TextButton(onClick = { ServerSettings.set(ctx, text); serverUrl = ServerSettings.get(ctx); showServer = false }) { Text("Save") } },
             dismissButton = { TextButton(onClick = { showServer = false }) { Text("Cancel") } },
         )
+    }
+}
+
+/** "shop=mall" -> "Mall"; "highway=residential" -> "Road". */
+private fun kindLabel(kind: String): String {
+    val v = kind.substringAfter('=', "").substringBefore(';').replace('_', ' ')
+    return when {
+        v.isBlank() -> "Place"
+        kind.startsWith("highway=") -> if (v == "bus stop") "Bus stop" else "Road"
+        kind.startsWith("place=") -> v.replaceFirstChar { it.uppercase() }
+        else -> v.replaceFirstChar { it.uppercase() }
     }
 }
 
