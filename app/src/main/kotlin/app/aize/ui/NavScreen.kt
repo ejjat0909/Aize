@@ -38,6 +38,7 @@ import app.aize.design.AizeSize
 import app.aize.map.MapController
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
+import app.aize.nav.EtaEngine
 import app.aize.nav.NavService
 import app.aize.nav.NavSession
 import app.aize.nav.OffRouteDetector
@@ -65,7 +66,9 @@ private val KL_SENTRAL = doubleArrayOf(3.1343, 101.6862)
 @Composable
 fun NavScreen() {
     val ctx = LocalContext.current
-    val dark = isSystemInDarkTheme()
+    // day/night follows the ThemeMode policy (auto = clock, or the driver's manual choice)
+    val themeMode by ThemeMode.mode.collectAsState()
+    val dark = ThemeMode.isDark(themeMode)
     val density = LocalView.current.resources.displayMetrics.density
 
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
@@ -353,6 +356,18 @@ fun NavScreen() {
                         Text("then ${after.instruction}", fontSize = 13.sp, maxLines = 1,
                             color = LocalContentColor.current.copy(alpha = 0.8f))
                     }
+                    // remaining distance, time left and arrival clock, from the service when it is driving
+                    val remainingMeters = if (serviceOwned) nav.remainingMeters else r.path.lengthMeters - distance
+                    val etaLine = if (serviceOwned && nav.eta != null) {
+                        "${formatDistance(remainingMeters)} · ${nav.eta}"
+                    } else {
+                        val secs = EtaEngine.estimate(r, distance, 0.0)
+                        "${formatDistance(remainingMeters)} · ${EtaEngine.summary(secs, System.currentTimeMillis())}"
+                    }
+                    if (!isArrived) {
+                        Text(etaLine, fontSize = 13.sp, fontWeight = FontWeight.Medium,
+                            color = LocalContentColor.current.copy(alpha = 0.9f))
+                    }
                 }
 
             }
@@ -424,6 +439,7 @@ fun NavScreen() {
                     }
                     TextButton(onClick = { showSearch = true }) { Text("Search") }
                     TextButton(onClick = { showServer = true }) { Text("Server") }
+                    TextButton(onClick = { ThemeMode.cycle(ctx) }) { Text(ThemeMode.label(themeMode)) }
                 }
             }
         }

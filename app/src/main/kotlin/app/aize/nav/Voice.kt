@@ -21,6 +21,8 @@ class Voice(private val ctx: Context) : TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var ready = false
     private var focus: AudioFocusRequest? = null
+    /** TTS takes a few seconds to start; a prompt that arrives before then is kept, not thrown away. */
+    private var pending: String? = null
 
     fun start() {
         if (tts != null) return
@@ -42,14 +44,21 @@ class Voice(private val ctx: Context) : TextToSpeech.OnInitListener {
         )
         ready = true
         Log.i("AizeVoice", "ready, language ${engine.voice?.locale}")
+        pending?.let { speakNow(it) }
+        pending = null
     }
 
     /** Speaks one prompt, interrupting anything already queued: the newest instruction is the true one. */
     fun say(text: String) {
         if (!ready) {
-            Log.i("AizeVoice", "not ready, dropped: $text")
+            Log.i("AizeVoice", "not ready yet, holding: $text")
+            pending = text
             return
         }
+        speakNow(text)
+    }
+
+    private fun speakNow(text: String) {
         val engine = tts ?: return
         requestFocus()
         val r = engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "aize-nav")
@@ -62,6 +71,7 @@ class Voice(private val ctx: Context) : TextToSpeech.OnInitListener {
         tts?.shutdown()
         tts = null
         ready = false
+        pending = null
     }
 
     private fun requestFocus() {

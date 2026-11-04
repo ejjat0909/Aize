@@ -12,7 +12,7 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 |---|---|---|---|---|---|
 | P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
 | P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
-| P2 | Map & location | 13 | 76 pd | 41.5 pd | yes |
+| P2 | Map & location | 13 | 76 pd | 40 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 54 pd | yes |
 | P4 | Navigation engine & voice | 14 | 110 pd | 80 pd | yes |
 | P5 | Live traffic & community | 12 | 101 pd | 101 pd | yes |
@@ -20,9 +20,9 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **522 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **520.5 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **211 pd** left of the 337 pd planned for it, and the whole plan has 522 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **209.5 pd** left of the 337 pd planned for it, and the whole plan has 520.5 pd left of 653.
 
 ## The order to do it in
 
@@ -128,7 +128,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* The map looks and moves like the design spec; the puck is smooth at 60 fps.
 
-13 tasks, 76 pd planned, 41.5 pd left. 2 done, 7 part-done.
+13 tasks, 76 pd planned, 40 pd left. 2 done, 8 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
@@ -142,7 +142,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P2-08 | `:location`: provider abstraction (Fused vs raw GNSS), permission state machine, rotation-vector/accelerometer/gyro inputs, mock-location flagging, accuracy filtering, adaptive rates, car-GPS hook; emits protobuf LocationSample | 8 | yes | part |
 | P2-09 | Navigation foreground service (location type), ETA notification, Android 14+ compliance, background-location justification flow | 4 | yes | done |
 | P2-10 | Gesture & rendering tuning: tile cache sizing, overdraw audit, 'map pan' Macrobenchmark with p95 gate | 4 | yes | — |
-| P2-11 | Auto day/night (time, sunrise/sunset, ambient light) via style `global-state` toggle (no style reload) | 3 | yes | — |
+| P2-11 | Auto day/night (time, sunrise/sunset, ambient light) via style `global-state` toggle (no style reload) | 3 | yes | part |
 | P2-13 | Vehicle skins: sedan, taxi and SUV from `assets3d` as on-demand asset packs (Play Asset Delivery), skin picker with live preview, hatch and van rendered with the same pipeline, per-skin licence entry | 6 | no | — |
 | P2-12 | Offline regions v0: download bbox/zoom subset of PMTiles + routing tiles; storage manager UI | 6 | no | — |
 
@@ -154,7 +154,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P2-07** — Destination pin only; the other eight billboard pins are rendered but unused.
 - **P2-08** — Raw `LocationManager` fixes with a permission gate. No fused provider, rotation vectors, mock flagging or adaptive rates.
 - **P2-09** — `NavService` is a `location`-type foreground service with a silent navigation notification (instruction, distance left, progress, Stop action, tap to open). Guidance, voice and the notification keep running with the screen off, verified on the emulator with the display dozing. No ETA clock in the notification yet.
-- **P2-11** — Dark mode follows the system setting only.
+- **P2-11** — `ThemeMode` cycles Auto/Day/Night: Auto is light between 06:30 and 19:00 (tropical sunrise and sunset, no summer to track), the manual modes are remembered across restarts, and the switch re-colours both the Compose theme and the map. Changing the mode still reloads the style rather than toggling `global-state`.
 - **P2-13** — Hatch and van are not rendered; no skin picker.
 
 ### P3 · Search, places & routing
@@ -212,7 +212,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P4-02** — Windowed projection gives progress, distance to the next maneuver and the passed part. No hysteresis, tunnel dead reckoning, remaining time.
 - **P4-03** — 40 m threshold, 3 strikes, 15 s cooldown, armed only after the first on-route fix. No accuracy awareness, heading mismatch, rejoin logic or better-route suggestion.
 - **P4-04** — Maneuver timeline, next and next-next instructions, arrival within 30 m, and a speed-adaptive announcer (prepare at `max(150 m, speed x 8 s)`, imminent at 45 m, dedupe, 4 s quiet gap). No lane guidance, roundabout exit naming or camera zones.
-- **P4-05** — Valhalla's time is shown as-is. No smoothing or arrival clock.
+- **P4-05** — `EtaEngine` scales Valhalla's free-flow time by the distance left, blends in live speed (clamped to +/-40 % so one traffic light cannot swing the clock), and publishes only when the estimate moves 30 s or 5 %. Arrival clock and the `12 min - 3:42 PM` line reach the banner and the notification. No historical speed profiles and no traffic bar.
 - **P4-06** — Blocked: no Rust toolchain on the build VM.
 - **P4-07** — Banner and follow camera. No lane view, speedometer, limit sign or traffic bar.
 - **P4-08** — System TTS in `Voice.kt`: navigation-guidance usage, speech content type, transient-may-duck audio focus, `QUEUE_FLUSH` with a stable utterance id, and a two-prompt-per-maneuver scheduler in `GuidanceAnnouncer` (unit tested). No prompt catalogue, modes, Bluetooth routing or voice packs.

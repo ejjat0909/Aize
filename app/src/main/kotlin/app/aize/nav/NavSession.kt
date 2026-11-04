@@ -21,6 +21,9 @@ object NavSession {
         val instruction: String? = null,
         val metersToInstruction: Double = 0.0,
         val after: String? = null,
+        /** Smoothed time left on the route, and the clock time that lands on. */
+        val remainingSeconds: Double = 0.0,
+        val eta: String? = null,
         val lastPrompt: String? = null,
         val fixes: Int = 0,
     )

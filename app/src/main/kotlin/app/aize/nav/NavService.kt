@@ -39,6 +39,7 @@ class NavService : Service(), LocationListener {
     private lateinit var manager: NotificationManager
     private val announcer = GuidanceAnnouncer()
     private val offRoute = OffRouteDetector()
+    private val eta = EtaEngine()
     private var armed = false
     private var currentRoute: Route? = null
     private var baselineOff: Double? = null
@@ -134,6 +135,7 @@ class NavService : Service(), LocationListener {
             currentRoute = route
             announcer.reset()
             offRoute.reset()
+            eta.reset()
             armed = false
             baselineOff = null
         }
@@ -149,8 +151,11 @@ class NavService : Service(), LocationListener {
         val remaining = (route.path.lengthMeters - along).coerceAtLeast(0.0)
         val arrived = route.path.lengthMeters - along < 30.0
 
-        val prompt = if (fix.hasSpeed()) fix.speed.toDouble() else 0.0
-        val p = announcer.update(route, along, prompt, System.currentTimeMillis())
+        val speedMps = if (fix.hasSpeed()) fix.speed.toDouble() else 0.0
+        val remainingSeconds = eta.next(route, along, speedMps)
+        val etaText = EtaEngine.formatMinutes(remainingSeconds)
+        val arrival = EtaEngine.formatArrival(System.currentTimeMillis(), remainingSeconds)
+        val p = announcer.update(route, along, speedMps, System.currentTimeMillis())
         if (p != null) {
             NavSession.lastPrompt = p.text
             voice.say(p.text)
@@ -167,6 +172,8 @@ class NavService : Service(), LocationListener {
                 instruction = ahead?.maneuver?.instruction ?: "Arrive at your destination",
                 metersToInstruction = ahead?.metersToStart ?: 0.0,
                 after = ahead?.after?.instruction,
+                remainingSeconds = remainingSeconds,
+                eta = "$etaText · $arrival",
                 fixes = NavSession.state.value.fixes + 1,
             ),
         )
@@ -184,17 +191,18 @@ class NavService : Service(), LocationListener {
             stopSelf()
             return
         }
-        updateNotification(ahead?.maneuver?.instruction ?: "Arrive at your destination", remaining, along)
+        updateNotification(ahead?.maneuver?.instruction ?: "Arrive at your destination", remaining, etaText, arrival)
     }
 
-    private fun updateNotification(instruction: String, remaining: Double, along: Double) {
-        val text = "${formatDistance(remaining)} left · ${formatDistance(along)} done"
+    private fun updateNotification(instruction: String, remaining: Double, etaText: String, arrival: String) {
+        val text = "${formatDistance(remaining)} · $etaText · $arrival"
         val now = System.currentTimeMillis()
         // one update per second at most, and only when the text actually changed
         if (text == lastNotification && now - lastNotificationAt < 5_000) return
         lastNotification = text
         lastNotificationAt = now
         val total = NavSession.route?.path?.lengthMeters ?: 0.0
+        val along = NavSession.state.value.alongMeters
         val progress = if (total <= 0.0) 0 else ((along / total) * 100).toInt().coerceIn(0, 100)
         manager.notify(NOTIFICATION_ID, buildNotification(instruction, text, progress))
     }

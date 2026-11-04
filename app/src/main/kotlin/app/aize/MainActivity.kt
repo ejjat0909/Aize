@@ -10,14 +10,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import app.aize.design.AizeColorSchemes
 import app.aize.ui.NavScreen
+import app.aize.ui.ThemeMode
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { AizeTheme { NavScreen() } }
+        ThemeMode.load(this)
+        setContent {
+            val mode by ThemeMode.mode.collectAsState()
+            AizeTheme(dark = ThemeMode.isDark(mode)) { NavScreen() }
+        }
         if (BuildConfig.DEBUG) startJankStats()
     }
 
