@@ -13,8 +13,8 @@ android {
         applicationId = "app.aize"
         minSdk = 26            // dev default; decision D2 in docs/02-aize-build-plan.md section 0
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.4.0-p0"
+        versionCode = 5
+        versionName = "0.5.0-m1"
 
         // Build-time environment. Override with -Paize.env=staging -Paize.server=https://... (see docs/dev-setup.md).
         // The default is the emulator's view of the host machine, so a clean clone never ships a dead link.
