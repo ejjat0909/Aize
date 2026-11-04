@@ -32,7 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Place search (categories, ranking) against a throwaway index
-        run: python3 -m unittest discover -s server/search -p "test_*.py" -v
+        run: |
+          python3 -m unittest discover -s server/search -p "test_*.py"
+          python3 -m unittest server.test_proxy -v
 
   core:
     runs-on: ubuntu-latest

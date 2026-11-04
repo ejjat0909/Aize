@@ -32,14 +32,21 @@ SEARCH_PREFIXES = ("/search", "/categories")
 VALHALLA_SRV = Proxy(int(VALHALLA.rsplit(":", 1)[1]))
 
 
+def target_for(path, search=SEARCH_SRV, valhalla=VALHALLA_SRV):
+    """Which upstream answers this path.
+
+    Anything not listed here falls through to Valhalla, whose 404 ("Unrecognized request URL")
+    looks like a broken app rather than a missing route. /categories was in exactly that hole: the
+    chips silently fell back to the app's built-in list and nobody noticed the server was never asked.
+    """
+    return search if path.startswith(SEARCH_PREFIXES) else valhalla
+
+
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
     def _relay(self, fn):
-        path = self.path
-        # every non-Valhalla endpoint must be listed here: a path that falls through to Valhalla answers with
-        # Valhalla's own 404, which reads like "the app is broken" rather than "the proxy is misconfigured"
-        target = SEARCH_SRV if path.startswith(SEARCH_PREFIXES) else VALHALLA_SRV
+        target = target_for(self.path)
         try:
             status, body = fn(target)
         except urllib.error.HTTPError as e:
