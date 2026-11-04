@@ -215,7 +215,7 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.13.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.13.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
