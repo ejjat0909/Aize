@@ -67,7 +67,9 @@ fi
 if [ "$WHAT" = "pins" ] || [ "$WHAT" = "all" ]; then
   for k in police hazard accident jam closure camera gas parking destination; do
     echo "== pin_$k"; render pin_$k --pitches 0 $( [ "$QUICK" = 1 ] || echo "--samples 96 --shadow-samples 32" ) --out "$FR/pin_$k"
-    python3 assets3d/tools/pack_atlas.py --frames "$FR/pin_$k" --asset "pin_$k" --out "$DIST/pin_$k"
+    # lossy:95, not the default 92: the soft-touch materials are broad gradients, and the chequered destination flag
+    # lost 0.4 dB of roundtrip PSNR at 92 (37.6 vs the 38 dB floor) purely to compression, not to the render
+    python3 assets3d/tools/pack_atlas.py --frames "$FR/pin_$k" --asset "pin_$k" --out "$DIST/pin_$k" --webp lossy:95
     python3 assets3d/tools/verify_sprites.py --frames "$FR/pin_$k" --asset "pin_$k" --dist "$DIST/pin_$k" --budget-kib 200 --json "$DIST/pins_verification.json"
   done
 fi

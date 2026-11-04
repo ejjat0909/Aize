@@ -48,6 +48,8 @@ class MapController(
     private val palette = if (dark) AizeRoute.dark else AizeRoute.light
     private val puckSource = GeoJsonSource(PUCK_SRC)
     private val passedSource = GeoJsonSource(PASSED_SRC)
+    /** The grey lines currently drawn, in the order the caller passed them (the tap handler indexes into this). */
+    private var alternatives: List<Route> = emptyList()
     private var loadedPitches = emptyList<Double>()
     private var puckAsset = "arrow"
 
@@ -205,8 +207,32 @@ class MapController(
      */
     fun setAlternatives(routes: List<Route>, paddingPx: Int = 0, bottomPaddingPx: Int = 0) {
         val src = style.getSourceAs<GeoJsonSource>(ALTS_SRC) ?: return
+        alternatives = routes
         src.setGeoJson(RouteGeoJson.alternatives(routes))
         if (routes.isNotEmpty() && paddingPx > 0) overviewAll(routes, paddingPx, bottomPaddingPx)
+    }
+
+    /**
+     * Which grey option was tapped, if any.
+     *
+     * Tapping a line on the map is the same decision as tapping its row in the chooser, and it is the gesture people
+     * reach for first: the routes are the thing they are looking at. Returns an index into the list last passed to
+     * [setAlternatives] — not into the sorted chooser list, which may be in a different order.
+     */
+    fun alternativeAt(screenPoint: android.graphics.PointF, tolerancePx: Float = 26f): Int? {
+        if (alternatives.size < 2) return null          // a single route is not a choice
+        val paths = alternatives.map { r ->
+            val n = r.path.size
+            val xs = FloatArray(n)
+            val ys = FloatArray(n)
+            for (i in 0 until n) {
+                val p = map.projection.toScreenLocation(LatLng(r.path.lat[i], r.path.lon[i]))
+                xs[i] = p.x
+                ys[i] = p.y
+            }
+            AlternativeHit.decimate(xs, ys)
+        }
+        return AlternativeHit.nearest(paths, screenPoint.x, screenPoint.y, tolerancePx)
     }
 
     /**

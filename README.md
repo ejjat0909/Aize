@@ -2,7 +2,7 @@
 
 **Aize** is a fast, community-driven, voice-guided navigation app for Android — purple identity, Waze-class interaction model, engineered so it never feels laggy.
 
-> **Status (2026-11-04): v0.12.0-m2 — the app runs, routes, talks, lets you choose, and moves.**
+> **Status (2026-11-04): v0.13.0-m3 — the app runs, routes, talks, lets you choose, moves, and looks soft.**
 > A debug APK installs on a phone and drives: MapLibre map over bundled PMTiles, a Valhalla server with a
 > permanent address, place search over 685k named places with twelve one-tap categories and recent searches, a place card with Directions/Save/Share, up to three
 > routes per destination — all of them drawn on the map, grey under the purple one you are taking, framed above the
@@ -12,7 +12,11 @@
 > same token file as the colours, the banner slides in and its instruction swaps rather than hard-cuts, the sheet
 > springs between heights, chooser rows stagger, the puck eases along the short arc between GPS fixes — and all of it
 > stops dead when Android is set to "remove animations". Category results are drawn on the map as the nine billboard
-> pins (fuel, parking, police, camera, destination…) with a map-aligned contact shadow. 82 JVM unit tests, a Rust
+> pins (fuel, parking, police, camera, destination…) with a map-aligned contact shadow. The whole 3D family —
+> pins, puck, navigation arrow — is now rendered from one soft-touch material profile and a wide-light rig: matte
+> surfaces, rolled edges, a velvet sheen instead of a candy highlight, so the map furniture reads as one soft set
+> rather than nine glossy stickers. A grey route can be tapped on the map to take it, the same decision as tapping
+> its row. 92 JVM unit tests, a Rust
 > core workspace, four CI jobs and 21 ADRs back it. What is missing is listed honestly in
 > [`docs/03-roadmap.md`](docs/03-roadmap.md): lane guidance and speed limits need tiles this server does not
 > carry, and there is no traffic and no signed release yet.

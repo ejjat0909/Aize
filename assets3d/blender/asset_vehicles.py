@@ -131,10 +131,12 @@ def build_vehicle(tk, kind, paint_hex=None):
     fam, step = p["color"]
     paint_hex = paint_hex or tk["color"][fam][step]
     mats = {
-        "paint": L.make_material("Paint", paint_hex, rough=0.30, coat=0.8, coat_rough=0.05, spec=0.5),
-        "glass": L.make_material("Glass", tk["color"]["neutral"]["950"], rough=0.06, coat=1.0, coat_rough=0.02, spec=0.8, mul=0.9),
+        # soft-touch paint, like every other Aize asset: a broad gradient, not a showroom highlight.  Glass keeps a little
+        # more gloss than the body (it is glass) but is roughened too, so the car does not read as a different family.
+        "paint": L.soft_mat("Paint", paint_hex),
+        "glass": L.make_material("Glass", tk["color"]["neutral"]["950"], rough=0.22, coat=0.35, coat_rough=0.2, spec=0.55, mul=0.9, sheen=0.15),
         "tyre": L.make_material("Tyre", "#141218", rough=0.75, spec=0.2),
-        "rim": L.make_material("Rim", tk["color"]["neutral"]["200"], rough=0.28, metal=1.0, spec=0.6),
+        "rim": L.make_material("Rim", tk["color"]["neutral"]["200"], rough=0.45, metal=0.7, spec=0.35),
         "head": L.make_material("Head", "#FFF1D0", rough=0.2, emit_hex="#FFF1D0", emit_strength=3.0),
         "tail": L.make_material("Tail", "#FF3040", rough=0.2, emit_hex="#FF2030", emit_strength=4.0),
         "trim": L.make_material("Trim", tk["color"]["neutral"]["900"], rough=0.55, spec=0.3),

@@ -84,15 +84,15 @@ def build_arrow(tk, variant="", tune="", h_tip=0.85, h_notch=0.44, h_wing=0.06, 
     rim, rim_h = float(kv.get("rim", rim)), float(kv.get("rim_h", rim_h))
     root = L.empty("ArrowRoot")
     body_hex = body_hex or tk["color"]["purple"]["600"]
-    mat_body = L.make_material("ArrowBody", body_hex, rough=0.30, coat=0.65, coat_rough=0.08, spec=0.5)
-    mat_rim = L.make_material("ArrowRim", rim_hex, rough=0.42, coat=0.20, spec=0.4, mul=0.96)
+    mat_body = L.soft_mat("ArrowBody", body_hex)
+    mat_rim = L.soft_mat("ArrowRim", rim_hex, mul=0.97, rough=0.60)
 
     pts = [NOSE, LEFT, NOTCH, RIGHT]
     cx, cy = _centroid(pts)
     pts = [(x - cx, y - cy) for x, y in pts]
 
     slab = _prism("ArrowRim", _offset(pts, rim), 0.0, rim_h, mat_rim, root)
-    _hard_surface(slab, bevel=0.055, segments=3, angle=30)
+    L.soft_surface(slab, bevel=0.085, segments=5, angle=26)
 
     z0 = rim_h - 0.02
     bm = bmesh.new()
@@ -109,15 +109,16 @@ def build_arrow(tk, variant="", tune="", h_tip=0.85, h_notch=0.44, h_wing=0.06, 
         bm.faces.new((tops[i], bots[i], bots[j], tops[j]))
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     tent = L.mesh_object("ArrowTent", bm, mat_body, root)
-    _hard_surface(tent, bevel=0.070, segments=4, angle=14, profile=0.55)
+    # a wide bevel on every facet turns the folded tent into a pillow: the ridge and the nose stay, the creases become rolls
+    L.soft_surface(tent, bevel=0.090, segments=6, angle=14)
     return root, [slab, tent]
 
 
 def build_puck(tk, body_hex=None):
     root = L.empty("PuckRoot")
     body_hex = body_hex or tk["color"]["purple"]["600"]
-    mat_body = L.make_material("PuckBody", body_hex, rough=0.26, coat=0.75, coat_rough=0.05, spec=0.55)
-    mat_rim = L.make_material("PuckRim", "#FFFFFF", rough=0.38, coat=0.25, spec=0.4, mul=0.97)
+    mat_body = L.soft_mat("PuckBody", body_hex, rough=0.42, sheen=0.30)
+    mat_rim = L.soft_mat("PuckRim", "#FFFFFF", mul=0.97, rough=0.60)
 
     def cyl(name, r, z0, z1, mat, seg=72):
         bm = bmesh.new()
@@ -126,19 +127,19 @@ def build_puck(tk, body_hex=None):
         return L.mesh_object(name, bm, mat, root)
 
     slab = cyl("PuckRim", 1.0, 0.0, 0.14, mat_rim)
-    _hard_surface(slab, bevel=0.055, segments=3, angle=30)
+    L.soft_surface(slab, bevel=0.062, segments=6, angle=26)
 
     bm = bmesh.new()
     bmesh.ops.create_uvsphere(bm, u_segments=72, v_segments=36, radius=1.0)
     # only the upper hemisphere exists: the lower half would be buried in the rim slab (and below the ground), never visible
     bmesh.ops.bisect_plane(bm, geom=list(bm.verts) + list(bm.edges) + list(bm.faces), plane_co=(0, 0, 0), plane_no=(0, 0, 1), clear_inner=True)
-    bmesh.ops.scale(bm, vec=(0.78, 0.78, 0.40), verts=bm.verts)
+    bmesh.ops.scale(bm, vec=(0.78, 0.78, 0.47), verts=bm.verts)
     bmesh.ops.translate(bm, vec=(0, 0, 0.14), verts=bm.verts)
     dome = L.mesh_object("PuckDome", bm, mat_body, root)
     L.smooth_by_angle(dome, 80)
 
-    dot = cyl("PuckDot", 0.20, 0.14 + 0.40 - 0.045, 0.14 + 0.40 + 0.012, mat_rim, seg=48)
-    _hard_surface(dot, bevel=0.02, segments=2, angle=30)
+    dot = cyl("PuckDot", 0.20, 0.14 + 0.47 - 0.045, 0.14 + 0.47 + 0.012, mat_rim, seg=48)
+    L.soft_surface(dot, bevel=0.028, segments=4, angle=30)
     return root, [slab, dome, dot]
 
 

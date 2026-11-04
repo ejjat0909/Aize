@@ -190,6 +190,15 @@ fun NavScreen() {
             .onFailure { notice = "Could not start background navigation: ${it.message}" }
     }
 
+    /** Choosing an option, from its row or from its line on the map: one path, so the two cannot drift apart. */
+    fun pickRoute(picked: Route) {
+        route = picked
+        choices = emptyList()                              // the effect above clears the grey lines
+        controller?.overview(picked, (24 * density).roundToInt())
+        android.util.Log.i("Aize", "chose route len=${picked.path.lengthMeters.roundToInt()}m")
+        startNavigation(picked)
+    }
+
     LaunchedEffect(Unit) { saved = Favourites.load(ctx) }
 
     // --- show whichever route is current ---------------------------------------------------------------------------------
@@ -425,8 +434,14 @@ fun NavScreen() {
                             val hit = controller?.pinAt(screen)
                             if (hit != null && hit.label.isNotBlank()) {
                                 place = PlaceResult(hit.label, hit.lat, hit.lon, hit.kind, 0)
-                                true
-                            } else false
+                                return@addOnMapClickListener true
+                            }
+                            // a tap on a grey line is the same decision as a tap on its row in the chooser
+                            val pick = controller?.alternativeAt(screen)
+                            if (pick != null) {
+                                choices.getOrNull(pick)?.let { pickRoute(it); return@addOnMapClickListener true }
+                            }
+                            false
                         }
                         map = m
                     }
@@ -549,13 +564,7 @@ fun NavScreen() {
                     RouteChoices(
                         choices = choices,
                         current = route,
-                        onPick = { picked ->
-                            route = picked
-                            choices = emptyList()          // the effect above clears the grey lines
-                            controller?.overview(picked, (24 * density).roundToInt())
-                            android.util.Log.i("Aize", "chose route len=${picked.path.lengthMeters.roundToInt()}m")
-                            startNavigation(picked)
-                        },
+                        onPick = { picked -> pickRoute(picked) },
                         onCancel = { choices = emptyList() },
                     )
                     return@Column

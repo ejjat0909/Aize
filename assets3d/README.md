@@ -38,6 +38,36 @@ python3 assets3d/tests/test_warp.py          # the runtime warp, proven against 
 
 `install_blender.sh` downloads a pinned, checksum-verified **Blender 4.5 LTS** (CPU only — no GPU, no display). Renders are deterministic (fixed seed, Cycles CPU).
 
+## The soft-touch look
+
+Every asset shares one material and one light rig, so a pin, the puck and the arrow read as the same family. Both live in
+`blender/lib_aize.py` — `SOFT` and `RIG` — and nothing else should re-declare roughness or light energy:
+
+| Knob | Value | Why |
+|---|---|---|
+| roughness | 0.55 | a broad diffuse gradient instead of a pinpoint highlight; the surface stops looking wet |
+| specular | 0.30 | low fresnel, so edges brighten gently rather than flashing |
+| coat | 0.10 at 0.55 roughness | a trace of clear-coat for a moulded-plastic feel, but no mirror |
+| sheen | 0.20 | a faint velvet falloff at grazing angles: the silhouette still separates from the map without gloss |
+| key light | one 14 u area at 1280 W | a wide emitter wraps the form; a small bright one draws a hard terminator |
+| fill / rim | 16 u at 320 W / 9 u at 220 W, both shadowless | keeps the camera-facing side readable without adding a second shadow |
+| ambient | 0.42 | nothing falls to black; the darkest value on a pin stays a legible dark violet |
+
+Form follows the same rule: `soft_surface()` bevels every part by roughly a fifth of its thickness and then smooth-shades
+*all* of it, so an edge becomes a continuous roll (the pillow look) instead of a crisp bevel line. Glyph relief is low
+(0.055 u) and rounded, which reads as embossed into the material rather than stuck on top of it.
+
+Override either profile for an experiment without touching the file:
+
+```bash
+AIZE_RIG='{"key_energy":1280,"ambient":0.42}' AIZE_SOFT='{"roughness":0.5}' bash assets3d/build_all.sh pins
+```
+
+The pins are packed at `lossy:95` rather than the default 92: soft materials are broad gradients, and the chequered
+destination flag lost 0.4 dB of roundtrip PSNR at 92 — enough to fail the 38 dB gate for a compression reason, not a
+render one. The flag itself was redrawn from a 3 × 3 to a 2 × 2 chequer for the same reason: at 64 dp it is ~16 px wide,
+and nine small checks turned into grey noise.
+
 ## Why sprites, and when not
 
 * **Cost on the phone:** a sprite is one `drawBitmap` under a matrix. The alternative — rendering the glTF in real time — adds a GL/Vulkan
@@ -109,6 +139,10 @@ the rim height: the outline is then reconstructed to a fraction of a dp and the 
 numbers (`base_*` = outline-level, `worst_*` = all vertices) plus the image-space figures. See [`RESULTS.md`](RESULTS.md).
 
 ## Cars: what the numbers say
+
+> **Note:** the packed car sheets in `dist/` are still the glossy paint from the first render. The code now uses the
+> soft-touch profile (above), so `bash assets3d/build_all.sh vehicles` (~25 min each) must be re-run when the vehicle
+> skins ship in M5. Nothing in the app draws cars yet, so the shipped assets and the code are not in conflict today.
 
 Cars reconstruct less exactly than the arrow, and it is worth knowing why. A car has real parallax between its wheels (ground level) and its roof (1.4 u up), and
 the sprite's single re-projection plane can only be right for one of them. The image-space calibration picks the plane that scores best against true renders — at the

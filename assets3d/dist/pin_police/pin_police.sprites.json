@@ -29,7 +29,7 @@
   "tint": "color.purple.950",
   "opacity": 0.46
  },
- "webp": "lossy:92",
+ "webp": "lossy:95",
  "tiers": {
   "xxxhdpi": {
    "scale": 4,
@@ -37,8 +37,8 @@
    "sheets": {
     "0": {
      "file": "pin_police_p00@xxxhdpi.webp",
-     "bytes": 9322,
-     "sha256": "6b7b867db51eb904abfc6f497698431b93206fa8ce2d87fe38199c9f595cae17",
+     "bytes": 10914,
+     "sha256": "f2cd5d94aa3b57e7c913dcb0de4b6f7b00dc7f37a32d511ae35af3ae1003713c",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -47,7 +47,7 @@
      ]
     }
    },
-   "total_bytes": 9322
+   "total_bytes": 10914
   },
   "xxhdpi": {
    "scale": 3,
@@ -55,8 +55,8 @@
    "sheets": {
     "0": {
      "file": "pin_police_p00@xxhdpi.webp",
-     "bytes": 6934,
-     "sha256": "88f3b18333b1467982c2b626b1d49c8c64a598833582eec4a9a1a18c98d5b962",
+     "bytes": 7968,
+     "sha256": "79ddadfb68630abd34b34764b161fcd14657be46fb45f2875be3b38860a99bc4",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -65,7 +65,7 @@
      ]
     }
    },
-   "total_bytes": 6934
+   "total_bytes": 7968
   },
   "xhdpi": {
    "scale": 2,
@@ -73,8 +73,8 @@
    "sheets": {
     "0": {
      "file": "pin_police_p00@xhdpi.webp",
-     "bytes": 4512,
-     "sha256": "362481dbdbb0035b2c6d66c7f4dfaffe7b9261191ec195aea510f739794cd937",
+     "bytes": 5056,
+     "sha256": "66d244b2273308238ed80d444effbb830c686e8ee2342ee64e0d641b9407f48d",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -83,13 +83,13 @@
      ]
     }
    },
-   "total_bytes": 4512
+   "total_bytes": 5056
   }
  },
  "source": {
   "renderer": "4.5.9 LTS Cycles (CPU, OIDN)",
   "samples": 96,
-  "render_px": 384,
+  "render_px": 416,
   "generator": "assets3d/blender/render_sprites.py",
   "rig": {
    "key": [
@@ -102,14 +102,14 @@
     0.4,
     1.0
    ],
-   "key_energy": 1250.0,
-   "ambient": 0.4,
-   "fill": 260.0,
-   "rim": 300.0
+   "key_energy": 1280.0,
+   "ambient": 0.42,
+   "fill": 320.0,
+   "rim": 220.0
   },
   "frame_half_extent_u": 2.0,
   "object_radius_u": 3.130000114440918,
-  "object_height_u": 0.44999998807907104
+  "object_height_u": 0.4099999964237213
  },
  "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
 }

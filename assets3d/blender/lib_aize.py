@@ -152,7 +152,17 @@ def add_area_light(name, from_dir, energy, size, color=(1.0, 1.0, 1.0), dist=14.
 # Rig parameters.  `key` shades the object (lateral, so facets separate clearly); `shadow_key` is where the key sits while the
 # ground-shadow layer is rendered (more overhead -> a compact, natural contact shadow).  Overridable for experiments with
 # AIZE_RIG='{"key":[x,y,z],"ambient":0.4,...}'.
-RIG = {"key": [-0.95, 0.35, 1.0], "shadow_key": [-0.42, 0.40, 1.0], "key_energy": 1250.0, "ambient": 0.40, "fill": 260.0, "rim": 300.0}
+#
+# Soft rig: one large key instead of a small bright one.  A small emitter leaves a hard terminator and a pinpoint specular; a
+# large one wraps the light around the form, so shapes read by their own curvature instead of by a highlight.  Ambient is
+# raised so nothing falls to black, and the fill/rim are wider than the object so they never draw an edge.
+RIG = {"key": [-0.95, 0.35, 1.0], "shadow_key": [-0.42, 0.40, 1.0], "key_energy": 1280.0, "ambient": 0.42, "fill": 320.0, "rim": 220.0}
+
+# Soft-touch material: the numbers every Aize asset shares.  A pin, the arrow and a car must read as the same material family,
+# so roughness/specular/sheen live here rather than at nine call sites.  High roughness + low specular = a broad diffuse
+# gradient; the sheen adds a faint velvet falloff at grazing angles so the silhouette still separates from the map.
+SOFT = dict(roughness=0.55, spec=0.30, coat=0.10, coat_rough=0.55, sheen=0.20, sheen_rough=0.45)
+SOFT.update(json.loads(os.environ.get("AIZE_SOFT", "{}")))
 RIG.update(json.loads(os.environ.get("AIZE_RIG", "{}")))
 KEY_DIR = tuple(RIG["key"])
 
@@ -176,9 +186,9 @@ def studio_rig(scale=1.0):
     one shadow direction across every Aize asset."""
     tk = tokens()["color"]
     set_world_gradient(horizon_hex=tk["neutral"]["100"], zenith_hex="#FFFFFF", ground_hex=tk["neutral"]["300"], strength=RIG["ambient"] * scale)
-    add_area_light("Key", RIG["key"], RIG["key_energy"] * scale, 5.0, color=(1.0, 0.975, 0.95))
-    add_area_light("Fill", (0.25, -1.0, 0.50), RIG["fill"] * scale, 7.0, color=(0.94, 0.95, 1.0), shadow=False)
-    add_area_light("Rim", (0.85, 0.30, 0.40), RIG["rim"] * scale, 3.0, color=(1.0, 0.96, 1.0), shadow=False)
+    add_area_light("Key", RIG["key"], RIG["key_energy"] * scale, 14.0, color=(1.0, 0.975, 0.95))
+    add_area_light("Fill", (0.25, -1.0, 0.50), RIG["fill"] * scale, 16.0, color=(0.94, 0.95, 1.0), shadow=False)
+    add_area_light("Rim", (0.85, 0.30, 0.40), RIG["rim"] * scale, 9.0, color=(1.0, 0.96, 1.0), shadow=False)
 
 
 def add_ground_catcher(size=60.0):
@@ -221,7 +231,8 @@ def set_camera_pitch(cam_ob, pitch_deg):
 
 
 # --------------------------------------------------------------------------------------- materials
-def make_material(name, color_hex, rough=0.4, metal=0.0, coat=0.0, coat_rough=0.06, spec=0.5, emit_hex=None, emit_strength=0.0, mul=1.0):
+def make_material(name, color_hex, rough=SOFT["roughness"], metal=0.0, coat=SOFT["coat"], coat_rough=SOFT["coat_rough"],
+                  spec=SOFT["spec"], emit_hex=None, emit_strength=0.0, mul=1.0, sheen=0.0, sheen_rough=SOFT["sheen_rough"]):
     m = bpy.data.materials.new(name)
     m.use_nodes = True
     b = m.node_tree.nodes["Principled BSDF"]
@@ -238,6 +249,8 @@ def make_material(name, color_hex, rough=0.4, metal=0.0, coat=0.0, coat_rough=0.
     put("Coat Weight", coat)
     put("Coat Roughness", coat_rough)
     put("Specular IOR Level", spec)
+    put("Sheen Weight", sheen)
+    put("Sheen Roughness", sheen_rough)
     if emit_hex:
         put("Emission Color", hex_rgba(emit_hex))
         put("Emission Strength", emit_strength)
@@ -289,6 +302,26 @@ def smooth_by_angle(ob, angle_deg=32.0):
         e.smooth = not (len(e.link_faces) == 2 and e.calc_face_angle(0.0) > lim)
     bm.to_mesh(ob.data)
     bm.free()
+
+
+def soft_surface(ob, bevel=0.10, segments=6, angle=20):
+    """Round the silhouette and shade it smoothly: the pillow-edge look.
+
+    The difference from `_hard_surface` is deliberate.  There, a wide flat face stays flat and the bevel carries a crisp
+    highlight (machined plastic).  Here every face is smooth-shaded, so a bevel of a fifth of the part's thickness turns the
+    edge into a continuous roll and the light slides across it with no line at all -- the object reads as one soft volume.
+    """
+    add_modifier(ob, "BEVEL", width=bevel, segments=segments, limit_method="ANGLE", angle_limit=math.radians(angle), profile=0.5)
+    bake_modifiers(ob)
+    for p_ in ob.data.polygons:
+        p_.use_smooth = True
+    return ob
+
+
+def soft_mat(name, color_hex, mul=1.0, rough=None, sheen=None):
+    """A soft-touch material: the shared SOFT profile, with an optional per-part nudge."""
+    return make_material(name, color_hex, mul=mul, rough=SOFT["roughness"] if rough is None else rough,
+                         sheen=SOFT["sheen"] if sheen is None else sheen)
 
 
 def empty(name, location=(0, 0, 0)):

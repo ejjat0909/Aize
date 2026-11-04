@@ -16,21 +16,21 @@
    ],
    "yaws": 24,
    "frame_dp": 104,
-   "unit_dp": 21.993901159751918,
+   "unit_dp": 22.092729446979195,
    "tiers_kib": {
-    "xxhdpi": 1725.0,
-    "xhdpi": 1048.8,
-    "xxxhdpi": 1934.0
+    "xxxhdpi": 2032.4,
+    "xxhdpi": 1944.7,
+    "xhdpi": 1188.0
    },
    "reprojection": {
-    "plane_h_u": 0.1,
+    "plane_h_u": 0.095,
     "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
     "scenarios": {
      "nav": {
-      "max_dp": 3.967,
-      "p95_dp": 3.337,
-      "base_max_dp": 0.464,
-      "base_p95_dp": 0.366,
+      "max_dp": 3.961,
+      "p95_dp": 3.353,
+      "base_max_dp": 0.467,
+      "base_p95_dp": 0.348,
       "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
      },
      "overview": {
@@ -41,39 +41,39 @@
       "note": "top-down, north-up: any heading"
      },
      "transition": {
-      "max_dp": 3.612,
-      "p95_dp": 2.657,
-      "base_max_dp": 0.423,
-      "base_p95_dp": 0.291,
+      "max_dp": 3.606,
+      "p95_dp": 2.669,
+      "base_max_dp": 0.425,
+      "base_p95_dp": 0.277,
       "note": "camera easing between presets (~0.5 s)"
      },
      "worst": {
-      "max_dp": 4.756,
-      "p95_dp": 2.826,
-      "base_max_dp": 0.557,
-      "base_p95_dp": 0.31,
+      "max_dp": 4.748,
+      "p95_dp": 2.84,
+      "base_max_dp": 0.559,
+      "base_p95_dp": 0.295,
       "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
      }
     },
-    "worst_err_dp": 4.756,
-    "p95_err_dp": 2.826,
-    "base_worst_err_dp": 0.557,
-    "base_p95_err_dp": 0.31,
+    "worst_err_dp": 4.748,
+    "p95_err_dp": 2.84,
+    "base_worst_err_dp": 0.559,
+    "base_p95_err_dp": 0.295,
     "base_height_frac": 0.2,
-    "switch_pop_dp": 4.43,
+    "switch_pop_dp": 4.423,
     "symmetric": false,
-    "unit_dp": 21.994,
+    "unit_dp": 22.093,
     "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
     "strategy_kind": "blend",
     "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
     "image": {
-     "psnr_mean_db": 30.44,
-     "psnr_min_db": 22.38,
-     "switch_pop_rms_max": 0.045,
-     "switch_pop_over_median": 3.3,
+     "psnr_mean_db": 30.6,
+     "psnr_min_db": 22.25,
+     "switch_pop_rms_max": 0.0441,
+     "switch_pop_over_median": 3.57,
      "pitch_pop_rms_max": 0.0076,
-     "yaw_pop_rms_max": 0.045,
-     "views": 20,
+     "yaw_pop_rms_max": 0.0441,
+     "views": 40,
      "strategy": "blend"
     }
    },
@@ -318,9 +318,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 9.7,
-    "xxhdpi": 7.1,
-    "xhdpi": 4.7
+    "xxxhdpi": 11.2,
+    "xxhdpi": 8.1,
+    "xhdpi": 5.2
    },
    "reprojection": null,
    "samples": 96,
@@ -336,9 +336,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 8.3,
-    "xxhdpi": 6.1,
-    "xhdpi": 4.0
+    "xxxhdpi": 9.6,
+    "xxhdpi": 7.2,
+    "xhdpi": 4.6
    },
    "reprojection": null,
    "samples": 96,
@@ -354,9 +354,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 9.2,
-    "xxhdpi": 6.8,
-    "xhdpi": 4.5
+    "xxxhdpi": 10.8,
+    "xxhdpi": 7.9,
+    "xhdpi": 5.1
    },
    "reprojection": null,
    "samples": 96,
@@ -372,9 +372,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 9.2,
-    "xxhdpi": 6.8,
-    "xhdpi": 4.5
+    "xxxhdpi": 10.2,
+    "xxhdpi": 7.4,
+    "xhdpi": 4.8
    },
    "reprojection": null,
    "samples": 96,
@@ -390,9 +390,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 8.9,
-    "xxhdpi": 6.6,
-    "xhdpi": 4.3
+    "xxxhdpi": 10.4,
+    "xxhdpi": 7.6,
+    "xhdpi": 5.0
    },
    "reprojection": null,
    "samples": 96,
@@ -408,9 +408,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 8.8,
-    "xxhdpi": 6.4,
-    "xhdpi": 4.3
+    "xxxhdpi": 10.5,
+    "xxhdpi": 7.5,
+    "xhdpi": 4.9
    },
    "reprojection": null,
    "samples": 96,
@@ -426,9 +426,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 9.1,
-    "xxhdpi": 6.7,
-    "xhdpi": 4.4
+    "xxxhdpi": 10.7,
+    "xxhdpi": 7.7,
+    "xhdpi": 4.9
    },
    "reprojection": null,
    "samples": 96,
@@ -444,9 +444,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 8.7,
-    "xxhdpi": 6.4,
-    "xhdpi": 4.2
+    "xxxhdpi": 10.3,
+    "xxhdpi": 7.4,
+    "xhdpi": 4.9
    },
    "reprojection": null,
    "samples": 96,
@@ -462,9 +462,9 @@
    "frame_dp": 64,
    "unit_dp": 16.0,
    "tiers_kib": {
-    "xxxhdpi": 9.1,
-    "xxhdpi": 6.8,
-    "xhdpi": 4.4
+    "xxxhdpi": 10.7,
+    "xxhdpi": 7.8,
+    "xhdpi": 4.9
    },
    "reprojection": null,
    "samples": 96,
@@ -486,21 +486,21 @@
    ],
    "yaws": 1,
    "frame_dp": 104,
-   "unit_dp": 33.285614469530366,
+   "unit_dp": 32.54759207049629,
    "tiers_kib": {
-    "xxxhdpi": 96.5,
-    "xxhdpi": 80.0,
-    "xhdpi": 51.3
+    "xxxhdpi": 90.0,
+    "xxhdpi": 76.5,
+    "xhdpi": 48.9
    },
    "reprojection": {
-    "plane_h_u": 0.1,
+    "plane_h_u": 0.093,
     "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
     "scenarios": {
      "nav": {
-      "max_dp": 1.078,
-      "p95_dp": 1.064,
-      "base_max_dp": 0.239,
-      "base_p95_dp": 0.239,
+      "max_dp": 1.241,
+      "p95_dp": 1.209,
+      "base_max_dp": 0.21,
+      "base_p95_dp": 0.21,
       "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
      },
      "overview": {
@@ -511,38 +511,38 @@
       "note": "top-down, north-up: any heading"
      },
      "transition": {
-      "max_dp": 1.509,
-      "p95_dp": 1.121,
-      "base_max_dp": 0.334,
-      "base_p95_dp": 0.251,
+      "max_dp": 1.736,
+      "p95_dp": 1.273,
+      "base_max_dp": 0.294,
+      "base_p95_dp": 0.221,
       "note": "camera easing between presets (~0.5 s)"
      },
      "worst": {
-      "max_dp": 1.837,
-      "p95_dp": 1.282,
-      "base_max_dp": 0.406,
-      "base_p95_dp": 0.287,
+      "max_dp": 2.114,
+      "p95_dp": 1.472,
+      "base_max_dp": 0.358,
+      "base_p95_dp": 0.253,
       "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
      }
     },
-    "worst_err_dp": 1.837,
-    "p95_err_dp": 1.282,
-    "base_worst_err_dp": 0.406,
-    "base_p95_err_dp": 0.287,
+    "worst_err_dp": 2.114,
+    "p95_err_dp": 1.472,
+    "base_worst_err_dp": 0.358,
+    "base_p95_err_dp": 0.253,
     "base_height_frac": 0.2,
-    "switch_pop_dp": 3.477,
+    "switch_pop_dp": 4.001,
     "symmetric": true,
-    "unit_dp": 33.286,
+    "unit_dp": 32.548,
     "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
     "strategy_kind": "blend",
     "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
     "image": {
-     "psnr_mean_db": 34.97,
-     "psnr_min_db": 30.21,
-     "switch_pop_rms_max": 0.0171,
-     "switch_pop_over_median": 2.08,
-     "pitch_pop_rms_max": 0.0171,
-     "yaw_pop_rms_max": 0.0027,
+     "psnr_mean_db": 34.65,
+     "psnr_min_db": 28.78,
+     "switch_pop_rms_max": 0.0152,
+     "switch_pop_over_median": 1.95,
+     "pitch_pop_rms_max": 0.0152,
+     "yaw_pop_rms_max": 0.0025,
      "views": 5,
      "strategy": "blend"
     }
@@ -747,6 +747,209 @@
    "pass": true,
    "required": true,
    "detail": "image change at a heading-bucket flip: RMS 0.0027 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "puck",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "calib",
+   "check": "anchor",
+   "pass": true,
+   "required": true,
+   "detail": "calibration dot is within 0.24 px of the declared anchor (0.5, 0.5) at every pitch (<=1.0)"
+  },
+  {
+   "scope": "calib",
+   "check": "pitch",
+   "pass": true,
+   "required": true,
+   "detail": "disc area vs cos(pitch): worst relative error 0.05 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+  },
+  {
+   "scope": "calib",
+   "check": "anchor",
+   "pass": true,
+   "required": true,
+   "detail": "calibration dot is within 0.23 px of the declared anchor (0.5, 0.8) at every pitch (<=1.0)"
+  },
+  {
+   "scope": "calib",
+   "check": "pitch",
+   "pass": true,
+   "required": true,
+   "detail": "disc area vs cos(pitch): worst relative error 0.07 % (<=1 %) over pitches [0, 15, 30, 45, 60]"
+  },
+  {
+   "scope": "selftest",
+   "check": "fringe",
+   "pass": true,
+   "required": true,
+   "detail": "worst edge-colour error after a 4x shrink: float-premultiplied 0/255 (<=3); independent-channel resize 141/255 (>40, i.e. the halo it prevents is real)"
+  },
+  {
+   "scope": "arrow",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "216 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "arrow",
+   "check": "yaw",
+   "pass": true,
+   "required": true,
+   "detail": "silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95)"
+  },
+  {
+   "scope": "arrow",
+   "check": "brand",
+   "pass": true,
+   "required": true,
+   "detail": "hue L/R 297.4/297.1 vs token 297.2 (<=3 deg); mean lightness 0.533 vs 0.556 (<=0.05); facet contrast dL=0.031"
+  },
+  {
+   "scope": "arrow",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 44.1 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xxxhdpi: 2032 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xxhdpi: 1945 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "arrow xhdpi: 1188 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "arrow",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.56 dp, p95 0.29 dp (<= 1.0 dp); plane h=0.10 u"
+  },
+  {
+   "scope": "arrow",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 4.75 dp, p95 2.84 dp (<= 6.0 dp)"
+  },
+  {
+   "scope": "arrow",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 40 off-grid views: PSNR mean 30.6 dB, min 22.2 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "arrow",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0076 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "arrow",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0441 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
+  },
+  {
+   "scope": "arrow",
+   "check": "steady",
+   "pass": true,
+   "required": true,
+   "detail": "top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0)"
+  },
+  {
+   "scope": "puck",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "9 frames; max alpha in the 2 px border = 1 (<=3)"
+  },
+  {
+   "scope": "puck",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 43.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xxxhdpi: 90 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xxhdpi: 77 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "puck xhdpi: 49 KiB (<= 3500 KiB)"
+  },
+  {
+   "scope": "puck",
+   "check": "silhouette",
+   "pass": true,
+   "required": true,
+   "detail": "lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.36 dp, p95 0.25 dp (<= 99.0 dp); plane h=0.09 u"
+  },
+  {
+   "scope": "puck",
+   "check": "raised",
+   "pass": true,
+   "required": true,
+   "detail": "all vertices incl. raised parts (ridge, roof): worst 2.11 dp, p95 1.47 dp (<= 99.0 dp)"
+  },
+  {
+   "scope": "puck",
+   "check": "image",
+   "pass": true,
+   "required": true,
+   "detail": "vs true Blender renders of 5 off-grid views: PSNR mean 34.6 dB, min 28.8 dB (mean >= 25.0)"
+  },
+  {
+   "scope": "puck",
+   "check": "pop-pitch",
+   "pass": true,
+   "required": true,
+   "detail": "image change when the camera pitch crosses a bucket (blend): RMS 0.0152 (<= 0.02; continuous - needs no dissolve)"
+  },
+  {
+   "scope": "puck",
+   "check": "pop-yaw",
+   "pass": true,
+   "required": true,
+   "detail": "image change at a heading-bucket flip: RMS 0.0025 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it)"
   },
   {
    "scope": "puck",
@@ -1071,6 +1274,671 @@
    "detail": "pin_destination xhdpi: 4 KiB (<= 200 KiB)"
   },
   {
+   "scope": "pin_police",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.6 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.2 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.1 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 39.8 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 48.6 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxhdpi: 6 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.3 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.1 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xhdpi: 4 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "roundtrip",
+   "pass": false,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 37.6 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxxhdpi: 9 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxxhdpi: 11 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_police",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_police xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.3 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_hazard",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_hazard xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.4 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxxhdpi: 11 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_accident",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_accident xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.3 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxxhdpi: 11 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_jam",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_jam xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 40.0 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxxhdpi: 11 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_closure",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_closure xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 50.3 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_camera",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_camera xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 42.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_gas",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_gas xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 41.6 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_parking",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_parking xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "roundtrip",
+   "pass": false,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 37.9 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxxhdpi: 11 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxhdpi: 8 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "clip",
+   "pass": true,
+   "required": true,
+   "detail": "1 frames; max alpha in the 2 px border = 2 (<=3)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "roundtrip",
+   "pass": true,
+   "required": true,
+   "detail": "packed WebP vs composed master, worst alpha-weighted PSNR 38.7 dB over every frame and tier (>=38)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxxhdpi: 10 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xxhdpi: 7 KiB (<= 200 KiB)"
+  },
+  {
+   "scope": "pin_destination",
+   "check": "budget",
+   "pass": true,
+   "required": true,
+   "detail": "pin_destination xhdpi: 5 KiB (<= 200 KiB)"
+  },
+  {
    "scope": "car_sedan",
    "check": "clip",
    "pass": true,
@@ -1337,7 +2205,7 @@
     52.5,
     60.0
    ],
-   "h_star_u": 0.1,
+   "h_star_u": 0.095,
    "views": [
     [
      3.75,
@@ -1356,6 +2224,26 @@
      187.5
     ],
     [
+     7.0,
+     7.5
+    ],
+    [
+     7.0,
+     52.5
+    ],
+    [
+     7.0,
+     97.5
+    ],
+    [
+     7.0,
+     187.5
+    ],
+    [
+     7.0,
+     277.5
+    ],
+    [
      18.75,
      7.5
     ],
@@ -1372,6 +2260,26 @@
      187.5
     ],
     [
+     22.0,
+     7.5
+    ],
+    [
+     22.0,
+     52.5
+    ],
+    [
+     22.0,
+     97.5
+    ],
+    [
+     22.0,
+     187.5
+    ],
+    [
+     22.0,
+     277.5
+    ],
+    [
      33.75,
      7.5
     ],
@@ -1388,6 +2296,26 @@
      187.5
     ],
     [
+     37.0,
+     7.5
+    ],
+    [
+     37.0,
+     52.5
+    ],
+    [
+     37.0,
+     97.5
+    ],
+    [
+     37.0,
+     187.5
+    ],
+    [
+     37.0,
+     277.5
+    ],
+    [
      48.75,
      7.5
     ],
@@ -1402,6 +2330,26 @@
     [
      48.75,
      187.5
+    ],
+    [
+     52.0,
+     7.5
+    ],
+    [
+     52.0,
+     52.5
+    ],
+    [
+     52.0,
+     97.5
+    ],
+    [
+     52.0,
+     187.5
+    ],
+    [
+     52.0,
+     277.5
     ],
     [
      56.25,
@@ -1422,29 +2370,29 @@
    ],
    "psnr_db_vs_true_render": {
     "A. nearest bucket, as is": {
-     "min": 15.358909463785542,
-     "mean": 16.888091059798555,
-     "n": 20
+     "min": 15.020291199147938,
+     "mean": 16.83608493926429,
+     "n": 40
     },
     "B. + rotate in the screen plane": {
-     "min": 19.479274343481446,
-     "mean": 24.636041965491586,
-     "n": 20
+     "min": 19.540642742081445,
+     "mean": 25.894906184443208,
+     "n": 40
     },
     "C. + ground-plane warp (h = 0)": {
-     "min": 20.394660473083874,
-     "mean": 26.192707217721004,
-     "n": 20
+     "min": 20.48997898889835,
+     "mean": 27.797572209668893,
+     "n": 40
     },
     "D. + plane warp at h* (one bucket)": {
-     "min": 21.28437973848028,
-     "mean": 27.60494184209627,
-     "n": 20
+     "min": 21.36119515513451,
+     "mean": 29.000997137414373,
+     "n": 40
     },
     "E. two buckets, each warped at h*, blended by pitch": {
-     "min": 22.376217589876926,
-     "mean": 30.441005367621823,
-     "n": 20
+     "min": 22.251177629416425,
+     "mean": 30.60263474338605,
+     "n": 40
     }
    }
   },
@@ -1773,7 +2721,7 @@
     52.5,
     60.0
    ],
-   "h_star_u": 0.1,
+   "h_star_u": 0.093,
    "views": [
     [
      3.75,
@@ -1798,28 +2746,28 @@
    ],
    "psnr_db_vs_true_render": {
     "A. nearest bucket, as is": {
-     "min": 19.877751628883818,
-     "mean": 23.22615813288005,
+     "min": 20.85148002510154,
+     "mean": 23.626193383599112,
      "n": 5
     },
     "B. + rotate in the screen plane": {
-     "min": 19.877751628883818,
-     "mean": 23.22615813288005,
+     "min": 20.85148002510154,
+     "mean": 23.626193383599112,
      "n": 5
     },
     "C. + ground-plane warp (h = 0)": {
-     "min": 23.660860906198792,
-     "mean": 27.737984174986746,
+     "min": 23.208898218194655,
+     "mean": 27.880406159111846,
      "n": 5
     },
     "D. + plane warp at h* (one bucket)": {
-     "min": 25.379131411922437,
-     "mean": 29.91132519973396,
+     "min": 24.373906472802858,
+     "mean": 29.804492609579057,
      "n": 5
     },
     "E. two buckets, each warped at h*, blended by pitch": {
-     "min": 30.21105780210158,
-     "mean": 34.969867280405786,
+     "min": 28.776819610332947,
+     "mean": 34.648244764737626,
      "n": 5
     }
    }
@@ -1842,88 +2790,128 @@
    ],
    "candidates": {
     "0": {
-     "psnr_mean": 29.325283643823646,
-     "psnr_min": 21.39349589877645,
-     "pop_max_rms": 0.05218261480331421,
-     "pitch_pop_max_rms": 0.007244620937854052,
-     "yaw_pop_max_rms": 0.05218261480331421,
-     "pitch_pop_ratio": 1.651165514333005,
-     "yaw_pop_ratio": 3.8881243652293196,
-     "pop_ratio": 3.8881243652293196
+     "psnr_mean": 29.569833057678238,
+     "psnr_min": 21.250070259256788,
+     "pop_max_rms": 0.05102906748652458,
+     "pitch_pop_max_rms": 0.00724077457562089,
+     "yaw_pop_max_rms": 0.05102906748652458,
+     "pitch_pop_ratio": 1.6741878607034597,
+     "yaw_pop_ratio": 4.214842322392255,
+     "pop_ratio": 4.214842322392255
     },
-    "0.05": {
-     "psnr_mean": 30.262568789278127,
-     "psnr_min": 21.90659616764117,
-     "pop_max_rms": 0.04878345504403114,
-     "pitch_pop_max_rms": 0.007427630014717579,
-     "yaw_pop_max_rms": 0.04878345504403114,
-     "pitch_pop_ratio": 1.6406435560565837,
-     "yaw_pop_ratio": 3.6112288119891436,
-     "pop_ratio": 3.6112288119891436
+    "0.047": {
+     "psnr_mean": 30.40639242466989,
+     "psnr_min": 21.75956308563602,
+     "pop_max_rms": 0.047833528369665146,
+     "pitch_pop_max_rms": 0.00739815179258585,
+     "yaw_pop_max_rms": 0.047833528369665146,
+     "pitch_pop_ratio": 1.6552244989407805,
+     "yaw_pop_ratio": 3.911430133058746,
+     "pop_ratio": 3.911430133058746
     },
-    "0.1": {
-     "psnr_mean": 30.44100536762183,
-     "psnr_min": 22.376217589876926,
-     "pop_max_rms": 0.04495318606495857,
-     "pitch_pop_max_rms": 0.007630637846887112,
-     "yaw_pop_max_rms": 0.04495318606495857,
-     "pitch_pop_ratio": 1.6632146342693768,
-     "yaw_pop_ratio": 3.3030061916846876,
-     "pop_ratio": 3.3030061916846876
+    "0.095": {
+     "psnr_mean": 30.60263474338605,
+     "psnr_min": 22.251177629416425,
+     "pop_max_rms": 0.04414483532309532,
+     "pitch_pop_max_rms": 0.007580477744340897,
+     "yaw_pop_max_rms": 0.04414483532309532,
+     "pitch_pop_ratio": 1.6694011878533606,
+     "yaw_pop_ratio": 3.570574584914538,
+     "pop_ratio": 3.570574584914538
     },
-    "0.15": {
-     "psnr_mean": 30.02725360980105,
-     "psnr_min": 22.673580013032606,
-     "pop_max_rms": 0.04143628478050232,
-     "pitch_pop_max_rms": 0.007725106552243233,
-     "yaw_pop_max_rms": 0.04143628478050232,
-     "pitch_pop_ratio": 1.666099316835145,
-     "yaw_pop_ratio": 3.018913726685742,
-     "pop_ratio": 3.018913726685742
+    "0.142": {
+     "psnr_mean": 30.185480249599994,
+     "psnr_min": 22.615362819472573,
+     "pop_max_rms": 0.04085681214928627,
+     "pitch_pop_max_rms": 0.0076720393262803555,
+     "yaw_pop_max_rms": 0.04085681214928627,
+     "pitch_pop_ratio": 1.6820269207753347,
+     "yaw_pop_ratio": 3.2665877849615867,
+     "pop_ratio": 3.2665877849615867
     },
-    "0.2": {
-     "psnr_mean": 29.225599827195005,
-     "psnr_min": 22.807772659281348,
-     "pop_max_rms": 0.039802804589271545,
-     "pitch_pop_max_rms": 0.007815835066139698,
-     "yaw_pop_max_rms": 0.039802804589271545,
-     "pitch_pop_ratio": 1.6853358797558406,
-     "yaw_pop_ratio": 2.8760563742348624,
-     "pop_ratio": 2.8760563742348624
+    "0.19": {
+     "psnr_mean": 29.39695421666612,
+     "psnr_min": 22.83013549694822,
+     "pop_max_rms": 0.03912358731031418,
+     "pitch_pop_max_rms": 0.007698669098317623,
+     "yaw_pop_max_rms": 0.03912358731031418,
+     "pitch_pop_ratio": 1.7003035094491696,
+     "yaw_pop_ratio": 3.095645252114103,
+     "pop_ratio": 3.095645252114103
     },
-    "0.3": {
-     "psnr_mean": 27.315177688067287,
-     "psnr_min": 22.923591509981488,
-     "pop_max_rms": 0.03966626897454262,
-     "pitch_pop_max_rms": 0.008644406683743,
-     "yaw_pop_max_rms": 0.03966626897454262,
-     "pitch_pop_ratio": 1.844060148015758,
-     "yaw_pop_ratio": 2.819139645213204,
-     "pop_ratio": 2.819139645213204
+    "0.285": {
+     "psnr_mean": 27.654006675109024,
+     "psnr_min": 22.9672637969828,
+     "pop_max_rms": 0.03887031599879265,
+     "pitch_pop_max_rms": 0.008343898691236973,
+     "yaw_pop_max_rms": 0.03887031599879265,
+     "pitch_pop_ratio": 1.8468760606708083,
+     "yaw_pop_ratio": 3.0007931092174878,
+     "pop_ratio": 3.0007931092174878
     },
-    "0.5": {
-     "psnr_mean": 24.51541515547303,
-     "psnr_min": 21.008591732474212,
-     "pop_max_rms": 0.04599858820438385,
-     "pitch_pop_max_rms": 0.011208130978047848,
-     "yaw_pop_max_rms": 0.04599858820438385,
-     "pitch_pop_ratio": 1.947586504220511,
-     "yaw_pop_ratio": 3.1492943203121913,
-     "pop_ratio": 3.1492943203121913
+    "0.38": {
+     "psnr_mean": 26.22921349548026,
+     "psnr_min": 21.937510300722497,
+     "pop_max_rms": 0.03965634107589722,
+     "pitch_pop_max_rms": 0.009393321350216866,
+     "yaw_pop_max_rms": 0.03965634107589722,
+     "pitch_pop_ratio": 1.870262653545409,
+     "yaw_pop_ratio": 2.985408258653148,
+     "pop_ratio": 2.985408258653148
+    },
+    "0.474": {
+     "psnr_mean": 25.08485266422781,
+     "psnr_min": 20.7519605629758,
+     "pop_max_rms": 0.04142610356211662,
+     "pitch_pop_max_rms": 0.010758457705378532,
+     "yaw_pop_max_rms": 0.04142610356211662,
+     "pitch_pop_ratio": 1.952530749769948,
+     "yaw_pop_ratio": 3.0379859398452567,
+     "pop_ratio": 3.0379859398452567
+    },
+    "0.569": {
+     "psnr_mean": 24.10795260127956,
+     "psnr_min": 19.79697898622283,
+     "pop_max_rms": 0.044358592480421066,
+     "pitch_pop_max_rms": 0.012149334885179996,
+     "yaw_pop_max_rms": 0.044358592480421066,
+     "pitch_pop_ratio": 1.9621299600884514,
+     "yaw_pop_ratio": 3.1691166384911895,
+     "pop_ratio": 3.1691166384911895
+    },
+    "0.664": {
+     "psnr_mean": 23.259121094108526,
+     "psnr_min": 19.019352232593288,
+     "pop_max_rms": 0.048139482736587524,
+     "pitch_pop_max_rms": 0.013314712792634964,
+     "yaw_pop_max_rms": 0.048139482736587524,
+     "pitch_pop_ratio": 1.915601878705755,
+     "yaw_pop_ratio": 3.3793672916446833,
+     "pop_ratio": 3.3793672916446833
+    },
+    "0.759": {
+     "psnr_mean": 22.508394369933193,
+     "psnr_min": 18.37205300165884,
+     "pop_max_rms": 0.05257062986493111,
+     "pitch_pop_max_rms": 0.014705541543662548,
+     "yaw_pop_max_rms": 0.05257062986493111,
+     "pitch_pop_ratio": 1.902239547094628,
+     "yaw_pop_ratio": 3.6416113044150324,
+     "pop_ratio": 3.6416113044150324
     }
    },
-   "chosen_h_u": 0.1,
+   "chosen_h_u": 0.095,
    "chosen": {
-    "psnr_mean": 30.44100536762183,
-    "psnr_min": 22.376217589876926,
-    "pop_max_rms": 0.04495318606495857,
-    "pitch_pop_max_rms": 0.007630637846887112,
-    "yaw_pop_max_rms": 0.04495318606495857,
-    "pitch_pop_ratio": 1.6632146342693768,
-    "yaw_pop_ratio": 3.3030061916846876,
-    "pop_ratio": 3.3030061916846876
+    "psnr_mean": 30.60263474338605,
+    "psnr_min": 22.251177629416425,
+    "pop_max_rms": 0.04414483532309532,
+    "pitch_pop_max_rms": 0.007580477744340897,
+    "yaw_pop_max_rms": 0.04414483532309532,
+    "pitch_pop_ratio": 1.6694011878533606,
+    "yaw_pop_ratio": 3.570574584914538,
+    "pop_ratio": 3.570574584914538
    },
-   "views": 20
+   "views": 40
   },
   "car_sedan_blend": {
    "asset": "car_sedan",
@@ -2196,76 +3184,126 @@
    ],
    "candidates": {
     "0": {
-     "psnr_mean": 32.5925046837224,
-     "psnr_min": 27.92888599609093,
-     "pop_max_rms": 0.016928261145949364,
-     "pitch_pop_max_rms": 0.016928261145949364,
-     "yaw_pop_max_rms": 0.002700496930629015,
-     "pitch_pop_ratio": 2.2257956075190566,
+     "psnr_mean": 32.683892012029176,
+     "psnr_min": 27.370124731946113,
+     "pop_max_rms": 0.015656445175409317,
+     "pitch_pop_max_rms": 0.015656445175409317,
+     "yaw_pop_max_rms": 0.002596048405393958,
+     "pitch_pop_ratio": 2.1713717577640823,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 2.2257956075190566
+     "pop_ratio": 2.1713717577640823
     },
-    "0.05": {
-     "psnr_mean": 34.53144011988858,
-     "psnr_min": 29.482531549937974,
-     "pop_max_rms": 0.016412176191806793,
-     "pitch_pop_max_rms": 0.016412176191806793,
-     "yaw_pop_max_rms": 0.0023902838584035635,
-     "pitch_pop_ratio": 2.119159394639269,
+    "0.031": {
+     "psnr_mean": 33.809134340948695,
+     "psnr_min": 28.051960893868397,
+     "pop_max_rms": 0.015322004444897175,
+     "pitch_pop_max_rms": 0.015322004444897175,
+     "yaw_pop_max_rms": 0.0022145535331219435,
+     "pitch_pop_ratio": 2.101556376232883,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 2.119159394639269
+     "pop_ratio": 2.101556376232883
     },
-    "0.1": {
-     "psnr_mean": 34.96986728040579,
-     "psnr_min": 30.21105780210158,
-     "pop_max_rms": 0.017073018476366997,
-     "pitch_pop_max_rms": 0.017073018476366997,
-     "yaw_pop_max_rms": 0.0026828451082110405,
-     "pitch_pop_ratio": 2.075230794535894,
+    "0.062": {
+     "psnr_mean": 34.51272777216538,
+     "psnr_min": 28.606564216866865,
+     "pop_max_rms": 0.015440772287547588,
+     "pitch_pop_max_rms": 0.015440772287547588,
+     "yaw_pop_max_rms": 0.0023123144637793303,
+     "pitch_pop_ratio": 2.048226728332289,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 2.075230794535894
+     "pop_ratio": 2.048226728332289
     },
-    "0.15": {
-     "psnr_mean": 33.476770099701646,
-     "psnr_min": 29.72536583527983,
-     "pop_max_rms": 0.0163907278329134,
-     "pitch_pop_max_rms": 0.0163907278329134,
-     "yaw_pop_max_rms": 0.0028359044808894396,
-     "pitch_pop_ratio": 2.013440854679382,
+    "0.093": {
+     "psnr_mean": 34.648244764737626,
+     "psnr_min": 28.776819610332947,
+     "pop_max_rms": 0.015198130160570145,
+     "pitch_pop_max_rms": 0.015198130160570145,
+     "yaw_pop_max_rms": 0.002535308012738824,
+     "pitch_pop_ratio": 1.9498634657373903,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 2.013440854679382
+     "pop_ratio": 1.9498634657373903
     },
-    "0.2": {
-     "psnr_mean": 31.097460379865545,
-     "psnr_min": 28.492447552406965,
-     "pop_max_rms": 0.01652548462152481,
-     "pitch_pop_max_rms": 0.01652548462152481,
-     "yaw_pop_max_rms": 0.0032056504860520363,
-     "pitch_pop_ratio": 2.0477936116807567,
+    "0.124": {
+     "psnr_mean": 34.07276127988401,
+     "psnr_min": 28.656953980042754,
+     "pop_max_rms": 0.01534851361066103,
+     "pitch_pop_max_rms": 0.01534851361066103,
+     "yaw_pop_max_rms": 0.002597035374492407,
+     "pitch_pop_ratio": 1.9737637965615002,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 2.0477936116807567
+     "pop_ratio": 1.9737637965615002
     },
-    "0.3": {
-     "psnr_mean": 27.47941844816426,
-     "psnr_min": 25.874603834924844,
-     "pop_max_rms": 0.016950469464063644,
-     "pitch_pop_max_rms": 0.016950469464063644,
-     "yaw_pop_max_rms": 0.0040816655382514,
-     "pitch_pop_ratio": 1.91811051587265,
+    "0.187": {
+     "psnr_mean": 31.416578498985643,
+     "psnr_min": 27.953139522324136,
+     "pop_max_rms": 0.015283160842955112,
+     "pitch_pop_max_rms": 0.015283160842955112,
+     "yaw_pop_max_rms": 0.002898542443290353,
+     "pitch_pop_ratio": 2.0370332808832665,
      "yaw_pop_ratio": 1.0,
-     "pop_ratio": 1.91811051587265
+     "pop_ratio": 2.0370332808832665
+    },
+    "0.249": {
+     "psnr_mean": 29.062387547928,
+     "psnr_min": 26.929496343055106,
+     "pop_max_rms": 0.01517061609774828,
+     "pitch_pop_max_rms": 0.01517061609774828,
+     "yaw_pop_max_rms": 0.0033503349404782057,
+     "pitch_pop_ratio": 1.979142328828988,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.979142328828988
+    },
+    "0.311": {
+     "psnr_mean": 27.399119405247983,
+     "psnr_min": 26.02355646603148,
+     "pop_max_rms": 0.015125458128750324,
+     "pitch_pop_max_rms": 0.015125458128750324,
+     "yaw_pop_max_rms": 0.0041000936180353165,
+     "pitch_pop_ratio": 1.8612667880706282,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.8612667880706282
+    },
+    "0.373": {
+     "psnr_mean": 26.192232780745847,
+     "psnr_min": 25.24668014818246,
+     "pop_max_rms": 0.014991505071520805,
+     "pitch_pop_max_rms": 0.014991505071520805,
+     "yaw_pop_max_rms": 0.004634558688849211,
+     "pitch_pop_ratio": 1.7546934653471606,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.7546934653471606
+    },
+    "0.435": {
+     "psnr_mean": 25.142878559361048,
+     "psnr_min": 24.245072713468474,
+     "pop_max_rms": 0.01479627750813961,
+     "pitch_pop_max_rms": 0.01479627750813961,
+     "yaw_pop_max_rms": 0.005837971810251474,
+     "pitch_pop_ratio": 1.6073734447692771,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.6073734447692771
+    },
+    "0.498": {
+     "psnr_mean": 24.24640690383671,
+     "psnr_min": 23.34745601852009,
+     "pop_max_rms": 0.014985354617238045,
+     "pitch_pop_max_rms": 0.014985354617238045,
+     "yaw_pop_max_rms": 0.00607374869287014,
+     "pitch_pop_ratio": 1.4963986425427316,
+     "yaw_pop_ratio": 1.0,
+     "pop_ratio": 1.4963986425427316
     }
    },
-   "chosen_h_u": 0.1,
+   "chosen_h_u": 0.093,
    "chosen": {
-    "psnr_mean": 34.96986728040579,
-    "psnr_min": 30.21105780210158,
-    "pop_max_rms": 0.017073018476366997,
-    "pitch_pop_max_rms": 0.017073018476366997,
-    "yaw_pop_max_rms": 0.0026828451082110405,
-    "pitch_pop_ratio": 2.075230794535894,
+    "psnr_mean": 34.648244764737626,
+    "psnr_min": 28.776819610332947,
+    "pop_max_rms": 0.015198130160570145,
+    "pitch_pop_max_rms": 0.015198130160570145,
+    "yaw_pop_max_rms": 0.002535308012738824,
+    "pitch_pop_ratio": 1.9498634657373903,
     "yaw_pop_ratio": 1.0,
-    "pop_ratio": 2.075230794535894
+    "pop_ratio": 1.9498634657373903
    },
    "views": 5
   }

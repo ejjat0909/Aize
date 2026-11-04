@@ -83,13 +83,13 @@ def _glyph_layers(kind):
         hole = [(-0.02, 0.43), (0.10, 0.43)] + [(0.10 + 0.19 * math.sin(math.radians(a)), 0.24 + 0.19 * math.cos(math.radians(a))) for a in range(0, 181, 15)] + [(0.10, 0.05), (-0.02, 0.05)]
         return [(stem, G), (bowl, G), (hole, D)]
     if kind == "destination":
-        # a chequered pennant on a pole
+        # a chequered pennant on a pole.  Four big checks, not nine small ones: at 64 dp the flag is ~16 px wide, and a
+        # 3 x 3 chequer turned into grey noise (it also failed the packed-vs-master PSNR gate at the xhdpi tier).
         pole = rbar(-0.34, -0.02, 0.12, 1.22, 0.06)
         flag = [(-0.28, 0.58), (0.52, 0.58), (0.52, -0.06), (-0.28, -0.06)]
-        checks = [([(x0, y0), (x0 + 0.2, y0), (x0 + 0.2, y0 + 0.2), (x0, y0 + 0.2)], D) for (x0, y0) in ((-0.28, 0.38), (0.12, 0.38), (-0.08, 0.18), (0.32, 0.18), (-0.28, -0.02), (0.12, -0.02))
-                  if y0 > -0.04 or True]
-        checks = [c for c in checks if c[0][2][1] <= 0.58 + 1e-6 and c[0][1][0] <= 0.52 + 1e-6]
-        return [(pole, G), (flag, G)] + checks
+        dark = [([(0.12, 0.26), (0.52, 0.26), (0.52, 0.58), (0.12, 0.58)], D),
+                ([(-0.28, -0.06), (0.12, -0.06), (0.12, 0.26), (-0.28, 0.26)], D)]
+        return [(pole, G), (flag, G)] + dark
     raise KeyError(kind)
 
 
@@ -99,12 +99,14 @@ KINDS = ["police", "hazard", "accident", "jam", "closure", "camera", "gas", "par
 def build_pin(tk, kind):
     root = L.empty(f"Pin_{kind}")
     pc = tk["pins"][kind]
-    mats = {"body": L.make_material("Badge", pc["badge"], rough=0.32, coat=0.7, coat_rough=0.07, spec=0.5),
-            "rim": L.make_material("Rim", "#FFFFFF", rough=0.38, coat=0.25, spec=0.4, mul=0.97),
-            "glyph": L.make_material("Glyph", pc["glyph"], rough=0.36, coat=0.2, spec=0.4, mul=0.97),
-            "dark": L.make_material("GlyphDark", pc["badge"], rough=0.34, coat=0.5, spec=0.4, mul=0.80),
-            "stalk": L.make_material("Stalk", tk["color"]["neutral"]["700"], rough=0.45, spec=0.3),
-            "foot": L.make_material("Foot", tk["color"]["neutral"]["900"], rough=0.5, spec=0.3)}
+    # soft-touch: matte badge, velvet rim, glyphs one step lighter than the badge so the relief reads as embossed rather than
+    # stamped.  The glyph material is deliberately *not* pure white: a hard white on a matte field looks like a hole.
+    mats = {"body": L.soft_mat("Badge", pc["badge"]),
+            "rim": L.soft_mat("Rim", "#FFFFFF", mul=0.97, rough=0.66),
+            "glyph": L.soft_mat("Glyph", pc["glyph"], mul=0.99),
+            "dark": L.soft_mat("GlyphDark", pc["badge"], mul=0.74),
+            "stalk": L.soft_mat("Stalk", tk["color"]["neutral"]["600"], mul=0.92),
+            "foot": L.soft_mat("Foot", tk["color"]["neutral"]["800"], mul=0.9)}
     objs = []
 
     def cyl(name, r, z0, z1, cx, cy, mat, seg=64):
@@ -112,22 +114,38 @@ def build_pin(tk, kind):
         bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=seg, radius1=r, radius2=r, depth=z1 - z0, matrix=Matrix.Translation((cx, cy, (z0 + z1) / 2)))
         return L.mesh_object(name, bm, mat, root)
 
+    def dome(name, r, h, cx, cy, mat):
+        """Upper half of a squashed sphere: a soft mound, tangent to the ground at its rim."""
+        bm = bmesh.new()
+        bmesh.ops.create_uvsphere(bm, u_segments=48, v_segments=24, radius=1.0)
+        bmesh.ops.bisect_plane(bm, geom=list(bm.verts) + list(bm.edges) + list(bm.faces), plane_co=(0, 0, 0), plane_no=(0, 0, 1), clear_inner=True)
+        bmesh.ops.scale(bm, vec=(r, r, h), verts=bm.verts)
+        bmesh.ops.translate(bm, vec=(cx, cy, 0.0), verts=bm.verts)
+        ob = L.mesh_object(name, bm, mat, root)
+        for p_ in ob.data.polygons:
+            p_.use_smooth = True
+        return ob
+
     # everything lies flat: z is the relief height, +Y is screen-up, the anchor is the origin
     zb = 0.17                                                           # badge rim bottom sits on the ground; badge centre height
-    stalk = _prism("Stalk", rbar(0.0, (RISE - 0.35) / 2, 0.17, RISE - 0.35, 0.085), 0.0, 0.17, mats["stalk"], root)
-    _hard_surface(stalk, bevel=0.03, segments=2, angle=30)
-    foot = cyl("Foot", 0.27, 0.0, 0.07, 0.0, 0.0, mats["foot"], 36)
-    _hard_surface(foot, bevel=0.02, segments=2, angle=30)
-    rim = cyl("BadgeRim", R_BADGE + 0.13, 0.0, 0.25, 0.0, RISE, mats["rim"], 72)
-    _hard_surface(rim, bevel=0.06, segments=3, angle=30)
-    body = cyl("BadgeBody", R_BADGE, 0.07, zb + FACE_Z, 0.0, RISE, mats["body"], 72)
-    _hard_surface(body, bevel=0.07, segments=3, angle=30)
+    # stalk: a capsule, not a rounded bar -- the same width, but the ends are full radii so there is no corner anywhere
+    stalk = _prism("Stalk", rbar(0.0, (RISE - 0.35) / 2, 0.22, RISE - 0.35, 0.11), 0.0, 0.17, mats["stalk"], root)
+    L.soft_surface(stalk, bevel=0.055, segments=5, angle=24)
+    # foot: a flattened dome instead of a disc.  A disc's rim catches a bright ring; a dome meets the ground tangentially and
+    # disappears into its own contact shadow, which is what makes the pin look like it rests on the map rather than floats.
+    foot = dome("Foot", 0.30, 0.20, 0.0, 0.0, mats["foot"])
+    rim = cyl("BadgeRim", R_BADGE + 0.13, 0.0, 0.25, 0.0, RISE, mats["rim"], 96)
+    L.soft_surface(rim, bevel=0.11, segments=6, angle=24)
+    body = cyl("BadgeBody", R_BADGE, 0.07, zb + FACE_Z, 0.0, RISE, mats["body"], 96)
+    L.soft_surface(body, bevel=0.155, segments=7, angle=24)
     objs += [stalk, foot, rim, body]
+    # glyphs: lower and rounder than before (0.085 tall with a 0.018 bevel -> 0.055 with a 0.030 bevel).  Relief that stands
+    # proud of the face with a sharp edge reads as a sticker; a low, rolled relief reads as pressed into the material.
     top = zb + FACE_Z - 0.01
     for i, (pts, layer) in enumerate(_glyph_layers(kind)):
-        z0, z1 = (top, top + 0.085) if layer == 0 else (top + 0.07, top + 0.14)
+        z0, z1 = (top, top + 0.055) if layer == 0 else (top + 0.045, top + 0.100)
         g = _prism(f"Glyph{i}", [(x, y + RISE) for x, y in pts], z0, z1, mats["glyph"] if layer == 0 else mats["dark"], root)
-        _hard_surface(g, bevel=0.018, segments=2, angle=35)
+        L.soft_surface(g, bevel=0.022, segments=3, angle=28)
         objs.append(g)
     return root, objs
 
