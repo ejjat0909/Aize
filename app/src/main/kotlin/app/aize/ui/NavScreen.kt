@@ -100,6 +100,7 @@ fun NavScreen() {
     var query by remember { mutableStateOf("") }
     var results by remember { mutableStateOf<List<PlaceResult>>(emptyList()) }
     var searching by remember { mutableStateOf(false) }
+    var searchError by remember { mutableStateOf<String?>(null) }
     var arrived by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
     val scope = rememberCoroutineScope()
 
@@ -212,14 +213,15 @@ fun NavScreen() {
 
     // --- place search: debounce typing, ask the server, keep the last good results -------------------------------
     LaunchedEffect(query, serverUrl) {
-        if (query.trim().length < 2) { results = emptyList(); return@LaunchedEffect }
+        if (query.trim().length < 2) { results = emptyList(); searchError = null; return@LaunchedEffect }
         searching = true
         kotlinx.coroutines.delay(280)
         val r = withContext(Dispatchers.IO) {
             runCatching { SearchClient.search(serverUrl, query.trim(), fix?.latitude, fix?.longitude) }
         }
         searching = false
-        r.onSuccess { results = it }.onFailure { results = emptyList() }
+        r.onSuccess { results = it; searchError = null }
+            .onFailure { results = emptyList(); searchError = it.message ?: "Search failed" }
     }
 
     // --- real location (when permitted) ---------------------------------------------------------------------------------
@@ -546,8 +548,13 @@ fun NavScreen() {
                         Text("Saved places", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     if (searching) LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 6.dp))
-                    if (results.isEmpty() && !searching && query.trim().length >= 2) {
-                        Text("No places found", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
+                    if (searchError != null) {
+                        // a failed request is not "no matches": say which it is, and offer the fix
+                        Text(searchError!!, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(12.dp))
+                        Text("Server: $serverUrl", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 12.dp))
+                        TextButton(onClick = { showSearch = false; showServer = true }) { Text("Change server") }
+                    } else if (results.isEmpty() && !searching && query.trim().length >= 2) {
+                        Text("No places found for \"${query.trim()}\"", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
                     }
                     LazyColumn(Modifier.fillMaxSize()) {
                         if (query.isBlank()) {
@@ -600,14 +607,27 @@ fun NavScreen() {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text("Address of a Valhalla server, e.g. https://example.com or 192.168.1.20:8002. The emulator reaches the host at 10.0.2.2.", fontSize = 13.sp)
                     OutlinedTextField(value = text, onValueChange = { text = it; testResult = null }, singleLine = true, label = { Text("Server address") })
+                    TextButton(onClick = { text = ServerSettings.DEFAULT_URL; testResult = null }) { Text("Reset to default") }
                     TextButton(enabled = !testing, onClick = {
                         testing = true; testResult = "Testing…"
                         scope.launch {
-                            val r = withContext(Dispatchers.IO) { runCatching { RouteClient.status(text) } }
-                            testResult = r.fold({ "Connected: $it" }, { "Failed: ${it.message}" }); testing = false
+                            // routing and search are two services behind one address: test both, say which fails
+                            val (route, search) = withContext(Dispatchers.IO) {
+                                val v = runCatching { RouteClient.status(text) }
+                                val s = runCatching { SearchClient.search(text, "klcc", 3.1343, 101.6862).size }
+                                v to s
+                            }
+                            testResult = buildString {
+                                append(route.fold({ "Routing: $it" }, { "Routing failed: ${it.message}" }))
+                                append("\n")
+                                append(search.fold({ "Search: OK ($it results for \"klcc\")" }, { "Search failed: ${it.message}" }))
+                            }
+                            testing = false
                         }
                     }) { Text("Test connection") }
-                    testResult?.let { Text(it, fontSize = 13.sp, color = if (it.startsWith("Failed")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary) }
+                    testResult?.let {
+                        Text(it, fontSize = 13.sp, color = if (it.contains("failed")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+                    }
                 }
             },
             confirmButton = { TextButton(onClick = { ServerSettings.set(ctx, text); serverUrl = ServerSettings.get(ctx); showServer = false }) { Text("Save") } },

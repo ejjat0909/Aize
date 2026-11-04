@@ -215,14 +215,14 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.9.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.9.1-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
       "time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark "
       "mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so "
       "the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, "
-      "Save, Share) and a turn list shows the whole route. 52 JVM unit tests pass.")
+      "Save, Share) and a turn list shows the whole route. 54 JVM unit tests pass.")
     a("")
     a("What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no "
       "reports or traffic, no settings screen, and the release build is unsigned.")

@@ -65,3 +65,19 @@ class RouteChoicesTest {
 
     private fun choices(i: Int) = RouteClient.parseRoutes(fixture())[i].summary
 }
+
+class SearchFailureTest {
+    @Test fun `an unreachable server says so instead of looking like no matches`() {
+        val error = runCatching { SearchClient.search("http://127.0.0.1:1", "klcc", 3.1343, 101.6862) }.exceptionOrNull()
+        org.junit.Assert.assertNotNull("search must throw, not return an empty list", error)
+        org.junit.Assert.assertTrue(
+            "message should name the problem, got: ${error?.message}",
+            error?.message?.contains("Cannot reach the server") == true,
+        )
+    }
+
+    @Test fun `a server that answers with an error body is reported as such`() {
+        val body = """{"error":"No suitable edges near location","error_code":171}"""
+        org.junit.Assert.assertEquals("No suitable edges near location", RouteClient.serverMessage(body))
+    }
+}

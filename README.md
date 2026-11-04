@@ -2,11 +2,11 @@
 
 **Aize** is a fast, community-driven, voice-guided navigation app for Android — purple identity, Waze-class interaction model, engineered so it never feels laggy.
 
-> **Status (2026-11-04): v0.9.0-m2 — the app runs, routes, talks and lets you choose.**
+> **Status (2026-11-04): v0.9.1-m2 — the app runs, routes, talks and lets you choose.**
 > A debug APK installs on a phone and drives: MapLibre map over bundled PMTiles, a Valhalla server with a
 > permanent address, place search over 685k named places, a place card with Directions/Save/Share, up to three
 > routes per destination with toll and motorway flags, a turn list, and turn-by-turn guidance in a foreground service that keeps speaking with the screen off
-> (prepare + imminent prompts, muteable), with an ETA clock and automatic day/night. 52 JVM unit tests, a Rust
+> (prepare + imminent prompts, muteable), with an ETA clock and automatic day/night. 54 JVM unit tests, a Rust
 > core workspace, four CI jobs and 21 ADRs back it. What is missing is listed honestly in
 > [`docs/03-roadmap.md`](docs/03-roadmap.md): lane guidance and speed limits need tiles this server does not
 > carry, and there is no traffic and no signed release yet.
