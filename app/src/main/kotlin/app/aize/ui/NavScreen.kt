@@ -3,6 +3,7 @@ package app.aize.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -27,6 +28,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.text.input.ImeAction
@@ -44,6 +46,8 @@ import app.aize.nav.NavSession
 import app.aize.nav.OffRouteDetector
 import app.aize.nav.Route
 import app.aize.net.PlaceResult
+import app.aize.nav.Favourites
+import app.aize.nav.SavedPlace
 import app.aize.net.RouteClient
 import app.aize.net.SearchClient
 import app.aize.net.ServerSettings
@@ -84,7 +88,10 @@ fun NavScreen() {
     var routing by remember { mutableStateOf(false) }
     var notice by remember { mutableStateOf<String?>(null) }
     var pendingDest by remember { mutableStateOf<LatLng?>(null) }
-    var choices by remember { mutableStateOf<List<Route>>(emptyList()) }   // the server's alternates, while the driver picks one
+    var choices by remember { mutableStateOf<List<Route>>(emptyList()) }
+    var place by remember { mutableStateOf<PlaceResult?>(null) }          // the place card, before committing to a drive
+    var saved by remember { mutableStateOf<List<SavedPlace>>(emptyList()) }   // places the driver kept
+    var steps by remember { mutableStateOf<Route?>(null) }                    // the turn list being shown, if any
     var destination by remember { mutableStateOf<LatLng?>(null) }      // where the live route is heading; kept for re-routing
     var segmentHint by remember { mutableIntStateOf(0) }
     val offRoute = remember { OffRouteDetector() }
@@ -144,6 +151,8 @@ fun NavScreen() {
         runCatching { NavService.start(ctx) }
             .onFailure { notice = "Could not start background navigation: ${it.message}" }
     }
+
+    LaunchedEffect(Unit) { saved = Favourites.load(ctx) }
 
     // --- show whichever route is current ---------------------------------------------------------------------------------
     LaunchedEffect(route, controller) { controller?.setRoute(route) }
@@ -390,6 +399,28 @@ fun NavScreen() {
             shape = RoundedCornerShape(topStart = AizeRadius.SHEET, topEnd = AizeRadius.SHEET),
         ) {
             Column(Modifier.windowInsetsPadding(WindowInsets.navigationBars).padding(horizontal = 16.dp, vertical = 14.dp)) {
+                place?.let { p ->
+                    PlaceCard(
+                        place = p,
+                        isSaved = saved.any { it.sameAs(SavedPlace(p.name, p.lat, p.lon, p.kind)) },
+                        onDirections = {
+                            pendingDest = LatLng(p.lat, p.lon)
+                            place = null
+                        },
+                        onSave = {
+                            val sp = SavedPlace(p.name, p.lat, p.lon, p.kind)
+                            saved = if (saved.any { it.sameAs(sp) }) Favourites.remove(ctx, sp) else Favourites.add(ctx, sp)
+                        },
+                        onShare = {
+                            val url = "https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=17/${p.lat}/${p.lon}"
+                            val send = Intent(Intent.ACTION_SEND).setType("text/plain")
+                                .putExtra(Intent.EXTRA_TEXT, "${p.name} — $url")
+                            ctx.startActivity(Intent.createChooser(send, "Share place"))
+                        },
+                        onClose = { place = null },
+                    )
+                    return@Column
+                }
                 if (choices.isNotEmpty()) {
                     RouteChoices(
                         choices = choices,
@@ -460,6 +491,7 @@ fun NavScreen() {
                     if (!hasPermission) {
                         TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
                     }
+                    if (r != null && !demo) TextButton(onClick = { steps = r }) { Text("Steps") }
                     TextButton(onClick = { showSearch = true }) { Text("Search") }
                     TextButton(onClick = { showServer = true }) { Text("Server") }
                     TextButton(onClick = { ThemeMode.cycle(ctx) }) { Text(ThemeMode.label(themeMode)) }
@@ -471,6 +503,33 @@ fun NavScreen() {
                 }
             }
         }
+        // ------------------------------------------------------------------ turn list
+        steps?.let { shown ->
+            Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), color = MaterialTheme.colorScheme.surface) {
+                Column(Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            "Turn list \u00b7 ${formatDistance(shown.path.lengthMeters)} \u00b7 ${(shown.durationSeconds / 60).roundToInt()} min",
+                            fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f),
+                        )
+                        TextButton(onClick = { steps = null }) { Text("Close") }
+                    }
+                    LazyColumn(Modifier.fillMaxSize()) {
+                        itemsIndexed(shown.maneuvers) { i, m ->
+                            // the last entry is the arrival pseudo-maneuver; the banner and the announcer skip it too
+                            if (m.beginShapeIndex >= shown.path.size - 1) return@itemsIndexed
+                            ListItem(
+                                headlineContent = { Text(m.instruction) },
+                                supportingContent = { Text(formatDistance(m.lengthMeters)) },
+                                leadingContent = { Text("${i + 1}", color = MaterialTheme.colorScheme.primary, fontSize = 13.sp) },
+                            )
+                            HorizontalDivider()
+                        }
+                    }
+                }
+            }
+        }
+
         // ------------------------------------------------------------------ search
         if (showSearch) {
             Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), color = MaterialTheme.colorScheme.surface) {
@@ -483,11 +542,28 @@ fun NavScreen() {
                         )
                         TextButton(onClick = { showSearch = false; query = ""; results = emptyList() }) { Text("Close") }
                     }
+                    if (query.isBlank() && saved.isNotEmpty()) {
+                        Text("Saved places", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
                     if (searching) LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 6.dp))
                     if (results.isEmpty() && !searching && query.trim().length >= 2) {
                         Text("No places found", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
                     }
                     LazyColumn(Modifier.fillMaxSize()) {
+                        if (query.isBlank()) {
+                            items(saved) { sp ->
+                                ListItem(
+                                    headlineContent = { Text(sp.name) },
+                                    supportingContent = { Text(kindLabel(sp.kind)) },
+                                    trailingContent = { Text("Saved", fontSize = 12.sp, color = MaterialTheme.colorScheme.primary) },
+                                    modifier = Modifier.clickable {
+                                        place = PlaceResult(sp.name, sp.lat, sp.lon, sp.kind, 0)
+                                        showSearch = false
+                                    },
+                                )
+                                HorizontalDivider()
+                            }
+                        }
                         items(results) { p ->
                             ListItem(
                                 headlineContent = { Text(p.name) },
@@ -497,7 +573,12 @@ fun NavScreen() {
                                     Text(bits.joinToString(" \u00b7 "))
                                 },
                                 modifier = Modifier.clickable {
-                                    pendingDest = LatLng(p.lat, p.lon); showSearch = false; query = ""; results = emptyList()
+                                    place = p; showSearch = false; query = ""; results = emptyList()
+                                    map?.animateCamera(
+                                        org.maplibre.android.camera.CameraUpdateFactory.newLatLngZoom(
+                                            LatLng(p.lat, p.lon), 15.5,
+                                        ),
+                                    )
                                 },
                             )
                             HorizontalDivider()
@@ -532,6 +613,50 @@ fun NavScreen() {
             confirmButton = { TextButton(onClick = { ServerSettings.set(ctx, text); serverUrl = ServerSettings.get(ctx); showServer = false }) { Text("Save") } },
             dismissButton = { TextButton(onClick = { showServer = false }) { Text("Cancel") } },
         )
+    }
+}
+
+/**
+ * The place card: what the driver tapped, what it is, how far away, and the three things worth doing with it.
+ * Directions replaces the card with the route chooser; Save keeps it in the list that shows when search is empty.
+ */
+@Composable
+private fun PlaceCard(
+    place: PlaceResult,
+    isSaved: Boolean,
+    onDirections: () -> Unit,
+    onSave: () -> Unit,
+    onShare: () -> Unit,
+    onClose: () -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(place.name, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, maxLines = 2)
+        Text(
+            buildList {
+                add(kindLabel(place.kind))
+                if (place.distanceMeters > 0) add(formatDistance(place.distanceMeters.toDouble()))
+                if (isSaved) add("Saved")
+            }.joinToString(" \u00b7 "),
+            color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(
+                onClick = onDirections,
+                modifier = Modifier.weight(1f).heightIn(min = AizeSize.TOUCH_TARGET),
+                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
+            ) { Text("Directions") }
+            OutlinedButton(
+                onClick = onSave,
+                modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET),
+                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
+            ) { Text(if (isSaved) "Remove" else "Save") }
+            OutlinedButton(
+                onClick = onShare,
+                modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET),
+                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
+            ) { Text("Share") }
+        }
+        TextButton(onClick = onClose) { Text("Close") }
     }
 }
 

@@ -4,25 +4,25 @@
 
 ## Where the app is today
 
-Version 0.8.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one. 48 JVM unit tests pass.
+Version 0.9.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, Save, Share) and a turn list shows the whole route. 52 JVM unit tests pass.
 
-What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no place card, no reports or traffic, no settings screen, and the release build is unsigned.
+What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no reports or traffic, no settings screen, and the release build is unsigned.
 
 | Phase | Name | Tasks | Planned | Left (est.) | MVP |
 |---|---|---|---|---|---|
 | P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
 | P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
 | P2 | Map & location | 13 | 76 pd | 40 pd | yes |
-| P3 | Search, places & routing | 11 | 72 pd | 50 pd | yes |
+| P3 | Search, places & routing | 11 | 72 pd | 43 pd | yes |
 | P4 | Navigation engine & voice | 14 | 110 pd | 77 pd | yes |
 | P5 | Live traffic & community | 12 | 101 pd | 101 pd | yes |
 | P6 | Planning, sharing & accounts | 7 | 53 pd | 53 pd | no |
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **513.5 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **506.5 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **202.5 pd** left of the 337 pd planned for it, and the whole plan has 513.5 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **199.5 pd** left of the 337 pd planned for it, and the whole plan has 506.5 pd left of 653.
 
 ## The order to do it in
 
@@ -161,18 +161,18 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* Type a destination, see a place card, pick among routes, start.
 
-11 tasks, 72 pd planned, 50 pd left. 0 done, 6 part-done.
+11 tasks, 72 pd planned, 43 pd left. 0 done, 8 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
 | P3-01 | Search domain + UI: debounced autocomplete, category chips (gas, parking, food, coffee, shopping, hotel, hospital/pharmacy, bank, police, car services), recents, favourites (home/work/custom), around-you vs along-route | 10 | yes | part |
 | P3-02 | Geocoding backend: Photon deployment, ranking tweaks (distance bias, language), reverse geocode, rate limits, cache | 6 | yes | part |
 | P3-03 | POI data: OSM POI extraction → search index, opening hours parsing, category mapping (Overture as later enrichment) | 6 | no | part |
-| P3-04 | Place card (location preview): name/address/distance/ETA, actions (Go, Save, Share, Call), photos slot | 6 | yes | — |
+| P3-04 | Place card (location preview): name/address/distance/ETA, actions (Go, Save, Share, Call), photos slot | 6 | yes | part |
 | P3-05 | Routing service on Valhalla: costing profiles (car, motorcycle, taxi/HOV), options (avoid tolls/highways/ferries/unpaved), ≤ 3 alternatives, response mapper to `Route` proto (polyline6, legs, maneuvers, lanes, speed limits, tolls) | 10 | yes | part |
 | P3-06 | Route preview (trip overview): ≤ 3 routes with ETA/distance/toll, colour-coded alternatives, details sheet with turn list, 'start' CTA | 8 | yes | part |
 | P3-07 | Route model in core (Rust): decode, simplify, spatial index, cumulative distances, maneuver anchors, speed-limit segments, lane arrays | 6 | yes | — |
-| P3-08 | Favourites/recents storage (Room) + sync API | 8 | no | — |
+| P3-08 | Favourites/recents storage (Room) + sync API | 8 | no | part |
 | P3-09 | Deep links & intents: `geo:`, `google.navigation:`, `aize://`, `https://aize.app/ul?…` (mirrors public waze.com/ul format), App Links verification | 3 | yes | — |
 | P3-10 | Share destination link + landing page | 5 | no | — |
 | P3-11 | Units/locale: km/mi, 12/24 h, number formats, right-hand/left-hand traffic cues, country packs for speed-limit defaults | 4 | yes | part |
@@ -180,10 +180,11 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P3-01** — Debounced search with a result list. No category chips, recents, favourites or along-route search.
 - **P3-02** — Deliberate deviation: SQLite FTS5 over the OSM extract instead of a Photon deployment, because Photon needs Java and a large index. No reverse geocoding, cache or rate limits.
 - **P3-03** — `kind` comes from OSM tags and drives ranking. No opening hours, no category taxonomy beyond the tag pair.
-- **P3-04** — Tapping a result starts routing immediately; there is no place card.
+- **P3-04** — Tapping a search result opens a card with the name, kind and distance, and three actions: Directions (hands the place to the route chooser), Save (keeps it in the list that shows when search is empty) and Share (an OpenStreetMap link through the system share sheet). No address line, no photos slot, no Call.
 - **P3-05** — Up to three routes per request, with the server's toll, motorway and ferry flags mapped into `Route.Summary`. Still `costing=auto` only: no motorcycle or taxi profile, no avoid-tolls/highways options, and lanes, speed limits and per-edge tolls are not in the response the tiles are built from.
-- **P3-06** — After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. The alternatives are not drawn on the map in their own colours and there is no turn-list sheet yet.
+- **P3-06** — After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. A turn list (every maneuver with its distance, arrival excluded) opens from the bottom bar. The alternatives are not drawn on the map in their own colours.
 - **P3-07** — Route decoding is Kotlin; the Rust port is blocked on a toolchain.
+- **P3-08** — Saved places are kept on the device as JSON in SharedPreferences (newest first, 50 at most, deduped by position) and listed when the search field is empty. No recents, no Room, no sync between devices.
 - **P3-11** — Kilometres and 24-hour clock only.
 
 ### P4 · Navigation engine & voice

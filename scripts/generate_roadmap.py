@@ -58,11 +58,11 @@ STATUS = {
     "P3-01": ("partial", "Debounced search with a result list. No category chips, recents, favourites or along-route search."),
     "P3-02": ("partial", "Deliberate deviation: SQLite FTS5 over the OSM extract instead of a Photon deployment, because Photon needs Java and a large index. No reverse geocoding, cache or rate limits."),
     "P3-03": ("partial", "`kind` comes from OSM tags and drives ranking. No opening hours, no category taxonomy beyond the tag pair."),
-    "P3-04": ("todo", "Tapping a result starts routing immediately; there is no place card."),
+    "P3-04": ("partial", "Tapping a search result opens a card with the name, kind and distance, and three actions: Directions (hands the place to the route chooser), Save (keeps it in the list that shows when search is empty) and Share (an OpenStreetMap link through the system share sheet). No address line, no photos slot, no Call."),
     "P3-05": ("partial", "Up to three routes per request, with the server's toll, motorway and ferry flags mapped into `Route.Summary`. Still `costing=auto` only: no motorcycle or taxi profile, no avoid-tolls/highways options, and lanes, speed limits and per-edge tolls are not in the response the tiles are built from."),
-    "P3-06": ("partial", "After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. The alternatives are not drawn on the map in their own colours and there is no turn-list sheet yet."),
+    "P3-06": ("partial", "After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. A turn list (every maneuver with its distance, arrival excluded) opens from the bottom bar. The alternatives are not drawn on the map in their own colours."),
     "P3-07": ("todo", "Route decoding is Kotlin; the Rust port is blocked on a toolchain."),
-    "P3-08": ("todo", ""),
+    "P3-08": ("partial", "Saved places are kept on the device as JSON in SharedPreferences (newest first, 50 at most, deduped by position) and listed when the search field is empty. No recents, no Room, no sync between devices."),
     "P3-09": ("todo", ""),
     "P3-10": ("todo", ""),
     "P3-11": ("partial", "Kilometres and 24-hour clock only."),
@@ -215,16 +215,17 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.8.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.9.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
       "time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark "
       "mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so "
-      "the driver picks the way rather than accepting one. 48 JVM unit tests pass.")
+      "the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, "
+      "Save, Share) and a turn list shows the whole route. 52 JVM unit tests pass.")
     a("")
     a("What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no "
-      "place card, no reports or traffic, no settings screen, and the release build is unsigned.")
+      "reports or traffic, no settings screen, and the release build is unsigned.")
     a("")
     a("| Phase | Name | Tasks | Planned | Left (est.) | MVP |")
     a("|---|---|---|---|---|---|")
