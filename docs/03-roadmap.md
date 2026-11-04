@@ -4,9 +4,9 @@
 
 ## Where the app is today
 
-Version 0.3.0-p1. A debug APK installs and runs on a real phone: purple MapLibre basemap from bundled PMTiles, Blender-rendered puck and destination pin, live Valhalla routing from a server with a permanent address, place search over 685k named places, off-route detection with reroute, and a turn-by-turn banner. 20 JVM unit tests pass.
+Version 0.7.0-m1. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. 44 JVM unit tests pass.
 
-What it is not yet: it does not speak, it stops guiding when the screen turns off, it has no place card or route choice, no reports or traffic, no settings, and the release build is unsigned.
+What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no place card or route choice, no reports or traffic, no settings screen, and the release build is unsigned.
 
 | Phase | Name | Tasks | Planned | Left (est.) | MVP |
 |---|---|---|---|---|---|
