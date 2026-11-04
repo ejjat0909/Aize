@@ -582,7 +582,8 @@ fun NavScreen() {
                             fontSize = 18.sp, fontWeight = FontWeight.SemiBold,
                         )
                         Text(
-                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)" else "Search or long-press the map for a destination",
+                            if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)"
+                            else "Long-press the map for a new destination",
                             color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
                         )
                     }
