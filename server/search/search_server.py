@@ -1,6 +1,8 @@
 """Aize place search: SQLite FTS5 over named OSM places, POIs and roads.
 
     GET /search?q=klcc&lat=3.13&lon=101.68&limit=8  ->  {"results":[{"name","lat","lon","kind","dist_m"}]}
+    GET /search?category=fuel&lat=3.13&lon=101.68   ->  the same shape, nearest first
+    GET /categories                                  ->  [{"id","label","count"}]
 
 Ranking mixes FTS relevance, the place's importance (a city outranks a shop) and distance from the
 caller, so "pavilion" near Kuala Lumpur finds the mall and not a shop in Penang.
@@ -66,7 +68,63 @@ def weight(kind: str) -> float:
     return 10
 
 
+# One chip on the app's search sheet per entry. The kinds are exact OSM tags: an index scan on
+# places(kind) answers a category in about 10 ms, where a LIKE prefix scan takes 170 ms.
+CATEGORIES = {
+    "fuel": ("Fuel", ("amenity=fuel",)),
+    "food": ("Food", ("amenity=restaurant", "amenity=fast_food", "amenity=food_court")),
+    "cafe": ("Cafe", ("amenity=cafe",)),
+    "parking": ("Parking", ("amenity=parking", "amenity=parking_entrance")),
+    "atm": ("ATM", ("amenity=atm", "amenity=bank")),
+    "pharmacy": ("Pharmacy", ("amenity=pharmacy",)),
+    "hospital": ("Hospital", ("amenity=hospital", "amenity=clinic")),
+    "mall": ("Mall", ("shop=mall", "shop=department_store", "shop=supermarket")),
+    "hotel": ("Hotel", ("tourism=hotel", "tourism=motel", "tourism=guest_house")),
+    "prayer": ("Prayer room", ("amenity=place_of_worship",)),
+    "ev": ("EV charging", ("amenity=charging_station",)),
+    "toilets": ("Toilets", ("amenity=toilets",)),
+}
+
+
+def category(cat, lat=None, lon=None, limit=8):
+    """Nearest places of a kind. Widens the search box until it has enough, so a petrol station
+    outside the first ring is still found rather than reported as none."""
+    entry = CATEGORIES.get(cat)
+    if entry is None:
+        return None
+    kinds = entry[1]
+    marks = ",".join("?" * len(kinds))
+    for radius in (8_000, 25_000, 80_000):
+        if lat is None or lon is None:
+            rows = conn.execute(
+                f"SELECT name,kind,lat,lon FROM places WHERE kind IN ({marks}) LIMIT 4000", kinds
+            ).fetchall()
+            return [{"name": n, "lat": la, "lon": lo, "kind": k, "dist_m": 0} for n, k, la, lo in rows][:limit]
+        dlat = radius / 111_320.0
+        dlon = dlat / max(0.2, math.cos(math.radians(lat)))
+        rows = conn.execute(
+            f"SELECT name,kind,lat,lon FROM places WHERE kind IN ({marks}) "
+            "AND lat BETWEEN ? AND ? AND lon BETWEEN ? AND ? LIMIT 4000",
+            (*kinds, lat - dlat, lat + dlat, lon - dlon, lon + dlat),
+        ).fetchall()
+        if len(rows) >= limit:
+            break
+    seen, out = set(), []
+    for name, kind, plat, lon_ in rows:
+        key = (name.lower(), kind)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"name": name, "kind": kind, "lat": plat, "lon": lon_,
+                    "dist_m": round(haversine(lat, lon, plat, lon_))})
+    out.sort(key=lambda r: r["dist_m"])
+    return out[:limit]
+
+
 def search(q, lat=None, lon=None, limit=8):
+    # one character is not a search: it matches half the map and the caller is still typing
+    if len(q.strip()) < 2:
+        return []
     match = fts_query(q)
     if not match:
         return []
@@ -124,9 +182,22 @@ class Handler(BaseHTTPRequestHandler):
             if lat is not None and (math.isnan(lat) or math.isnan(lon)):
                 lat = lon = None
             limit = max(1, min(20, int((qs.get("limit") or ["8"])[0] or 8)))
+            cat = (qs.get("category") or [""])[0].strip().lower()
+            if cat:
+                found = category(cat, lat, lon, limit)
+                if found is None:
+                    return self._send(400, {"error": "unknown category"})
+                return self._send(200, {"results": found, "category": cat})
             if len(q) < 2:
                 return self._send(200, {"results": []})
             return self._send(200, {"results": search(q, lat, lon, limit)})
+        if u.path == "/categories":
+            out = []
+            for cid, (label, kinds) in CATEGORIES.items():
+                marks = ",".join("?" * len(kinds))
+                n = conn.execute(f"SELECT count(*) FROM places WHERE kind IN ({marks})", kinds).fetchone()[0]
+                out.append({"id": cid, "label": label, "count": n})
+            return self._send(200, {"categories": out})
         if u.path == "/status":
             n = conn.execute("select count(*) from places").fetchone()[0]
             return self._send(200, {"search": "aize", "places": n})

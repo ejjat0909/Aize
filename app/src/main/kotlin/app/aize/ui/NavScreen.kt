@@ -27,6 +27,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.KeyboardOptions
@@ -43,12 +44,14 @@ import app.aize.map.TileStore
 import app.aize.nav.EtaEngine
 import app.aize.nav.NavService
 import app.aize.nav.NavSession
+import app.aize.nav.Recents
 import app.aize.nav.OffRouteDetector
 import app.aize.nav.Route
 import app.aize.net.PlaceResult
 import app.aize.nav.Favourites
 import app.aize.nav.SavedPlace
 import app.aize.net.RouteClient
+import app.aize.net.Category
 import app.aize.net.SearchClient
 import app.aize.net.ServerSettings
 import app.aize.nav.RoutePath
@@ -70,10 +73,12 @@ private val KL_SENTRAL = doubleArrayOf(3.1343, 101.6862)
 @Composable
 fun NavScreen() {
     val ctx = LocalContext.current
+    val prefs = remember { ctx.getSharedPreferences(Recents.PREFS, Context.MODE_PRIVATE) }
     // day/night follows the ThemeMode policy (auto = clock, or the driver's manual choice)
     val themeMode by ThemeMode.mode.collectAsState()
     val dark = ThemeMode.isDark(themeMode)
     val density = LocalView.current.resources.displayMetrics.density
+    val screenH = LocalView.current.resources.displayMetrics.heightPixels.toFloat()
 
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
     var controller by remember { mutableStateOf<MapController?>(null) }
@@ -101,6 +106,9 @@ fun NavScreen() {
     var results by remember { mutableStateOf<List<PlaceResult>>(emptyList()) }
     var searching by remember { mutableStateOf(false) }
     var searchError by remember { mutableStateOf<String?>(null) }
+    var category by remember { mutableStateOf<Category?>(null) }        // a chip is active: results are "fuel near you", not a name query
+    var chips by remember { mutableStateOf(emptyList<Category>()) }
+    var recents by remember { mutableStateOf(emptyList<String>()) }
     var arrived by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
     val scope = rememberCoroutineScope()
 
@@ -123,7 +131,10 @@ fun NavScreen() {
     }
 
     // --- (re)build the style whenever the map, the data or the theme changes ---------------------------------------------
-    LaunchedEffect(map, tiles, route, dark) {
+    // `route` is deliberately NOT a key: it changes on every search result, and rebuilding the style would throw
+    // away the drawn alternatives (and the camera) at the exact moment the chooser appears.
+    val routeAtInstall = rememberUpdatedState(route)
+    LaunchedEffect(map, tiles, dark) {
         val m = map ?: return@LaunchedEffect
         val file = tiles
         if (file == null) {
@@ -135,7 +146,7 @@ fun NavScreen() {
         controller = null
         m.setStyle(Style.Builder().fromJson(styleJson)) { style ->
             val c = MapController(m, style, PuckSprites(ctx.assets), dark)
-            c.install(route)
+            c.install(routeAtInstall.value)
             controller = c
         }
     }
@@ -158,6 +169,16 @@ fun NavScreen() {
     // --- show whichever route is current ---------------------------------------------------------------------------------
     LaunchedEffect(route, controller) { controller?.setRoute(route) }
 
+    // --- the options under the chooser are drawn while choosing, and cleared as soon as one is picked -------------------
+    LaunchedEffect(choices, controller, dark) {
+        val c = controller ?: return@LaunchedEffect
+        if (choices.size > 1) {
+            c.setAlternatives(choices, (24 * density).roundToInt(), (screenH * 0.45f).roundToInt())
+        } else {
+            c.setAlternatives(emptyList())
+        }
+    }
+
     // --- pick a destination (long-press) -> ask the Valhalla server for a route from here --------------------------------------
     var fix by remember { mutableStateOf<Location?>(null) }
     LaunchedEffect(pendingDest) {
@@ -173,10 +194,10 @@ fun NavScreen() {
             android.util.Log.i("Aize", "route dest=${dest.latitude},${dest.longitude} len=${best.path.lengthMeters.roundToInt()}m choices=${list.size}")
             routeLabel = (if (fix != null) "Your location" else "KL Sentral") + " → pin · live route"
             if (list.size > 1) {
-                // let the driver pick: same origin and destination, different roads and times
+                // let the driver pick: same origin and destination, different roads and times.
+                // The map shows the quickest option, so the row marked "On map" is the first row.
                 choices = list
-                route = best
-                controller?.overview(best, (24 * density).roundToInt())
+                route = list.minByOrNull { it.durationSeconds } ?: best
             } else {
                 route = best
                 controller?.overview(best, (24 * density).roundToInt())
@@ -222,6 +243,27 @@ fun NavScreen() {
         searching = false
         r.onSuccess { results = it; searchError = null }
             .onFailure { results = emptyList(); searchError = it.message ?: "Search failed" }
+    }
+
+    // categories come from the server; recents come from the phone
+    LaunchedEffect(serverUrl, showSearch) {
+        if (!showSearch) return@LaunchedEffect
+        recents = Recents.load(prefs)
+        chips = withContext(Dispatchers.IO) { SearchClient.categories(serverUrl) }
+    }
+
+    fun runCategory(c: Category) {
+        category = c
+        query = ""
+        searching = true
+        scope.launch {
+            val r = withContext(Dispatchers.IO) {
+                runCatching { SearchClient.byCategory(serverUrl, c.id, fix?.latitude, fix?.longitude) }
+            }
+            searching = false
+            r.onSuccess { results = it; searchError = null }
+                .onFailure { results = emptyList(); searchError = it.message ?: "Search failed" }
+        }
     }
 
     // --- real location (when permitted) ---------------------------------------------------------------------------------
@@ -426,8 +468,10 @@ fun NavScreen() {
                 if (choices.isNotEmpty()) {
                     RouteChoices(
                         choices = choices,
+                        current = route,
                         onPick = { picked ->
                             route = picked
+                            choices = emptyList()          // the effect above clears the grey lines
                             controller?.overview(picked, (24 * density).roundToInt())
                             android.util.Log.i("Aize", "chose route len=${picked.path.lengthMeters.roundToInt()}m")
                             startNavigation(picked)
@@ -544,8 +588,27 @@ fun NavScreen() {
                         )
                         TextButton(onClick = { showSearch = false; query = ""; results = emptyList() }) { Text("Close") }
                     }
-                    if (query.isBlank() && saved.isNotEmpty()) {
-                        Text("Saved places", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    // categories: one tap, "what is near me", no typing
+                    if (query.isBlank() && chips.isNotEmpty()) {
+                        LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), contentPadding = PaddingValues(vertical = 6.dp)) {
+                            items(chips) { c ->
+                                FilterChip(
+                                    selected = category?.id == c.id,
+                                    onClick = { if (category?.id == c.id) { category = null; results = emptyList() } else runCategory(c) },
+                                    label = { Text(c.label) },
+                                )
+                            }
+                        }
+                    }
+                    if (category != null) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("${category!!.label} near you", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Spacer(Modifier.width(8.dp))
+                            TextButton(onClick = { category = null; results = emptyList() }) { Text("Clear", fontSize = 12.sp) }
+                        }
+                    }
+                    if (query.isBlank() && category == null && results.isEmpty() && recents.isNotEmpty()) {
+                        Text("Recent places", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     if (searching) LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 6.dp))
                     if (searchError != null) {
@@ -553,11 +616,23 @@ fun NavScreen() {
                         Text(searchError!!, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(12.dp))
                         Text("Server: $serverUrl", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 12.dp))
                         TextButton(onClick = { showSearch = false; showServer = true }) { Text("Change server") }
+                    } else if (results.isEmpty() && !searching && category != null) {
+                        Text("No ${category!!.label.lowercase()} found near you", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
                     } else if (results.isEmpty() && !searching && query.trim().length >= 2) {
                         Text("No places found for \"${query.trim()}\"", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
                     }
                     LazyColumn(Modifier.fillMaxSize()) {
-                        if (query.isBlank()) {
+                        if (query.isBlank() && category == null && results.isEmpty()) {
+                            items(recents) { term ->
+                                ListItem(
+                                    headlineContent = { Text(term) },
+                                    trailingContent = { Text("Recent", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant) },
+                                    modifier = Modifier.clickable { query = term; category = null },
+                                )
+                                HorizontalDivider()
+                            }
+                        }
+                        if (query.isBlank() && category == null && results.isEmpty() && saved.isNotEmpty()) {
                             items(saved) { sp ->
                                 ListItem(
                                     headlineContent = { Text(sp.name) },
@@ -580,7 +655,9 @@ fun NavScreen() {
                                     Text(bits.joinToString(" \u00b7 "))
                                 },
                                 modifier = Modifier.clickable {
-                                    place = p; showSearch = false; query = ""; results = emptyList()
+                                    recents = Recents.add(recents, query)
+                                    prefs.edit().putString(Recents.KEY, Recents.encode(recents)).apply()
+                                    place = p; showSearch = false; query = ""; results = emptyList(); category = null
                                     map?.animateCamera(
                                         org.maplibre.android.camera.CameraUpdateFactory.newLatLngZoom(
                                             LatLng(p.lat, p.lon), 15.5,
@@ -685,7 +762,7 @@ private fun PlaceCard(
  * to the world: two routes can both be the fastest if they are the only ones.
  */
 @Composable
-private fun RouteChoices(choices: List<Route>, onPick: (Route) -> Unit, onCancel: () -> Unit) {
+private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) -> Unit, onCancel: () -> Unit) {
     // quickest first: the server ranks by cost, which is not the same question the driver is asking
     val ordered = remember(choices) { choices.sortedBy { it.durationSeconds } }
     val fastest = ordered.indices.minByOrNull { ordered[it].durationSeconds }
@@ -693,7 +770,9 @@ private fun RouteChoices(choices: List<Route>, onPick: (Route) -> Unit, onCancel
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text("${ordered.size} routes", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         ordered.forEachIndexed { i, r ->
+            val onMap = current === r
             val badges = buildList {
+                if (onMap) add("On map")
                 if (i == fastest) add("Fastest")
                 if (i == shortest) add("Shortest")
                 r.summary?.let { s ->
@@ -705,7 +784,7 @@ private fun RouteChoices(choices: List<Route>, onPick: (Route) -> Unit, onCancel
             Surface(
                 onClick = { onPick(r) },
                 shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                color = if (onMap) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth().heightIn(min = AizeSize.TOUCH_TARGET),
             ) {
                 Row(Modifier.padding(horizontal = 12.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {

@@ -27,6 +27,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         with: { name: aize-debug-apk, path: app/build/outputs/apk/debug/app-debug.apk }
 
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Place search (categories, ranking) against a throwaway index
+        run: python3 -m unittest discover -s server/search -p "test_*.py" -v
+
   core:
     runs-on: ubuntu-latest
     steps:

@@ -118,6 +118,8 @@ map_style = {
     "light": {"background": "#F3F1F7", "land": "#F3F1F7", "water": "#CFE0F2", "park": "#DCEBD8", "building": "#E6E2EE", "roadMinor": "#FFFFFF", "roadMinorCasing": "#D9D4E4", "roadMajor": "#FFFFFF", "roadMajorCasing": "#C3BCD3", "highway": "#FBF9FF", "highwayCasing": "#A89FBF", "label": "#3F3A4D", "labelHalo": "#FFFFFF"},
     "dark": {"background": "#16131C", "land": "#16131C", "water": "#17283A", "park": "#1C2A22", "building": "#221E2B", "roadMinor": "#2C2738", "roadMinorCasing": "#1B1722", "roadMajor": "#3A3448", "roadMajorCasing": "#1B1722", "highway": "#4A4260", "highwayCasing": "#1B1722", "label": "#CFC8DE", "labelHalo": "#16131C"},
 }
+# alternatives are deliberately darker than the road casing: the first attempt used neutral 500 and the
+# grey lines vanished into the grey map, which defeats the point of drawing them
 route = {"light": {"selected": purple["600"], "selectedCasing": W, "alternative": neutral["500"], "alternativeCasing": W, "passed": neutral["300"], "navArrow": purple["700"]},
          "dark": {"selected": purple["300"], "selectedCasing": neutral["1000"], "alternative": neutral["400"], "alternativeCasing": neutral["1000"], "passed": neutral["700"], "navArrow": purple["200"]}}
 # functional colours keep conventional meaning; hues are Aize's own

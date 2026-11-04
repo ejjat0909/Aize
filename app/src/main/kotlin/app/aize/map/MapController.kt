@@ -35,6 +35,7 @@ class MapController(
         const val DRIVE_PITCH = 45.0
         const val DRIVE_ZOOM = 17.0
         private const val ROUTE_SRC = "aize-route"
+        private const val ALTS_SRC = "aize-route-alts"
         private const val PASSED_SRC = "aize-route-passed"
         private const val PUCK_SRC = "aize-puck"
         private const val DEST_SRC = "aize-dest"
@@ -59,9 +60,16 @@ class MapController(
         style.addImage("pin-destination", pin)
 
         style.addSource(GeoJsonSource(ROUTE_SRC))
+        style.addSource(GeoJsonSource(ALTS_SRC))
         style.addSource(passedSource)
         style.addSource(GeoJsonSource(DEST_SRC))
         val join = arrayOf(lineCap(Property.LINE_CAP_ROUND), lineJoin(Property.LINE_JOIN_ROUND))
+        // alternatives sit underneath the chosen route, so the road you are taking is never hidden
+        style.addLayer(
+            // solid and thinner than the chosen route: an option, not a different kind of road
+            LineLayer("route-alt", ALTS_SRC)
+                .withProperties(*join, lineColor(palette.alternative), lineWidth(widthExpr(7f, 3.5f, 10f, 16f))),
+        )
         style.addLayer(LineLayer("route-casing", ROUTE_SRC).withProperties(*join, lineColor(palette.selectedCasing), lineWidth(widthExpr(15f, 7f, 22f, 36f))))
         style.addLayer(LineLayer("route", ROUTE_SRC).withProperties(*join, lineColor(palette.selected), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
         style.addLayer(LineLayer("route-passed", PASSED_SRC).withProperties(*join, lineColor(palette.passed), lineWidth(widthExpr(10f, 4f, 16f, 26f))))
@@ -87,6 +95,35 @@ class MapController(
         )
     }
 
+    /**
+     * Draws the other ways to get there, grey and thin, under the chosen route. Passing an empty list
+     * clears them: the map should never keep showing a road the driver cannot pick any more.
+     */
+    fun setAlternatives(routes: List<Route>, paddingPx: Int = 0, bottomPaddingPx: Int = 0) {
+        val src = style.getSourceAs<GeoJsonSource>(ALTS_SRC) ?: return
+        src.setGeoJson(RouteGeoJson.alternatives(routes))
+        if (routes.isNotEmpty() && paddingPx > 0) overviewAll(routes, paddingPx, bottomPaddingPx)
+    }
+
+    /**
+     * Frames every option together, so the driver can see where they differ before picking one.
+     * `newLatLngBounds` takes (left, top, right, bottom): the sheet height goes in the bottom slot,
+     * which lifts the routes above the chooser instead of centring them underneath it.
+     */
+    fun overviewAll(routes: List<Route>, paddingPx: Int, bottomPaddingPx: Int) {
+        val b = org.maplibre.android.geometry.LatLngBounds.Builder()
+        var any = false
+        for (r in routes) {
+            for (i in 0 until r.path.size step 4) { b.include(LatLng(r.path.lat[i], r.path.lon[i])); any = true }
+            b.include(LatLng(r.path.lat.last(), r.path.lon.last())); any = true
+        }
+        if (!any) return
+        map.animateCamera(
+            CameraUpdateFactory.newLatLngBounds(b.build(), paddingPx, paddingPx, paddingPx, bottomPaddingPx),
+            700,
+        )
+    }
+
     /** Show a route (or clear it with null): line, empty "passed" part, destination pin at its last vertex. */
     fun setRoute(route: Route?) {
         val src = style.getSourceAs<GeoJsonSource>(ROUTE_SRC)
@@ -95,6 +132,7 @@ class MapController(
         if (route == null) {
             src?.setGeoJson(FeatureCollection.fromFeatures(emptyList<Feature>()))
             dst?.setGeoJson(FeatureCollection.fromFeatures(emptyList<Feature>()))
+            setAlternatives(emptyList())
             return
         }
         val line = LineString.fromLngLats(List(route.path.size) { Point.fromLngLat(route.path.lon[it], route.path.lat[it]) })

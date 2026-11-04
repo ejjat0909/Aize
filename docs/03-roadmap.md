@@ -4,7 +4,7 @@
 
 ## Where the app is today
 
-Version 0.9.1-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, Save, Share) and a turn list shows the whole route. 54 JVM unit tests pass.
+Version 0.11.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, Save, Share) and a turn list shows the whole route. 60 JVM unit tests pass.
 
 What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no reports or traffic, no settings screen, and the release build is unsigned.
 
@@ -177,14 +177,14 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P3-10 | Share destination link + landing page | 5 | no | — |
 | P3-11 | Units/locale: km/mi, 12/24 h, number formats, right-hand/left-hand traffic cues, country packs for speed-limit defaults | 4 | yes | part |
 
-- **P3-01** — Debounced search with a result list. No category chips, recents, favourites or along-route search.
+- **P3-01** — Debounced name search, twelve category chips served by the search service (fuel, food, cafe, parking, ATM, pharmacy, hospital, mall, hotel, prayer room, EV charging, toilets) answered nearest-first, and the last ten searches kept on the phone. No address geocoding, no along-route search.
 - **P3-02** — Deliberate deviation: SQLite FTS5 over the OSM extract instead of a Photon deployment, because Photon needs Java and a large index. No reverse geocoding, cache or rate limits.
 - **P3-03** — `kind` comes from OSM tags and drives ranking. No opening hours, no category taxonomy beyond the tag pair.
 - **P3-04** — Tapping a search result opens a card with the name, kind and distance, and three actions: Directions (hands the place to the route chooser), Save (keeps it in the list that shows when search is empty) and Share (an OpenStreetMap link through the system share sheet). No address line, no photos slot, no Call.
 - **P3-05** — Up to three routes per request, with the server's toll, motorway and ferry flags mapped into `Route.Summary`. Still `costing=auto` only: no motorcycle or taxi profile, no avoid-tolls/highways options, and lanes, speed limits and per-edge tolls are not in the response the tiles are built from.
-- **P3-06** — After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. A turn list (every maneuver with its distance, arrival excluded) opens from the bottom bar. The alternatives are not drawn on the map in their own colours.
+- **P3-06** — After a destination is picked the app lists the routes it got (distance, time, the road you spend longest on, and Fastest/Shortest/Tolls/Motorway/Ferry badges) and starts the one you tap. A turn list (every maneuver with its distance, arrival excluded) opens from the bottom bar. The alternatives are drawn on the map too: solid grey under the chosen purple one, framed so the whole set sits above the chooser, the row on the map marked "On map", and the grey lines cleared the moment a route is picked or cancelled.
 - **P3-07** — Route decoding is Kotlin; the Rust port is blocked on a toolchain.
-- **P3-08** — Saved places are kept on the device as JSON in SharedPreferences (newest first, 50 at most, deduped by position) and listed when the search field is empty. No recents, no Room, no sync between devices.
+- **P3-08** — Saved places and the last ten searches are kept on the device as JSON in SharedPreferences (saved places newest first, 50 at most, deduped by position) and listed when the search field is empty. No Room, no sync between devices.
 - **P3-11** — Kilometres and 24-hour clock only.
 
 ### P4 · Navigation engine & voice

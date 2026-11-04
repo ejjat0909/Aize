@@ -9,6 +9,9 @@ import java.net.URLEncoder
 /** A place from the search service (`GET /search`). */
 class PlaceResult(val name: String, val lat: Double, val lon: Double, val kind: String, val distanceMeters: Int)
 
+/** One chip on the search sheet (`GET /categories`): fuel, parking, hospital, and so on. */
+class Category(val id: String, val label: String, val count: Int)
+
 /** Place search and the same Valhalla server, over plain HTTP. Blocking: call from Dispatchers.IO. */
 object SearchClient {
 
@@ -20,6 +23,56 @@ object SearchClient {
     }
 
     /** Results, best first. Throws [RouteClient.RouteException] with a readable message on failure. */
+    fun categoryUrl(base: String, id: String, lat: Double?, lon: Double?, limit: Int = 8): String = buildString {
+        append(ServerSettings.normalize(base))
+        append("/search?category=").append(URLEncoder.encode(id, "UTF-8"))
+        if (lat != null && lon != null) append("&lat=").append(lat).append("&lon=").append(lon)
+        append("&limit=").append(limit)
+    }
+
+    fun categoriesUrl(base: String): String = ServerSettings.normalize(base) + "/categories"
+
+    /** Nearest places of one category, best first. Throws like [search]. */
+    fun byCategory(base: String, id: String, lat: Double?, lon: Double?): List<PlaceResult> {
+        val body = get(categoryUrl(base, id, lat, lon))
+        return try {
+            parse(body)
+        } catch (e: Exception) {
+            throw RouteClient.RouteException("The search server sent something unexpected", e)
+        }
+    }
+
+    /**
+     * The server's category list. An older server has no `/categories`, so callers get the built-in
+     * list instead of an error — the chips still work, they just may not match what that server knows.
+     */
+    fun categories(base: String): List<Category> = try {
+        val body = get(categoriesUrl(base))
+        val arr = JSONObject(body).getJSONArray("categories")
+        (0 until arr.length()).map { i ->
+            val o = arr.getJSONObject(i)
+            Category(o.getString("id"), o.getString("label"), o.optInt("count"))
+        }
+    } catch (e: Exception) {
+        DEFAULT_CATEGORIES
+    }
+
+    /** Shown until the server answers, and forever if it is an older build without `/categories`. */
+    val DEFAULT_CATEGORIES = listOf(
+        Category("fuel", "Fuel", 0),
+        Category("food", "Food", 0),
+        Category("cafe", "Cafe", 0),
+        Category("parking", "Parking", 0),
+        Category("atm", "ATM", 0),
+        Category("pharmacy", "Pharmacy", 0),
+        Category("hospital", "Hospital", 0),
+        Category("mall", "Mall", 0),
+        Category("hotel", "Hotel", 0),
+        Category("prayer", "Prayer room", 0),
+        Category("ev", "EV charging", 0),
+        Category("toilets", "Toilets", 0),
+    )
+
     fun search(base: String, query: String, lat: Double?, lon: Double?): List<PlaceResult> {
         if (query.isBlank()) return emptyList()
         val body = get(searchUrl(base, query, lat, lon))

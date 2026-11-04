@@ -68,3 +68,25 @@ The AVD needs `disk.dataPartition.size` small enough that the emulator's 1.2× f
 ## Performance harness
 
 `:benchmark` holds the Macrobenchmark tests (`scripts/baseline-profile.sh` regenerates the profile, `scripts/perfetto-capture.sh` takes a trace). First numbers and their caveats: `docs/verification/p0-perf.md`.
+
+## The search service
+
+`server/search/search_server.py` answers three things over one port:
+
+| Request | Answer |
+|---|---|
+| `GET /search?q=klcc&lat=3.13&lon=101.68&limit=8` | name search, best first |
+| `GET /search?category=fuel&lat=3.13&lon=101.68` | nearest places of one kind |
+| `GET /categories` | the chip list with counts |
+
+Categories are exact OSM tags, not fuzzy prefixes: `places(kind)` is indexed, so a category answers in
+about 10 ms where a `LIKE 'amenity=fuel%'` scan takes 170 ms on the 685k-row index. The search box
+starts at 8 km and widens to 25 km and then 80 km, so a petrol station outside the first ring is found
+rather than reported as none. One character is refused (`{"results":[]}`), because it matches half the
+map and the caller is still typing.
+
+Tests run against a five-row throwaway database and need nothing installed:
+
+```bash
+python3 -m unittest discover -s server/search -p "test_*.py" -v
+```
