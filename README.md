@@ -2,8 +2,16 @@
 
 **Aize** is a fast, community-driven, voice-guided navigation app for Android — purple identity, Waze-class interaction model, engineered so it never feels laggy.
 
-> **Status (2026-10-22): research, planning and the 3D asset pipeline are complete — app implementation starts at phase P0.**  
-> This repository contains the reverse-engineering report, the build plan, the design tokens, a reproducible analysis pipeline, and **the pointer, vehicle skins and map pins rendered in Blender and verified against ground truth** ([`assets3d/`](assets3d/README.md)). **No app code exists yet** (nothing has been compiled or tested because there is none) — see [`docs/02-aize-build-plan.md`](docs/02-aize-build-plan.md) §10 and §16 for how it starts.
+> **Status (2026-11-04): v0.8.0-m2 — the app runs, routes and talks.**
+> A debug APK installs on a phone and drives: MapLibre map over bundled PMTiles, a Valhalla server with a
+> permanent address, place search over 685k named places, up to three routes per destination with toll and
+> motorway flags, and turn-by-turn guidance in a foreground service that keeps speaking with the screen off
+> (prepare + imminent prompts, muteable), with an ETA clock and automatic day/night. 48 JVM unit tests, a Rust
+> core workspace, four CI jobs and 21 ADRs back it. What is missing is listed honestly in
+> [`docs/03-roadmap.md`](docs/03-roadmap.md): lane guidance and speed limits need tiles this server does not
+> carry, and there is no traffic, no place card and no signed release yet.
+> The research below (the Waze APK structure report and the build plan) is what the app was built from; the
+> 3D asset pipeline in [`assets3d/`](assets3d/README.md) produced the puck and the map pins.
 
 ![Aize purple theme specimen](design/preview/aize-theme-preview.png)
 
@@ -34,7 +42,10 @@ Importable backlog: [`docs/backlog.csv`](docs/backlog.csv).
 | `analysis/rea-skill/` | REA skill wrapper + install notes | ✅ |
 | `design/` | purple tokens (+ WCAG audit: all 87 pairs pass), specimen renderer | ✅ |
 | `assets3d/` | Blender pipeline (headless, pinned 4.5 LTS) → sprite sheets + manifests + glTF for the **pointer**, **3 vehicle skins** and **9 map pins**; every asset gated by measured error against true renders — [`README`](assets3d/README.md), [`RESULTS`](assets3d/RESULTS.md) | ✅ rendered and verified; not yet on a phone |
-| `android/ core/ backend/ proto/ data/` | the app, Rust core, backend, schemas, data pipelines | ⏳ phases P0–P9 |
+| `app/` | the Android app: MapLibre map, Compose UI, routing/search clients, foreground navigation service with voice guidance | ✅ builds, installs, drives |
+| `core/ backend/ proto/` | Rust workspaces (map matching, guidance maths), protobuf schemas, buf config | ✅ `cargo test`, `buf lint` in CI |
+| `server/` | Valhalla + place-search setup (`valhalla-setup.sh`), systemd units and the deploy note | ✅ running on a small always-on VM |
+| `benchmark/` | Macrobenchmark cold-start and scroll tests, baseline profile scripts | ✅ measured (see `docs/verification/p0-perf.md`) |
 
 ## Reproduce / regenerate
 

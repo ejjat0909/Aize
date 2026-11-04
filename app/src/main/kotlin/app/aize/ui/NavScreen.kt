@@ -84,6 +84,7 @@ fun NavScreen() {
     var routing by remember { mutableStateOf(false) }
     var notice by remember { mutableStateOf<String?>(null) }
     var pendingDest by remember { mutableStateOf<LatLng?>(null) }
+    var choices by remember { mutableStateOf<List<Route>>(emptyList()) }   // the server's alternates, while the driver picks one
     var destination by remember { mutableStateOf<LatLng?>(null) }      // where the live route is heading; kept for re-routing
     var segmentHint by remember { mutableIntStateOf(0) }
     val offRoute = remember { OffRouteDetector() }
@@ -133,6 +134,7 @@ fun NavScreen() {
 
     /** Hands the route to the foreground service so guidance, voice and the notification survive the screen going off. */
     fun startNavigation(r: Route) {
+        choices = emptyList()
         NavSession.start(r)
         if (android.os.Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(ctx, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
@@ -153,15 +155,23 @@ fun NavScreen() {
         val origin = fix?.let { doubleArrayOf(it.latitude, it.longitude) } ?: doubleArrayOf(KL_SENTRAL[0], KL_SENTRAL[1])
         demo = false; distance = 0.0; routing = true; notice = null; destination = dest; segmentHint = 0; offRoute.reset(); armed = false
         val result = withContext(Dispatchers.IO) {
-            runCatching { RouteClient.route(serverUrl, origin[0], origin[1], dest.latitude, dest.longitude) }
+            runCatching { RouteClient.routes(serverUrl, origin[0], origin[1], dest.latitude, dest.longitude) }
         }
         routing = false
-        result.onSuccess {
-            android.util.Log.i("Aize", "route dest=${dest.latitude},${dest.longitude} len=${it.path.lengthMeters.roundToInt()}m")
-            route = it
+        result.onSuccess { list ->
+            val best = list.first()
+            android.util.Log.i("Aize", "route dest=${dest.latitude},${dest.longitude} len=${best.path.lengthMeters.roundToInt()}m choices=${list.size}")
             routeLabel = (if (fix != null) "Your location" else "KL Sentral") + " → pin · live route"
-            controller?.overview(it, (24 * density).roundToInt())
-            startNavigation(it)
+            if (list.size > 1) {
+                // let the driver pick: same origin and destination, different roads and times
+                choices = list
+                route = best
+                controller?.overview(best, (24 * density).roundToInt())
+            } else {
+                route = best
+                controller?.overview(best, (24 * density).roundToInt())
+                startNavigation(best)
+            }
         }.onFailure { notice = it.message ?: "Routing failed" }
     }
 
@@ -330,7 +340,7 @@ fun NavScreen() {
 
         val r = route
         // ------------------------------------------------------------------ instruction banner
-        if (r != null && !showSearch) {
+        if (r != null && !showSearch && choices.isEmpty()) {
             val g = r.guidanceAt(distance)
             val up = g.next
             val serviceOwned = nav.active
@@ -380,6 +390,19 @@ fun NavScreen() {
             shape = RoundedCornerShape(topStart = AizeRadius.SHEET, topEnd = AizeRadius.SHEET),
         ) {
             Column(Modifier.windowInsetsPadding(WindowInsets.navigationBars).padding(horizontal = 16.dp, vertical = 14.dp)) {
+                if (choices.isNotEmpty()) {
+                    RouteChoices(
+                        choices = choices,
+                        onPick = { picked ->
+                            route = picked
+                            controller?.overview(picked, (24 * density).roundToInt())
+                            android.util.Log.i("Aize", "chose route len=${picked.path.lengthMeters.roundToInt()}m")
+                            startNavigation(picked)
+                        },
+                        onCancel = { choices = emptyList() },
+                    )
+                    return@Column
+                }
                 when {
                     error != null -> Text(error!!, color = MaterialTheme.colorScheme.error)
                     routing -> Text("Finding a route…", color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -509,6 +532,53 @@ fun NavScreen() {
             confirmButton = { TextButton(onClick = { ServerSettings.set(ctx, text); serverUrl = ServerSettings.get(ctx); showServer = false }) { Text("Save") } },
             dismissButton = { TextButton(onClick = { showServer = false }) { Text("Cancel") } },
         )
+    }
+}
+
+/**
+ * The routes the server offered, best first. "Fastest" and "Shortest" are relative to the set on screen, not
+ * to the world: two routes can both be the fastest if they are the only ones.
+ */
+@Composable
+private fun RouteChoices(choices: List<Route>, onPick: (Route) -> Unit, onCancel: () -> Unit) {
+    // quickest first: the server ranks by cost, which is not the same question the driver is asking
+    val ordered = remember(choices) { choices.sortedBy { it.durationSeconds } }
+    val fastest = ordered.indices.minByOrNull { ordered[it].durationSeconds }
+    val shortest = ordered.indices.minByOrNull { ordered[it].summary?.distanceMeters ?: ordered[it].path.lengthMeters }
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Text("${ordered.size} routes", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        ordered.forEachIndexed { i, r ->
+            val badges = buildList {
+                if (i == fastest) add("Fastest")
+                if (i == shortest) add("Shortest")
+                r.summary?.let { s ->
+                    if (s.hasTolls) add("Tolls")
+                    if (s.usesMotorway) add("Motorway")
+                    if (s.usesFerry) add("Ferry")
+                }
+            }
+            Surface(
+                onClick = { onPick(r) },
+                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                modifier = Modifier.fillMaxWidth().heightIn(min = AizeSize.TOUCH_TARGET),
+            ) {
+                Row(Modifier.padding(horizontal = 12.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            "${formatDistance(r.summary?.distanceMeters ?: r.path.lengthMeters)} · ${(r.durationSeconds / 60).roundToInt().coerceAtLeast(1)} min",
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                        Text(
+                            r.mainRoad?.let { "via $it" } ?: "alternative road",
+                            fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1,
+                        )
+                    }
+                    if (badges.isNotEmpty()) Text(badges.joinToString(" · "), fontSize = 12.sp, color = MaterialTheme.colorScheme.primary)
+                }
+            }
+        }
+        TextButton(onClick = onCancel) { Text("Cancel") }
     }
 }
 

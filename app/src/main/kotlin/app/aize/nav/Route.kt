@@ -11,7 +11,24 @@ class Maneuver(
     val streetName: String?,
 )
 
-class Route(val path: RoutePath, val maneuvers: List<Maneuver>, val durationSeconds: Double) {
+class Route(
+    val path: RoutePath,
+    val maneuvers: List<Maneuver>,
+    val durationSeconds: Double,
+    val summary: Summary? = null,
+) {
+    /** The road the driver spends the most time on, for "via Jalan Ampang". */
+    val mainRoad: String?
+        get() = maneuvers.maxByOrNull { it.lengthMeters }?.streetName?.takeIf { it.isNotBlank() }
+
+    /** What the route card shows: distance, time, and whether it uses tolls, a motorway or a ferry. */
+    data class Summary(
+        val distanceMeters: Double,
+        val durationSeconds: Double,
+        val hasTolls: Boolean,
+        val usesMotorway: Boolean,
+        val usesFerry: Boolean,
+    )
 
     /** The maneuver in force at route distance d, and the metres left until the next one starts. */
     class Guidance(val current: Maneuver, val next: Maneuver?, val metersToNext: Double)
@@ -66,7 +83,19 @@ class Route(val path: RoutePath, val maneuvers: List<Maneuver>, val durationSeco
                     streetName = if (streets != null && streets.length() > 0) streets.getString(0) else null,
                 )
             }
-            return Route(RoutePath(dec.lat, dec.lon), list, root.getJSONObject("summary").optDouble("time", 0.0))
+            val summary = root.getJSONObject("summary")
+            return Route(
+                path = RoutePath(dec.lat, dec.lon),
+                maneuvers = list,
+                durationSeconds = summary.optDouble("time", 0.0),
+                summary = Summary(
+                    distanceMeters = summary.optDouble("length", 0.0) * toMeters,
+                    durationSeconds = summary.optDouble("time", 0.0),
+                    hasTolls = summary.optBoolean("has_toll", false),
+                    usesMotorway = summary.optBoolean("has_highway", false),
+                    usesFerry = summary.optBoolean("has_ferry", false),
+                ),
+            )
         }
     }
 }

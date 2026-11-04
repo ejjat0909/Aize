@@ -30,3 +30,38 @@ class RouteClientTest {
         assertNull(RouteClient.serverMessage("<html>502</html>"))
     }
 }
+
+class RouteChoicesTest {
+    private fun fixture(): String =
+        javaClass.classLoader!!.getResourceAsStream("route-alternates.json")!!.bufferedReader().readText()
+
+    @Test fun `every route the server offers is parsed, best first`() {
+        val routes = RouteClient.parseRoutes(fixture())
+        assertEquals(3, routes.size)
+        assertEquals(6341.0, routes[0].summary!!.distanceMeters, 5.0)
+        assertEquals(4370.0, routes[1].summary!!.distanceMeters, 5.0)
+        assertEquals(5566.0, routes[2].summary!!.distanceMeters, 5.0)
+        // the geometry is the driver's real distance, the summary is the server's: both are kept
+        assertEquals(2261.0, routes[0].path.lengthMeters, 5.0)
+    }
+
+    @Test fun `a route without alternates is still a list of one`() {
+        val only = JSONObject(fixture()).getJSONObject("trip").toString()
+        assertEquals(1, RouteClient.parseRoutes("""{"trip":$only}""").size)
+    }
+
+    @Test fun `toll and motorway flags survive parsing`() {
+        val routes = RouteClient.parseRoutes(fixture())
+        assertEquals(false, choices(0)?.hasTolls)
+        val toll = routes[1].summary!!
+        org.junit.Assert.assertTrue("the second route uses the toll road", toll.hasTolls)
+        org.junit.Assert.assertTrue(toll.usesMotorway)
+        org.junit.Assert.assertFalse(toll.usesFerry)
+    }
+
+    @Test fun `the card names the road the driver spends the most time on`() {
+        assertEquals("Jalan Sultan Sulaiman", RouteClient.parseRoutes(fixture())[1].mainRoad)
+    }
+
+    private fun choices(i: Int) = RouteClient.parseRoutes(fixture())[i].summary
+}
