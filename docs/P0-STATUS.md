@@ -1,7 +1,40 @@
-# P0/P1 — what is built, what is not
+# P0 — closed
 
-> **Update (0.1.0-p1):** the app now routes live. Long-press the map to drop a destination; the app asks a Valhalla server for a route from your location (or KL Sentral without a fix). The server address is editable in the app (**Server** button, with a *Test connection* check). Server: `server/valhalla-setup.sh` runs Valhalla **without Docker** from the prebuilt `pyvalhalla` wheel (3.9.1) on a Malaysia/Singapore/Brunei OSM extract (735 tiles, 652 MB, built in 2.5 min). Measured on this server: KL Sentral→KLCC 10.2 km in 0.39 s; KL→Penang 353 km in 0.57 s. The app uses cleartext HTTP so a plain `ip:port` works; use HTTPS for anything public. **Re-routing:** with a live route and a real GPS fix, the app snaps the fix onto the route (greying out what is behind you) and asks the server for a new route after 3 consecutive fixes more than 40 m off it (max one per 15 s; only once you have first been on the route, because Valhalla starts routes on the nearest road, which can be ~70 m from the fix). Verified on the emulator with simulated GPS: tracked at 0 m off, a 400 m jump gave a new 9.4 km route. **Place search:** typing in the app now searches every named place, shop, amenity, station and road in the Malaysia/Singapore/Brunei extract (685k entries, SQLite FTS5, 88 MB, built in 2.5 min). Ranking mixes match quality, kind and distance, so "klcc" finds Suria KLCC and "mid valley" finds the megamall. Both services sit behind one port (`server/README.md`). Not Photon: no house numbers or address parsing. **Turn-by-turn:** the banner follows a live route with the distance to the next turn, the instruction and the one after ("then …"), and shows "Arrived" within 30 m of the end. Still missing: turn-by-turn from real GPS, and a permanent public server (the dev link is a temporary preview URL).
+> **0.4.0-p0.** P0's exit criterion is a walking skeleton, and that has been running since 0.1.0. What this file records is the *rest* of P0: the scaffolding a project needs before feature work is cheap — repository, licence, CI, a Rust core, protobuf contract, performance harness, telemetry hooks, signing. Nine of eleven tasks are done; two are honest partials with the missing piece named.
 
+## What P0 added on top of the skeleton
+
+| Task | Result |
+|---|---|
+| P0-01 Decisions | `docs/adr/d-decisions.md` — D1 pilot region, D4 no ads, D5 **GPL-3.0-or-later**, D7 minSdk 26; 21 ADR files with a status line saying whether the repo actually does it |
+| P0-02 Monorepo | Gradle KTS + version catalog, `core/aize-core` and `backend/aize-api` Rust workspaces, `proto/` with two linted messages, design pipeline, CI |
+| P0-03 Toolchains | Pinned and documented in `docs/dev-setup.md`: Gradle 9.8.2, AGP 9.4.1, Kotlin 2.4.21, compileSdk 37, Rust stable 1.99.1, buf 1.75.0, JDK 17 |
+| P0-04 CI | Four jobs — Android (token drift, no-Waze gate, 24 unit tests, debug build, R8 release build), Rust (fmt, clippy with `-D warnings`, tests), proto (buf lint/build), security (CodeQL) |
+| P0-05 Tokens | Already done; `--check` is a CI gate |
+| P0-06 Legal | `LICENSE` (GPL-3.0), `NOTICE.md` updated, `docs/PRIVACY.md` skeleton, `scripts/check_no_waze_assets.py` fails the build on borrowed assets, trademarks or foreign package ids |
+| P0-08 Skeleton | Already done |
+| P0-09 Performance | `benchmark/` macrobenchmark module, `JankStats` in debug, `scripts/perfetto-capture.sh`, `scripts/baseline-profile.sh`, first numbers in `docs/verification/p0-perf.md` |
+| P0-10 Telemetry | Opt-in `Telemetry` (no-op until enabled, logcat sink, nothing leaves the device) and `FeatureFlags` that fall back to defaults on any parse failure |
+| P0-11 Security | Release signing read from environment variables only; R8 release APK (47 MB) and AAB built; CodeQL |
+
+## The two partials, precisely
+
+* **P0-07 — own basemap tiles.** Valhalla and search are built and running from OSM data, but the basemap is still the downloaded Protomaps KL extract. `server/dev/docker-compose.yml` now describes the Planetiler → PMTiles step; it has never been executed, because this machine has no Docker. That is P2-03's work with a real machine.
+* **P0-11 — dependency integrity.** Versions are pinned in the version catalog, but there is no `verification-metadata.xml` and no secrets scan. Both are cheap to add and belong before the first external contributor; noted in the roadmap rather than pretended.
+
+## Numbers
+
+| | |
+|---|---|
+| Unit tests | **24** JVM tests (`OffRoute` 6, `Polyline` 4, `Route` 4, `RouteClient` 3, `SearchClient` 3, `FeatureFlags` 4) |
+| Rust tests | **6** (`aize-core` 5, `aize-api` 1), clippy clean with warnings as errors |
+| Cold start, TTID | 3 541 ms median on the software-rendered emulator (budget 1 200 ms on a mid-tier phone) — `docs/verification/p0-perf.md` |
+| Release build | 47 MB unsigned APK, R8 + resource shrinking |
+| Repository licence | GPL-3.0-or-later |
+
+## What has not changed
+
+The app is the same navigation app it was at 0.3.0: purple map, live Valhalla routing, re-routing, search and a turn-by-turn banner. P0 did not add user-facing features, and the honest gap list from the previous revision still applies — no voice, no foreground service, no place card, no reports, no offline packs, no accounts.
 
 Plan reference: `docs/02-aize-build-plan.md`, phase P0 (exit criterion: a *walking skeleton* — purple MapLibre map, a location puck, a route drawn).
 

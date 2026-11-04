@@ -1,6 +1,6 @@
 # 03 · Roadmap to done
 
-> Generated from `docs/backlog.csv` by `scripts/generate_roadmap.py` on 2026-11-03. The backlog is the work breakdown in `docs/02-aize-build-plan.md`; this file adds what is actually built, what is next, and in what order. Re-run the script when a task lands instead of editing this by hand.
+> Generated from `docs/backlog.csv` by `scripts/generate_roadmap.py` on 2026-11-04. The backlog is the work breakdown in `docs/02-aize-build-plan.md`; this file adds what is actually built, what is next, and in what order. Re-run the script when a task lands instead of editing this by hand.
 
 ## Where the app is today
 
@@ -10,7 +10,7 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 
 | Phase | Name | Tasks | Planned | Left (est.) | MVP |
 |---|---|---|---|---|---|
-| P0 | Foundations & decisions | 11 | 33 pd | 15 pd | yes |
+| P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
 | P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
 | P2 | Map & location | 13 | 76 pd | 45.5 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 54 pd | yes |
@@ -20,9 +20,9 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **544.5 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **534 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **232.5 pd** left of the 337 pd planned for it, and the whole plan has 544.5 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **223 pd** left of the 337 pd planned for it, and the whole plan has 534 pd left of 653.
 
 ## The order to do it in
 
@@ -71,30 +71,31 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* A walking skeleton: purple map, a puck, a route drawn.
 
-11 tasks, 33 pd planned, 15 pd left. 2 done, 7 part-done.
+11 tasks, 33 pd planned, 4.5 pd left. 8 done, 3 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
-| P0-01 | Decision workshop: pilot region, minSdk, ABIs, repo licence, brand assets, domain, monetisation stance → ADR files | 2 | yes | part |
-| P0-02 | Monorepo scaffold: Gradle (KTS + version catalog), Rust workspaces (core, backend), buf/protobuf module, docs, design | 3 | yes | part |
-| P0-03 | Pin toolchains: JDK 21, AGP, Kotlin 2.x + Compose compiler, NDK (≥ r27), Rust stable + android targets, cargo-ndk, buf, Valhalla/Planetiler/Photon container images | 2 | yes | part |
-| P0-04 | CI: lint (ktlint/detekt, clippy, rustfmt), unit tests, assemble, cargo-deny (licences), dependency review, caching | 3 | yes | part |
+| P0-01 | Decision workshop: pilot region, minSdk, ABIs, repo licence, brand assets, domain, monetisation stance → ADR files | 2 | yes | done |
+| P0-02 | Monorepo scaffold: Gradle (KTS + version catalog), Rust workspaces (core, backend), buf/protobuf module, docs, design | 3 | yes | done |
+| P0-03 | Pin toolchains: JDK 21, AGP, Kotlin 2.x + Compose compiler, NDK (≥ r27), Rust stable + android targets, cargo-ndk, buf, Valhalla/Planetiler/Photon container images | 2 | yes | done |
+| P0-04 | CI: lint (ktlint/detekt, clippy, rustfmt), unit tests, assemble, cargo-deny (licences), dependency review, caching | 3 | yes | done |
 | P0-05 | Design-token pipeline: tokens JSON (exists: design/tokens) → Compose theme + MapLibre palette; contrast audit as CI gate | 3 | yes | done |
-| P0-06 | Legal baseline: third-party licence inventory + NOTICE, trademark/name clearance for 'Aize' and logo, privacy-policy skeleton, 'no Waze assets' policy + checker script | 3 | yes | part |
+| P0-06 | Legal baseline: third-party licence inventory + NOTICE, trademark/name clearance for 'Aize' and logo, privacy-policy skeleton, 'no Waze assets' policy + checker script | 3 | yes | done |
 | P0-07 | Data pipeline v0 for the pilot region: OSM extract → Planetiler → PMTiles; Valhalla tile build; Photon import; docker-compose dev stack | 5 | yes | part |
 | P0-08 | Walking skeleton: Compose app + MapLibre purple style + location puck + hard-coded Valhalla route drawn | 5 | yes | done |
-| P0-09 | Performance harness: Macrobenchmark module, Baseline-Profile generator module, Perfetto capture scripts, JankStats in debug; first numbers committed | 3 | yes | — |
-| P0-10 | Crash/telemetry scaffolding (privacy-first, opt-in), remote feature-flag client, build-config for staging/prod | 2 | no | — |
+| P0-09 | Performance harness: Macrobenchmark module, Baseline-Profile generator module, Perfetto capture scripts, JankStats in debug; first numbers committed | 3 | yes | done |
+| P0-10 | Crash/telemetry scaffolding (privacy-first, opt-in), remote feature-flag client, build-config for staging/prod | 2 | no | part |
 | P0-11 | Security baseline: secrets handling (no keys in repo), signing config, dependency pinning, SAST in CI | 2 | no | part |
 
-- **P0-01** — Pilot region (Klang Valley), minSdk 26, ABIs arm64-v8a/x86_64 and the ODbL licence policy are decided in `docs/P0-STATUS.md`; no ADR files, no trademark or name clearance.
-- **P0-02** — Gradle monorepo with a version catalog and the design pipeline. No Rust workspace, no protobuf module.
-- **P0-03** — Gradle 9.8.2, AGP 9.4.1, Kotlin 2.4.21, compileSdk 37. JDK 17, not 21; no NDK, no Rust, no Docker — Valhalla runs from the prebuilt `pyvalhalla` wheel instead.
-- **P0-04** — `.github/workflows/android.yml` runs unit tests and assemble. No ktlint/detekt, no licence check, no build cache.
-- **P0-06** — `NOTICE.md` and the licence inventory exist. Trademark clearance, a privacy policy and the no-Waze-assets checker are missing.
-- **P0-07** — Routing tiles (735 tiles, 652 MB) and a 685k-entry search index are built Dockerless; the basemap is a downloaded KL PMTiles file. No own Planetiler profile, no docker-compose.
-- **P0-09** — No Macrobenchmark, Baseline Profile, Perfetto scripts or JankStats. All performance claims so far are from a software-rendered emulator.
-- **P0-11** — Release build is configured but unsigned and never built. No SAST, no dependency pinning check.
+- **P0-01** — Decision record in `docs/adr/d-decisions.md` (D1 pilot region, D5 licence GPL-3.0, D7 minSdk 26, D4 no ads). Trademark clearance is the one item still open, and it needs the owner (D6).
+- **P0-02** — Gradle KTS + version catalog, `core/` and `backend/` Rust workspaces, `proto/` linted with buf, design pipeline, docs, CI.
+- **P0-03** — Gradle 9.8.2, AGP 9.4.1, Kotlin 2.4.21, compileSdk 37, Rust stable 1.99, buf 1.75, JDK 17. No NDK, so the UniFFI bridge (P4-06) waits; no Docker, so Valhalla runs from the prebuilt wheel.
+- **P0-04** — Four CI jobs: Android (token drift, no-Waze gate, unit tests, debug + R8 release build), Rust (fmt, clippy `-D warnings`, tests), proto (buf lint/build), security (CodeQL).
+- **P0-06** — GPL-3.0 `LICENSE`, updated `NOTICE.md`, `docs/PRIVACY.md` skeleton, and `scripts/check_no_waze_assets.py` as a CI gate.
+- **P0-07** — Valhalla 3.9.1 (735 tiles) and the 685k-place FTS5 index are built and running. Own Planetiler tiles are not: `server/dev/docker-compose.yml` is written but has never been run (no Docker here).
+- **P0-09** — `:benchmark` Macrobenchmark module, JankStats in debug, Perfetto script, baseline-profile generator. First numbers: 3.54 s cold TTID on the software-rendered emulator — `docs/verification/p0-perf.md`.
+- **P0-10** — Opt-in `Telemetry` (no-op unless enabled, logcat sink only, nothing leaves the device) and `FeatureFlags` with defaults on parse failure. No remote fetch and no crash reporter: ADR-19 leaves the vendor open.
+- **P0-11** — Release signing from environment variables only, R8 release build proven (47 MB), CodeQL in CI. No dependency verification metadata and no secrets scan yet.
 
 ### P1 · Design system & app shell
 

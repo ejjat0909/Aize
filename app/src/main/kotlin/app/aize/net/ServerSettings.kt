@@ -4,8 +4,8 @@ import android.content.Context
 
 /** Where the Valhalla router lives. Editable in the app so the same APK works against any server. */
 object ServerSettings {
-    /** Emulator -> host machine. Real devices: set the address under "Server" in the app (the shared APK is built with a temporary public link). */
-    const val DEFAULT_URL = "http://10.0.2.2:8002"
+    /** From -Paize.server at build time; the default is the emulator's view of the host machine. Editable under "Server" in the app. */
+    val DEFAULT_URL: String = app.aize.BuildConfig.SERVER_URL
     private const val PREFS = "aize"
     private const val KEY = "server_url"
 

@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "aize"
 include(":app")
+include(":benchmark")

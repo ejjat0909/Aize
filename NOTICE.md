@@ -14,15 +14,19 @@ Aize is an original work. The 3D models in `assets3d/` (pointer, vehicle skins, 
 |---|---|---|
 | REA — Reverse Engineer Anything (`morluto/rea`) | MIT | analysis tooling (invoked, not vendored); `analysis/rea-skill/rea_skill.py` is original |
 | Community voice-pack archive (`pipeeeeees/waze-voicepack-links`) | GPL-3.0 | the 43 prompt **file names** are copied as facts into `analysis/data_ref/`; no code reused; no audio redistributed |
-| Blender 4.5 LTS (`assets3d/blender/install_blender.sh` downloads it; not vendored) | GPL-3.0-or-later | headless renderer for the 3D assets. Per the Blender Foundation's FAQ the *output* belongs to its author; whether the `import bpy` scripts must be distributed under a GPL-compatible licence is to be settled together with the repository licence (plan decision D5) |
+| Blender 4.5 LTS (`assets3d/blender/install_blender.sh` downloads it; not vendored) | GPL-3.0-or-later | headless renderer for the 3D assets. Per the Blender Foundation's FAQ the *output* belongs to its author; the `import bpy` scripts are GPL-3.0-or-later along with the rest of the repository (decision D5) |
 | DejaVu fonts | Bitstream Vera / public domain changes | captions in generated preview images only |
 | OpenStreetMap data (via the Protomaps daily build, `scripts/fetch-dev-tiles.sh`) | ODbL | **used in the P0 APK**: bundled dev basemap tiles; "© OpenStreetMap contributors" is shown in the map's attribution control. Protomaps basemap schema/tiles: ODbL data, CC0 tooling |
 | Valhalla (recorded `/route` response, `app/src/main/assets/route/`) | MIT engine; OSM-derived result (ODbL) | one fixture route, KL Sentral → KLCC, used by the demo drive; the app makes no network call to a router |
 | Noto Sans (`app/src/main/assets/glyphs/`) | SIL OFL 1.1 | map label glyph PBFs (Regular, Medium, Italic; code points 0–511) |
 | MapLibre Native Android 13.7.1 | BSD-2-Clause | **used in the P0 APK** (map rendering) |
 | AndroidX / Jetpack Compose / Material 3, Kotlin, kotlinx.coroutines | Apache-2.0 | **used in the P0 APK** |
-| Planetiler, Photon | Apache-2.0 | planned components (see plan §2.2) |
+| Planetiler, Photon | Apache-2.0 | planned components (see plan §2.2); Planetiler image referenced in `server/dev/docker-compose.yml` |
 | Figtree, Roboto | SIL OFL 1.1 / Apache-2.0 | planned typefaces |
 
 ## Licence
-No licence has been chosen for Aize yet; all rights are reserved by default until the owner adds one (plan decision D5).
+Aize is released under the **GNU General Public License, version 3 or later** — see `LICENSE`. The owner remains free to license it differently later (dual licensing), which requires a contributor agreement before the first outside contribution.
+
+This settles the open question about the Blender scripts: `assets3d/blender/*.py` are distributed under GPL-3.0-or-later like the rest of the repository, and the images they render are covered by the same licence.
+
+Everything the app depends on is GPL-3-compatible: Apache-2.0 (AndroidX, Kotlin, kotlinx.coroutines), BSD-2-Clause (MapLibre Native), MIT (Valhalla), SIL OFL 1.1 (Noto Sans, Figtree), and OpenStreetMap data under ODbL, which is kept as data and attributed in the map.

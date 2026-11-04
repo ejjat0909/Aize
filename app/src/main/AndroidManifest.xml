@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aize">
 
+        <!-- lets macrobenchmarks and Perfetto profile the release-like build from the shell -->
+        <profileable android:shell="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

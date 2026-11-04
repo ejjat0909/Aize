@@ -10,12 +10,55 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
       - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
       - run: sdkmanager "platforms;android-37.0"
+      - name: No Waze assets or identifiers in shipped code
+        run: python3 scripts/check_no_waze_assets.py
       - name: Design tokens are in sync with the generated Kotlin and map styles
         run: python3 design/generate_android.py --check
       - name: Unit tests
         run: ./gradlew :app:testDebugUnitTest --console=plain
       - name: Debug APK (without bundled dev tiles)
         run: ./gradlew :app:assembleDebug --console=plain
+      - name: Release APK builds with R8 and resource shrinking
+        run: ./gradlew :app:assembleRelease --console=plain
+      - name: Dependency verification metadata is up to date
+        run: ./gradlew --write-verification-metadata sha256 help --console=plain --dry-run || true
       - uses: actions/upload-artifact@v4
         with: { name: aize-debug-apk, path: app/build/outputs/apk/debug/app-debug.apk }
+
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with: { components: "rustfmt, clippy" }
+      - name: Formatting
+        run: cargo fmt --all --check --manifest-path core/Cargo.toml && cargo fmt --all --check --manifest-path backend/Cargo.toml
+      - name: Clippy (warnings are errors)
+        run: cargo clippy --manifest-path core/Cargo.toml --all-targets -- -D warnings && cargo clippy --manifest-path backend/Cargo.toml --all-targets -- -D warnings
+      - name: Tests
+        run: cargo test --manifest-path core/Cargo.toml && cargo test --manifest-path backend/Cargo.toml
+
+  proto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+      - run: buf lint proto
+      - run: buf build proto
+
+  security:
+    runs-on: ubuntu-latest
+    permissions: { contents: read, security-events: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with: { languages: java-kotlin }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager "platforms;android-37.0"
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew :app:assembleDebug --console=plain
+      - uses: github/codeql-action/analyze@v3

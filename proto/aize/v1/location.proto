@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package aize.v1;
+
+option java_package = "app.aize.proto";
+option java_multiple_files = true;
+
+// One position fix, as produced by the location layer and consumed by the
+// navigation core. Coordinates are WGS84 degrees.
+message LocationSample {
+  double latitude = 1;
+  double longitude = 2;
+  // Horizontal accuracy radius in metres; 0 when unknown.
+  float accuracy_m = 3;
+  // Direction of travel in degrees clockwise from north; negative when unknown.
+  float bearing_deg = 4;
+  // Ground speed in metres per second; negative when unknown.
+  float speed_mps = 5;
+  // Milliseconds since the Unix epoch.
+  int64 time_ms = 6;
+  // True when the platform flagged the fix as mocked.
+  bool mocked = 7;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package aize.v1;
+
+option java_package = "app.aize.proto";
+option java_multiple_files = true;
+
+// A route as the navigation core sees it, mapped from the routing server's response.
+message Route {
+  // Precision-6 encoded polyline of the whole route.
+  string shape = 1;
+  double length_m = 2;
+  double time_s = 3;
+  repeated Maneuver maneuvers = 4;
+}
+
+message Maneuver {
+  // Spoken-style instruction text.
+  string instruction = 1;
+  // Index into the decoded shape where the maneuver happens.
+  uint32 shape_index = 2;
+  double length_m = 3;
+  double time_s = 4;
+}

@@ -1,6 +1,9 @@
 package app.aize
 
 import android.os.Bundle
+import android.util.Log
+import androidx.metrics.performance.JankStats
+import androidx.metrics.performance.PerformanceMetricsState
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +18,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent { AizeTheme { NavScreen() } }
+        if (BuildConfig.DEBUG) startJankStats()
+    }
+
+    private var jank: JankStats? = null
+
+    /** Debug builds log every janky frame under the tag "AizeJank" (read with `adb logcat -s AizeJank`). */
+    private fun startJankStats() {
+        PerformanceMetricsState.getHolderForHierarchy(window.decorView)
+        jank = JankStats.createAndTrack(window) { f ->
+            if (f.isJank) Log.w("AizeJank", "frame ${f.frameDurationUiNanos / 1_000_000} ms")
+        }.also { it.isTrackingEnabled = true }
     }
 }
 
