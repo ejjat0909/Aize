@@ -66,4 +66,20 @@ class RouteTest {
         assertEquals(90.0, RoutePath.bearing(0.0, 0.0, 0.0, 1.0), 1e-6) // due east
         assertEquals(0.0, RoutePath.bearing(0.0, 0.0, 1.0, 0.0), 1e-6)  // due north
     }
+
+    @Test
+    fun `aheadAt never reports a maneuver behind the driver`() {
+        val r = Route.fromValhallaFixture(fixture())
+        var d = 0.0
+        while (d < r.path.lengthMeters) {
+            val a = r.aheadAt(d)
+            if (a != null) assertTrue("metersToStart must be positive at $d", a.metersToStart > 0.0)
+            d += 25.0
+        }
+        // and it walks the maneuvers in order
+        val first = r.aheadAt(0.0)!!
+        val later = r.aheadAt(first.metersToStart + 1.0)!!
+        assertTrue(later.metersToStart > 0.0)
+        assertTrue(r.maneuvers.indexOf(later.maneuver) > r.maneuvers.indexOf(first.maneuver))
+    }
 }

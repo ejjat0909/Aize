@@ -12,17 +12,17 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 |---|---|---|---|---|---|
 | P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
 | P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
-| P2 | Map & location | 13 | 76 pd | 45.5 pd | yes |
+| P2 | Map & location | 13 | 76 pd | 41.5 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 54 pd | yes |
-| P4 | Navigation engine & voice | 14 | 110 pd | 88 pd | yes |
+| P4 | Navigation engine & voice | 14 | 110 pd | 80 pd | yes |
 | P5 | Live traffic & community | 12 | 101 pd | 101 pd | yes |
 | P6 | Planning, sharing & accounts | 7 | 53 pd | 53 pd | no |
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **534 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **522 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **223 pd** left of the 337 pd planned for it, and the whole plan has 534 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **211 pd** left of the 337 pd planned for it, and the whole plan has 522 pd left of 653.
 
 ## The order to do it in
 
@@ -128,7 +128,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* The map looks and moves like the design spec; the puck is smooth at 60 fps.
 
-13 tasks, 76 pd planned, 45.5 pd left. 1 done, 7 part-done.
+13 tasks, 76 pd planned, 41.5 pd left. 2 done, 7 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
@@ -140,7 +140,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P2-06 | Route line rendering: casing + fill, progress-aware 'passed' dimming (line-gradient), traffic-coloured segments, unselected alternatives, tap-to-select, ETA labels on alternatives (declutter in Rust) | 8 | yes | part |
 | P2-07 | Map pins: the nine `assets3d` billboard pins (police, hazard, accident, jam, closure, camera, gas, parking, destination) drawn unrotated at their anchor, contact shadow as a map-aligned circle layer (`circle-pitch-alignment: map`), clustering, zoom visibility, pop-in animation from the motion tokens; home/work/favourite/search pins added to the same pipeline | 6 | yes | part |
 | P2-08 | `:location`: provider abstraction (Fused vs raw GNSS), permission state machine, rotation-vector/accelerometer/gyro inputs, mock-location flagging, accuracy filtering, adaptive rates, car-GPS hook; emits protobuf LocationSample | 8 | yes | part |
-| P2-09 | Navigation foreground service (location type), ETA notification, Android 14+ compliance, background-location justification flow | 4 | yes | — |
+| P2-09 | Navigation foreground service (location type), ETA notification, Android 14+ compliance, background-location justification flow | 4 | yes | done |
 | P2-10 | Gesture & rendering tuning: tile cache sizing, overdraw audit, 'map pan' Macrobenchmark with p95 gate | 4 | yes | — |
 | P2-11 | Auto day/night (time, sunrise/sunset, ambient light) via style `global-state` toggle (no style reload) | 3 | yes | — |
 | P2-13 | Vehicle skins: sedan, taxi and SUV from `assets3d` as on-demand asset packs (Play Asset Delivery), skin picker with live preview, hatch and van rendered with the same pipeline, per-skin licence entry | 6 | no | — |
@@ -153,7 +153,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P2-06** — Casing, fill and the greyed passed part. No traffic segments, alternatives, tap-to-select or ETA labels.
 - **P2-07** — Destination pin only; the other eight billboard pins are rendered but unused.
 - **P2-08** — Raw `LocationManager` fixes with a permission gate. No fused provider, rotation vectors, mock flagging or adaptive rates.
-- **P2-09** — Navigation currently stops if the Activity dies.
+- **P2-09** — `NavService` is a `location`-type foreground service with a silent navigation notification (instruction, distance left, progress, Stop action, tap to open). Guidance, voice and the notification keep running with the screen off, verified on the emulator with the display dozing. No ETA clock in the notification yet.
 - **P2-11** — Dark mode follows the system setting only.
 - **P2-13** — Hatch and van are not rendered; no skin picker.
 
@@ -189,7 +189,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* It guides you by voice and recovers when you leave the route.
 
-14 tasks, 110 pd planned, 88 pd left. 0 done, 5 part-done.
+14 tasks, 110 pd planned, 80 pd left. 0 done, 7 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
@@ -200,23 +200,24 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P4-05 | ETA engine: free-flow + live + historical speeds, smoothing (update only when \|Δ\| ≥ 30 s or 5 %), arrival clock formatting | 6 | yes | part |
 | P4-06 | UniFFI bindings + Kotlin `NavigationEngine` exposing `Flow<NavState>`; dedicated core thread; zero-copy byte payloads | 6 | yes | — |
 | P4-07 | Navigation UI wiring: HUD ← NavState, lane view, next-next maneuver, recenter logic, speedometer + limit sign (OSM maxspeed + country defaults), traffic bar, camera warnings | 12 | yes | part |
-| P4-08 | `:voice` engine: prompt catalogue (§8), scheduler (priority queue, de-dup, interruption rules), audio focus + ducking (navigation-guidance usage), BT/car routing, modes (off/alerts/brief/smart/full), TTS fallback with prefetch cache | 12 | yes | — |
+| P4-08 | `:voice` engine: prompt catalogue (§8), scheduler (priority queue, de-dup, interruption rules), audio focus + ducking (navigation-guidance usage), BT/car routing, modes (off/alerts/brief/smart/full), TTS fallback with prefetch cache | 12 | yes | part |
 | P4-09 | Aize voice v1 recording: studio-recorded original prompt set (en + local language), loudness −16 LUFS, Opus 24 kbps mono | 8 | no | — |
 | P4-10 | Voice-pack importer + custom-prompt recorder (Opus), manifest validation, per-pack licence field | 8 | no | — |
 | P4-11 | Simulation harness: GPX/NMEA replay with speed multiplier, route-following simulator, scenarios (missed turn, tunnel, GPS jump, U-turn) | 6 | yes | — |
-| P4-12 | Make navigation headless: engine + voice run in a foreground service independent of any Activity (prerequisite for Android Auto) | 4 | yes | — |
+| P4-12 | Make navigation headless: engine + voice run in a foreground service independent of any Activity (prerequisite for Android Auto) | 4 | yes | part |
 | P4-13 | Hot-path performance: allocation-free loop (dhat), criterion benches, PGO build job from recorded traces, battery script | 5 | no | — |
 | P4-14 | Speed-limit & camera data pipeline: OSM maxspeed/enforcement nodes → tiles/route annotations; country default tables | 5 | no | — |
 
 - **P4-01** — No map matching: the app projects onto the route it already has.
 - **P4-02** — Windowed projection gives progress, distance to the next maneuver and the passed part. No hysteresis, tunnel dead reckoning, remaining time.
 - **P4-03** — 40 m threshold, 3 strikes, 15 s cooldown, armed only after the first on-route fix. No accuracy awareness, heading mismatch, rejoin logic or better-route suggestion.
-- **P4-04** — Maneuver timeline with next and next-next instructions and arrival within 30 m. No speed-adaptive triggers, lane guidance, roundabout exits or camera zones.
+- **P4-04** — Maneuver timeline, next and next-next instructions, arrival within 30 m, and a speed-adaptive announcer (prepare at `max(150 m, speed x 8 s)`, imminent at 45 m, dedupe, 4 s quiet gap). No lane guidance, roundabout exit naming or camera zones.
 - **P4-05** — Valhalla's time is shown as-is. No smoothing or arrival clock.
 - **P4-06** — Blocked: no Rust toolchain on the build VM.
 - **P4-07** — Banner and follow camera. No lane view, speedometer, limit sign or traffic bar.
-- **P4-08** — No voice at all.
+- **P4-08** — System TTS in `Voice.kt`: navigation-guidance usage, speech content type, transient-may-duck audio focus, `QUEUE_FLUSH` with a stable utterance id, and a two-prompt-per-maneuver scheduler in `GuidanceAnnouncer` (unit tested). No prompt catalogue, modes, Bluetooth routing or voice packs.
 - **P4-11** — Verification so far is emulator `geo fix`; there is no GPX/NMEA replay harness.
+- **P4-12** — The hot loop (location, guidance, voice, notification) now runs in `NavService`, not in the Activity, and `NavSession` shares state with the UI. Still inside the app process, and no Android Auto.
 
 ### P5 · Live traffic & community
 

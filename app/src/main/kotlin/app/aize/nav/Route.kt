@@ -16,6 +16,19 @@ class Route(val path: RoutePath, val maneuvers: List<Maneuver>, val durationSeco
     /** The maneuver in force at route distance d, and the metres left until the next one starts. */
     class Guidance(val current: Maneuver, val next: Maneuver?, val metersToNext: Double)
 
+    /** The maneuver ahead of route distance d: its start, the metres to it, and the one after (for "then …"). */
+    class Ahead(val maneuver: Maneuver, val metersToStart: Double, val after: Maneuver?)
+
+    /** Null once every maneuver has been passed (only the arrival is left). */
+    fun aheadAt(d: Double): Ahead? {
+        for (i in maneuvers.indices) {
+            val m = maneuvers[i]
+            val start = path.cumulative[m.beginShapeIndex.coerceIn(0, path.size - 1)]
+            if (start > d + 1e-6) return Ahead(m, start - d, maneuvers.getOrNull(i + 1))
+        }
+        return null
+    }
+
     fun guidanceAt(d: Double): Guidance {
         // the final maneuver ("arrive") begins at the last vertex, which no segment contains: at the end, report it
         val seg = if (d >= path.lengthMeters) path.size - 1 else path.segmentAt(d)

@@ -38,6 +38,8 @@ import app.aize.design.AizeSize
 import app.aize.map.MapController
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
+import app.aize.nav.NavService
+import app.aize.nav.NavSession
 import app.aize.nav.OffRouteDetector
 import app.aize.nav.Route
 import app.aize.net.PlaceResult
@@ -90,6 +92,10 @@ fun NavScreen() {
     var arrived by remember { mutableStateOf(false) }          // a route starts on the nearest road, which can be far from the fix: only judge "off route" after being on it
     val scope = rememberCoroutineScope()
 
+    // the foreground service owns the hot loop while a route is active; the UI draws what it publishes
+    val nav by NavSession.state.collectAsState()
+    val notifyPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
+
     var following by remember { mutableStateOf(false) }
     var demo by remember { mutableStateOf(false) }
     var distance by remember { mutableDoubleStateOf(0.0) }
@@ -122,6 +128,18 @@ fun NavScreen() {
         }
     }
 
+    /** Hands the route to the foreground service so guidance, voice and the notification survive the screen going off. */
+    fun startNavigation(r: Route) {
+        NavSession.start(r)
+        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(ctx, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notifyPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+        runCatching { NavService.start(ctx) }
+            .onFailure { notice = "Could not start background navigation: ${it.message}" }
+    }
+
     // --- show whichever route is current ---------------------------------------------------------------------------------
     LaunchedEffect(route, controller) { controller?.setRoute(route) }
 
@@ -140,7 +158,34 @@ fun NavScreen() {
             route = it
             routeLabel = (if (fix != null) "Your location" else "KL Sentral") + " → pin · live route"
             controller?.overview(it, (24 * density).roundToInt())
+            startNavigation(it)
         }.onFailure { notice = it.message ?: "Routing failed" }
+    }
+
+    // --- the service decides the driver has left the route (it keeps working with the screen off) -------------------
+    // One sequential worker: a tick that arrives while a re-route is in flight is ignored rather than cancelling
+    // the request, and the loading flag is always cleared in `finally`.
+    var rerouting by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        NavSession.rerouteTicks.collect { tick ->
+            if (tick <= 0 || rerouting) return@collect
+            val dest = destination ?: return@collect
+            val here = fix ?: return@collect
+            rerouting = true; routing = true; notice = "Off route — finding a new one…"
+            try {
+                val res = withContext(Dispatchers.IO) {
+                    runCatching { RouteClient.route(serverUrl, here.latitude, here.longitude, dest.latitude, dest.longitude) }
+                }
+                res.onSuccess {
+                    android.util.Log.i("Aize", "rerouted len=${it.path.lengthMeters.roundToInt()}m")
+                    route = it; armed = false; segmentHint = 0; distance = 0.0; notice = null
+                    routeLabel = "Your location → pin · re-routed"
+                    startNavigation(it)
+                }.onFailure { notice = it.message ?: "Re-routing failed" }
+            } finally {
+                routing = false; rerouting = false
+            }
+        }
     }
 
     // --- place search: debounce typing, ask the server, keep the last good results -------------------------------
@@ -285,6 +330,7 @@ fun NavScreen() {
         if (r != null && !showSearch) {
             val g = r.guidanceAt(distance)
             val up = g.next
+            val serviceOwned = nav.active
             Surface(
                 modifier = Modifier.align(Alignment.TopCenter).windowInsetsPadding(WindowInsets.safeDrawing).padding(12.dp).fillMaxWidth()
                     .heightIn(min = AizeSize.INSTRUCTION_BANNER_MIN_HEIGHT),
@@ -292,12 +338,14 @@ fun NavScreen() {
                 shape = RoundedCornerShape(AizeRadius.LG), shadowElevation = 6.dp,
             ) {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.Center) {
+                    val isArrived = arrived || nav.arrived
                     Text(
-                        if (arrived) "Arrived" else formatDistance(g.metersToNext),
+                        if (isArrived) "Arrived" else formatDistance(if (serviceOwned) nav.metersToInstruction else g.metersToNext),
                         fontSize = 30.sp, fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        if (arrived) g.current.instruction else (up?.instruction ?: "Arrive at your destination"),
+                        if (isArrived) (if (serviceOwned) nav.instruction ?: g.current.instruction else g.current.instruction)
+                        else (if (serviceOwned) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")),
                         fontSize = 17.sp, maxLines = 2,
                     )
                     val after = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)
@@ -362,6 +410,15 @@ fun NavScreen() {
                     ) { Text(if (demo || fix != null) "Recenter" else "Overview") }
                 }
                 Row {
+                    if (nav.active) {
+                        TextButton(onClick = {
+                            NavService.stop(ctx)
+                            NavSession.stop()
+                            controller?.setRoute(null)
+                            route = null
+                            demo = false
+                        }) { Text("End navigation") }
+                    }
                     if (!hasPermission) {
                         TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
                     }
