@@ -63,16 +63,22 @@ class GuidanceAnnouncer(
         if (index < 0 || start >= route.path.lengthMeters - 1e-6) return null   // the arrival pseudo-maneuver
         val toNext = ahead.metersToStart
 
+        // First sight of a maneuver that is already close (a late route, a fast road, a skipped GPS fix):
+        // say the useful "in X metres" line rather than the bare name a moment before the turn.
+        if (toNext <= imminentMeters && index !in imminentDone && nowMs - lastSpokenAt >= minGapMs) {
+            prepared += index
+            imminentDone += index
+            lastSpokenAt = nowMs
+            val rounded = roundToTen(toNext)
+            // "In 0 metres" is worse than useless: at that range say the instruction itself.
+            val text = if (rounded < 10) speakable(next) else "In $rounded metres, ${speakable(next)}"
+            return Prompt(Kind.IMMINENT, text, index)
+        }
+
         if (toNext <= prepareDistance(speedMps) && index !in prepared) {
             prepared += index
             lastSpokenAt = nowMs
             return Prompt(Kind.PREPARE, speakable(next), index)
-        }
-
-        if (toNext <= imminentMeters && index !in imminentDone && nowMs - lastSpokenAt >= minGapMs) {
-            imminentDone += index
-            lastSpokenAt = nowMs
-            return Prompt(Kind.IMMINENT, "In ${roundToTen(toNext)} metres, ${speakable(next)}", index)
         }
         return null
     }

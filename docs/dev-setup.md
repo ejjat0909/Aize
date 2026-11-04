@@ -47,6 +47,22 @@ adb shell pm grant app.aize android.permission.ACCESS_FINE_LOCATION
 adb emu geo fix 101.6862 3.1343        # lon lat
 ```
 
+### Driving without a car (P4-11)
+
+`scripts/replay-route.py` injects fixes along a real route, so guidance, voice and re-routing can be
+exercised the same way every time:
+
+```bash
+# drive the server's own route at 45 km/h, then miss a turn 300 m to the side at 45 %
+scripts/replay-route.py --route 3.1343,101.6862 3.1179,101.6770 --speed 45 --miss-at 0.45 --miss-offset 300
+
+# a GPX track, with a 20 s tunnel halfway
+scripts/replay-route.py --gpx track.gpx --speed 60 --tunnel-at 0.5 --tunnel-seconds 20
+```
+
+`--dry-run` prints the fixes without touching adb. Watch the result with
+`adb logcat -s Aize AizeNav AizeVoice`.
+
 The AVD needs `disk.dataPartition.size` small enough that the emulator's 1.2× free-space check passes; on this machine that means a 2 GB partition and an explicit `-data` image.
 
 ## Performance harness

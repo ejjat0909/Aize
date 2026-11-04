@@ -52,6 +52,14 @@ object NavSession {
     @Volatile
     var lastPrompt: String? = null
 
+    /** Voice on or off. The guidance still updates; only the speaking stops. */
+    private val _muted = MutableStateFlow(false)
+    val muted: StateFlow<Boolean> = _muted
+
+    fun setMuted(value: Boolean) {
+        _muted.value = value
+    }
+
     fun start(route: Route) {
         this.route = route
         _state.value = State(active = true, lengthMeters = route.path.lengthMeters, remainingMeters = route.path.lengthMeters)

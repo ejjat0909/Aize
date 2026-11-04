@@ -76,7 +76,7 @@ STATUS = {
     "P4-08": ("partial", "System TTS in `Voice.kt`: navigation-guidance usage, speech content type, transient-may-duck audio focus, `QUEUE_FLUSH` with a stable utterance id, and a two-prompt-per-maneuver scheduler in `GuidanceAnnouncer` (unit tested). No prompt catalogue, modes, Bluetooth routing or voice packs."),
     "P4-09": ("todo", ""),
     "P4-10": ("todo", ""),
-    "P4-11": ("todo", "Verification so far is emulator `geo fix`; there is no GPX/NMEA replay harness."),
+    "P4-11": ("partial", "`scripts/replay-route.py` drives the emulator along a route at a chosen speed, straight from a GPX track or from the server's own Valhalla route, and can misbehave on purpose: miss a turn by N metres, stop reporting for N seconds (tunnel), or teleport the fix. NMEA import and a recorded-scenario library are still missing."),
     "P4-12": ("partial", "The hot loop (location, guidance, voice, notification) now runs in `NavService`, not in the Activity, and `NavSession` shares state with the UI. Still inside the app process, and no Android Auto."),
     "P4-13": ("todo", ""),
     "P4-14": ("todo", ""),

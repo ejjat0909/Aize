@@ -14,15 +14,15 @@ What it is not yet: it does not speak, it stops guiding when the screen turns of
 | P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
 | P2 | Map & location | 13 | 76 pd | 40 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 54 pd | yes |
-| P4 | Navigation engine & voice | 14 | 110 pd | 80 pd | yes |
+| P4 | Navigation engine & voice | 14 | 110 pd | 77 pd | yes |
 | P5 | Live traffic & community | 12 | 101 pd | 101 pd | yes |
 | P6 | Planning, sharing & accounts | 7 | 53 pd | 53 pd | no |
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **520.5 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **517.5 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **209.5 pd** left of the 337 pd planned for it, and the whole plan has 520.5 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **206.5 pd** left of the 337 pd planned for it, and the whole plan has 517.5 pd left of 653.
 
 ## The order to do it in
 
@@ -189,7 +189,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* It guides you by voice and recovers when you leave the route.
 
-14 tasks, 110 pd planned, 80 pd left. 0 done, 7 part-done.
+14 tasks, 110 pd planned, 77 pd left. 0 done, 8 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
@@ -203,7 +203,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P4-08 | `:voice` engine: prompt catalogue (§8), scheduler (priority queue, de-dup, interruption rules), audio focus + ducking (navigation-guidance usage), BT/car routing, modes (off/alerts/brief/smart/full), TTS fallback with prefetch cache | 12 | yes | part |
 | P4-09 | Aize voice v1 recording: studio-recorded original prompt set (en + local language), loudness −16 LUFS, Opus 24 kbps mono | 8 | no | — |
 | P4-10 | Voice-pack importer + custom-prompt recorder (Opus), manifest validation, per-pack licence field | 8 | no | — |
-| P4-11 | Simulation harness: GPX/NMEA replay with speed multiplier, route-following simulator, scenarios (missed turn, tunnel, GPS jump, U-turn) | 6 | yes | — |
+| P4-11 | Simulation harness: GPX/NMEA replay with speed multiplier, route-following simulator, scenarios (missed turn, tunnel, GPS jump, U-turn) | 6 | yes | part |
 | P4-12 | Make navigation headless: engine + voice run in a foreground service independent of any Activity (prerequisite for Android Auto) | 4 | yes | part |
 | P4-13 | Hot-path performance: allocation-free loop (dhat), criterion benches, PGO build job from recorded traces, battery script | 5 | no | — |
 | P4-14 | Speed-limit & camera data pipeline: OSM maxspeed/enforcement nodes → tiles/route annotations; country default tables | 5 | no | — |
@@ -216,7 +216,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P4-06** — Blocked: no Rust toolchain on the build VM.
 - **P4-07** — Banner and follow camera. No lane view, speedometer, limit sign or traffic bar.
 - **P4-08** — System TTS in `Voice.kt`: navigation-guidance usage, speech content type, transient-may-duck audio focus, `QUEUE_FLUSH` with a stable utterance id, and a two-prompt-per-maneuver scheduler in `GuidanceAnnouncer` (unit tested). No prompt catalogue, modes, Bluetooth routing or voice packs.
-- **P4-11** — Verification so far is emulator `geo fix`; there is no GPX/NMEA replay harness.
+- **P4-11** — `scripts/replay-route.py` drives the emulator along a route at a chosen speed, straight from a GPX track or from the server's own Valhalla route, and can misbehave on purpose: miss a turn by N metres, stop reporting for N seconds (tunnel), or teleport the fix. NMEA import and a recorded-scenario library are still missing.
 - **P4-12** — The hot loop (location, guidance, voice, notification) now runs in `NavService`, not in the Activity, and `NavSession` shares state with the UI. Still inside the app process, and no Android Auto.
 
 ### P5 · Live traffic & community

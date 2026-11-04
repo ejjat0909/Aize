@@ -1,6 +1,7 @@
 package app.aize.nav
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -82,5 +83,16 @@ class GuidanceAnnouncerTest {
         assertNotNull(a.update(r, turnAt - 140.0, 15.0, 0))
         a.reset()
         assertNotNull(a.update(r, turnAt - 140.0, 15.0, 1_000))
+    }
+
+    @Test
+    fun `a maneuver first seen from ten metres away is named, not counted down`() {
+        val r = route()
+        val turnAt = r.path.cumulative[1]
+        val a = GuidanceAnnouncer()
+        val prompt = a.update(r, turnAt - 4.0, 12.0, 0)
+        assertNotNull(prompt)
+        assertEquals(GuidanceAnnouncer.Kind.IMMINENT, prompt!!.kind)
+        assertFalse("never says 'In 0 metres'", prompt.text.startsWith("In 0"))
     }
 }

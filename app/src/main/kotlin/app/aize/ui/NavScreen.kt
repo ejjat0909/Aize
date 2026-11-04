@@ -440,6 +440,11 @@ fun NavScreen() {
                     TextButton(onClick = { showSearch = true }) { Text("Search") }
                     TextButton(onClick = { showServer = true }) { Text("Server") }
                     TextButton(onClick = { ThemeMode.cycle(ctx) }) { Text(ThemeMode.label(themeMode)) }
+                    val muted by NavSession.muted.collectAsState()
+                    TextButton(onClick = {
+                        NavSession.setMuted(!muted)
+                        ctx.getSharedPreferences("aize", Context.MODE_PRIVATE).edit().putBoolean("voice_muted", !muted).apply()
+                    }) { Text(if (muted) "Voice off" else "Voice on") }
                 }
             }
         }

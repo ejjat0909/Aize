@@ -19,6 +19,8 @@ never by hand.
 | Voice | `nav/Voice.kt` | System TTS with `USAGE_ASSISTANCE_NAVIGATION_GUIDANCE`, speech content type, `AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK` (ducking, not pausing), `QUEUE_FLUSH` and a stable utterance id so a new instruction replaces an old one. |
 | Route helper | `nav/Route.kt` | `aheadAt(d)` returns the maneuver ahead, the metres to it and the one after — so nothing ever displays a negative distance. |
 | ETA | `nav/Eta.kt` | Free-flow time scaled by distance left, blended with live speed (clamped to ±40 %), smoothed so the clock only moves on a 30 s or 5 % change. Produces "12 min · 3:42 PM" for the banner and the notification. |
+| Voice control | `ui/NavScreen.kt`, `nav/NavSession.kt` | "Voice on / Voice off" mutes the speaking without stopping guidance; remembered across restarts. |
+| Replay harness | `scripts/replay-route.py` | Drives the emulator along a GPX track or the server's own route at a chosen speed, and can miss a turn, go silent (tunnel) or teleport the fix. |
 | Day / night | `ui/ThemeMode.kt` | Auto (light 06:30–19:00, the tropics' sunrise and sunset), Day or Night; remembered across restarts; re-colours the theme and the map. |
 
 ## How it was verified
@@ -47,7 +49,10 @@ On the `api34` emulator (x86_64, software rendering), against the permanent serv
   performs re-routes, so a notification that arrives mid-request can no longer cancel it.
 * "End navigation" in the sheet stopped the service (`isForeground` count 0) and removed
   the notification.
-* 43 JVM tests pass, including the announcer suite and the new `aheadAt` property test
+* The replay harness drove the KL Sentral → KLCC route at 45 km/h with `--miss-at 0.45
+  --miss-offset 300`: `off route by 80 m after 34 fixes: re-routing`, `rerouted len=9233m`,
+  and guidance resumed on the new route.
+* 44 JVM tests pass, including the announcer suite and the new `aheadAt` property test
   ("never reports a maneuver behind the driver").
 
 ## Still missing for a finished M1

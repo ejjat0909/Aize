@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         ThemeMode.load(this)
+        app.aize.nav.NavSession.setMuted(getSharedPreferences("aize", MODE_PRIVATE).getBoolean("voice_muted", false))
         setContent {
             val mode by ThemeMode.mode.collectAsState()
             AizeTheme(dark = ThemeMode.isDark(mode)) { NavScreen() }

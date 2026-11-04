@@ -158,7 +158,7 @@ class NavService : Service(), LocationListener {
         val p = announcer.update(route, along, speedMps, System.currentTimeMillis())
         if (p != null) {
             NavSession.lastPrompt = p.text
-            voice.say(p.text)
+            if (NavSession.muted.value) Log.i("AizeVoice", "muted: ${p.text}") else voice.say(p.text)
         }
 
         NavSession.publish(
