@@ -3,7 +3,7 @@
  "asset": "puck",
  "variant": null,
  "frame_dp": 104,
- "unit_dp": 33.285614469530366,
+ "unit_dp": 32.54759207049629,
  "anchor": [
   0.5,
   0.5
@@ -34,14 +34,14 @@
   "steady_state": "make the camera presets (overview, browse, drive, navigate) coincide with bucket pitches: then the only error left is the yaw residual"
  },
  "reprojection": {
-  "plane_h_u": 0.1,
+  "plane_h_u": 0.093,
   "strategy": "two bracketing pitch buckets, each warped to the true pitch/yaw by one affine matrix (plane z=h), blended by pitch",
   "scenarios": {
    "nav": {
-    "max_dp": 1.078,
-    "p95_dp": 1.064,
-    "base_max_dp": 0.239,
-    "base_p95_dp": 0.239,
+    "max_dp": 1.241,
+    "p95_dp": 1.209,
+    "base_max_dp": 0.21,
+    "base_p95_dp": 0.21,
     "note": "heading-up guidance: pitch near its preset, relative yaw within +-15 deg"
    },
    "overview": {
@@ -52,38 +52,38 @@
     "note": "top-down, north-up: any heading"
    },
    "transition": {
-    "max_dp": 1.509,
-    "p95_dp": 1.121,
-    "base_max_dp": 0.334,
-    "base_p95_dp": 0.251,
+    "max_dp": 1.736,
+    "p95_dp": 1.273,
+    "base_max_dp": 0.294,
+    "base_p95_dp": 0.221,
     "note": "camera easing between presets (~0.5 s)"
    },
    "worst": {
-    "max_dp": 1.837,
-    "p95_dp": 1.282,
-    "base_max_dp": 0.406,
-    "base_p95_dp": 0.287,
+    "max_dp": 2.114,
+    "p95_dp": 1.472,
+    "base_max_dp": 0.358,
+    "base_p95_dp": 0.253,
     "note": "every pitch (0.5 deg steps) x every heading (2.5 deg steps): uniform, pessimistic"
    }
   },
-  "worst_err_dp": 1.837,
-  "p95_err_dp": 1.282,
-  "base_worst_err_dp": 0.406,
-  "base_p95_err_dp": 0.287,
+  "worst_err_dp": 2.114,
+  "p95_err_dp": 1.472,
+  "base_worst_err_dp": 0.358,
+  "base_p95_err_dp": 0.253,
   "base_height_frac": 0.2,
-  "switch_pop_dp": 3.477,
+  "switch_pop_dp": 4.001,
   "symmetric": true,
-  "unit_dp": 33.286,
+  "unit_dp": 32.548,
   "tuned_in": "image space: maximises mean PSNR - 40 x max switch pop over true renders of off-grid views",
   "strategy_kind": "blend",
   "note_geometry": "the geometric error figures (base_*, worst_*, scenarios) describe the single-bucket fallback; blending improves on them (see image)",
   "image": {
-   "psnr_mean_db": 34.97,
-   "psnr_min_db": 30.21,
-   "switch_pop_rms_max": 0.0171,
-   "switch_pop_over_median": 2.08,
-   "pitch_pop_rms_max": 0.0171,
-   "yaw_pop_rms_max": 0.0027,
+   "psnr_mean_db": 34.65,
+   "psnr_min_db": 28.78,
+   "switch_pop_rms_max": 0.0152,
+   "switch_pop_over_median": 1.95,
+   "pitch_pop_rms_max": 0.0152,
+   "yaw_pop_rms_max": 0.0025,
    "views": 5,
    "strategy": "blend"
   }
@@ -102,8 +102,8 @@
    "sheets": {
     "0": {
      "file": "puck_p00@xxxhdpi.webp",
-     "bytes": 12110,
-     "sha256": "c516681d6c56ee62fb3f90958112ca82b379cdf6da5d81cdfddaf02611f04f5f",
+     "bytes": 11150,
+     "sha256": "2bb5aadf1af61ba0ca25f56f59bf168a645b09b96f77fc2535b7b73162d4bf39",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -113,8 +113,8 @@
     },
     "7.5": {
      "file": "puck_p07d50@xxxhdpi.webp",
-     "bytes": 12096,
-     "sha256": "894637da1a872418cba2625c237bbf16a92ed4fc3caf6b8ecb27a1e7679518d6",
+     "bytes": 11244,
+     "sha256": "9d389bb2ddf27878a5b54db88aa80a462b4e140935245c7c5859aa82d31551d9",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -124,8 +124,8 @@
     },
     "15": {
      "file": "puck_p15@xxxhdpi.webp",
-     "bytes": 11864,
-     "sha256": "4667e24e415ac29c703eb914d381cc8508d66460a56b3d8f3d1f816e5c729267",
+     "bytes": 11056,
+     "sha256": "755ec1b5339187868c55f4ee6648a412040de6083c904f67dd1bfc4e3327f6e5",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -135,8 +135,8 @@
     },
     "22.5": {
      "file": "puck_p22d50@xxxhdpi.webp",
-     "bytes": 11602,
-     "sha256": "a9253a900c1527ec317e1a2a8896891dc0d073139f69cffb473c78768e8b627a",
+     "bytes": 11106,
+     "sha256": "d81a31d6058b8533ce8cf88cf6aff0ac168eee61578e96e45e3b3d006f9e0dc2",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -146,8 +146,8 @@
     },
     "30": {
      "file": "puck_p30@xxxhdpi.webp",
-     "bytes": 11196,
-     "sha256": "0d36728103b5ed9f375f4e86c4c3054dcec4ca58820ea1710c6d22aacb52323f",
+     "bytes": 10782,
+     "sha256": "3fbb2f76d8c9ffe4009a465bb0bf39a24069484c23fef598294e78785a52baa9",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -157,8 +157,8 @@
     },
     "37.5": {
      "file": "puck_p37d50@xxxhdpi.webp",
-     "bytes": 11136,
-     "sha256": "3f59d3778803b768577e46e7c4d52bee2bdfb6e6677bc8363e788871c5d82899",
+     "bytes": 10276,
+     "sha256": "93a3c9142ded425191adb13e862ed3d2f6aceeab69b6f506b9f353501719ab2a",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -168,8 +168,8 @@
     },
     "45": {
      "file": "puck_p45@xxxhdpi.webp",
-     "bytes": 10506,
-     "sha256": "387707eaefc03f8493ec2ef037304388b91e8e9a6c14f3502b634383b3604688",
+     "bytes": 9722,
+     "sha256": "6de7e032b48496da16964ed8c5e87ce13a4665b0aa4e04203f71c78ad01c7be2",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -179,8 +179,8 @@
     },
     "52.5": {
      "file": "puck_p52d50@xxxhdpi.webp",
-     "bytes": 9688,
-     "sha256": "f322f4d287513f04f51326830c4f4eee4efc727e9001a2f2c922d11067e00b3c",
+     "bytes": 8870,
+     "sha256": "2e4a2e35a43571a50beaa0d3954618863953d5e909d4fe03ee18fdf81554bbd0",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -190,8 +190,8 @@
     },
     "60": {
      "file": "puck_p60@xxxhdpi.webp",
-     "bytes": 8658,
-     "sha256": "4651b229fc9c8604e00358cc8b256b99d21322cbc6bb5235b0b79e5be9207fd1",
+     "bytes": 7982,
+     "sha256": "03090596341a850294608cf720e275ccc3cbf7042d7c39e44dd395a55c44d277",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -200,7 +200,7 @@
      ]
     }
    },
-   "total_bytes": 98856
+   "total_bytes": 92188
   },
   "xxhdpi": {
    "scale": 3,
@@ -208,8 +208,8 @@
    "sheets": {
     "0": {
      "file": "puck_p00@xxhdpi.webp",
-     "bytes": 10020,
-     "sha256": "98ae7dbb4e43b4b96fe007e27306b965c2950eb6961f1c8aa0544ecf753fb8f5",
+     "bytes": 9594,
+     "sha256": "02a47927e47155d27d336c015a81d667564b78e1a5f74684e0dd1a9f50515377",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -219,8 +219,8 @@
     },
     "7.5": {
      "file": "puck_p07d50@xxhdpi.webp",
-     "bytes": 9936,
-     "sha256": "5e4f0af568952f504665ece05ba500c2bebe75620fbe26418de826fae346c6be",
+     "bytes": 9768,
+     "sha256": "9ca72369a36bb9c7d8daef500a88aa31b6e9d468620614abe25c68060bda1808",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -230,8 +230,8 @@
     },
     "15": {
      "file": "puck_p15@xxhdpi.webp",
-     "bytes": 9828,
-     "sha256": "f6218d7418600063c71331f2ae3238351238a6a618eba9f52e07a81cdc2b4009",
+     "bytes": 9514,
+     "sha256": "67cb0dbc3c7a986925c2b6370549b77c8ef8bf44123667d5740fde8499090d3d",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -241,8 +241,8 @@
     },
     "22.5": {
      "file": "puck_p22d50@xxhdpi.webp",
-     "bytes": 9690,
-     "sha256": "88fbd8e4f4d30f208ab02240c0e6b2a7944b83d81b590805412132a611a55d28",
+     "bytes": 9276,
+     "sha256": "c1856c546a7a05af0f90329a7f167a5534b295a74f5a4460e503be93da132d0b",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -252,8 +252,8 @@
     },
     "30": {
      "file": "puck_p30@xxhdpi.webp",
-     "bytes": 9470,
-     "sha256": "a006811dc51124cec7ff4b189fa08cd02dbec65529d9d275bd822f7a5aac2c1d",
+     "bytes": 8922,
+     "sha256": "b449213a6310a71c73820312b8ba7e3d9b0693b322eafa58cc57f22561d3fb5b",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -263,8 +263,8 @@
     },
     "37.5": {
      "file": "puck_p37d50@xxhdpi.webp",
-     "bytes": 9044,
-     "sha256": "e7923c67d8fe5456e259b4726a27bedc4169972a75ee3be0d97ef3eebdd09cdc",
+     "bytes": 8644,
+     "sha256": "8499f7144ce0ed41e1cae383a48f4d40600d19d00c85170af17c0eec8115fe1b",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -274,8 +274,8 @@
     },
     "45": {
      "file": "puck_p45@xxhdpi.webp",
-     "bytes": 8654,
-     "sha256": "84b7933e12707b148b10f06a95b5cbbc4d0abdc108ac59b5978b7e4de03a7816",
+     "bytes": 8132,
+     "sha256": "d7a7414747b883d49050843d57bac1ae4a81049162f510c32f7afe962b5ac0cd",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -285,8 +285,8 @@
     },
     "52.5": {
      "file": "puck_p52d50@xxhdpi.webp",
-     "bytes": 7980,
-     "sha256": "38eeae695bb1bbbb398830ccd7fc40dd059012d55e7c53b9663927a0b928b73c",
+     "bytes": 7580,
+     "sha256": "e7d93a7cb522afb546f6f820fb845d468336baeb6813661efc2c674f80545f21",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -296,8 +296,8 @@
     },
     "60": {
      "file": "puck_p60@xxhdpi.webp",
-     "bytes": 7256,
-     "sha256": "efffdf96da1f646ea6f09a0621cdf1b701ba43d9c00d348f188492d51bc29bf0",
+     "bytes": 6946,
+     "sha256": "0bfc68bb724b0744b61ae346732007a70af1e81de2f355f8b927e28e9bb4b8e8",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -306,7 +306,7 @@
      ]
     }
    },
-   "total_bytes": 81878
+   "total_bytes": 78376
   },
   "xhdpi": {
    "scale": 2,
@@ -314,8 +314,8 @@
    "sheets": {
     "0": {
      "file": "puck_p00@xhdpi.webp",
-     "bytes": 6464,
-     "sha256": "258687593e6d028a96c667154f4796fc1a73d7650263f89c43453c80c0770cc1",
+     "bytes": 6180,
+     "sha256": "60841cb5d8f1aabc7bba4e607492414fac25d4fb8f7ce72b1ef9d695ef61daf3",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -325,8 +325,8 @@
     },
     "7.5": {
      "file": "puck_p07d50@xhdpi.webp",
-     "bytes": 6422,
-     "sha256": "dd795ecd13d28f71923119641dce6bd3688b39996804ff1dd747e27c8686b7c6",
+     "bytes": 6368,
+     "sha256": "df09b4c174cfd1ab65b45f45929938dbcf88b928544f04ca6270ee7b5af65a22",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -336,8 +336,8 @@
     },
     "15": {
      "file": "puck_p15@xhdpi.webp",
-     "bytes": 6424,
-     "sha256": "9d669cbc45480f2d707c500e9c01b8cd2cc997629e8f8f21e56ab2db9c70c995",
+     "bytes": 6012,
+     "sha256": "5f933bc6926b04e694141caebfc511f8d2a5699fc84cc09423bbc66aa604e769",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -347,8 +347,8 @@
     },
     "22.5": {
      "file": "puck_p22d50@xhdpi.webp",
-     "bytes": 6108,
-     "sha256": "93ee5482769fa98b54855c364813148330434191e96b2625ba13a7b75ca0e77c",
+     "bytes": 5892,
+     "sha256": "e88f3d6d8ba6ede335867853c4e8bc174ce68036b79e936dadaf82baab4aaaff",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -358,8 +358,8 @@
     },
     "30": {
      "file": "puck_p30@xhdpi.webp",
-     "bytes": 5914,
-     "sha256": "f95bbf9b146f72b404b3b91685151946375ed067de4e15b220fc0e06cdc107b0",
+     "bytes": 5754,
+     "sha256": "edafc081c19fa187f7f06c81685f72a56d4ccb0f7075df1981c1ae815e994a08",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -369,8 +369,8 @@
     },
     "37.5": {
      "file": "puck_p37d50@xhdpi.webp",
-     "bytes": 5902,
-     "sha256": "05bfbb32b1c6e190efe05923bfbb20ae0b6730f52bd677066c8aa8ff45ed105e",
+     "bytes": 5464,
+     "sha256": "ef49c6f699d3cf8e6d639fe1438f8f556e3a467d90c92663e7ef252a80e9e2cd",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -380,8 +380,8 @@
     },
     "45": {
      "file": "puck_p45@xhdpi.webp",
-     "bytes": 5436,
-     "sha256": "65452f6901b3bfde906362fe8e7cd970d2251ee6699b8e7cb623ed3dbda4510f",
+     "bytes": 5102,
+     "sha256": "41b6278499d342366272767ac0de8f8b3adfe19720765e9f4eac782e3f5be788",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -391,8 +391,8 @@
     },
     "52.5": {
      "file": "puck_p52d50@xhdpi.webp",
-     "bytes": 5126,
-     "sha256": "397b8d2e6e0e7478c6a0f17e721eb1b808604682c675326f200a72153e330483",
+     "bytes": 4848,
+     "sha256": "9f45853f103304a9f09f9cd734a13a519ed342fad7b4ef41bbecdb6ff6a9c8fa",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -402,8 +402,8 @@
     },
     "60": {
      "file": "puck_p60@xhdpi.webp",
-     "bytes": 4740,
-     "sha256": "2e3c71ddd5affd61232865e91ed33535855f557d4279740489d3d54e620e2fde",
+     "bytes": 4408,
+     "sha256": "133c41627fc477867956cc9f67692d125609e60dd5cf5289451c6bdf7cd262b8",
      "cols": 1,
      "rows": 1,
      "size": [
@@ -412,7 +412,7 @@
      ]
     }
    },
-   "total_bytes": 52536
+   "total_bytes": 50028
   }
  },
  "source": {
@@ -431,14 +431,14 @@
     0.4,
     1.0
    ],
-   "key_energy": 1250.0,
-   "ambient": 0.4,
-   "fill": 260.0,
-   "rim": 300.0
+   "key_energy": 1280.0,
+   "ambient": 0.42,
+   "fill": 320.0,
+   "rim": 220.0
   },
-  "frame_half_extent_u": 1.5622364444436132,
+  "frame_half_extent_u": 1.5976604317570058,
   "object_radius_u": 1.000000022239038,
-  "object_height_u": 0.5520000457763672
+  "object_height_u": 0.6220000386238098
  },
  "licence": "original procedural model built in Blender from primitives; no third-party geometry, textures or fonts"
 }

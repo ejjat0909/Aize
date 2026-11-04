@@ -6,21 +6,21 @@
 
 | Asset | Kind | Frames (pitches × yaws) | Frame (dp) | xhdpi (KiB) | xxhdpi (KiB) | xxxhdpi (KiB) | Blender | Samples |
 |---|---|---:|---:|---:|---:|---:|---|---:|
-| `arrow` | solid | 216 (9 × 24) | 104 | 1,049 | 1,725 | 1,934 | 4.5.9 LTS | 64 |
+| `arrow` | solid | 216 (9 × 24) | 104 | 1,188 | 1,945 | 2,032 | 4.5.9 LTS | 64 |
 | `car_sedan` | solid | 120 (5 × 24) | 84 | 678 | 1,132 | 1,621 | 4.5.9 LTS | 40 |
 | `car_suv` | solid | 120 (5 × 24) | 84 | 668 | 1,119 | 1,640 | 4.5.9 LTS | 40 |
 | `car_taxi` | solid | 120 (5 × 24) | 84 | 707 | 1,182 | 1,688 | 4.5.9 LTS | 40 |
-| `pin_accident` | billboard | 1 (1 × 1) | 64 | 5 | 7 | 10 | 4.5.9 LTS | 96 |
-| `pin_camera` | billboard | 1 (1 × 1) | 64 | 4 | 6 | 8 | 4.5.9 LTS | 96 |
-| `pin_closure` | billboard | 1 (1 × 1) | 64 | 4 | 7 | 9 | 4.5.9 LTS | 96 |
-| `pin_destination` | billboard | 1 (1 × 1) | 64 | 4 | 7 | 9 | 4.5.9 LTS | 96 |
-| `pin_gas` | billboard | 1 (1 × 1) | 64 | 4 | 7 | 9 | 4.5.9 LTS | 96 |
-| `pin_hazard` | billboard | 1 (1 × 1) | 64 | 4 | 6 | 9 | 4.5.9 LTS | 96 |
-| `pin_jam` | billboard | 1 (1 × 1) | 64 | 4 | 7 | 9 | 4.5.9 LTS | 96 |
-| `pin_parking` | billboard | 1 (1 × 1) | 64 | 4 | 6 | 9 | 4.5.9 LTS | 96 |
-| `pin_police` | billboard | 1 (1 × 1) | 64 | 4 | 7 | 9 | 4.5.9 LTS | 96 |
-| `puck` | solid | 9 (9 × 1) | 104 | 51 | 80 | 97 | 4.5.9 LTS | 64 |
-| **all** | | **594** | | **3,193** | **5,298** | **7,061** | | |
+| `pin_accident` | billboard | 1 (1 × 1) | 64 | 5 | 8 | 11 | 4.5.9 LTS | 96 |
+| `pin_camera` | billboard | 1 (1 × 1) | 64 | 5 | 7 | 10 | 4.5.9 LTS | 96 |
+| `pin_closure` | billboard | 1 (1 × 1) | 64 | 5 | 8 | 11 | 4.5.9 LTS | 96 |
+| `pin_destination` | billboard | 1 (1 × 1) | 64 | 5 | 7 | 10 | 4.5.9 LTS | 96 |
+| `pin_gas` | billboard | 1 (1 × 1) | 64 | 5 | 8 | 10 | 4.5.9 LTS | 96 |
+| `pin_hazard` | billboard | 1 (1 × 1) | 64 | 5 | 7 | 10 | 4.5.9 LTS | 96 |
+| `pin_jam` | billboard | 1 (1 × 1) | 64 | 5 | 8 | 11 | 4.5.9 LTS | 96 |
+| `pin_parking` | billboard | 1 (1 × 1) | 64 | 5 | 7 | 10 | 4.5.9 LTS | 96 |
+| `pin_police` | billboard | 1 (1 × 1) | 64 | 5 | 8 | 11 | 4.5.9 LTS | 96 |
+| `puck` | solid | 9 (9 × 1) | 104 | 49 | 77 | 90 | 4.5.9 LTS | 64 |
+| **all** | | **594** | | **3,334** | **5,523** | **7,166** | | |
 
 A device downloads one density tier. Pins are tiny; the pointer family is the bulk, and vehicle skins are intended as on-demand packs.
 
@@ -30,11 +30,11 @@ The runtime blends the two pitch buckets that bracket the camera pitch, each war
 
 | Asset | Plane h (u) | Outline worst / p95 (dp) | All vertices worst / p95 (dp) | Image PSNR mean / min (dB) | Pop: pitch crossing / heading flip (RMS) |
 |---|---:|---:|---:|---:|---:|
-| `arrow` | 0.10 | 0.56 / 0.31 | 4.76 / 2.83 | 30.4 / 22.4 (20 views) | 0.0076 / 0.0450 |
+| `arrow` | 0.10 | 0.56 / 0.29 | 4.75 / 2.84 | 30.6 / 22.2 (40 views) | 0.0076 / 0.0441 |
 | `car_sedan` | 0.80 | 3.41 / 2.23 | 3.39 / 2.16 | 26.1 / 22.9 (16 views) | 0.0162 / 0.0528 |
 | `car_suv` | 0.80 | 3.14 / 2.07 | 3.84 / 1.98 | 26.9 / 23.6 (16 views) | 0.0148 / 0.0441 |
 | `car_taxi` | 0.80 | 3.33 / 2.18 | 3.33 / 2.11 | 26.4 / 23.5 (16 views) | 0.0133 / 0.0523 |
-| `puck` | 0.10 | 0.41 / 0.29 | 1.84 / 1.28 | 35.0 / 30.2 (5 views) | 0.0171 / 0.0027 |
+| `puck` | 0.09 | 0.36 / 0.25 | 2.11 / 1.47 | 34.6 / 28.8 (5 views) | 0.0152 / 0.0025 |
 
 Top-down (pitch 0°) is exact for any heading: an in-plane rotation of a top-down sprite loses nothing.
 
@@ -42,27 +42,31 @@ Top-down (pitch 0°) is exact for any heading: an in-plane rotation of a top-dow
 
 | Asset (views) | A. nearest bucket, as is | B. + rotate in the screen plane | C. + ground-plane warp (h = 0) | D. + plane warp at h* (one bucket) | E. two buckets warped at h*, blended |
 |---|---:|---:|---:|---:|---:|
-| `arrow` (20) | 16.9 | 24.6 | 26.2 | 27.6 (21.3) | 30.4 (22.4) |
+| `arrow` (40) | 16.8 | 25.9 | 27.8 | 29.0 (21.4) | 30.6 (22.3) |
 | `car_sedan` (16) | 17.9 | 20.0 | 19.1 | 23.2 (19.5) | 26.1 (22.9) |
 | `car_suv` (16) | 19.6 | 21.5 | 20.3 | 24.0 (19.7) | 26.9 (23.6) |
 | `car_taxi` (16) | 18.7 | 20.7 | 19.7 | 23.6 (19.9) | 26.4 (23.5) |
-| `puck` (5) | 23.2 | 23.2 | 27.7 | 29.9 (25.4) | 35.0 (30.2) |
+| `puck` (5) | 23.6 | 23.6 | 27.9 | 29.8 (24.4) | 34.6 (28.8) |
 
 Values in parentheses are the worst view. **E** (the shipped strategy): warp each of the two pitch buckets that bracket the camera pitch to the true view with one affine matrix, then blend by the pitch fraction.
 
 ### 2.2 Choosing the plane height `h` in image space
 
-**`arrow`, strategy `blend`** — 9 pitch buckets, 20 views
+**`arrow`, strategy `blend`** — 9 pitch buckets, 40 views
 
 | h (u) | PSNR mean (dB) | PSNR min (dB) | Pitch-crossing pop (RMS, × smooth) | Heading-flip pop (RMS, × smooth) |
 |---:|---:|---:|---:|---:|
-| 0 | 29.33 | 21.4 | 0.0072 (1.7×) | 0.0522 (3.9×) |
-| 0.05 | 30.26 | 21.9 | 0.0074 (1.6×) | 0.0488 (3.6×) |
-| 0.1 **← chosen** | 30.44 | 22.4 | 0.0076 (1.7×) | 0.0450 (3.3×) |
-| 0.15 | 30.03 | 22.7 | 0.0077 (1.7×) | 0.0414 (3.0×) |
-| 0.2 | 29.23 | 22.8 | 0.0078 (1.7×) | 0.0398 (2.9×) |
-| 0.3 | 27.32 | 22.9 | 0.0086 (1.8×) | 0.0397 (2.8×) |
-| 0.5 | 24.52 | 21.0 | 0.0112 (1.9×) | 0.0460 (3.1×) |
+| 0 | 29.57 | 21.3 | 0.0072 (1.7×) | 0.0510 (4.2×) |
+| 0.047 | 30.41 | 21.8 | 0.0074 (1.7×) | 0.0478 (3.9×) |
+| 0.095 **← chosen** | 30.60 | 22.3 | 0.0076 (1.7×) | 0.0441 (3.6×) |
+| 0.142 | 30.19 | 22.6 | 0.0077 (1.7×) | 0.0409 (3.3×) |
+| 0.19 | 29.40 | 22.8 | 0.0077 (1.7×) | 0.0391 (3.1×) |
+| 0.285 | 27.65 | 23.0 | 0.0083 (1.8×) | 0.0389 (3.0×) |
+| 0.38 | 26.23 | 21.9 | 0.0094 (1.9×) | 0.0397 (3.0×) |
+| 0.474 | 25.08 | 20.8 | 0.0108 (2.0×) | 0.0414 (3.0×) |
+| 0.569 | 24.11 | 19.8 | 0.0121 (2.0×) | 0.0444 (3.2×) |
+| 0.664 | 23.26 | 19.0 | 0.0133 (1.9×) | 0.0481 (3.4×) |
+| 0.759 | 22.51 | 18.4 | 0.0147 (1.9×) | 0.0526 (3.6×) |
 
 **`car_sedan`, strategy `blend`** — 5 pitch buckets, 16 views
 
@@ -101,14 +105,17 @@ Values in parentheses are the worst view. **E** (the shipped strategy): warp eac
 
 | h (u) | PSNR mean (dB) | PSNR min (dB) | Pitch-crossing pop (RMS, × smooth) | Heading-flip pop (RMS, × smooth) |
 |---:|---:|---:|---:|---:|
-| 0 | 32.59 | 27.9 | 0.0169 (2.2×) | 0.0027 (1.0×) |
-| 0.05 | 34.53 | 29.5 | 0.0164 (2.1×) | 0.0024 (1.0×) |
-| 0.1 **← chosen** | 34.97 | 30.2 | 0.0171 (2.1×) | 0.0027 (1.0×) |
-| 0.15 | 33.48 | 29.7 | 0.0164 (2.0×) | 0.0028 (1.0×) |
-| 0.2 | 31.10 | 28.5 | 0.0165 (2.0×) | 0.0032 (1.0×) |
-| 0.3 | 27.48 | 25.9 | 0.0170 (1.9×) | 0.0041 (1.0×) |
-
-For the arrow, minimising the *geometric* maximum vertex error (`reproject_error.py` without `--h`) chooses h = 0.5 u. In image space that plane scores 24.5 dB against 30.4 dB at the chosen 0.1 u (rows above): the criterion over-weights the interior ridge, while the eye is dominated by the outline.
+| 0 | 32.68 | 27.4 | 0.0157 (2.2×) | 0.0026 (1.0×) |
+| 0.031 | 33.81 | 28.1 | 0.0153 (2.1×) | 0.0022 (1.0×) |
+| 0.062 | 34.51 | 28.6 | 0.0154 (2.0×) | 0.0023 (1.0×) |
+| 0.093 **← chosen** | 34.65 | 28.8 | 0.0152 (1.9×) | 0.0025 (1.0×) |
+| 0.124 | 34.07 | 28.7 | 0.0153 (2.0×) | 0.0026 (1.0×) |
+| 0.187 | 31.42 | 28.0 | 0.0153 (2.0×) | 0.0029 (1.0×) |
+| 0.249 | 29.06 | 26.9 | 0.0152 (2.0×) | 0.0034 (1.0×) |
+| 0.311 | 27.40 | 26.0 | 0.0151 (1.9×) | 0.0041 (1.0×) |
+| 0.373 | 26.19 | 25.2 | 0.0150 (1.8×) | 0.0046 (1.0×) |
+| 0.435 | 25.14 | 24.2 | 0.0148 (1.6×) | 0.0058 (1.0×) |
+| 0.498 | 24.25 | 23.3 | 0.0150 (1.5×) | 0.0061 (1.0×) |
 
 ### 2.3 Pitch-bucket spacing (`arrow`, 24 yaws, geometry only, at the chosen h)
 
@@ -150,28 +157,29 @@ A flip changes the sprite by about as much as one frame of real rotation in a tu
 
 | Scope | Checks | Passed | Required failures |
 |---|---:|---:|---:|
-| `selftest` | 1 | 1 | 0 |
-| `calib` | 4 | 4 | 0 |
-| `arrow` | 13 | 13 | 0 |
-| `puck` | 11 | 11 | 0 |
-| `pin_police` | 5 | 5 | 0 |
-| `pin_hazard` | 5 | 5 | 0 |
-| `pin_accident` | 5 | 5 | 0 |
-| `pin_jam` | 5 | 5 | 0 |
-| `pin_closure` | 5 | 5 | 0 |
-| `pin_camera` | 5 | 5 | 0 |
-| `pin_gas` | 5 | 5 | 0 |
-| `pin_parking` | 5 | 5 | 0 |
-| `pin_destination` | 5 | 5 | 0 |
+| `selftest` | 2 | 2 | 0 |
+| `calib` | 8 | 8 | 0 |
+| `arrow` | 26 | 26 | 0 |
+| `puck` | 22 | 22 | 0 |
+| `pin_police` | 15 | 15 | 0 |
+| `pin_hazard` | 15 | 15 | 0 |
+| `pin_accident` | 15 | 15 | 0 |
+| `pin_jam` | 15 | 15 | 0 |
+| `pin_closure` | 15 | 15 | 0 |
+| `pin_camera` | 15 | 15 | 0 |
+| `pin_gas` | 15 | 15 | 0 |
+| `pin_parking` | 15 | 15 | 0 |
+| `pin_destination` | 20 | 18 | 2 |
 | `car_sedan` | 12 | 12 | 0 |
 | `car_taxi` | 12 | 12 | 0 |
 | `car_suv` | 12 | 12 | 0 |
-| **all** | **110** | **110** | **0** |
+| **all** | **234** | **232** | **2** |
 
 <details><summary>Every check for <code>selftest</code></summary>
 
 | Check | Result | Detail |
 |---|:---:|---|
+| fringe | ✅ | worst edge-colour error after a 4x shrink: float-premultiplied 0/255 (<=3); independent-channel resize 141/255 (>40, i.e. the halo it prevents is real) |
 | fringe | ✅ | worst edge-colour error after a 4x shrink: float-premultiplied 0/255 (<=3); independent-channel resize 141/255 (>40, i.e. the halo it prevents is real) |
 
 </details>
@@ -180,6 +188,10 @@ A flip changes the sprite by about as much as one frame of real rotation in a tu
 
 | Check | Result | Detail |
 |---|:---:|---|
+| anchor | ✅ | calibration dot is within 0.24 px of the declared anchor (0.5, 0.5) at every pitch (<=1.0) |
+| pitch | ✅ | disc area vs cos(pitch): worst relative error 0.05 % (<=1 %) over pitches [0, 15, 30, 45, 60] |
+| anchor | ✅ | calibration dot is within 0.23 px of the declared anchor (0.5, 0.8) at every pitch (<=1.0) |
+| pitch | ✅ | disc area vs cos(pitch): worst relative error 0.07 % (<=1 %) over pitches [0, 15, 30, 45, 60] |
 | anchor | ✅ | calibration dot is within 0.24 px of the declared anchor (0.5, 0.5) at every pitch (<=1.0) |
 | pitch | ✅ | disc area vs cos(pitch): worst relative error 0.05 % (<=1 %) over pitches [0, 15, 30, 45, 60] |
 | anchor | ✅ | calibration dot is within 0.23 px of the declared anchor (0.5, 0.8) at every pitch (<=1.0) |
@@ -203,6 +215,19 @@ A flip changes the sprite by about as much as one frame of real rotation in a tu
 | image | ✅ | vs true Blender renders of 20 off-grid views: PSNR mean 30.4 dB, min 22.4 dB (mean >= 25.0) |
 | pop-pitch | ✅ | image change when the camera pitch crosses a bucket (blend): RMS 0.0076 (<= 0.02; continuous - needs no dissolve) |
 | pop-yaw | ✅ | image change at a heading-bucket flip: RMS 0.0450 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it) |
+| steady | ✅ | top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0) |
+| clip | ✅ | 216 frames; max alpha in the 2 px border = 2 (<=3) |
+| yaw | ✅ | silhouette IoU vs rotated yaw-0 at 23 yaws: min 0.999, mean 0.999 (>=0.95) |
+| brand | ✅ | hue L/R 297.4/297.1 vs token 297.2 (<=3 deg); mean lightness 0.533 vs 0.556 (<=0.05); facet contrast dL=0.031 |
+| roundtrip | ✅ | packed WebP vs composed master, worst alpha-weighted PSNR 44.1 dB over every frame and tier (>=38) |
+| budget | ✅ | arrow xxxhdpi: 2032 KiB (<= 3500 KiB) |
+| budget | ✅ | arrow xxhdpi: 1945 KiB (<= 3500 KiB) |
+| budget | ✅ | arrow xhdpi: 1188 KiB (<= 3500 KiB) |
+| silhouette | ✅ | lowest 20 % of the mesh (rim / footprint / wheels = the high-contrast outline), every pitch 0-60 and heading: worst 0.56 dp, p95 0.29 dp (<= 1.0 dp); plane h=0.10 u |
+| raised | ✅ | all vertices incl. raised parts (ridge, roof): worst 4.75 dp, p95 2.84 dp (<= 6.0 dp) |
+| image | ✅ | vs true Blender renders of 40 off-grid views: PSNR mean 30.6 dB, min 22.2 dB (mean >= 25.0) |
+| pop-pitch | ✅ | image change when the camera pitch crosses a bucket (blend): RMS 0.0076 (<= 0.02; continuous - needs no dissolve) |
+| pop-yaw | ✅ | image change at a heading-bucket flip: RMS 0.0441 (<= 0.06; comparable to one frame of real rotation in a turn; an optional ~100 ms dissolve softens it) |
 | steady | ✅ | top-down overview error 0.00 dp (exact: in-plane rotation is exact at pitch 0) |
 
 </details>
