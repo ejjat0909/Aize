@@ -11,6 +11,7 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.Style
 import org.maplibre.android.style.expressions.Expression
+import org.maplibre.android.style.layers.CircleLayer
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.layers.PropertyFactory.*
@@ -33,12 +34,15 @@ class MapController(
 ) {
     companion object {
         const val DRIVE_PITCH = 45.0
+        private const val POP_IN_STEP_MS = 40
         const val DRIVE_ZOOM = 17.0
         private const val ROUTE_SRC = "aize-route"
         private const val ALTS_SRC = "aize-route-alts"
         private const val PASSED_SRC = "aize-route-passed"
         private const val PUCK_SRC = "aize-puck"
         private const val DEST_SRC = "aize-dest"
+        private const val PINS_SRC = "aize-pins"
+        private const val PIN_SHADOW_SRC = "aize-pin-shadow"
     }
 
     private val palette = if (dark) AizeRoute.dark else AizeRoute.light
@@ -58,6 +62,14 @@ class MapController(
 
         val (pin, anchor) = sprites.loadPin("pin_destination")
         style.addImage("pin-destination", pin)
+        // the other eight billboard pins: one image each, registered up front so a layer can pick per feature
+        for (icon in PinIcons.all) {
+            if (icon == PinIcons.DESTINATION) continue
+            runCatching { sprites.loadPin(PinIcons.assetFor(icon)).first }
+                .onSuccess { style.addImage(icon, it) }
+                // a missing pin asset must be loud: silently, the layer just draws nothing
+                .onFailure { android.util.Log.w("AizePins", "pin asset missing: $icon", it) }
+        }
 
         style.addSource(GeoJsonSource(ROUTE_SRC))
         style.addSource(GeoJsonSource(ALTS_SRC))
@@ -83,6 +95,29 @@ class MapController(
         )
         setRoute(route)
 
+        // pins: a map-aligned contact shadow (a circle, so it lies on the ground at every pitch) under the
+        // billboard itself. Both are added before the puck so the car is never hidden behind a pin.
+        style.addSource(GeoJsonSource(PINS_SRC))
+        style.addSource(GeoJsonSource(PIN_SHADOW_SRC))
+        style.addLayer(
+            CircleLayer("pin-shadow", PIN_SHADOW_SRC).withProperties(
+                circlePitchAlignment(Property.CIRCLE_PITCH_ALIGNMENT_MAP),
+                circleRadius(widthExpr(3f, 2f, 5f, 8f)),
+                circleColor("#2A1E5C"), circleOpacity(0.18f), circleBlur(0.4f),
+            ),
+        )
+        style.addLayer(
+            SymbolLayer("pins", PINS_SRC).withProperties(
+                iconImage(Expression.get("icon")),
+                iconAnchor(Property.ICON_ANCHOR_CENTER),
+                iconOffset(arrayOf(0f, (0.5f - anchor[1].toFloat()) * 64f)),
+                iconAllowOverlap(true), iconIgnorePlacement(true),
+                iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),
+                iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
+                iconSize(1f),
+            ).apply { minZoom = 12f }  // below this the pins would be pixel soup; the list still shows them
+        )
+
         style.addSource(puckSource)
         style.addLayer(
             SymbolLayer("puck", PUCK_SRC).withProperties(
@@ -92,6 +127,75 @@ class MapController(
                 iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),      // the sprite already has its pitch baked in
                 iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
             ),
+        )
+    }
+
+    /**
+     * Draws the pin set (search results, saved places) and clears whatever was there before.
+     *
+     * New pins pop in: the icon grows from a third of its size over ~200 ms, in six steps. The ramp runs on the
+     * main thread but touches two small GeoJSON documents, so it costs a few hundred microseconds per step —
+     * far cheaper than a per-frame animated paint property, which MapLibre would re-evaluate per frame anyway.
+     */
+    fun setPins(
+        pins: List<MapPin>,
+        popIn: Boolean = true,
+        frame: Boolean = false,
+        paddingPx: Int = 0,
+        bottomPaddingPx: Int = 0,
+    ) {
+        val src = style.getSourceAs<GeoJsonSource>(PINS_SRC) ?: return
+        val shadow = style.getSourceAs<GeoJsonSource>(PIN_SHADOW_SRC)
+        val layer = style.getLayerAs<SymbolLayer>("pins")
+        val shadowPoints = pins.map { PinGeoJson.Point(it.lon, it.lat) }
+        val json = PinGeoJson.points(pins)
+        src.setGeoJson(json)
+        shadow?.setGeoJson(PinGeoJson.shadows(shadowPoints))
+        if (frame && pins.size > 1) overviewPins(pins, paddingPx, bottomPaddingPx)
+        if (pins.isEmpty() || !popIn) {
+            layer?.setProperties(iconSize(1.0f))
+            return
+        }
+        val steps = 5
+        for (i in 0..steps) {
+            val t = i.toFloat() / steps
+            // ease-out so it lands rather than stopping dead
+            val scale = 0.35f + 0.65f * (1f - (1f - t) * (1f - t))
+            layer?.setProperties(iconSize(scale))
+            if (i < steps) Thread.sleep(POP_IN_STEP_MS.toLong())
+        }
+        layer?.setProperties(iconSize(1.0f))
+    }
+
+    /**
+     * Frames a set of pins so the whole answer is on screen above the sheet. Without this, a category search
+     * fills a list with places the driver cannot see: the camera is wherever it was, usually zoomed out.
+     */
+    fun overviewPins(pins: List<MapPin>, paddingPx: Int = 0, bottomPaddingPx: Int = 0) {
+        val b = org.maplibre.android.geometry.LatLngBounds.Builder()
+        for (p in pins) b.include(LatLng(p.lat, p.lon))
+        runCatching {
+            val update = if (paddingPx > 0) {
+                org.maplibre.android.camera.CameraUpdateFactory.newLatLngBounds(b.build(), paddingPx, paddingPx, paddingPx, bottomPaddingPx)
+            } else {
+                org.maplibre.android.camera.CameraUpdateFactory.newLatLngBounds(b.build(), 80)
+            }
+            map.animateCamera(update, 700)
+        }
+    }
+
+    /** Called from a map click: the pin under the finger, if any (24 px of slop, so a tap does not have to be exact). */
+    fun pinAt(screenPoint: android.graphics.PointF): MapPin? {
+        val rect = android.graphics.RectF(
+            screenPoint.x - 24f, screenPoint.y - 24f, screenPoint.x + 24f, screenPoint.y + 24f,
+        )
+        val feature = map.queryRenderedFeatures(rect, "pins").firstOrNull() ?: return null
+        val point = feature.geometry() as? Point ?: return null
+        return MapPin(
+            lat = point.latitude(), lon = point.longitude(),
+            icon = feature.getStringProperty("icon") ?: PinIcons.DESTINATION,
+            label = feature.getStringProperty("label") ?: "",
+            kind = feature.getStringProperty("kind") ?: "",
         )
     }
 

@@ -28,6 +28,7 @@ class Proxy:
 
 
 SEARCH_SRV = Proxy(int(SEARCH.rsplit(":", 1)[1]))
+SEARCH_PREFIXES = ("/search", "/categories")
 VALHALLA_SRV = Proxy(int(VALHALLA.rsplit(":", 1)[1]))
 
 
@@ -36,7 +37,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def _relay(self, fn):
         path = self.path
-        target = SEARCH_SRV if path.startswith("/search") else VALHALLA_SRV
+        # every non-Valhalla endpoint must be listed here: a path that falls through to Valhalla answers with
+        # Valhalla's own 404, which reads like "the app is broken" rather than "the proxy is misconfigured"
+        target = SEARCH_SRV if path.startswith(SEARCH_PREFIXES) else VALHALLA_SRV
         try:
             status, body = fn(target)
         except urllib.error.HTTPError as e:

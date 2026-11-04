@@ -13,8 +13,8 @@ android {
         applicationId = "app.aize"
         minSdk = 26            // dev default; decision D2 in docs/02-aize-build-plan.md section 0
         targetSdk = 36
-        versionCode = 13
-        versionName = "0.11.1-m2"
+        versionCode = 14
+        versionName = "0.12.0-m2"
 
         // Build-time environment. Override with -Paize.env=staging -Paize.server=https://... (see docs/dev-setup.md).
         // The default is the emulator's view of the host machine, so a clean clone never ships a dead link.
@@ -85,7 +85,8 @@ abstract class SyncSprites : DefaultTask() {
             from(dist) {
                 include("arrow/arrow.sprites.json", "arrow/arrow_p*@xxhdpi.webp")
                 include("puck/puck.sprites.json", "puck/puck_p*@xxhdpi.webp")
-                include("pin_destination/pin_destination.sprites.json", "pin_destination/pin_destination*@xxhdpi.webp")
+                // all nine billboard pins: destination plus the eight traffic/POI markers (P2-07)
+                include("pin_*/pin_*.sprites.json", "pin_*/pin_*@xxhdpi.webp")
             }
             into(out.dir("sprites"))
         }

@@ -97,7 +97,7 @@ object AizeTraffic {
     val dark = Palette(0xFF6ABF7E.toInt(), 0xFFD29F4A.toInt(), 0xFFEC8F4A.toInt(), 0xFFFE7C70.toInt(), 0xFFD6111C.toInt())
 }
 
-/** Durations in ms and cubic-bezier curves from the motion tokens (doc 02 section 7). */
+/** Durations in ms, cubic-bezier curves and springs from the motion tokens (doc 02 section 7). */
 object AizeMotion {
     const val INSTANT_MS = 100
     const val FAST_MS = 150
@@ -110,6 +110,27 @@ object AizeMotion {
     val Accelerate = CubicBezierEasing(0.4f, 0.0f, 1.0f, 1.0f)
     val SilkyIn = CubicBezierEasing(0.2f, 0.7f, -0.01f, 1.0f)
     val SilkyOut = CubicBezierEasing(0.9f, 0.01f, 0.99f, 0.75f)
+}
+
+/** Spring constants: a duration cannot express "settles with a small bounce", a spring can. */
+object AizeSprings {
+    const val POP_IN_DAMPING_RATIO = 0.62f
+    const val POP_IN_STIFFNESS = 380.0f
+    const val SETTLE_DAMPING_RATIO = 0.9f
+    const val SETTLE_STIFFNESS = 200.0f
+}
+
+/** How long each piece of the app's choreography takes (ms). */
+object AizeChoreography {
+    const val ALERT_POP_IN_ALPHA = 100
+    val ALERT_POP_IN_SCALE = listOf(200, 300)
+    const val ALERT_POP_IN_START_OFFSET = 300
+    const val SHEET_SLIDE_MS = 150
+    const val PAGE_FORWARD_MS = 200
+    const val PAGE_BACK_MS = 200
+    const val SHEET_UP_MS = 700
+    const val SHEET_DOWN_MS = 500
+    const val SPINNER_MS = 600
 }
 
 object AizeRadius {

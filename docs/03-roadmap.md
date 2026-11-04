@@ -11,7 +11,7 @@ What it is not yet: no lane guidance or speed-limit signs (the routing tiles car
 | Phase | Name | Tasks | Planned | Left (est.) | MVP |
 |---|---|---|---|---|---|
 | P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
-| P1 | Design system & app shell | 12 | 76 pd | 56 pd | yes |
+| P1 | Design system & app shell | 12 | 76 pd | 54.5 pd | yes |
 | P2 | Map & location | 13 | 76 pd | 40 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 43 pd | yes |
 | P4 | Navigation engine & voice | 14 | 110 pd | 77 pd | yes |
@@ -20,9 +20,9 @@ What it is not yet: no lane guidance or speed-limit signs (the routing tiles car
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **506.5 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **505 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **199.5 pd** left of the 337 pd planned for it, and the whole plan has 506.5 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **198 pd** left of the 337 pd planned for it, and the whole plan has 505 pd left of 653.
 
 ## The order to do it in
 
@@ -101,7 +101,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* Every screen is built from the Aize component library; nothing is stock Material.
 
-12 tasks, 76 pd planned, 56 pd left. 1 done, 4 part-done.
+12 tasks, 76 pd planned, 54.5 pd left. 1 done, 5 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
@@ -109,7 +109,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P1-02 | Icon set v1 (~60): nav arrows, lane arrows, report types, POI categories, UI glyphs — SVG → ImageVector on a 24 dp grid | 8 | yes | part |
 | P1-03 | Component library v1: buttons (S/M/L radii 18/24/32), icon buttons, chips/pills, cards, dialogs, bottom sheet (peek/half/full, 150 ms slide), snackbar, text fields, switches, list rows, segmented control, tooltip | 10 | yes | — |
 | P1-04 | Navigation HUD components (stateless): instruction banner + lane strip, ETA bar (compact/expanded), speed bubble + limit sign, report FAB, recenter button, compass, alert pill (pop-in), arrival card | 14 | yes | part |
-| P1-05 | Motion kit: easing/duration tokens as AnimationSpecs, popIn/sheet/page transitions, reduced-motion replacement, RenderThread-friendly (graphicsLayer) variants | 3 | yes | — |
+| P1-05 | Motion kit: easing/duration tokens as AnimationSpecs, popIn/sheet/page transitions, reduced-motion replacement, RenderThread-friendly (graphicsLayer) variants | 3 | yes | part |
 | P1-06 | Original Lottie/Rive assets: splash, report button idle/press, points/confetti, loaders (skeleton), mic listening/speaking states | 8 | no | — |
 | P1-07 | Design-catalogue module + screenshot tests (Paparazzi/Roborazzi) for every component × light/dark × font-scale 1.3 × RTL | 5 | yes | — |
 | P1-08 | App shell: single-Activity + type-safe Navigation, Android 12 splash + animated icon, onboarding, permission rationale flows (precise location → background → notifications → mic), consent screen | 8 | yes | part |
@@ -122,6 +122,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P1-02** — Launcher, close and search icons only — about 5 of ~60.
 - **P1-03** — Everything is stock Material 3 so far.
 - **P1-04** — Instruction banner with next and next-next maneuver. No lane strip, ETA bar, speed bubble, report button, arrival card.
+- **P1-05** — Durations, easings and springs live in `design/tokens/aize-purple.tokens.json` and are emitted as `AizeMotion`, `AizeSprings` and `AizeChoreography` by `design/generate_android.py`, so the `--check` gate keeps them from drifting. In use: the instruction banner slides in and out, a maneuver change cross-fades the text while the distance countdown stays still, chooser rows stagger in, the sheet springs between heights, and the puck eases along the short arc between GPS fixes. `rememberMotionEnabled()` reads Android's animator duration scale and zeroes every duration when animations are switched off, so "remove animations" removes them rather than slowing them down. Not done yet: page forward/back transitions between screens, and the `graphicsLayer` (RenderThread) variants of the transitions.
 - **P1-08** — Single Activity, one screen, no navigation graph, no onboarding, permission rationale or consent flow.
 
 ### P2 · Map & location
@@ -151,7 +152,7 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 - **P2-04** — `MapController` does follow/overview/center-on-me and the camera pitch presets. No speed-adaptive zoom, no HUD inset API.
 - **P2-05** — Nearest pitch bucket and nearest of 24 yaws from the Blender sheets. No blending, no dead-reckoned interpolation, no accuracy circle.
 - **P2-06** — Casing, fill and the greyed passed part. No traffic segments, alternatives, tap-to-select or ETA labels.
-- **P2-07** — Destination pin only; the other eight billboard pins are rendered but unused.
+- **P2-07** — All nine billboard pins are wired: one symbol layer draws the set from a single GeoJSON document (lon-first, tested), a map-aligned circle layer carries the contact shadow, pins stay hidden below zoom 12, and each one pops in over ~200 ms from the motion tokens. Category results use them today — Fuel draws gas pins, Parking parking pins, police and speed cameras their own — the list frames the pins above the sheet, tapping a pin opens the place card, and the pins outlive the sheet so closing the list leaves the answer on the map. Still missing: clustering where pins overlap, and the hazard/jam/closure/accident pins have no feed to draw from yet (they need the traffic source in P4).
 - **P2-08** — Raw `LocationManager` fixes with a permission gate. No fused provider, rotation vectors, mock flagging or adaptive rates.
 - **P2-09** — `NavService` is a `location`-type foreground service with a silent navigation notification (instruction, distance left, progress, Stop action, tap to open). Guidance, voice and the notification keep running with the screen off, verified on the emulator with the display dozing. No ETA clock in the notification yet.
 - **P2-11** — `ThemeMode` cycles Auto/Day/Night: Auto is light between 06:30 and 19:00 (tropical sunrise and sunset, no summer to track), the manual modes are remembered across restarts, and the switch re-colours both the Compose theme and the map. Changing the mode still reloads the style rather than toggling `global-state`.

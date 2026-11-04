@@ -10,6 +10,17 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,12 +47,19 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import app.aize.design.AizeChoreography
+import app.aize.design.AizeMotion
 import app.aize.design.AizeRadius
+import app.aize.design.rememberMotionEnabled
+import app.aize.design.settleSpec
 import app.aize.design.AizeSize
 import app.aize.map.MapController
+import app.aize.map.MapPin
+import app.aize.map.PinIcons
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
 import app.aize.nav.EtaEngine
+import app.aize.nav.Heading
 import app.aize.nav.NavService
 import app.aize.nav.NavSession
 import app.aize.nav.Recents
@@ -56,6 +74,7 @@ import app.aize.net.SearchClient
 import app.aize.net.ServerSettings
 import app.aize.nav.RoutePath
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.maplibre.android.geometry.LatLng
@@ -82,6 +101,10 @@ fun NavScreen() {
 
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
     var controller by remember { mutableStateOf<MapController?>(null) }
+    // system "remove animations" setting, read once: every transition below honours it
+    val motion = rememberMotionEnabled()
+    // last heading drawn, so a jumpy GPS bearing can be eased instead of snapped
+    var lastBearing by remember { mutableStateOf<Double?>(null) }
     var mapView by remember { mutableStateOf<MapView?>(null) }
     var route by remember { mutableStateOf<Route?>(null) }
     var tiles by remember { mutableStateOf<java.io.File?>(null) }
@@ -104,6 +127,9 @@ fun NavScreen() {
     var showSearch by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }
     var results by remember { mutableStateOf<List<PlaceResult>>(emptyList()) }
+    // pins shown on the map: the last successful answer, which survives closing the search sheet
+    var mapPins by remember { mutableStateOf<List<MapPin>>(emptyList()) }
+    var framePins by remember { mutableStateOf(false) }
     var searching by remember { mutableStateOf(false) }
     var searchError by remember { mutableStateOf<String?>(null) }
     var category by remember { mutableStateOf<Category?>(null) }        // a chip is active: results are "fuel near you", not a name query
@@ -284,13 +310,37 @@ fun NavScreen() {
         onDispose { lm.removeUpdates(listener) }
     }
 
+    // --- search results as pins ---------------------------------------------------------------------------------------
+    // The list and the map are the same answer twice: tapping a chip should light up the map, not just fill a list.
+    // The pins outlive the sheet, so closing the list still leaves the answer on the map — but a failed search
+    // clears them, because pins for a request that never succeeded would be a lie.
+    LaunchedEffect(results, category, searchError) {
+        mapPins = when {
+            results.isNotEmpty() -> results.take(24).map { MapPin(it.lat, it.lon, PinIcons.forKind(it.kind), it.name, it.kind) }
+            searchError != null -> emptyList()
+            else -> mapPins
+        }
+        framePins = results.isNotEmpty() && category != null
+    }
+    LaunchedEffect(mapPins, controller) {
+        val c = controller ?: return@LaunchedEffect
+        // the sheet covers the bottom of the screen: frame the pins in the part that is still visible
+        c.setPins(
+            mapPins, frame = framePins,
+            paddingPx = (24 * density).roundToInt(),
+            bottomPaddingPx = (screenH * 0.55f).roundToInt(),
+        )
+    }
+
     // --- the real-location puck -------------------------------------------------------------------------------------------
     LaunchedEffect(fix, controller, demo) {
         val c = controller ?: return@LaunchedEffect
         val f = fix ?: return@LaunchedEffect
         if (demo) return@LaunchedEffect
         val m = map ?: return@LaunchedEffect
-        val bearing = if (f.hasBearing()) f.bearing.toDouble() else m.cameraPosition.bearing
+        val raw = if (f.hasBearing()) f.bearing.toDouble() else m.cameraPosition.bearing
+        val bearing = lastBearing?.let { Heading.smooth(it, raw, if (motion) 0.35 else 1.0) } ?: raw
+        lastBearing = bearing
         c.setPuck(f.latitude, f.longitude, bearing, m.cameraPosition.bearing, m.cameraPosition.tilt)
 
         // follow a live route: snap the fix onto it (drives the banner and the greyed-out part), re-route when really off it
@@ -339,7 +389,9 @@ fun NavScreen() {
                     bearingNow = RoutePath.smoothAngle(bearingNow, target, 1 - exp(-dt * 2.5))
                     c.follow(p.lat, p.lon, bearingNow, topPaddingPx = (mapView?.height ?: 0) * 0.4)
                 }
-                c.setPuck(p.lat, p.lon, p.heading, m.cameraPosition.bearing, m.cameraPosition.tilt)
+                val demoBearing = lastBearing?.let { Heading.smooth(it, p.heading, if (motion) 0.35 else 1.0) } ?: p.heading
+                lastBearing = demoBearing
+                c.setPuck(p.lat, p.lon, demoBearing, m.cameraPosition.bearing, m.cameraPosition.tilt)
                 c.setPassed(r, distance)
             }
             last = now
@@ -367,6 +419,15 @@ fun NavScreen() {
                             if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE) following = false
                         }
                         m.addOnMapLongClickListener { pendingDest = it; true }
+                        m.addOnMapClickListener { latLng ->
+                            // a tap on a pin is the same gesture as a tap on its row: open the card, do not route
+                            val screen = m.projection.toScreenLocation(latLng)
+                            val hit = controller?.pinAt(screen)
+                            if (hit != null && hit.label.isNotBlank()) {
+                                place = PlaceResult(hit.label, hit.lat, hit.lon, hit.kind, 0)
+                                true
+                            } else false
+                        }
                         map = m
                     }
                 }
@@ -393,27 +454,44 @@ fun NavScreen() {
 
         val r = route
         // ------------------------------------------------------------------ instruction banner
+        AnimatedVisibility(
+            visible = r != null && !showSearch && choices.isEmpty(),
+            enter = slideInVertically(initialOffsetY = { -it }, animationSpec = tween(if (motion) AizeMotion.MODERATE_MS else 0)) + fadeIn(tween(if (motion) AizeMotion.BASE_MS else 0)),
+            exit = slideOutVertically(targetOffsetY = { -it }, animationSpec = tween(if (motion) AizeMotion.FAST_MS else 0)) + fadeOut(tween(if (motion) AizeMotion.INSTANT_MS else 0)),
+            modifier = Modifier.align(Alignment.TopCenter),
+        ) {
         if (r != null && !showSearch && choices.isEmpty()) {
             val g = r.guidanceAt(distance)
             val up = g.next
             val serviceOwned = nav.active
             Surface(
-                modifier = Modifier.align(Alignment.TopCenter).windowInsetsPadding(WindowInsets.safeDrawing).padding(12.dp).fillMaxWidth()
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing).padding(12.dp).fillMaxWidth()
                     .heightIn(min = AizeSize.INSTRUCTION_BANNER_MIN_HEIGHT),
                 color = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(AizeRadius.LG), shadowElevation = 6.dp,
             ) {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.Center) {
                     val isArrived = arrived || nav.arrived
-                    Text(
-                        if (isArrived) "Arrived" else formatDistance(if (serviceOwned) nav.metersToInstruction else g.metersToNext),
-                        fontSize = 30.sp, fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        if (isArrived) (if (serviceOwned) nav.instruction ?: g.current.instruction else g.current.instruction)
-                        else (if (serviceOwned) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")),
-                        fontSize = 17.sp, maxLines = 2,
-                    )
+                    val distanceText = if (isArrived) "Arrived" else formatDistance(if (serviceOwned) nav.metersToInstruction else g.metersToNext)
+                    val instructionText = if (isArrived) {
+                        if (serviceOwned) nav.instruction ?: g.current.instruction else g.current.instruction
+                    } else {
+                        if (serviceOwned) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")
+                    }
+                    // the countdown changes every second and must not animate; the instruction changes rarely and should
+                    Text(distanceText, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                    AnimatedContent(
+                        targetState = instructionText,
+                        transitionSpec = {
+                            val slide = tween<IntOffset>(if (motion) AizeMotion.BASE_MS else 0)
+                            val fade = tween<Float>(if (motion) AizeMotion.BASE_MS else 0)
+                            (slideInVertically(animationSpec = slide) { it / 2 } + fadeIn(fade)) togetherWith
+                                (slideOutVertically(animationSpec = slide) { -it / 2 } + fadeOut(fade))
+                        },
+                        label = "instruction",
+                    ) { text ->
+                        Text(text, fontSize = 17.sp, maxLines = 2)
+                    }
                     val after = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)
                     if (!arrived && after != null) {
                         Text("then ${after.instruction}", fontSize = 13.sp, maxLines = 1,
@@ -435,10 +513,12 @@ fun NavScreen() {
 
             }
         }
+        }
 
         // ------------------------------------------------------------------ bottom bar
         Surface(
-            modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth(),
+            modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth()
+                .animateContentSize(animationSpec = if (motion) settleSpec<IntSize>() else tween<IntSize>(0)),
             color = MaterialTheme.colorScheme.surface, tonalElevation = 3.dp, shadowElevation = 10.dp,
             shape = RoundedCornerShape(topStart = AizeRadius.SHEET, topEnd = AizeRadius.SHEET),
         ) {
@@ -605,6 +685,8 @@ fun NavScreen() {
                             Text("${category!!.label} near you", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Spacer(Modifier.width(8.dp))
                             TextButton(onClick = { category = null; results = emptyList() }) { Text("Clear", fontSize = 12.sp) }
+                            // the list is one answer to "what is near me"; the map is the other one
+                            TextButton(onClick = { showSearch = false; query = "" }) { Text("Show on map", fontSize = 12.sp) }
                         }
                     }
                     if (query.isBlank() && category == null && results.isEmpty() && recents.isNotEmpty()) {
@@ -764,6 +846,7 @@ private fun PlaceCard(
 @Composable
 private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) -> Unit, onCancel: () -> Unit) {
     // quickest first: the server ranks by cost, which is not the same question the driver is asking
+    val motion = rememberMotionEnabled()
     val ordered = remember(choices) { choices.sortedBy { it.durationSeconds } }
     val fastest = ordered.indices.minByOrNull { ordered[it].durationSeconds }
     val shortest = ordered.indices.minByOrNull { ordered[it].summary?.distanceMeters ?: ordered[it].path.lengthMeters }
@@ -771,6 +854,11 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
         Text("${ordered.size} routes", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
         ordered.forEachIndexed { i, r ->
             val onMap = current === r
+            var shown by remember(r) { mutableStateOf(false) }
+            LaunchedEffect(r) {
+                if (motion) delay(i * 45L)
+                shown = true
+            }
             val badges = buildList {
                 if (onMap) add("On map")
                 if (i == fastest) add("Fastest")
@@ -781,6 +869,11 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
                     if (s.usesFerry) add("Ferry")
                 }
             }
+            AnimatedVisibility(
+                visible = shown,
+                enter = fadeIn(tween(if (motion) AizeMotion.BASE_MS else 0)) +
+                    slideInVertically(tween(if (motion) AizeMotion.MODERATE_MS else 0)) { it / 3 },
+            ) {
             Surface(
                 onClick = { onPick(r) },
                 shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
@@ -800,6 +893,7 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
                     }
                     if (badges.isNotEmpty()) Text(badges.joinToString(" · "), fontSize = 12.sp, color = MaterialTheme.colorScheme.primary)
                 }
+            }
             }
         }
         TextButton(onClick = onCancel) { Text("Cancel") }
