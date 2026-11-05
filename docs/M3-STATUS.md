@@ -1,10 +1,11 @@
 # M3 · Look right — status
 
-**0.14.0-m3** (versionCode 16). This is the first slice of M3: the interface stops being stock Material 3 and
-becomes Aize's own, and the manoeuvre is drawn as a picture as well as written in words.
+**0.15.0-m3** (versionCode 17). Two slices of M3 so far: the interface stops being stock Material 3 and becomes
+Aize's own (icons, components, the manoeuvre drawn as well as written), and the app gains a first run that
+explains itself before it asks for anything.
 
-M3 is not finished. The rest of it — the full HUD, the app shell and onboarding, the puck blending, the
-accessibility pass, the design catalogue — is still open, and `docs/03-roadmap.md` says so per task.
+M3 is not finished. The rest of it — the full HUD, the puck blending, the accessibility pass, the design
+catalogue — is still open, and `docs/03-roadmap.md` says so per task.
 
 ## What shipped
 
@@ -56,6 +57,32 @@ type this build has not seen.
 Still missing, and deliberately not faked: the lane strip (the routing tiles carry no `turn:lanes`), the
 speed-limit bubble (no `maxspeed`), the report button, and the arrival card.
 
+### P1-08 · App shell and onboarding
+
+`app/src/main/kotlin/app/aize/ui/`:
+
+- `AppShell.kt` — `AizeApp()` is what `MainActivity` now sets. Two states, not a navigation graph: the map is
+  where the app lives, and the tour is the only other place. The flag is read once per composition, so finishing
+  the tour shows the map immediately instead of after a restart.
+- `onboard/Onboarding.kt` — the flow as a **pure step machine**: `steps`, `next()`, `back()`, `position()`,
+  `progress()`, `isLast()`, and the persisted `onboarding_done_v1` flag. No Compose in it, so the order of the
+  steps is unit-tested rather than eyeballed.
+- `onboard/OnboardingScreen.kt` — five steps: **Welcome → How it works → Location → Privacy → Ready**. Progress
+  dots that stretch rather than add a number, one primary action, Back, and a skip that disappears on the last
+  step (where "Start driving" is the same door).
+  - The location permission is requested **on the step that explains it**, not as a surprise over the map. A
+    refusal is answered with "Ask again" and a sentence that says what still works — a named fallback, not a
+    dead end, because a refused permission is not an error.
+  - The telemetry switch defaults **off** and writes straight through to `Telemetry.setEnabled`, which is the
+    same switch that governs the sink.
+  - The server address is shown on the last step **only in debug builds**: which host a build talks to is a
+    developer fact, not a user-facing one.
+- `component/AizeSwitch.kt` — the labelled switch P1-03 was missing: the whole row is a `Role.Switch` toggle,
+  the track and knob follow the motion tokens, and the knob is coloured per state so it is visible against both
+  a dark off-track and a light on-track.
+- The server dialog gains **"Show the tour again"**, so `Onboarding.reset()` is reachable and the tour is not a
+  one-time event for someone who skipped it.
+
 ## Two bugs this slice found
 
 1. **Seven of twelve category chips drew the fallback flag.** The server sends `food`; the icon table had
@@ -72,17 +99,20 @@ A third, smaller one: the first `poi_food` glyph was a fork and knife whose thre
 
 | Check | Result |
 |---|---|
-| JVM unit tests | **109**, 0 failures (was 92) |
+| JVM unit tests | **114**, 0 failures (was 109) |
+| `OnboardingTest` | 5 — the flow starts at Welcome and ends at Ready, walking forward visits every step in order, `back` undoes `next`, progress is monotonic and ends at 1, and the location step comes after the step that explains it |
 | `IconCatalogTest` | 6 — every path parses, every glyph stays inside 0.5–23.5 u of the 24 dp box, names follow `nav_`/`poi_`/`ui_`, every kind target exists, `forKind` reads the tag value |
 | `IconCoverageTest` | 2 — every category id has its own glyph |
 | `AizeButtonTest` | 3 — radii and heights come from the tokens, and a corner is never more than half the height |
 | `ManeuverIconTest` | 6 — the four turn kinds stay distinct, U-turns are not turns, arrival and roundabout are their own glyphs, an unknown type falls back to the words, a street name cannot choose the turn |
 | On device (emulator, API 34) | banner glyph matches the instruction; turn list glyphs match all nine instructions in the 9.1 km demo route; search sheet chips and rows render with their icons |
+| On device, first run | fresh install opens the tour; **denying** the location dialog leaves the step usable ("Ask again" plus what still works); the consent switch writes `telemetry_opt_in=true` to `aize.xml`; finishing writes `onboarding_done_v1=true` and the map appears; force-stop and relaunch goes **straight to the map** |
 
-Screenshots: `docs/verification/m3-banner.jpg`, `m3-turnlist.jpg`, `m3-search.jpg`.
+Screenshots: `docs/verification/m3-banner.jpg`, `m3-turnlist.jpg`, `m3-search.jpg`, and the first-run flow in
+`m3-onboarding-{welcome,howitworks,location,privacy,ready}.jpg`.
 
 ## Next in M3
 
-P1-08 app shell and onboarding, P1-10 accessibility pass, P1-07 design catalogue with screenshot tests, P2-05
+P1-10 accessibility pass, P1-07 design catalogue with screenshot tests, P2-05
 puck blending (the pipeline already measures 16.8 dB nearest bucket against 30.6 dB for the two-bucket blend),
 then the rest of P1-04 once the tiles carry the lane and speed data.

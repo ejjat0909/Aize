@@ -103,7 +103,7 @@ private val KL_CENTER = doubleArrayOf(3.1466, 101.6990)
 private val KL_SENTRAL = doubleArrayOf(3.1343, 101.6862)
 
 @Composable
-fun NavScreen() {
+fun NavScreen(onReplayTour: () -> Unit = {}) {
     val ctx = LocalContext.current
     val prefs = remember { ctx.getSharedPreferences(Recents.PREFS, Context.MODE_PRIVATE) }
     // day/night follows the ThemeMode policy (auto = clock, or the driver's manual choice)
@@ -849,6 +849,8 @@ fun NavScreen() {
                     Text("Address of a Valhalla server, e.g. https://example.com or 192.168.1.20:8002. The emulator reaches the host at 10.0.2.2.", fontSize = 13.sp)
                     OutlinedTextField(value = text, onValueChange = { text = it; testResult = null }, singleLine = true, label = { Text("Server address") })
                     TextButton(onClick = { text = ServerSettings.DEFAULT_URL; testResult = null }) { Text("Reset to default") }
+                    // the tour is not a one-time event: someone who skipped it should be able to get it back
+                    TextButton(onClick = { showServer = false; onReplayTour() }) { Text("Show the tour again") }
                     TextButton(enabled = !testing, onClick = {
                         testing = true; testResult = "Testing…"
                         scope.launch {

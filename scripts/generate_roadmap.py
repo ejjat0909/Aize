@@ -37,9 +37,9 @@ STATUS = {
     "P1-05": ("partial", "Durations, easings and springs live in `design/tokens/aize-purple.tokens.json` and are emitted as `AizeMotion`, `AizeSprings` and `AizeChoreography` by `design/generate_android.py`, so the `--check` gate keeps them from drifting. In use: the instruction banner slides in and out, a maneuver change cross-fades the text while the distance countdown stays still, chooser rows stagger in, the sheet springs between heights, and the puck eases along the short arc between GPS fixes. `rememberMotionEnabled()` reads Android's animator duration scale and zeroes every duration when animations are switched off, so \"remove animations\" removes them rather than slowing them down. Not done yet: page forward/back transitions between screens, and the `graphicsLayer` (RenderThread) variants of the transitions."),
     "P1-06": ("todo", ""),
     "P1-07": ("todo", ""),
-    "P1-08": ("partial", "Single Activity, one screen, no navigation graph, no onboarding, permission rationale or consent flow."),
+    "P1-08": ("partial", "`AizeApp` is the shell: one Activity, and the first run is a five-step tour (welcome, how it works, location, privacy, ready) held in `ui/onboard/Onboarding.kt` as a pure step machine with the done-flag in `SharedPreferences`. The location permission is asked for on the step that explains it, a refusal is answered with a named fallback rather than a dead end, the telemetry toggle defaults off and writes through to `Telemetry`, and the tour can be replayed from the server dialog. Not yet: a real navigation graph (the map is still the only destination) and an in-app privacy policy page."),
     "P1-09": ("todo", ""),
-    "P1-10": ("todo", ""),
+    "P1-10": ("partial", "Icon-only buttons carry a merged semantics node with a name and a click action (the round-bar buttons read as \"Turn list\", \"Search\", \"Theme: Auto, tap to change\"), and the consent switch is a `Role.Switch` toggle over the whole row. Not yet: a full TalkBack pass, dynamic type, and contrast audits."),
     "P1-11": ("todo", ""),
     "P1-12": ("done", ""),
     "P2-01": ("partial", "MapLibre 13.7.1 lives in `:app`; no separate `:map` module, no frame-stats hook."),
@@ -215,7 +215,7 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.14.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.15.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
@@ -226,7 +226,9 @@ def main():
       "navigation arrow — is rendered from one soft-touch material profile and a wide-light rig, so "
       "nothing on the map is candy-glossy, and a grey route can be tapped on the map as well as in the list. "
       "The interface is now drawn from its own component library and a 61-glyph icon set rather than stock "
-      "Material, and the banner shows the manoeuvre as a picture as well as in words. 109 JVM unit tests pass.")
+      "Material, and the banner shows the manoeuvre as a picture as well as in words. A first run explains what "
+      "the app is, how it works, why it wants location and what it does with your data before it asks for "
+      "anything, and a refused permission is answered rather than ignored. 114 JVM unit tests pass.")
     a("")
     a("What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no "
       "reports or traffic, no settings screen, and the release build is unsigned.")

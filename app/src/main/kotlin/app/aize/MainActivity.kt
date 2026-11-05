@@ -14,7 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import app.aize.design.AizeColorSchemes
-import app.aize.ui.NavScreen
+import app.aize.ui.AizeApp
 import app.aize.ui.ThemeMode
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         app.aize.nav.NavSession.setMuted(getSharedPreferences("aize", MODE_PRIVATE).getBoolean("voice_muted", false))
         setContent {
             val mode by ThemeMode.mode.collectAsState()
-            AizeTheme(dark = ThemeMode.isDark(mode)) { NavScreen() }
+            AizeTheme(dark = ThemeMode.isDark(mode)) { AizeApp() }
         }
         if (BuildConfig.DEBUG) startJankStats()
     }
