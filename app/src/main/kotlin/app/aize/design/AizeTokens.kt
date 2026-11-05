@@ -87,7 +87,7 @@ data class AizeExtraColors(val success: Color, val warning: Color, val info: Col
 /** ARGB ints for the map layers (MapLibre), per theme. */
 object AizeRoute {
     class Palette(val selected: Int, val selectedCasing: Int, val alternative: Int, val alternativeCasing: Int, val passed: Int, val navArrow: Int)
-    val light = Palette(0xFF8937F1.toInt(), 0xFFFFFFFF.toInt(), 0xFF8E8C96.toInt(), 0xFFFFFFFF.toInt(), 0xFFC6C4CF.toInt(), 0xFF6F23C9.toInt())
+    val light = Palette(0xFF8937F1.toInt(), 0xFFFFFFFF.toInt(), 0xFF858389.toInt(), 0xFFFFFFFF.toInt(), 0xFFC6C4CF.toInt(), 0xFF6F23C9.toInt())
     val dark = Palette(0xFFCCB9FE.toInt(), 0xFF0C0A10.toInt(), 0xFFAAA7B2.toInt(), 0xFF0C0A10.toInt(), 0xFF5D5A64.toInt(), 0xFFE0D5FE.toInt())
 }
 

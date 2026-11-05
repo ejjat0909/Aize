@@ -1,0 +1,20 @@
+# What a screen reader sees
+
+uiautomator dumps from the emulator (API 34) running 0.16.0-m3. `content-desc` is the string TalkBack
+reads out; `checkable`/`checked` is the state it announces. These are the semantics the app sets, not a
+screenshot review.
+
+## The instruction banner is one node, distance first, said once
+content-desc="52 m. Bear left onto Jalan Stesen Sentral. then Make a left U-turn onto Jalan Tun Sambanthan."
+
+## Category chips announce their state
+# before: a plain clickable with no state at all
+       1	checkable="true" checked="true"
+       2	checkable="true" checked="false"
+
+## A place card header reads as one sentence; the buttons below stay their own nodes
+content-desc="Car Park D2. Parking."
+
+## A route row says which one it is before how fast it is
+content-desc="Route 1 of 2. 367 km, 248 minutes, via E2, fastest, shortest, tolls, motorway, shown on the map."
+content-desc="Route 2 of 2. 415 km, 302 minutes, via 1, tolls, motorway."

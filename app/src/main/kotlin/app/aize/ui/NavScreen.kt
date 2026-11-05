@@ -29,9 +29,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -52,6 +57,8 @@ import app.aize.design.AizeChoreography
 import app.aize.design.AizeMotion
 import app.aize.design.AizeRadius
 import app.aize.design.rememberMotionEnabled
+import app.aize.ui.a11y.AizeAlpha
+import app.aize.ui.a11y.Spoken
 import app.aize.design.settleSpec
 import app.aize.design.AizeSize
 import app.aize.map.MapController
@@ -492,9 +499,20 @@ fun NavScreen(onReplayTour: () -> Unit = {}) {
             val g = r.guidanceAt(distance)
             val up = g.next
             val serviceOwned = nav.active
+            val spoken = Spoken.banner(
+                distance = if (arrived || nav.arrived) "Arrived" else formatDistance(if (nav.active) nav.metersToInstruction else g.metersToNext),
+                instruction = if (arrived || nav.arrived) {
+                    if (nav.active) nav.instruction ?: g.current.instruction else g.current.instruction
+                } else {
+                    if (nav.active) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")
+                },
+                then = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)?.let { "then ${it.instruction}" },
+                eta = null,
+            )
             Surface(
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing).padding(12.dp).fillMaxWidth()
-                    .heightIn(min = AizeSize.INSTRUCTION_BANNER_MIN_HEIGHT),
+                    .heightIn(min = AizeSize.INSTRUCTION_BANNER_MIN_HEIGHT)
+                    .semantics(mergeDescendants = true) { contentDescription = spoken },
                 color = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(AizeRadius.LG), shadowElevation = 6.dp,
             ) {
@@ -546,11 +564,11 @@ fun NavScreen(onReplayTour: () -> Unit = {}) {
                                     AizeIcons.get(ManeuverIcons.forManeuver(after)),
                                     contentDescription = null,
                                     modifier = Modifier.size(14.dp),
-                                    tint = LocalContentColor.current.copy(alpha = 0.8f),
+                                    tint = LocalContentColor.current.copy(alpha = AizeAlpha.BANNER_SECONDARY),
                                 )
                                 Spacer(Modifier.width(4.dp))
-                                Text("then ${after.instruction}", fontSize = 12.sp, maxLines = 1,
-                                    color = LocalContentColor.current.copy(alpha = 0.8f))
+                                Text("then ${after.instruction}", fontSize = 12.sp, maxLines = 2,
+                                    color = LocalContentColor.current.copy(alpha = AizeAlpha.BANNER_SECONDARY))
                             }
                         }
                         // remaining distance, time left and arrival clock, from the service when it is driving
@@ -563,7 +581,7 @@ fun NavScreen(onReplayTour: () -> Unit = {}) {
                         }
                         if (!isArrived) {
                             Text(etaLine, fontSize = 13.sp, fontWeight = FontWeight.Medium,
-                                color = LocalContentColor.current.copy(alpha = 0.9f))
+                                color = LocalContentColor.current.copy(alpha = AizeAlpha.BANNER_TERTIARY))
                         }
                     }
                 }
@@ -619,10 +637,28 @@ fun NavScreen(onReplayTour: () -> Unit = {}) {
                     else -> {
                         val left = r.path.lengthMeters - distance
                         val secs = r.durationSeconds * (left / r.path.lengthMeters)
-                        Text(
-                            if (demo) "${formatDistance(left)} · ${(secs / 60).roundToInt().coerceAtLeast(1)} min left" else "$routeLabel · ${formatDistance(r.path.lengthMeters)}",
-                            fontSize = 18.sp, fontWeight = FontWeight.SemiBold,
-                        )
+                        // the label and the distance are two texts, not one string: at a large font scale a single
+                        // string wraps and leaves the "·" dangling at the end of the line
+                        val title = if (demo) {
+                            "${formatDistance(left)} · ${(secs / 60).roundToInt().coerceAtLeast(1)} min left"
+                        } else {
+                            routeLabel
+                        }
+                        val trailing = if (demo) null else formatDistance(r.path.lengthMeters)
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                title,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.weight(1f, fill = trailing == null),
+                            )
+                            if (trailing != null) {
+                                Spacer(Modifier.width(8.dp))
+                                Text(trailing, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                            }
+                        }
                         Text(
                             if (demo) "Demo drive (recorded route, ${(DEMO_SPEED_MPS * 3.6).roundToInt()} km/h)"
                             else "Long-press the map for a new destination",
@@ -892,16 +928,27 @@ private fun PlaceCard(
     onShare: () -> Unit,
     onClose: () -> Unit,
 ) {
+    val kind = kindLabel(place.kind)
+    val away = if (place.distanceMeters > 0) formatDistance(place.distanceMeters.toDouble()) else null
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(place.name, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, maxLines = 2)
-        Text(
-            buildList {
-                add(kindLabel(place.kind))
-                if (place.distanceMeters > 0) add(formatDistance(place.distanceMeters.toDouble()))
-                if (isSaved) add("Saved")
-            }.joinToString(" \u00b7 "),
-            color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
-        )
+        // the name and its one-line summary are one sentence out loud; the buttons below stay their own nodes,
+        // which is why this merges the header only and not the card
+        Column(
+            modifier = Modifier.semantics(mergeDescendants = true) {
+                heading()
+                contentDescription = Spoken.place(place.name, kind, away, isSaved)
+            },
+        ) {
+            Text(place.name, fontSize = 20.sp, fontWeight = FontWeight.SemiBold, maxLines = 2)
+            Text(
+                buildList {
+                    add(kind)
+                    if (away != null) add(away)
+                    if (isSaved) add("Saved")
+                }.joinToString(" \u00b7 "),
+                color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
+            )
+        }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             AizeButton(
                 "Directions", onDirections,
@@ -927,7 +974,12 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
     val fastest = ordered.indices.minByOrNull { ordered[it].durationSeconds }
     val shortest = ordered.indices.minByOrNull { ordered[it].summary?.distanceMeters ?: ordered[it].path.lengthMeters }
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Text("${ordered.size} routes", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        Text(
+            "${ordered.size} routes",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.semantics { heading() },
+        )
         ordered.forEachIndexed { i, r ->
             val onMap = current === r
             var shown by remember(r) { mutableStateOf(false) }
@@ -950,19 +1002,45 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
                 enter = fadeIn(tween(if (motion) AizeMotion.BASE_MS else 0)) +
                     slideInVertically(tween(if (motion) AizeMotion.MODERATE_MS else 0)) { it / 3 },
             ) {
-            AizeCard(onClick = { onPick(r) }, selected = onMap, modifier = Modifier.fillMaxWidth()) {
+            val minutes = (r.durationSeconds / 60).roundToInt().coerceAtLeast(1)
+            val spoken = Spoken.route(
+                index = i + 1,
+                count = ordered.size,
+                distance = formatDistance(r.summary?.distanceMeters ?: r.path.lengthMeters),
+                minutes = minutes,
+                via = r.mainRoad,
+                // "On map" is already said as "shown on the map" at the end; saying it twice is noise
+                badges = badges.filterNot { it == "On map" },
+                selected = onMap,
+            )
+            AizeCard(
+                onClick = { onPick(r) },
+                selected = onMap,
+                contentDescription = spoken,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
+                    // the numbers keep their own width and never wrap; the badges are the part that gives way,
+                    // because "367 km ·" ending a line is worse than a badge list that takes two lines
+                    Column {
                         Text(
                             "${formatDistance(r.summary?.distanceMeters ?: r.path.lengthMeters)} · ${(r.durationSeconds / 60).roundToInt().coerceAtLeast(1)} min",
                             fontWeight = FontWeight.SemiBold,
+                            maxLines = 1,
                         )
                         Text(
                             r.mainRoad?.let { "via $it" } ?: "alternative road",
                             fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1,
                         )
                     }
-                    if (badges.isNotEmpty()) Text(badges.joinToString(" · "), fontSize = 12.sp, color = MaterialTheme.colorScheme.primary)
+                    if (badges.isNotEmpty()) Text(
+                        badges.joinToString(" · "),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.primary,
+                        textAlign = TextAlign.End,
+                        maxLines = 2,
+                        modifier = Modifier.weight(1f).padding(start = 12.dp),
+                    )
                 }
             }
             }

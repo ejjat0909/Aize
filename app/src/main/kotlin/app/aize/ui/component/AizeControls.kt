@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,8 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -88,7 +91,8 @@ fun AizeChoiceChip(
         modifier = modifier
             .height(AizeSize.TOUCH_TARGET)
             .background(bg, CircleShape)
-            .clickable(role = Role.Button, onClick = onClick)
+            // selectable, not clickable: a chip that is on has to say so, or the only cue is the fill colour
+            .selectable(selected = selected, role = Role.Checkbox, onClick = onClick)
             .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -112,12 +116,19 @@ fun AizeCard(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
     selected: Boolean = false,
+    contentDescription: String? = null,
     content: @Composable () -> Unit,
 ) {
     val shape = RoundedCornerShape(AizeRadius.XL)
     val colour = if (selected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
     if (onClick != null) {
-        Surface(onClick = onClick, modifier = modifier, shape = shape, color = colour, shadowElevation = 4.dp) { content() }
+        // Surface(onClick) does not merge its children, so a route row would read as three loose labels and
+        // never say which one is on the map. Merge, and carry the selected state on the same node as the click.
+        val semantics = modifier.semantics(mergeDescendants = true) {
+            this.selected = selected
+            if (contentDescription != null) this.contentDescription = contentDescription
+        }
+        Surface(onClick = onClick, modifier = semantics, shape = shape, color = colour, shadowElevation = 4.dp) { content() }
     } else {
         Surface(modifier = modifier, shape = shape, color = colour, shadowElevation = 4.dp) { content() }
     }
@@ -144,7 +155,15 @@ fun AizeListRow(
         modifier = modifier
             .fillMaxWidth()
             .defaultMinSize(minHeight = 56.dp)
-            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
+            .then(
+                if (onClick != null) {
+                    Modifier
+                        .clickable(role = Role.Button, onClick = onClick)
+                        .semantics(mergeDescendants = true) { }
+                } else {
+                    Modifier
+                },
+            )
             .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -249,7 +268,14 @@ fun AizeSheet(
             Spacer(Modifier.height(10.dp))
             Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.SpaceBetween) {
                 Column(Modifier.weight(1f)) {
-                    Text(title, fontSize = 18.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    Text(
+                        title,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.semantics { heading() },
+                    )
                     if (subtitle != null) {
                         Text(subtitle, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     }
