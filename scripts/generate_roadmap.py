@@ -31,9 +31,9 @@ STATUS = {
     "P0-10": ("partial", 'Opt-in `Telemetry` (no-op unless enabled, logcat sink only, nothing leaves the device) and `FeatureFlags` with defaults on parse failure. No remote fetch and no crash reporter: ADR-19 leaves the vendor open.'),
     "P0-11": ("partial", 'Release signing from environment variables only, R8 release build proven (47 MB), CodeQL in CI. No dependency verification metadata and no secrets scan yet.'),
     "P1-01": ("partial", "Light and dark themes generated from tokens. Typography is still default Roboto (no Figtree subset); spacing/shape roles only partly applied."),
-    "P1-02": ("partial", "Launcher, close and search icons only — about 5 of ~60."),
-    "P1-03": ("todo", "Everything is stock Material 3 so far."),
-    "P1-04": ("partial", "Instruction banner with next and next-next maneuver. No lane strip, ETA bar, speed bubble, report button, arrival card."),
+    "P1-02": ("partial", "A house icon set in `ui/icon/`: 61 stroked glyphs on a 24 dp grid — twelve manoeuvres, twenty-two place kinds, the rest interface — built from one data table so they are unit-tested (`IconCatalogTest` parses every path, bounds every glyph, and checks every category id resolves). Not yet: the ~60-icon target is met but the set is drawn, not reviewed; no filled/duotone variants and no automated screenshot comparison."),
+    "P1-03": ("partial", "`ui/component/`: `AizeButton` (small/normal/large at the token radii 18/24/32, primary/tonal/ghost), `AizeIconButton`, `AizeChoiceChip`, `AizeCard`, `AizeListRow`, `AizeTextField`, `AizeSheet` and `AizeDivider`. The search sheet, turn list, place card, route chooser and bottom bar now use them; the server dialog still uses a stock `AlertDialog` and `OutlinedTextField`. Not yet: segmented control, switch, snackbar, tooltip, dialogs, and the 150 ms sheet transition."),
+    "P1-04": ("partial", "The banner now leads with the manoeuvre glyph in its own 56 dp square, then distance, instruction, the `then` line with its own small glyph, and the ETA line. No lane strip (the tiles carry no `turn:lanes`), no speed bubble (no `maxspeed`), no report button, no arrival card."),
     "P1-05": ("partial", "Durations, easings and springs live in `design/tokens/aize-purple.tokens.json` and are emitted as `AizeMotion`, `AizeSprings` and `AizeChoreography` by `design/generate_android.py`, so the `--check` gate keeps them from drifting. In use: the instruction banner slides in and out, a maneuver change cross-fades the text while the distance countdown stays still, chooser rows stagger in, the sheet springs between heights, and the puck eases along the short arc between GPS fixes. `rememberMotionEnabled()` reads Android's animator duration scale and zeroes every duration when animations are switched off, so \"remove animations\" removes them rather than slowing them down. Not done yet: page forward/back transitions between screens, and the `graphicsLayer` (RenderThread) variants of the transitions."),
     "P1-06": ("todo", ""),
     "P1-07": ("todo", ""),
@@ -215,7 +215,7 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.13.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.14.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
@@ -225,7 +225,8 @@ def main():
       "Save, Share) and a turn list shows the whole route. The 3D family — pins, puck and the "
       "navigation arrow — is rendered from one soft-touch material profile and a wide-light rig, so "
       "nothing on the map is candy-glossy, and a grey route can be tapped on the map as well as in the list. "
-      "92 JVM unit tests pass.")
+      "The interface is now drawn from its own component library and a 61-glyph icon set rather than stock "
+      "Material, and the banner shows the manoeuvre as a picture as well as in words. 109 JVM unit tests pass.")
     a("")
     a("What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no "
       "reports or traffic, no settings screen, and the release build is unsigned.")

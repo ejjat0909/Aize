@@ -1,17 +1,17 @@
 # 03 · Roadmap to done
 
-> Generated from `docs/backlog.csv` by `scripts/generate_roadmap.py` on 2026-11-04. The backlog is the work breakdown in `docs/02-aize-build-plan.md`; this file adds what is actually built, what is next, and in what order. Re-run the script when a task lands instead of editing this by hand.
+> Generated from `docs/backlog.csv` by `scripts/generate_roadmap.py` on 2026-11-05. The backlog is the work breakdown in `docs/02-aize-build-plan.md`; this file adds what is actually built, what is next, and in what order. Re-run the script when a task lands instead of editing this by hand.
 
 ## Where the app is today
 
-Version 0.13.0-m2. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, Save, Share) and a turn list shows the whole route. The 3D family — pins, puck and the navigation arrow — is rendered from one soft-touch material profile and a wide-light rig, so nothing on the map is candy-glossy, and a grey route can be tapped on the map as well as in the list. 92 JVM unit tests pass.
+Version 0.14.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, time left and an arrival clock, re-routes when you leave the route, and follows the clock into dark mode. A destination can now come back as up to three routes, listed with their distance, time and tolls, so the driver picks the way rather than accepting one, a place card lets you look before you go (Directions, Save, Share) and a turn list shows the whole route. The 3D family — pins, puck and the navigation arrow — is rendered from one soft-touch material profile and a wide-light rig, so nothing on the map is candy-glossy, and a grey route can be tapped on the map as well as in the list. The interface is now drawn from its own component library and a 61-glyph icon set rather than stock Material, and the banner shows the manoeuvre as a picture as well as in words. 109 JVM unit tests pass.
 
 What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no reports or traffic, no settings screen, and the release build is unsigned.
 
 | Phase | Name | Tasks | Planned | Left (est.) | MVP |
 |---|---|---|---|---|---|
 | P0 | Foundations & decisions | 11 | 33 pd | 4.5 pd | yes |
-| P1 | Design system & app shell | 12 | 76 pd | 54.5 pd | yes |
+| P1 | Design system & app shell | 12 | 76 pd | 49.5 pd | yes |
 | P2 | Map & location | 13 | 76 pd | 40 pd | yes |
 | P3 | Search, places & routing | 11 | 72 pd | 43 pd | yes |
 | P4 | Navigation engine & voice | 14 | 110 pd | 77 pd | yes |
@@ -20,9 +20,9 @@ What it is not yet: no lane guidance or speed-limit signs (the routing tiles car
 | P7 | Android Auto | 5 | 36 pd | 36 pd | no |
 | P8 | Polish, accessibility & performance | 8 | 48 pd | 48 pd | no |
 | P9 | Hardening & launch | 7 | 48 pd | 48 pd | no |
-| **all** | | **100** | **653 pd** | **505 pd** | 337 pd MVP |
+| **all** | | **100** | **653 pd** | **500 pd** | 337 pd MVP |
 
-`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **198 pd** left of the 337 pd planned for it, and the whole plan has 505 pd left of 653.
+`pd` is person-days as planned in the WBS. "Left" counts finished tasks at zero and half-done ones at half, so treat it as an estimate, not a promise. On that basis the MVP has **193 pd** left of the 337 pd planned for it, and the whole plan has 500 pd left of 653.
 
 ## The order to do it in
 
@@ -101,13 +101,13 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 
 *Exit criterion:* Every screen is built from the Aize component library; nothing is stock Material.
 
-12 tasks, 76 pd planned, 54.5 pd left. 1 done, 5 part-done.
+12 tasks, 76 pd planned, 49.5 pd left. 1 done, 6 part-done.
 
 | Task | What | pd | MVP | Status |
 |---|---|---|---|---|
 | P1-01 | Compose theme from tokens (light/dark/dynamic-off), typography (Figtree subset + Roboto fallback), shapes, elevation, spacing | 4 | yes | part |
 | P1-02 | Icon set v1 (~60): nav arrows, lane arrows, report types, POI categories, UI glyphs — SVG → ImageVector on a 24 dp grid | 8 | yes | part |
-| P1-03 | Component library v1: buttons (S/M/L radii 18/24/32), icon buttons, chips/pills, cards, dialogs, bottom sheet (peek/half/full, 150 ms slide), snackbar, text fields, switches, list rows, segmented control, tooltip | 10 | yes | — |
+| P1-03 | Component library v1: buttons (S/M/L radii 18/24/32), icon buttons, chips/pills, cards, dialogs, bottom sheet (peek/half/full, 150 ms slide), snackbar, text fields, switches, list rows, segmented control, tooltip | 10 | yes | part |
 | P1-04 | Navigation HUD components (stateless): instruction banner + lane strip, ETA bar (compact/expanded), speed bubble + limit sign, report FAB, recenter button, compass, alert pill (pop-in), arrival card | 14 | yes | part |
 | P1-05 | Motion kit: easing/duration tokens as AnimationSpecs, popIn/sheet/page transitions, reduced-motion replacement, RenderThread-friendly (graphicsLayer) variants | 3 | yes | part |
 | P1-06 | Original Lottie/Rive assets: splash, report button idle/press, points/confetti, loaders (skeleton), mic listening/speaking states | 8 | no | — |
@@ -119,9 +119,9 @@ A signed AAB, the Play data-safety form, the foreground-service and background-l
 | P1-11 | i18n pipeline: Android resources + Weblate/Crowdin, pseudo-locales, RTL enabled (supportsRtl=true), plural/units formatting | 3 | no | — |
 
 - **P1-01** — Light and dark themes generated from tokens. Typography is still default Roboto (no Figtree subset); spacing/shape roles only partly applied.
-- **P1-02** — Launcher, close and search icons only — about 5 of ~60.
-- **P1-03** — Everything is stock Material 3 so far.
-- **P1-04** — Instruction banner with next and next-next maneuver. No lane strip, ETA bar, speed bubble, report button, arrival card.
+- **P1-02** — A house icon set in `ui/icon/`: 61 stroked glyphs on a 24 dp grid — twelve manoeuvres, twenty-two place kinds, the rest interface — built from one data table so they are unit-tested (`IconCatalogTest` parses every path, bounds every glyph, and checks every category id resolves). Not yet: the ~60-icon target is met but the set is drawn, not reviewed; no filled/duotone variants and no automated screenshot comparison.
+- **P1-03** — `ui/component/`: `AizeButton` (small/normal/large at the token radii 18/24/32, primary/tonal/ghost), `AizeIconButton`, `AizeChoiceChip`, `AizeCard`, `AizeListRow`, `AizeTextField`, `AizeSheet` and `AizeDivider`. The search sheet, turn list, place card, route chooser and bottom bar now use them; the server dialog still uses a stock `AlertDialog` and `OutlinedTextField`. Not yet: segmented control, switch, snackbar, tooltip, dialogs, and the 150 ms sheet transition.
+- **P1-04** — The banner now leads with the manoeuvre glyph in its own 56 dp square, then distance, instruction, the `then` line with its own small glyph, and the ETA line. No lane strip (the tiles carry no `turn:lanes`), no speed bubble (no `maxspeed`), no report button, no arrival card.
 - **P1-05** — Durations, easings and springs live in `design/tokens/aize-purple.tokens.json` and are emitted as `AizeMotion`, `AizeSprings` and `AizeChoreography` by `design/generate_android.py`, so the `--check` gate keeps them from drifting. In use: the instruction banner slides in and out, a maneuver change cross-fades the text while the distance countdown stays still, chooser rows stagger in, the sheet springs between heights, and the puck eases along the short arc between GPS fixes. `rememberMotionEnabled()` reads Android's animator duration scale and zeroes every duration when animations are switched off, so "remove animations" removes them rather than slowing them down. Not done yet: page forward/back transitions between screens, and the `graphicsLayer` (RenderThread) variants of the transitions.
 - **P1-08** — Single Activity, one screen, no navigation graph, no onboarding, permission rationale or consent flow.
 

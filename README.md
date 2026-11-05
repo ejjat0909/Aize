@@ -2,7 +2,7 @@
 
 **Aize** is a fast, community-driven, voice-guided navigation app for Android — purple identity, Waze-class interaction model, engineered so it never feels laggy.
 
-> **Status (2026-11-04): v0.13.0-m2 — the app runs, routes, talks, lets you choose, moves, and looks soft.**
+> **Status (2026-11-05): v0.14.0-m3 — the app runs, routes, talks, lets you choose, moves, and looks soft. Its interface is now its own.**
 > A debug APK installs on a phone and drives: MapLibre map over bundled PMTiles, a Valhalla server with a
 > permanent address, place search over 685k named places with twelve one-tap categories and recent searches, a place card with Directions/Save/Share, up to three
 > routes per destination — all of them drawn on the map, grey under the purple one you are taking, framed above the

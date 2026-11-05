@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
@@ -58,6 +59,18 @@ import app.aize.map.MapPin
 import app.aize.map.PinIcons
 import app.aize.map.PuckSprites
 import app.aize.map.TileStore
+import app.aize.ui.component.AizeButton
+import app.aize.ui.component.AizeButtonKind
+import app.aize.ui.component.AizeButtonSize
+import app.aize.ui.component.AizeCard
+import app.aize.ui.component.AizeChoiceChip
+import app.aize.ui.component.AizeDivider
+import app.aize.ui.component.AizeIconButton
+import app.aize.ui.component.AizeListRow
+import app.aize.ui.component.AizeSheet
+import app.aize.ui.component.AizeTextField
+import app.aize.ui.icon.AizeIcons
+import app.aize.ui.icon.AizeIconData
 import app.aize.nav.EtaEngine
 import app.aize.nav.Heading
 import app.aize.nav.NavService
@@ -485,44 +498,73 @@ fun NavScreen() {
                 color = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(AizeRadius.LG), shadowElevation = 6.dp,
             ) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.Center) {
-                    val isArrived = arrived || nav.arrived
-                    val distanceText = if (isArrived) "Arrived" else formatDistance(if (serviceOwned) nav.metersToInstruction else g.metersToNext)
-                    val instructionText = if (isArrived) {
-                        if (serviceOwned) nav.instruction ?: g.current.instruction else g.current.instruction
-                    } else {
-                        if (serviceOwned) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")
+                val isArrived = arrived || nav.arrived
+                val current = if (isArrived) g.current else (up ?: g.current)
+                Row(
+                    Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    // the manoeuvre glyph: the one thing a driver can read at a glance, so it gets its own square
+                    Box(
+                        Modifier
+                            .size(56.dp)
+                            .background(LocalContentColor.current.copy(alpha = 0.16f), RoundedCornerShape(AizeRadius.MD)),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            AizeIcons.get(ManeuverIcons.forManeuver(current)),
+                            contentDescription = null,
+                            modifier = Modifier.size(36.dp),
+                        )
                     }
-                    // the countdown changes every second and must not animate; the instruction changes rarely and should
-                    Text(distanceText, fontSize = 30.sp, fontWeight = FontWeight.Bold)
-                    AnimatedContent(
-                        targetState = instructionText,
-                        transitionSpec = {
-                            val slide = tween<IntOffset>(if (motion) AizeMotion.BASE_MS else 0)
-                            val fade = tween<Float>(if (motion) AizeMotion.BASE_MS else 0)
-                            (slideInVertically(animationSpec = slide) { it / 2 } + fadeIn(fade)) togetherWith
-                                (slideOutVertically(animationSpec = slide) { -it / 2 } + fadeOut(fade))
-                        },
-                        label = "instruction",
-                    ) { text ->
-                        Text(text, fontSize = 17.sp, maxLines = 2)
-                    }
-                    val after = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)
-                    if (!arrived && after != null) {
-                        Text("then ${after.instruction}", fontSize = 13.sp, maxLines = 1,
-                            color = LocalContentColor.current.copy(alpha = 0.8f))
-                    }
-                    // remaining distance, time left and arrival clock, from the service when it is driving
-                    val remainingMeters = if (serviceOwned) nav.remainingMeters else r.path.lengthMeters - distance
-                    val etaLine = if (serviceOwned && nav.eta != null) {
-                        "${formatDistance(remainingMeters)} · ${nav.eta}"
-                    } else {
-                        val secs = EtaEngine.estimate(r, distance, 0.0)
-                        "${formatDistance(remainingMeters)} · ${EtaEngine.summary(secs, System.currentTimeMillis())}"
-                    }
-                    if (!isArrived) {
-                        Text(etaLine, fontSize = 13.sp, fontWeight = FontWeight.Medium,
-                            color = LocalContentColor.current.copy(alpha = 0.9f))
+                    Spacer(Modifier.width(14.dp))
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.Center) {
+                        val distanceText = if (isArrived) "Arrived" else formatDistance(if (serviceOwned) nav.metersToInstruction else g.metersToNext)
+                        val instructionText = if (isArrived) {
+                            if (serviceOwned) nav.instruction ?: g.current.instruction else g.current.instruction
+                        } else {
+                            if (serviceOwned) nav.instruction ?: (up?.instruction ?: "Arrive at your destination") else (up?.instruction ?: "Arrive at your destination")
+                        }
+                        // the countdown changes every second and must not animate; the instruction changes rarely and should
+                        Text(distanceText, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                        AnimatedContent(
+                            targetState = instructionText,
+                            transitionSpec = {
+                                val slide = tween<IntOffset>(if (motion) AizeMotion.BASE_MS else 0)
+                                val fade = tween<Float>(if (motion) AizeMotion.BASE_MS else 0)
+                                (slideInVertically(animationSpec = slide) { it / 2 } + fadeIn(fade)) togetherWith
+                                    (slideOutVertically(animationSpec = slide) { -it / 2 } + fadeOut(fade))
+                            },
+                            label = "instruction",
+                        ) { text ->
+                            Text(text, fontSize = 16.sp, maxLines = 2)
+                        }
+                        val after = r.maneuvers.getOrNull(r.maneuvers.indexOf(g.next) + 1)
+                        if (!arrived && after != null) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    AizeIcons.get(ManeuverIcons.forManeuver(after)),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(14.dp),
+                                    tint = LocalContentColor.current.copy(alpha = 0.8f),
+                                )
+                                Spacer(Modifier.width(4.dp))
+                                Text("then ${after.instruction}", fontSize = 12.sp, maxLines = 1,
+                                    color = LocalContentColor.current.copy(alpha = 0.8f))
+                            }
+                        }
+                        // remaining distance, time left and arrival clock, from the service when it is driving
+                        val remainingMeters = if (serviceOwned) nav.remainingMeters else r.path.lengthMeters - distance
+                        val etaLine = if (serviceOwned && nav.eta != null) {
+                            "${formatDistance(remainingMeters)} · ${nav.eta}"
+                        } else {
+                            val secs = EtaEngine.estimate(r, distance, 0.0)
+                            "${formatDistance(remainingMeters)} · ${EtaEngine.summary(secs, System.currentTimeMillis())}"
+                        }
+                        if (!isArrived) {
+                            Text(etaLine, fontSize = 13.sp, fontWeight = FontWeight.Medium,
+                                color = LocalContentColor.current.copy(alpha = 0.9f))
+                        }
                     }
                 }
 
@@ -590,13 +632,18 @@ fun NavScreen() {
                 }
                 Spacer(Modifier.height(10.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Button(
+                    AizeButton(
+                        text = if (demo) "Stop" else "Demo drive",
                         onClick = { demo = !demo },
                         enabled = controller != null && r != null,
-                        modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET).weight(1f),
-                        shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-                    ) { Text(if (demo) "Stop" else "Demo drive") }
-                    OutlinedButton(
+                        modifier = Modifier.weight(1f),
+                        kind = if (demo) AizeButtonKind.Tonal else AizeButtonKind.Primary,
+                        leading = if (demo) AizeIcons.Stop else AizeIcons.get("ui_play"),
+                    )
+                    AizeButton(
+                        kind = AizeButtonKind.Tonal,
+                        leading = if (demo || fix != null) AizeIcons.Recenter else AizeIcons.get("ui_layers"),
+                        text = if (demo || fix != null) "Recenter" else "Overview",
                         onClick = {
                             val c = controller
                             val m = map
@@ -610,56 +657,69 @@ fun NavScreen() {
                                 r != null -> c.overview(r, (24 * density).roundToInt())
                             }
                         },
-                        modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET),
-                        shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-                    ) { Text(if (demo || fix != null) "Recenter" else "Overview") }
+                    )
                 }
-                Row {
+                Row(horizontalArrangement = Arrangement.spacedBy(2.dp), verticalAlignment = Alignment.CenterVertically) {
                     if (nav.active) {
-                        TextButton(onClick = {
-                            NavService.stop(ctx)
-                            NavSession.stop()
-                            controller?.setRoute(null)
-                            route = null
-                            demo = false
-                        }) { Text("End navigation") }
+                        AizeIconButton(
+                            AizeIcons.Stop, contentDescription = "End navigation",
+                            onClick = {
+                                NavService.stop(ctx)
+                                NavSession.stop()
+                                controller?.setRoute(null)
+                                route = null
+                                demo = false
+                            },
+                            filled = false, tint = MaterialTheme.colorScheme.error,
+                        )
                     }
                     if (!hasPermission) {
-                        TextButton(onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) }) { Text("Enable my location") }
+                        AizeButton(
+                            "Enable my location",
+                            onClick = { permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION) },
+                            kind = AizeButtonKind.Tonal, size = AizeButtonSize.Small, leading = AizeIcons.get("ui_my_location"),
+                        )
                     }
-                    if (r != null && !demo) TextButton(onClick = { steps = r }) { Text("Steps") }
-                    TextButton(onClick = { showSearch = true }) { Text("Search") }
-                    TextButton(onClick = { showServer = true }) { Text("Server") }
-                    TextButton(onClick = { ThemeMode.cycle(ctx) }) { Text(ThemeMode.label(themeMode)) }
+                    if (r != null && !demo) {
+                        AizeIconButton(AizeIcons.Steps, contentDescription = "Turn list", onClick = { steps = r }, filled = false)
+                    }
+                    AizeIconButton(AizeIcons.Search, contentDescription = "Search", onClick = { showSearch = true }, filled = false)
+                    AizeIconButton(AizeIcons.Server, contentDescription = "Server", onClick = { showServer = true }, filled = false)
+                    AizeIconButton(AizeIcons.Theme, contentDescription = "Theme: ${ThemeMode.label(themeMode)}, tap to change", onClick = { ThemeMode.cycle(ctx) }, filled = false)
                     val muted by NavSession.muted.collectAsState()
-                    TextButton(onClick = {
-                        NavSession.setMuted(!muted)
-                        ctx.getSharedPreferences("aize", Context.MODE_PRIVATE).edit().putBoolean("voice_muted", !muted).apply()
-                    }) { Text(if (muted) "Voice off" else "Voice on") }
+                    AizeIconButton(
+                        if (muted) AizeIcons.SpeakerOff else AizeIcons.Speaker,
+                        contentDescription = if (muted) "Voice off, tap to unmute" else "Voice on, tap to mute",
+                        onClick = {
+                            NavSession.setMuted(!muted)
+                            ctx.getSharedPreferences("aize", Context.MODE_PRIVATE).edit().putBoolean("voice_muted", !muted).apply()
+                        },
+                        filled = false,
+                        tint = if (muted) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.primary,
+                    )
                 }
             }
         }
         // ------------------------------------------------------------------ turn list
         steps?.let { shown ->
             Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), color = MaterialTheme.colorScheme.surface) {
-                Column(Modifier.padding(16.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            "Turn list \u00b7 ${formatDistance(shown.path.lengthMeters)} \u00b7 ${(shown.durationSeconds / 60).roundToInt()} min",
-                            fontSize = 18.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f),
-                        )
-                        TextButton(onClick = { steps = null }) { Text("Close") }
-                    }
+                AizeSheet(
+                    title = "Turn list",
+                    subtitle = "${formatDistance(shown.path.lengthMeters)} \u00b7 ${(shown.durationSeconds / 60).roundToInt()} min",
+                    onClose = { steps = null },
+                    modifier = Modifier.fillMaxSize(),
+                ) {
                     LazyColumn(Modifier.fillMaxSize()) {
                         itemsIndexed(shown.maneuvers) { i, m ->
                             // the last entry is the arrival pseudo-maneuver; the banner and the announcer skip it too
                             if (m.beginShapeIndex >= shown.path.size - 1) return@itemsIndexed
-                            ListItem(
-                                headlineContent = { Text(m.instruction) },
-                                supportingContent = { Text(formatDistance(m.lengthMeters)) },
-                                leadingContent = { Text("${i + 1}", color = MaterialTheme.colorScheme.primary, fontSize = 13.sp) },
+                            AizeListRow(
+                                headline = m.instruction,
+                                supporting = formatDistance(m.lengthMeters),
+                                leading = AizeIcons.get(ManeuverIcons.forManeuver(m)),
+                                trailing = "${i + 1}",
                             )
-                            HorizontalDivider()
+                            AizeDivider()
                         }
                     }
                 }
@@ -669,23 +729,28 @@ fun NavScreen() {
         // ------------------------------------------------------------------ search
         if (showSearch) {
             Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), color = MaterialTheme.colorScheme.surface) {
-                Column(Modifier.padding(12.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        OutlinedTextField(
-                            value = query, onValueChange = { query = it }, modifier = Modifier.weight(1f),
-                            singleLine = true, placeholder = { Text("Search a place in Malaysia") },
-                            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                        )
-                        TextButton(onClick = { showSearch = false; query = ""; results = emptyList() }) { Text("Close") }
-                    }
+                AizeSheet(
+                    title = "Search",
+                    subtitle = if (category != null) "${category!!.label} near you" else "Malaysia \u00b7 685k named places",
+                    onClose = { showSearch = false; query = ""; results = emptyList() },
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    AizeTextField(
+                        value = query,
+                        onValueChange = { query = it },
+                        placeholder = "Search a place in Malaysia",
+                        modifier = Modifier.fillMaxWidth(),
+                        onClear = { query = ""; results = emptyList(); category = null },
+                    )
                     // categories: one tap, "what is near me", no typing
                     if (query.isBlank() && chips.isNotEmpty()) {
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), contentPadding = PaddingValues(vertical = 6.dp)) {
                             items(chips) { c ->
-                                FilterChip(
+                                AizeChoiceChip(
+                                    label = c.label,
                                     selected = category?.id == c.id,
+                                    leading = AizeIcons.get(AizeIconData.forKind(c.id)),
                                     onClick = { if (category?.id == c.id) { category = null; results = emptyList() } else runCategory(c) },
-                                    label = { Text(c.label) },
                                 )
                             }
                         }
@@ -694,20 +759,25 @@ fun NavScreen() {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text("${category!!.label} near you", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Spacer(Modifier.width(8.dp))
-                            TextButton(onClick = { category = null; results = emptyList() }) { Text("Clear", fontSize = 12.sp) }
+                            AizeButton("Clear", onClick = { category = null; results = emptyList() }, kind = AizeButtonKind.Ghost, size = AizeButtonSize.Small)
                             // the list is one answer to "what is near me"; the map is the other one
-                            TextButton(onClick = { showSearch = false; query = "" }) { Text("Show on map", fontSize = 12.sp) }
+                            AizeButton(
+                                "Show on map",
+                                onClick = { showSearch = false; query = "" },
+                                kind = AizeButtonKind.Tonal, size = AizeButtonSize.Small,
+                                leading = AizeIcons.get("ui_layers"),
+                            )
                         }
                     }
                     if (query.isBlank() && category == null && results.isEmpty() && recents.isNotEmpty()) {
-                        Text("Recent places", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Recent searches", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     if (searching) LinearProgressIndicator(Modifier.fillMaxWidth().padding(vertical = 6.dp))
                     if (searchError != null) {
                         // a failed request is not "no matches": say which it is, and offer the fix
                         Text(searchError!!, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(12.dp))
                         Text("Server: $serverUrl", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 12.dp))
-                        TextButton(onClick = { showSearch = false; showServer = true }) { Text("Change server") }
+                        AizeButton("Change server", onClick = { showSearch = false; showServer = true }, kind = AizeButtonKind.Ghost, size = AizeButtonSize.Small, leading = AizeIcons.Server)
                     } else if (results.isEmpty() && !searching && category != null) {
                         Text("No ${category!!.label.lowercase()} found near you", color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(12.dp))
                     } else if (results.isEmpty() && !searching && query.trim().length >= 2) {
@@ -716,48 +786,50 @@ fun NavScreen() {
                     LazyColumn(Modifier.fillMaxSize()) {
                         if (query.isBlank() && category == null && results.isEmpty()) {
                             items(recents) { term ->
-                                ListItem(
-                                    headlineContent = { Text(term) },
-                                    trailingContent = { Text("Recent", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant) },
-                                    modifier = Modifier.clickable { query = term; category = null },
+                                AizeListRow(
+                                    headline = term,
+                                    leading = AizeIcons.get("ui_clock"),
+                                    onClick = { query = term; category = null },
                                 )
-                                HorizontalDivider()
+                                AizeDivider()
                             }
                         }
                         if (query.isBlank() && category == null && results.isEmpty() && saved.isNotEmpty()) {
                             items(saved) { sp ->
-                                ListItem(
-                                    headlineContent = { Text(sp.name) },
-                                    supportingContent = { Text(kindLabel(sp.kind)) },
-                                    trailingContent = { Text("Saved", fontSize = 12.sp, color = MaterialTheme.colorScheme.primary) },
-                                    modifier = Modifier.clickable {
+                                AizeListRow(
+                                    headline = sp.name,
+                                    supporting = kindLabel(sp.kind),
+                                    leading = AizeIcons.get(AizeIconData.forKind(sp.kind)),
+                                    trailing = "Saved",
+                                    trailingTint = MaterialTheme.colorScheme.primary,
+                                    onClick = {
                                         place = PlaceResult(sp.name, sp.lat, sp.lon, sp.kind, 0)
                                         showSearch = false
                                     },
                                 )
-                                HorizontalDivider()
+                                AizeDivider()
                             }
                         }
-                        items(results) { p ->
-                            ListItem(
-                                headlineContent = { Text(p.name) },
-                                supportingContent = {
-                                    val bits = mutableListOf(kindLabel(p.kind))
-                                    if (p.distanceMeters > 0) bits += formatDistance(p.distanceMeters.toDouble())
-                                    Text(bits.joinToString(" \u00b7 "))
-                                },
-                                modifier = Modifier.clickable {
+                        items(results) { hit ->
+                            AizeListRow(
+                                headline = hit.name,
+                                supporting = buildList {
+                                    add(kindLabel(hit.kind))
+                                    if (hit.distanceMeters > 0) add(formatDistance(hit.distanceMeters.toDouble()))
+                                }.joinToString(" \u00b7 "),
+                                leading = AizeIcons.get(AizeIconData.forKind(hit.kind)),
+                                onClick = {
                                     recents = Recents.add(recents, query)
                                     prefs.edit().putString(Recents.KEY, Recents.encode(recents)).apply()
-                                    place = p; showSearch = false; query = ""; results = emptyList(); category = null
+                                    place = hit; showSearch = false; query = ""; results = emptyList(); category = null
                                     map?.animateCamera(
                                         org.maplibre.android.camera.CameraUpdateFactory.newLatLngZoom(
-                                            LatLng(p.lat, p.lon), 15.5,
+                                            LatLng(hit.lat, hit.lon), 15.5,
                                         ),
                                     )
                                 },
                             )
-                            HorizontalDivider()
+                            AizeDivider()
                         }
                     }
                 }
@@ -829,23 +901,15 @@ private fun PlaceCard(
             color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
         )
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(
-                onClick = onDirections,
-                modifier = Modifier.weight(1f).heightIn(min = AizeSize.TOUCH_TARGET),
-                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-            ) { Text("Directions") }
-            OutlinedButton(
-                onClick = onSave,
-                modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET),
-                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-            ) { Text(if (isSaved) "Remove" else "Save") }
-            OutlinedButton(
-                onClick = onShare,
-                modifier = Modifier.heightIn(min = AizeSize.TOUCH_TARGET),
-                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-            ) { Text("Share") }
+            AizeButton(
+                "Directions", onDirections,
+                modifier = Modifier.weight(1f),
+                leading = AizeIcons.Route,
+            )
+            AizeButton(if (isSaved) "Remove" else "Save", onSave, kind = AizeButtonKind.Tonal, leading = AizeIcons.Star)
+            AizeButton("Share", onShare, kind = AizeButtonKind.Ghost, leading = AizeIcons.Share)
         }
-        TextButton(onClick = onClose) { Text("Close") }
+        AizeButton("Close", onClose, kind = AizeButtonKind.Ghost, size = AizeButtonSize.Small)
     }
 }
 
@@ -884,13 +948,8 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
                 enter = fadeIn(tween(if (motion) AizeMotion.BASE_MS else 0)) +
                     slideInVertically(tween(if (motion) AizeMotion.MODERATE_MS else 0)) { it / 3 },
             ) {
-            Surface(
-                onClick = { onPick(r) },
-                shape = RoundedCornerShape(AizeRadius.BUTTON_NORMAL),
-                color = if (onMap) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier.fillMaxWidth().heightIn(min = AizeSize.TOUCH_TARGET),
-            ) {
-                Row(Modifier.padding(horizontal = 12.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+            AizeCard(onClick = { onPick(r) }, selected = onMap, modifier = Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
                         Text(
                             "${formatDistance(r.summary?.distanceMeters ?: r.path.lengthMeters)} · ${(r.durationSeconds / 60).roundToInt().coerceAtLeast(1)} min",
@@ -906,7 +965,7 @@ private fun RouteChoices(choices: List<Route>, current: Route?, onPick: (Route) 
             }
             }
         }
-        TextButton(onClick = onCancel) { Text("Cancel") }
+        AizeButton("Cancel", onCancel, kind = AizeButtonKind.Ghost, size = AizeButtonSize.Small)
     }
 }
 
