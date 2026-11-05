@@ -1,11 +1,11 @@
 # M3 · Look right — status
 
-**0.16.0-m3** (versionCode 18). Three slices of M3 so far: the interface stops being stock Material 3 and
+**0.17.0-m3** (versionCode 19). Four slices of M3 so far: the interface stops being stock Material 3 and
 becomes Aize's own (icons, components, the manoeuvre drawn as well as written), the app gains a first run that
-explains itself before it asks for anything, and what it says is now what a screen reader reads.
+explains itself before it asks for anything, what it says is what a screen reader reads, and every one of those
+decisions now has a page that a script photographs and diffs.
 
-M3 is still not finished: the design catalogue with screenshot tests and the P2-05 sprite change are open, and
-`docs/03-roadmap.md` says so per task.
+M3 is still not finished: P2-05, the two-bucket puck, is open, and `docs/03-roadmap.md` says so per task.
 
 ## What shipped
 
@@ -56,6 +56,57 @@ type this build has not seen.
 
 Still missing, and deliberately not faked: the lane strip (the routing tiles carry no `turn:lanes`), the
 speed-limit bubble (no `maxspeed`), the report button, and the arrival card.
+
+### P1-07 · Design catalogue with screenshot tests
+
+`app/src/debug/kotlin/app/aize/catalogue/` — eight pages, one per decision, compiled into the **debug** source set
+only, so no part of this ships in a release build:
+
+| Page | What it pins down |
+|---|---|
+| `colour` | every theme role, the three extras, the six route colours, the five traffic colours — with hex values |
+| `icons` | all 61 glyphs in one grid, labelled |
+| `button` | three sizes × three variants, disabled, and with an icon |
+| `control` | chips (on/off/icon), round icon buttons, both switch states, text field empty and filled |
+| `shape` | the nine radii and the six size constants |
+| `motion` | durations, easings, springs, the transitions that use them |
+| `surface` | cards (plain, selected), rows, a card holding rows and a divider |
+| `type` | the type scale actually used, from 24 dp headline to 11 sp caption |
+
+The catalogue is a separate **activity** (`CatalogueActivity`), not a screen behind a menu. That is the design
+decision that makes the screenshots meaningful: `adb shell am start -n app.aize/.catalogue.CatalogueActivity --es section icon`
+renders one page at the top of the screen, so a capture never depends on a navigation path, a scroll position or
+state left over from a previous run.
+
+`scripts/screenshot_catalogue.py` drives it and compares against `docs/catalogue/golden/*.png`:
+
+- every capture is taken with the emulator forced to light mode and font scale 1.0, because a golden taken at
+  another scale is a golden for another design;
+- two numbers per page, not one: the **mean** absolute difference over every channel, and the **percentage of
+  pixels** whose worst channel moves by more than 8/255. A colour change on one button barely moves the mean and
+  is obvious in the percentage; a global tint does the opposite;
+- thresholds are **0.60 mean** and **0.10 % of pixels**, and `scripts/test_screenshot_catalogue.py` proves they
+  catch a recoloured component, a moved element and a single 63 px glyph changing, while ignoring a handful of
+  antialiasing pixels;
+- the bottom 72 px are excluded from the comparison: the gesture pill fades in and out on its own, and a gate that
+  fails on the system's pixels is a gate people switch off;
+- `--update` rewrites the goldens, `--sections` limits the run, and a failure writes `<page>.actual.png` next to
+  the golden so the difference can be looked at rather than guessed at.
+
+The first run of the catalogue found four things in its own pages, which is the argument for having it:
+
+1. **The section tabs wrapped one character per line.** "Shape and size" was too long for the strip, so "Motion"
+   fell off the edge and the header grew to seven lines — a page-level bug that no unit test could see. The tabs
+   are short labels on one line now, and `CatalogueCoverageTest` fails if a tab exceeds ten characters.
+2. **Pages were taller than the screen.** Measured, not eyeballed: a scan of the last row of ink in each capture
+   put five of eight pages past the bottom edge. The fixes were real design changes — swatches and radii in two
+   columns, a motion table that names the easings instead of listing five cubic-beziers, the two cards side by
+   side — and every page now ends above 1700 px.
+3. **Icon labels were truncated.** Eight glyphs per row left ~124 px per label for names like `ui_speaker_off`.
+   Six per row with the `nav_/poi_/ui_` prefix stripped, at 8 sp, reads.
+4. **The type ramp put the size at the end of a line that had already been used up** by the sample text, so
+   "instruction" wrapped into two-letter columns at the right edge. Name, sample, size — in that order.
+
 
 ### P1-08 · App shell and onboarding
 
@@ -139,7 +190,10 @@ A third, smaller one: the first `poi_food` glyph was a fork and knife whose thre
 
 | Check | Result |
 |---|---|
-| JVM unit tests | **129**, 0 failures (was 114) |
+| JVM unit tests | **133**, 0 failures (was 129) |
+| `CatalogueCoverageTest` | 4 — every page has a golden, ids are unique lowercase slugs (they are filenames), a tab label fits one line, and `fromId` resolves a page name and nothing else |
+| `scripts/test_screenshot_catalogue.py` | 9 — identical captures match, a missing golden fails rather than passes, a size change fails, a recoloured component fails, a moved element fails, one 63 px glyph changing fails, antialiasing noise passes, the system navigation bar is outside the comparison, and the script's page list matches the Kotlin enum |
+| Screenshot gate | `python3 scripts/screenshot_catalogue.py` — 8 pages, all match (mean ≤ 0.02, differing pixels ≤ 0.02 % on a repeat run) |
 | `ContrastTest` | 5 — the core palette clears 4.5:1 in both themes, the banner's two secondary lines clear it *at the alpha the code uses*, meaning-carrying graphics clear 3:1, the route colours are readable against the map land, and `blend()` is the arithmetic the eye does |
 | `SpokenTest` | 6 — the banner reads distance first and never doubles a full stop, missing parts do not leave holes, a route says "Route 2 of 3" before its numbers, badges are lowercased into the sentence, "1 minute" is not "1 minutes", and a place card names the kind only when there is one |
 | `TouchTargetTest` | 4 — `AizeSize.TOUCH_TARGET` is 48 dp, Normal and Large meet it in ink as well as in target, Small stays 36 dp inside a sheet, and the banner's 96 dp floor holds |
@@ -153,12 +207,14 @@ A third, smaller one: the first `poi_food` glyph was a fork and knife whose thre
 | On device (emulator, API 34) | banner glyph matches the instruction; turn list glyphs match all nine instructions in the 9.1 km demo route; search sheet chips and rows render with their icons |
 | On device, first run | fresh install opens the tour; **denying** the location dialog leaves the step usable ("Ask again" plus what still works); the consent switch writes `telemetry_opt_in=true` to `aize.xml`; finishing writes `onboarding_done_v1=true` and the map appears; force-stop and relaunch goes **straight to the map** |
 
+Catalogue goldens: `docs/catalogue/golden/{colour,type,icon,button,control,surface,shape,motion}.png`, and a
+contact sheet of all eight in `docs/verification/m3-catalogue.jpg`.
+
 Screenshots: `docs/verification/m3-banner.jpg`, `m3-turnlist.jpg`, `m3-search.jpg`, `m3-a11y-chooser.jpg`,
 and the first-run flow in `m3-onboarding-{welcome,howitworks,location,privacy,ready}.jpg`. The semantics
 themselves are text: `docs/verification/m3-a11y-tree.txt`.
 
 ## Next in M3
 
-P1-07 design catalogue with screenshot tests, then P2-05 puck blending (the pipeline already measures 16.8 dB
-nearest bucket against 30.6 dB for the two-bucket blend), then the rest of P1-04 once the tiles carry the lane
-and speed data.
+P2-05 puck blending — the pipeline already measures 16.8 dB for the nearest bucket against 30.6 dB for a
+two-bucket blend — then the rest of P1-04 once the tiles carry the lane and speed data.

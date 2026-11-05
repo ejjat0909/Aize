@@ -36,7 +36,7 @@ STATUS = {
     "P1-04": ("partial", "The banner now leads with the manoeuvre glyph in its own 56 dp square, then distance, instruction, the `then` line with its own small glyph, and the ETA line. No lane strip (the tiles carry no `turn:lanes`), no speed bubble (no `maxspeed`), no report button, no arrival card."),
     "P1-05": ("partial", "Durations, easings and springs live in `design/tokens/aize-purple.tokens.json` and are emitted as `AizeMotion`, `AizeSprings` and `AizeChoreography` by `design/generate_android.py`, so the `--check` gate keeps them from drifting. In use: the instruction banner slides in and out, a maneuver change cross-fades the text while the distance countdown stays still, chooser rows stagger in, the sheet springs between heights, and the puck eases along the short arc between GPS fixes. `rememberMotionEnabled()` reads Android's animator duration scale and zeroes every duration when animations are switched off, so \"remove animations\" removes them rather than slowing them down. Not done yet: page forward/back transitions between screens, and the `graphicsLayer` (RenderThread) variants of the transitions."),
     "P1-06": ("todo", ""),
-    "P1-07": ("todo", ""),
+    "P1-07": ("done", '`app/src/debug/kotlin/app/aize/catalogue/`: eight pages — colour, icons, button, control, shape, motion, surface, type — in the **debug** source set only, each one launchable straight from an intent (`am start -n app.aize/.catalogue.CatalogueActivity --es section icon`) so a capture never depends on a navigation path or a scroll position. `scripts/screenshot_catalogue.py` photographs every page and diffs it against `docs/catalogue/golden/*.png`, reporting both the mean channel difference and the percentage of pixels that move by more than 8/255, with thresholds of 0.60 and 0.10 %. `scripts/test_screenshot_catalogue.py` (9 tests) proves the gate catches a recoloured component, a moved element and one 63 px glyph changing while ignoring antialiasing noise and the system gesture pill. The first run found four layout bugs in its own pages: tabs wrapping one character per line, five of eight pages taller than the screen, truncated icon labels, and a type ramp that wrapped its size column off the edge.'),
     "P1-08": ("partial", "`AizeApp` is the shell: one Activity, and the first run is a five-step tour (welcome, how it works, location, privacy, ready) held in `ui/onboard/Onboarding.kt` as a pure step machine with the done-flag in `SharedPreferences`. The location permission is asked for on the step that explains it, a refusal is answered with a named fallback rather than a dead end, the telemetry toggle defaults off and writes through to `Telemetry`, and the tour can be replayed from the server dialog. Not yet: a real navigation graph (the map is still the only destination) and an in-app privacy policy page."),
     "P1-09": ("todo", ""),
     "P1-10": ("partial", "A pass over what the phone says, done as data and tests: `ui/a11y/Contrast.kt` does the WCAG maths over ARGB ints (the palette clears 4.5:1 in both themes; the banner's two secondary lines now use alpha 0.92 because 0.8 measured 4.00:1; the light alternative-route grey moved `#8E8C96` to `#858389` to clear the 3:1 graphics floor against the map), and `ui/a11y/Spoken.kt` builds the sentences a screen reader hears. The banner is one merged node ('52 m. Bear left onto Jalan Stesen Sentral. then ...') and deliberately not a live region, category chips are `Role.Checkbox` and announce their state, a route row reads 'Route 2 of 3. 9.1 km, 21 minutes, via ..., shown on the map', a place card header merges with `heading()` while its buttons stay separate nodes, and sheet titles are headings. Large fonts were measured at 1.5x and 2.0x, which found a truncated `then` line and a dangling separator in the bottom bar, both fixed. Not yet: a TalkBack walkthrough by hand, focus order, and a dynamic-type audit past 2.0x."),
@@ -215,7 +215,7 @@ def main():
     a("")
     a("## Where the app is today")
     a("")
-    a("Version 0.16.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
+    a("Version 0.17.0-m3. A debug APK installs and runs on a phone: purple MapLibre basemap from bundled "
       "PMTiles, purple puck and destination marker, live Valhalla routing from a server with a permanent "
       "address, place search over 685k named places with twelve one-tap categories and the last ten searches remembered, and turn-by-turn guidance that now keeps working with "
       "the screen off. It speaks through system TTS (prepare and imminent prompts, muteable), shows distance, "
@@ -229,7 +229,8 @@ def main():
       "Material, and the banner shows the manoeuvre as a picture as well as in words. A first run explains what "
       "the app is, how it works, why it wants location and what it does with your data before it asks for "
       "anything, a refused permission is answered rather than ignored, and what the interface says is what a "
-      "screen reader reads. 129 JVM unit tests pass.")
+      "screen reader reads. Every design decision has a page in a debug-only catalogue that a script "
+      "photographs and diffs against golden images. 133 JVM unit tests and 9 screenshot-gate tests pass.")
     a("")
     a("What it is not yet: no lane guidance or speed-limit signs (the routing tiles carry neither), no "
       "reports or traffic, no settings screen, and the release build is unsigned.")

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Debug-only components. The design catalogue is an activity so a screenshot test can launch one page directly;
+  it is not in the release build at all, because it lives in src/debug.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name=".catalogue.CatalogueActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Aize" />
+    </application>
+</manifest>
